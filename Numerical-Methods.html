@@ -1,0 +1,1964 @@
+
+<!DOCTYPE html>
+<html lang="en-UK">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="Calum Ross" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="description" content="Lecture notes for the module MAT1001 Differential Calculus." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MAT1001 Differential Calculus: Lecture Notes — Numerical Methods</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="mat1001-autopage-173"></a>
+<nav class="topnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">MAT1001 Differential Calculus: Lecture Notes</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="index.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-15" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-16" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-30" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-44" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-55" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-60" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-74" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-91" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-92" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-101" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-121" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-123" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-147" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-148" class="tocsection" >
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-158" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-167" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
+</p>
+
+
+<p>
+<a href="Differential-Equations.html#autosec-172" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-174" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-175" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-203" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Numerical differentiation</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-204" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-205" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical approaches to differential equations</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-207" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Advanced Topics</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-208" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-212" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Functions of two variables</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-213" class="tocsection" >
+<span class="sectionnumber">7.3</span>&#x2003;Multiple integrals</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-214" class="tocsection" >
+<span class="sectionnumber">7.4</span>&#x2003;Optimisation Problems</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-215" class="tocsection" >
+<span class="sectionnumber">7.5</span>&#x2003;Polynomial approximation</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-217" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Background Mathematics</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-218" class="tocsection" >
+<span class="sectionnumber">8.1</span>&#x2003;Background and References</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-219" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometry Primer</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-223" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Rearranging Equations</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-229" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Further Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-230" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Why Calculus Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-231" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Functions Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-232" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Differentiation Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-233" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Integration Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Differential Equations Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-235" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;Numerical Methods Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-236" class="tocsection" >
+<span class="sectionnumber">9.7</span>&#x2003;Advanced Topics Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Sheets.html#autosec-238" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Tutorial Sheets</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-240" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-243" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-244" class="tocsection" >
+<span class="sectionnumber">12.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-247" class="tocsection" >
+<span class="sectionnumber">12.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-251" class="tocchapter" >
+Bibliography</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>MAT1001 Differential Calculus: Lecture Notes</h1>
+
+<!--MathJax customizations:-->
+<div data-nosnippet
+    style="display:none"
+>
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\TextOrMath }[2]{#2}\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\require {upgreek}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\LWRsubmultirow }[2][]{#2}\)
+
+\(\newcommand {\LWRmultirow }[2][]{\LWRsubmultirow }\)
+
+\(\newcommand {\multirow }[2][]{\LWRmultirow }\)
+
+\(\newcommand {\mrowcell }{}\)
+
+\(\newcommand {\mcolrowcell }{}\)
+
+\(\newcommand {\STneed }[1]{}\)
+
+\(\def \ud {\mathrm {d}}\)
+
+\(\def \ui {\mathrm {i}}\)
+
+\(\def \uj {\mathrm {j}}\)
+
+\(\def \uh {\mathrm {h}}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\N }{\mathbb {N}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\CP }{\mathbb {C}P}\)
+
+\(\newcommand {\RP }{\mathbb {R}P}\)
+
+\(\def \bk {\vec {k}}\)
+
+\(\def \bm {\vec {m}}\)
+
+\(\def \bn {\vec {n}}\)
+
+\(\def \be {\vec {e}}\)
+
+\(\def \bE {\vec {E}}\)
+
+\(\def \bx {\vec {x}}\)
+
+\(\def \uL {\mathrm {L}}\)
+
+\(\def \uU {\mathrm {U}}\)
+
+\(\def \uW {\mathrm {W}}\)
+
+\(\def \uE {\mathrm {E}}\)
+
+\(\def \uT {\mathrm {T}}\)
+
+\(\def \uV {\mathrm {V}}\)
+
+\(\def \uM {\mathrm {M}}\)
+
+\(\def \uH {\mathrm {H}}\)
+
+\(\DeclareMathOperator {\sech }{sech}\)
+
+\(\DeclareMathOperator {\csch }{csch}\)
+
+\(\DeclareMathOperator {\arcsec }{arcsec}\)
+
+\(\DeclareMathOperator {\arccot }{arcCot}\)
+
+\(\DeclareMathOperator {\arccsc }{arcCsc}\)
+
+\(\DeclareMathOperator {\arccosh }{arcCosh}\)
+
+\(\DeclareMathOperator {\arcsinh }{arcsinh}\)
+
+\(\DeclareMathOperator {\arctanh }{arctanh}\)
+
+\(\DeclareMathOperator {\arcsech }{arcsech}\)
+
+\(\DeclareMathOperator {\arccsch }{arcCsch}\)
+
+\(\DeclareMathOperator {\arccoth }{arcCoth}\)
+
+\(\def \re {\textup {Re}}\)
+
+\(\def \im {\textup {Im}}\)
+
+\(\newcommand {\up }{\uppi }\)
+
+\(\newcommand {\ut }{\uptheta }\)
+
+\(\newcommand {\uw }{\upomega }\)
+
+\(\newcommand {\uph }{\upphi }\)
+
+\(\newcommand {\uvph }{\upvarphi }\)
+
+</div>
+
+<!--
+...... chapter Numerical Methods ......
+-->
+<h3 id="autosec-174">Chapter&nbsp;<span class="sectionnumber">6&#x2003;</span>Numerical Methods</h3>
+<a id="mat1001-autopage-174"></a>
+<a id="mat1001-autofile-6"></a>
+
+<a id="sec:numerics"></a>
+<!--
+...... section Solving equations numerically ......
+-->
+<h4 id="autosec-175"><span class="sectionnumber">6.1&#x2003;</span>Solving equations numerically</h4>
+<a id="mat1001-autopage-175"></a>
+
+
+<p>
+It frequently happens that when confronted with a problem you end up with a mathematical problem or expression that cannot be evaluated analytically. This may be a differential equation that we cannot solve, an integral that has no closed form solution, or even an
+algebraic equation which does not yield an explicit solution. This is where we have to turn to computer packages or follow a numerical method. Nowadays many computer programs can implement these approaches as standard. However, it is a good idea to understand
+how to implement a few of these approaches by hand as you may end up writing one of your own at some stage.<br />
+
+</p>
+
+<p>
+Chapter 27 of [Riley et&nbsp;al., 2006] contains a lot of information about this topic and is a good place to go for more details than we will discuss here.<br />
+
+</p>
+
+<p>
+Before moving on to numerical differentiation and integration we will first discuss how to solve algebraic equations numerically. This is all about finding the real roots of an equation \(f(x)=0\). This equation can either be algebraic, with \(f(x)\) being a polynomial, or
+transcendental, if \(f(x)\) includes trig, log, or exponential terms. We will be using iterative schemes to solve the equations, where we make successive approximations to the true solution, which converge to the true solution. For a method to be successful we need both
+that the approximations converge to the true solution, and also that we only have a finite number of solutions.<br />
+
+</p>
+
+<p>
+It is important to note that different iteration methods will be better at solving certain kinds of problems, in practice some combination of methods is likely to be used. We will see four methods, <b>Rearrangement</b>, <b>Linear interpolation</b>, and
+<b>Bisection</b>, before discussing <b>Newton</b>’s method, which is the most important method to know in this module.
+</p>
+<!--
+...... subsection Rearrangement ......
+-->
+<h5 id="autosec-176">Rearrangement</h5>
+<a id="mat1001-autopage-176"></a>
+
+
+<p>
+To explain what we mean by an iterative scheme it is useful to consider the first example method, recasting our equation \(f(x)=0\) as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                 x = ϕ(x),
+
+-->
+
+<p>
+
+\begin{equation*}
+x=\phi (x),
+\end{equation*}
+
+</p>
+
+<p>
+for some slowly varying function \(\phi (x)\). Our iteration scheme starts from a guess, \(x_{0}\) which will not solve \(f(x_{0})=0\) but should be picked so that it is close to zero<sup>1</sup>. We then have that \(x_{1}=\phi (x_{0})\) and can keep repeating this
+process, i.e. \(x_{n+1}=\phi (x_{n})\). The solution we are looking for will be a value of \(x\) that is left unchanged by applying \(\phi \).<br />
+
+</p>
+
+<p>
+The different methods are different ways of building \(\phi (x)\) so that we can start the iteration scheme.<br />
+
+</p>
+
+<p>
+As an example of how to use the rearrangement iteration consider
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{0}\)</span>
+
+<!--
+
+
+                                                                   f (x) = x5 − 3x3 + 2x − 4 = 0.                                                                (6.1)                                               --><a id="eq:   equation for iterating"></a><!--
+
+-->
+
+<p>
+
+\begin{equation}
+f(x)=x^{5}-3x^3+2x-4=0.     \label {eq:   equation for iterating}
+\end{equation}
+
+</p>
+
+<figure id="autoid-27" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-16"
+    class="lateximagesource"
+><!--
+     y
+
+
+ 2                       f (x) = x5 − 3x3 + 2x − 4
+
+
+ 1
+
+                              x
+         0.5   1   1.5    2
+
+−1
+
+−2
+
+−3
+
+−4
+--><img
+    src="mat1001-images\image-16.svg"
+    alt="(Graph of the function that we are studying via iteration.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;6.1: A plot of the function \(f(x)=x^{5}-3x^3+2x-4\) for \(0\leq x\leq 1.86\).
+
+</div>
+
+<a id="fig:   interpolation polynomial"></a>
+
+</div>
+
+</figure>
+
+<p>
+By rearranging this equation we have that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{1}\)</span>
+
+<!--
+
+                                                                                                                                                 15
+                                                                                                                             x = 3x3 − 2x + 4          .
+
+-->
+
+<p>
+
+\begin{equation*}
+x=\left (3x^{3}-2x+4\right )^{\frac {1}{5}}.
+\end{equation*}
+
+</p>
+
+<p>
+From the plot we in fig.&nbsp;<a href="Numerical-Methods.html#fig:        interpolation polynomial">6.1</a> we see that the root is between \(x=1.5\) and \(x=2\) and to see how the method works we will not attempt to start from that close to the true root. Here we
+take \(x_{0}=1.8\) and then iterate using
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{1}\)</span>
+
+<!--
+
+                                                                                                                                                        15
+                                                                                                                          xn+1 = 3x3n − 2xn + 4               .
+
+-->
+
+<p>
+
+\begin{equation*}
+x_{n+1}=\left (3x_{n}^{3}-2x_{n}+4\right )^{\frac {1}{5}}.
+\end{equation*}
+
+</p>
+
+<p>
+The successive values of \(x_{n}\) and \(f(x_{n})\) are shown in table&nbsp;<a href="Numerical-Methods.html#table:1">6.1</a> and they are closing in on
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{1}\)</span>
+
+<!--
+
+
+                                                                                x = 1.757632748,                                                                                 (6.2)                                                --><a id="eq:     precise root"></a><!--
+
+-->
+
+<p>
+
+\begin{equation}
+x=1.757632748, \label {eq:      precise root}
+\end{equation}
+
+</p>
+
+<p>
+which is the value of the root to \(9\) decimal places. We see from the table that once we got to \(x_{5}\) we were only differing from the precise answer in the third decimal places, so are within two parts in \(10^{3}\). We can also see that lots of iterations are needed
+to get an accurate answer. The precise number will depend on the specific problem.<br />
+
+</p>
+
+<figure id="autoid-28" class="table ">
+<div class="center">
+
+
+<div class="figurecaption">
+Table&nbsp;6.1: Successive approximations to the root of eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:   equation for iterating">6.1</a>)</span> using the rearranged equation. As the convergence is relatively slow we jump several steps at
+the end to show you it getting closer.
+
+</div>
+
+<a id="table:1"></a>
+<table>
+
+<tr style="display:none"><th>.</th></tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(n\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(x_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(f(x_{n})\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(0\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.8\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.99968\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(1\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.7805378\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.52247969\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(2\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.7700175\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.27736234\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(3\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.7643295\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.14849136\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(4\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.761254\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.07986324\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(5\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.7595909\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.043059716\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:   1px solid black">\(12\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.75765592\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.00058017842\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right: 1px solid black">\(18\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.7576331\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(7.8434818\times 10^{-6}\)</td>
+</tr>
+
+<tr class="hline" aria-hidden="true">
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+</tr>
+</table>
+
+</div>
+
+</figure>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-182"></a>
+
+<p>
+<sup>1</sup>&nbsp;It is useful to plot or roughly sketch the function \(f(x)\) as then it can be easier to pick a starting point.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.1</span></span>. </span> Implement this iteration method numerically for eq.&nbsp;<span class="textup">(<a
+href="Numerical-Methods.html#eq:       equation for iterating">6.1</a>)</span> using a programming language or computer program of your choice. I would suggest trying Python or Matlab, but you can use whatever you feel most comfortable with.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<!--
+...... subsection Linear interpolation ......
+-->
+<h5 id="autosec-183">Linear interpolation</h5>
+<a id="mat1001-autopage-183"></a>
+
+
+<p>
+The next method to look at is <b>linear interpolation</b>. The idea here is to pick two points \(A_{1},B_{1}\) on the graph \(y=f(x)\) that lie on either side of the root, i.e. so that \(f(A_{1})\) and \(f(B_{1})\) have opposite signs. We can then think about the
+straight line<sup>2</sup> joining these points \((A_{1},f(A_{1}))\) to \((B_{1},f(B_{1}))\). An example of this is shown in fig.&nbsp;<a href="Numerical-Methods.html#fig: interpolation polynomial 2">6.2</a> where \(A_{1}=1.5\) and \(B_{1}=1.8\).<br />
+
+</p>
+
+<p>
+The intersection of this straight line with the \(x\)-axis is given by
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{2}\)</span>
+
+<!--
+
+                                                                                                                                  A1 f (B1 ) − B1 f (A1 )
+                                                                                                                           x1 =                           ,
+                                                                                                                                     f (B1 ) − f (A1 )
+
+-->
+
+<p>
+
+\begin{equation*}
+x_{1}=\frac {A_{1}f(B_{1})-B_{1}f(A_{1})}{f(B_{1})-f(A_{1})},
+\end{equation*}
+
+</p>
+
+<p>
+We then replace \(A_{1}\) or \(B_{1}\) by \(x_{1}\), find the point on the curve corresponding to \(x=x_{1}\) and then iterate this process using the interpolation formula
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{2}\)</span>
+
+<!--
+
+                                                                          An f (Bn ) − Bn f (An )
+                                                                   xn =                           .                                                           (6.3)                                           --><a id="eq:   linear interpolation formula"></a><!--
+                                                                             f (Bn ) − f (An )
+
+-->
+
+<p>
+
+\begin{equation}
+x_{n}=\frac {A_{n}f(B_{n})-B_{n}f(A_{n})}{f(B_{n})-f(A_{n})}.             \label {eq:      linear interpolation formula}
+\end{equation}
+
+</p>
+
+<figure id="autoid-29" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-17"
+    class="lateximagesource"
+><!--
+     y
+
+
+ 2                             f (x) = x5 − 3x3 + 2x − 4
+
+
+ 1                        B1
+
+                                    x
+         0.5   1    1.5         2
+
+−1
+
+−2
+
+−3
+                   A1
+−4
+--><img
+    src="mat1001-images\image-17.svg"
+    alt="(Graph of the function that we are studying via iteration with the linear regression chord shown.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;6.2: A plot of the function \(f(x)=x^{5}-3x^3+2x-4\) for \(0\leq x\leq 1.86\) with the first linear interpolation chords shown in red.
+
+</div>
+
+<a id="fig:   interpolation polynomial 2"></a>
+
+</div>
+
+</figure>
+
+<p>
+With each iteration the chord will become shorter and the end points will move until the value of \(x_{n}\) converges to the precise value of the root. The first few steps of this interpolation starting from \(A_{1}=1.5\) and \(B_{1}=1.8\) are shown in table&nbsp;<a
+href="Numerical-Methods.html#table:2">6.2</a>.
+</p>
+
+<figure id="autoid-30" class="table ">
+<div class="center">
+
+
+<div class="figurecaption">
+Table&nbsp;6.2: Successive approximations to the root of eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:   equation for iterating">6.1</a>)</span> using linear interpolation. This is converging very slowly and changes by around \(0.0003\)
+each iteration.
+
+</div>
+
+<a id="table:2"></a>
+<table>
+
+<tr style="display:none"><th>.</th></tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(n\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(A_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(f(A_{n})\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(B_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(f(B_{n})\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(x_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(f(x_{n})\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(1\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.5\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-3.5315\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.8\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.99968\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.50003\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-3.5310\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(2\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.50003\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-3.5310\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.8\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.99968\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.50006\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-3.53082\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(3\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(4\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(5\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black"></td>
+</tr>
+
+<tr class="hline" aria-hidden="true">
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+</tr>
+</table>
+
+</div>
+
+</figure>
+
+<p>
+We can see from this example that the linear interpolation method is much slower than rearrangement method, this will not always be true, but is your first hint that you should play around with several approaches before settling on the one that works the best. If you are
+writing code for these problems, then it is a good idea to have code that can implement any of the iteration schemes that we are discussing here.
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-189"></a>
+<p>
+<sup>2</sup>&nbsp;This straight line is known as a chord.
+</p>
+
+
+</div>
+<!--
+...... subsection Bisection method ......
+-->
+<h5 id="autosec-190">Bisection method</h5>
+<a id="mat1001-autopage-190"></a>
+<!--
+...... subsection Newton’s method ......
+-->
+<h5 id="autosec-191">Newton’s method</h5>
+<a id="mat1001-autopage-191"></a>
+
+
+<p>
+The main numerical method that is needed in this module is <b>Newton’s method</b>, sometimes called the <b>Newton-Raphson</b> method. Newton’s method finds the root by constructing the tangent to a curve through the initial point \(x_{0}\), and then
+taking the next point \(x_{1}\) to be where the tangent line intersects the \(x\)-axis.<br />
+
+</p>
+
+<figure id="autoid-31" class="table ">
+<div class="center">
+
+
+<div class="figurecaption">
+Table&nbsp;6.3: Successive approximations to the root of eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:   equation for iterating">6.1</a>)</span> using Newton’s method. For this example, Newton’s method converges much quicker than
+the other methods.
+
+</div>
+
+<a id="table:3"></a>
+<table>
+
+<tr style="display:none"><th>.</th></tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(n\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(x_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(f(x_{n})\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(0\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.8\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.99968\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(1\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.760530638\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.06382986248\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right:               1px solid black">\(2\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.757647406\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(0.00032122929\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right: 1px solid black">\(3\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.757632748\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(8.267167839\times 10^{-9}\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right: 1px solid black">\(4\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.757632748\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-8.881784197\times 10^{-16}\)</td>
+</tr>
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left: 1px solid black; border-right: 1px solid black">\(5\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(1.757632748\)</td>
+<td class="tdc tvertbarr" style="border-right: 1px solid black">\(-8.881784197\times 10^{-16}\)</td>
+</tr>
+
+<tr class="hline" aria-hidden="true">
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+</tr>
+</table>
+
+</div>
+
+</figure>
+
+<p>
+In other words we start from a guess, \(x_{0}\), then construct the tangent line
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{3}\)</span>
+
+<!--
+
+
+                                                                                                                        y(x) = (x − x0 ) f ′ (x0 ) + f (x0 ).
+
+-->
+
+<p>
+
+\begin{equation*}
+y(x)=\left (x-x_{0}\right )f&apos;(x_{0})+f(x_{0}).
+\end{equation*}
+
+</p>
+
+<p>
+Once we have the tangent we find the value of \(x\) such that \(y(x)=0\) and call this \(x_{1}\). Doing this for a general point in the iteration \(x_{n}\) the iteration scheme is
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{3}\)</span>
+
+<!--
+
+                                                                                     f (xn )
+                                                                       xn+1 = xn −             .                                                                    (6.4)                                               --><a id="eq:    Newton iteration scheme"></a><!--
+                                                                                     f ′ (xn )
+
+-->
+
+<p>
+
+\begin{equation}
+x_{n+1}=x_{n}-\frac {f(x_{n})}{f&apos;(x_{n})}.         \label {eq:   Newton iteration scheme}
+\end{equation}
+
+</p>
+
+<p>
+An important observation here is that if the points \(x_{n}\) get close to a critical point of \(f(x)\) then the scheme will break down as then \(f&apos;(x_{n})\) will be approaching zero. This means that we need to be very careful about picking our starting point, if we
+pick one that is on the opposite side of a critical point from a root then we may not be able to get to the root. Figure&nbsp;<a href="Numerical-Methods.html#fig: Newton iteration">6.3</a> shows what the first step in Newton’s method looks like graphically.<br />
+
+</p>
+
+<figure id="autoid-32" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/Newton_iteration.png" target="_blank" ><img
+    src="figures/Newton_iteration.png"
+    style="
+    width:217pt;
+    "
+    class="inlineimage"
+    alt="(A schematic of the first step of Newton’s method for finding roots)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;6.3: The first step of Newton’s iteration method to find the root of \(f(x)\). We pick a point \(x_{0}\) then find the tangent to \(f(x)\) at \(x_{0}\) and solve for the point \(x_{1}\) where this tangent intersects the \(x\)-axis. This is repeated until we
+converge on the root.
+
+</div>
+
+<a id="fig:   Newton iteration"></a>
+
+</div>
+
+</figure>
+
+<p>
+For the specific equation in eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:        equation for iterating">6.1</a>)</span> we have that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{4}\)</span>
+
+<!--
+
+
+                                                                                                                                   x5n − 3x3n + 2xn − 4
+                                                                                                                     xn+1 = xn −                        .                                                                                                               (6.5)
+                                                                                                                                      5x4n − 9x2n + 2
+
+-->
+
+<p>
+
+\begin{equation}
+x_{n+1}=x_{n}-\frac {x_{n}^{5}-3x_{n}^3+2x_{n}-4}{5x_{n}^{4}-9x_{n}^{2}+2}.
+\end{equation}
+
+</p>
+
+<p>
+Starting from \(x_{0}=1.8\) we get the sequence in table&nbsp;<a href="Numerical-Methods.html#table:3">6.3</a>. This iteration scheme converges to the precise answer of eq.&nbsp;<span class="textup">(<a
+href="Numerical-Methods.html#eq: precise root">6.2</a>)</span> much quicker than the other methods.
+</p>
+
+<p>
+Newton’s method is the approach that you need to be able to use during this module so we will treat a couple more examples using it. There are a couple more examples on <a id="mat1001-autopage-194"></a>[Dawkins, 2025] if you want to see more.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-195"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.2</span></span>. </span> Use Newton’s method to determine an approximation to the solution to \(\sin {x} = -x\) that lie in the interval \([-1,1]\).
+Find the approximation to \(6\) decimal places.<br />
+
+
+</p>
+
+<p>
+First we need to pick a starting point \(x_{0}\). Here we will take \(x_{0}=0.5\), you can get an idea of what value to pick by plotting the function. For this example we have that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{5}\)</span>
+
+<!--
+
+
+                                                                            f (x) = sin(x) + x = 0,                                                                           (6.6)                                --><a id="eq:   sin +x roots"></a><!--
+
+-->
+
+<p>
+
+
+\begin{equation}
+f(x)=\sin (x)+x=0, \label {eq:     sin +x roots}
+\end{equation}
+
+
+</p>
+
+<p>
+so the iteration equation for Newton’s method eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:          Newton iteration scheme">6.4</a>)</span> becomes
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+
+                                                                                                                                        sin xn + xn
+                                                                                                                         xn+1 = xn −                .
+                                                                                                                                         cos xn + 1
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x_{n+1}=x_{n}-\frac {\sin {x_{n}}+x_{n}}{\cos {x_{n}}+1}.
+\end{equation*}
+
+
+</p>
+
+<p>
+The first approximation is then
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+
+                                                                                                                            1   sin 12 + 12
+                                                                                                                     x1 =     −             = −0.0216418
+                                                                                                                            2   cos 12 + 1
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x_{1}=\frac {1}{2}-\frac {\sin {\frac {1}{2}}+\frac {1}{2}}{\cos {\frac {1}{2}}+1}=-0.0216418
+\end{equation*}
+
+
+</p>
+
+<figure id="autoid-33" class="table ">
+<div class="center">
+
+
+<div class="figurecaption">
+Table&nbsp;6.4: Successive approximations to the root of eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:   sin +x roots">6.6</a>)</span> using Newton’s method.
+
+</div>
+
+<a id="table:4"></a>
+<table>
+
+<tr style="display:none"><th>.</th></tr>
+
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left:        1px solid black; border-right:      1px solid black">\(n\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(x_{n}\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(f(x_{n})\)</td>
+</tr>
+
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left:        1px solid black; border-right:      1px solid black">\(0\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(0.5\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(0.979426\)</td>
+</tr>
+
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left:        1px solid black; border-right:      1px solid black">\(1\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(-0.021642\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(-0.043282\)</td>
+</tr>
+
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left:        1px solid black; border-right:      1px solid black">\(2\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(2\times 10^{-6}\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(3.\times 10^{-6}\)</td>
+</tr>
+
+
+<tr class="hline">
+<td class="tdc tvertbarl tvertbarr" style="border-left:        1px solid black; border-right:      1px solid black">\(3\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(0\)</td>
+<td class="tdc tvertbarr" style="border-right:       1px solid black">\(0\)</td>
+</tr>
+
+
+<tr class="hline" aria-hidden="true">
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+</tr>
+</table>
+
+</div>
+
+</figure>
+
+<p>
+The further iteration steps are shown in table&nbsp;<a href="Numerical-Methods.html#table:4">6.4</a>, and we see that to 6 decimal places, it only takes \(4\) iterative steps to find that the root is at \(x=0\). If we did any more steps we would see that these remain
+at \(x=0\).
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Now we can consider one of the examples from <a id="mat1001-autopage-197"></a>[Dawkins, 2025] which shows when Newton’s method does not work.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-198"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.3</span></span>. </span> Starting from \(x_{0}=1\) we will apply Newton’s method to \(\sqrt [3]{x}\).<br />
+
+
+</p>
+
+<p>
+Intuitively it is clear that the root is \(x=0\). However, Newton’s method will not find this root. For this example eq.&nbsp;<span class="textup">(<a href="Numerical-Methods.html#eq:     Newton iteration scheme">6.4</a>)</span> becomes
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+                                                                                                                                √
+                                                                                                                                3
+                                                                                                                                    x
+                                                                                                                xn+1 = xn −             = xn − 3xn = −2xn .
+                                                                                                                              1 −2
+                                                                                                                              3
+                                                                                                                                x 3
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x_{n+1}=x_{n}-\frac {\sqrt [3]{x}}{\frac {1}{3}x^{-\frac {2}{3}}}=x_{n}-3x_{n}=-2x_{n}.
+\end{equation*}
+
+
+</p>
+
+<p>
+This already tells us that instead of converging to \(x=0\), Newton’s method will diverge with \(x_{1}=-2\), \(x_{2}=4\), \(x_{3}=-8\), \(x_{4}=16\), &#x2026;. This is the opposite of what we want. Fortunately, it became obvious quite quickly that the method was not
+working and we did not have to waste much time before discovering that we needed to used a different model.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-199"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.4</span></span>. </span> Write a computer program to implement Newton’s method and use it to find the roots in the examples above, where Newton’s
+method works.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<!--
+...... subsection Secant method ......
+-->
+<h5 id="autosec-200">Secant method</h5>
+<a id="mat1001-autopage-200"></a>
+
+
+<p>
+A variant of Newton’s method is the <b>Secant</b> method, where we start with two estimates of the root, \(x_{0}\) and \(x_{1}\) and estimate the derivative as being the Newton quotient
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+                                                                                                                                            f (x1 ) − f (x1 )
+                                                                                                                            Q(x0 , x1 ) =                     ,
+                                                                                                                                                x1 − x 0
+
+-->
+
+<p>
+
+\begin{equation*}
+Q(x_{0},x_{1})=\frac {f(x_{1})-f(x_{1})}{x_{1}-x_{0}},
+\end{equation*}
+
+</p>
+
+<p>
+so that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+                                                                                                                                   f (x1 )               f (x1 )
+                                                                                                                     x2 = x 1 −               = x1 − f (x )−f (x ) .
+                                                                                                                                  Q(x0 , x1 )            1       1
+                                                                                                                                                           x1 −x0
+
+-->
+
+<p>
+
+\begin{equation*}
+x_{2}=x_{1}-\frac {f(x_{1})}{Q(x_{0},x_{1})}=x_{1}-\frac {f(x_{1})}{\frac {f(x_{1})-f(x_{1})}{x_{1}-x_{0}}}.
+\end{equation*}
+
+</p>
+
+<p>
+This means that the iteration scheme is given by
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{6}\)</span>
+
+<!--
+
+                                                                               f (xn )                f (xn )
+                                                              xn+1 = xn −                 = xn − f (x )−f (x                                                                    (6.7)                                          --><a id="eq:   secant method"></a><!--
+                                                                            Q(xn−1 , xn )            n       n−1 )
+                                                                                                     xn −xn−1
+
+-->
+
+<p>
+
+\begin{equation}
+x_{n+1}=x_{n}-\frac {f(x_{n})}{Q(x_{n-1},x_{n})}=x_{n}-\frac {f(x_{n})}{\frac {f(x_{n})-f(x_{n-1})}{x_{n}-x_{n-1}}} \label {eq:                            secant method}
+\end{equation}
+
+</p>
+
+<p>
+Geometrically, the secant method can also be viewed as constructing a line nearby our function and moving to the point where this line cuts the \(x\)-axis. However, this line is no longer a tangent line, but is a secant.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-201"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.5</span></span>. </span> For
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{7}\)</span>
+
+<!--
+
+
+                                                                                                                          f (x) = x2 − 10,
+
+-->
+
+<p>
+
+
+\begin{equation*}
+f(x)=x^{2}-10,
+\end{equation*}
+
+
+</p>
+
+<p>
+and taking \(x_{0}=2\), \(x_{1}=3\) we find \(x_{2}\) using the secant method as follows:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{6.}{7}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                                    f (x1 )
+                                                                                                                      x2 = x1 − f (x )−f (x )
+                                                                                                                                      1        0
+                                                                                                                                      x1 −x0
+                                                                                                                                 −1
+                                                                                                                         = 3 − −1−(−6)
+                                                                                                                                  3−2
+                                                                                                                             1
+                                                                                                                         =3+
+                                                                                                                             7
+                                                                                                                         = 3.14286.
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+x_{2}&amp;=x_{1}-\frac {f(x_{1})}{\frac {f(x_{1})-f(x_{0})}{x_{1}-x_{0}}}\\ &amp;=3-\frac {-1}{\frac {-1-(-6)}{3-2}}\\ &amp;=3+\frac {1}{7}\\ &amp;=3.14286.
+\end{align*}
+This is an equation that we can solve directly by the rearrangement method since \(f(x)=0\) corresponds to \(x^{2}=10\) so the exact answers are \(x=-\sqrt {10}\simeq -3.16228\) and \(x=\sqrt {10}\simeq 3.16228\). We can see that \(x_{2}\) is already
+approaching this exact answer.
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<!--
+...... subsection Convergence and errors ......
+-->
+<h5 id="autosec-202">Convergence and errors</h5>
+<a id="mat1001-autopage-202"></a>
+
+
+<p>
+The absolute error of a numerical method is the difference between the true solution \(x\) and the approximate solution \(\xi \), \(\epsilon =\vert x-\xi \vert \). It can be hard to estimate the absolute error unless we already know the exact solution.<br />
+
+</p>
+
+<p>
+We say that an iteration scheme converges when it subsequent iterations do not change the value of \(x_{n}\), at least to the accuracy that we are looking for. Not every method will converge for a given problem, We have already seen that Newton’s method does not
+converge for the cube root, \(\sqrt [3]{x}\). You will gain experience of which methods works best for which type of of problem. In this module, you will mainly be using Newton’s method so you need to remember that it can fail.
+</p>
+<!--
+...... section Numerical differentiation ......
+-->
+<h4 id="autosec-203"><span class="sectionnumber">6.2&#x2003;</span>Numerical differentiation</h4>
+<a id="mat1001-autopage-203"></a>
+<!--
+...... section Numerical integration ......
+-->
+<h4 id="autosec-204"><span class="sectionnumber">6.3&#x2003;</span>Numerical integration</h4>
+<a id="mat1001-autopage-204"></a>
+<!--
+...... section Numerical approaches to differential equations ......
+-->
+<h4 id="autosec-205"><span class="sectionnumber">6.4&#x2003;</span>Numerical approaches to differential equations</h4>
+<a id="mat1001-autopage-205"></a>
+
+
+</section>
+
+</main>
+
+</div>
+
+<footer>
+
+<p>
+Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill[dot]ac[dot]uk</a> and Copyright CC BY 4.0
+</p>
+
+</footer>
+
+
+<nav class="botnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

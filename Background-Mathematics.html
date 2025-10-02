@@ -1,0 +1,1598 @@
+
+<!DOCTYPE html>
+<html lang="en-UK">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="Calum Ross" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="description" content="Lecture notes for the module MAT1001 Differential Calculus." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MAT1001 Differential Calculus: Lecture Notes — Background Mathematics</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="mat1001-autopage-216"></a>
+<nav class="topnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">MAT1001 Differential Calculus: Lecture Notes</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="index.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-15" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-16" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-30" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-44" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-55" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-60" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-74" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-91" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-92" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-101" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-121" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-123" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-147" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-148" class="tocsection" >
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-158" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-167" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
+</p>
+
+
+<p>
+<a href="Differential-Equations.html#autosec-172" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-174" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-175" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-203" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Numerical differentiation</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-204" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-205" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical approaches to differential equations</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-207" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Advanced Topics</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-208" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-212" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Functions of two variables</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-213" class="tocsection" >
+<span class="sectionnumber">7.3</span>&#x2003;Multiple integrals</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-214" class="tocsection" >
+<span class="sectionnumber">7.4</span>&#x2003;Optimisation Problems</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-215" class="tocsection" >
+<span class="sectionnumber">7.5</span>&#x2003;Polynomial approximation</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-217" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Background Mathematics</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-218" class="tocsection" >
+<span class="sectionnumber">8.1</span>&#x2003;Background and References</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-219" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometry Primer</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-223" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Rearranging Equations</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-229" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Further Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-230" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Why Calculus Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-231" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Functions Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-232" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Differentiation Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-233" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Integration Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Differential Equations Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-235" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;Numerical Methods Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-236" class="tocsection" >
+<span class="sectionnumber">9.7</span>&#x2003;Advanced Topics Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Sheets.html#autosec-238" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Tutorial Sheets</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-240" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-243" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-244" class="tocsection" >
+<span class="sectionnumber">12.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-247" class="tocsection" >
+<span class="sectionnumber">12.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-251" class="tocchapter" >
+Bibliography</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>MAT1001 Differential Calculus: Lecture Notes</h1>
+
+<!--MathJax customizations:-->
+<div data-nosnippet
+    style="display:none"
+>
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\TextOrMath }[2]{#2}\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\require {upgreek}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\LWRsubmultirow }[2][]{#2}\)
+
+\(\newcommand {\LWRmultirow }[2][]{\LWRsubmultirow }\)
+
+\(\newcommand {\multirow }[2][]{\LWRmultirow }\)
+
+\(\newcommand {\mrowcell }{}\)
+
+\(\newcommand {\mcolrowcell }{}\)
+
+\(\newcommand {\STneed }[1]{}\)
+
+\(\def \ud {\mathrm {d}}\)
+
+\(\def \ui {\mathrm {i}}\)
+
+\(\def \uj {\mathrm {j}}\)
+
+\(\def \uh {\mathrm {h}}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\N }{\mathbb {N}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\CP }{\mathbb {C}P}\)
+
+\(\newcommand {\RP }{\mathbb {R}P}\)
+
+\(\def \bk {\vec {k}}\)
+
+\(\def \bm {\vec {m}}\)
+
+\(\def \bn {\vec {n}}\)
+
+\(\def \be {\vec {e}}\)
+
+\(\def \bE {\vec {E}}\)
+
+\(\def \bx {\vec {x}}\)
+
+\(\def \uL {\mathrm {L}}\)
+
+\(\def \uU {\mathrm {U}}\)
+
+\(\def \uW {\mathrm {W}}\)
+
+\(\def \uE {\mathrm {E}}\)
+
+\(\def \uT {\mathrm {T}}\)
+
+\(\def \uV {\mathrm {V}}\)
+
+\(\def \uM {\mathrm {M}}\)
+
+\(\def \uH {\mathrm {H}}\)
+
+\(\DeclareMathOperator {\sech }{sech}\)
+
+\(\DeclareMathOperator {\csch }{csch}\)
+
+\(\DeclareMathOperator {\arcsec }{arcsec}\)
+
+\(\DeclareMathOperator {\arccot }{arcCot}\)
+
+\(\DeclareMathOperator {\arccsc }{arcCsc}\)
+
+\(\DeclareMathOperator {\arccosh }{arcCosh}\)
+
+\(\DeclareMathOperator {\arcsinh }{arcsinh}\)
+
+\(\DeclareMathOperator {\arctanh }{arctanh}\)
+
+\(\DeclareMathOperator {\arcsech }{arcsech}\)
+
+\(\DeclareMathOperator {\arccsch }{arcCsch}\)
+
+\(\DeclareMathOperator {\arccoth }{arcCoth}\)
+
+\(\def \re {\textup {Re}}\)
+
+\(\def \im {\textup {Im}}\)
+
+\(\newcommand {\up }{\uppi }\)
+
+\(\newcommand {\ut }{\uptheta }\)
+
+\(\newcommand {\uw }{\upomega }\)
+
+\(\newcommand {\uph }{\upphi }\)
+
+\(\newcommand {\uvph }{\upvarphi }\)
+
+</div>
+
+<!--
+...... chapter Background Mathematics ......
+-->
+<h3 id="autosec-217">Chapter&nbsp;<span class="sectionnumber">8&#x2003;</span>Background Mathematics</h3>
+<a id="mat1001-autopage-217"></a>
+<a id="mat1001-autofile-8"></a>
+
+<a id="sec:background"></a>
+
+<div class="epigraph" role="note">
+
+
+<div class="qitem">
+
+<p>
+Try as you may you just can’t get away from Mathematics
+</p>
+
+<div class="epigraphsource">
+
+<p>
+<i>That’s Mathematics by Tom Lehrer</i>
+</p>
+</div>
+
+</div>
+
+</div>
+<!--
+...... section Background and References ......
+-->
+<h4 id="autosec-218"><span class="sectionnumber">8.1&#x2003;</span>Background and References</h4>
+<a id="mat1001-autopage-218"></a>
+
+
+<p>
+As this is a maths module there is a lot of assumed background. This means that to understand the material in the module and to be able to solve the tutorial problems, you need to have a experience with a variety of mathematical techniques such as:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+<li>
+<p>
+<span class="listmarker">•</span> solving linear equation,
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> solving quadratic equations
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> using trigonometry,
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> knowning some simple functions.
+</p>
+</li>
+</ul>
+
+<p>
+These topics will be familiar to many of you. However, it may have been a while since some of you studied mathematics and I am aiming to briefly introduce any new mathematical topics when we need them. However, I also want to link to some extra resources where you
+can brush up on your maths beforehand.<br />
+
+</p>
+
+<p>
+A great resource is the website <a href="https://tutorial.math.lamar.edu/" target="_blank" >Pauls Online Math Notes</a>. The website contains notes for a variety of mathematics courses including algebra and calculus. The most useful background materials are
+the Algebra and trigonometry review <a href="https://tutorial.math.lamar.edu/Extras/AlgebraTrigReview/AlgebraTrigIntro.aspx" target="_blank" >linked here</a> and the preliminaries section of the algebra notes, <a
+href="https://tutorial.math.lamar.edu/Classes/Alg/Preliminaries.aspx" target="_blank" >linked here</a>.<br />
+
+</p>
+
+<p>
+As the module goes on I may add more background resources or add some examples.<br />
+
+</p>
+<!--
+...... section Trigonometry Primer ......
+-->
+<h4 id="autosec-219"><span class="sectionnumber">8.2&#x2003;</span>Trigonometry Primer</h4>
+<a id="mat1001-autopage-219"></a>
+
+
+<p>
+Since trigonometric functions come up a lot in this course a review of the basics is included here. If you are not familiar with it you can either check out the links suggested above or ask me to provide more background information.<br />
+
+</p>
+
+<p>
+Here we will only discuss trigonometry for right angled triangles, but in the main content of the module we will deal with general trig functions. <b>Trigonometry</b> is an area of mathematics related to the study of triangles and provides a way to compute the lengths
+and angles in a triangle provided that you now some of them already.
+</p>
+
+<figure id="autoid-34" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-18"
+    class="lateximagesource"
+><!--
+        φ
+
+
+
+
+    a
+            c
+
+
+
+
+θ
+    b
+--><img
+    src="mat1001-images\image-18.svg"
+    alt="(-tikz-&nbsp;diagram)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;8.1: A right angle triangle with all the angles and sides marked.
+
+</div>
+
+<a id="fig:   Trig definitions"></a>
+
+</div>
+
+</figure>
+
+<p>
+The typical mnemonic used to remember trigonometry is <b>SOH CAH TOA</b> which means Sine is opposite over hypotenuse
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+                                                                                                                                     c               b
+                                                                                                                           sin θ =     ,   sin φ =     ,
+                                                                                                                                     a               a
+-->
+
+<p>
+
+\begin{equation*}
+\sin \uptheta =\frac {c}{a}, \qquad \sin \upphi =\frac {b}{a},
+\end{equation*}
+
+</p>
+
+<p>
+Cosine is adjacent divided by hypotenuse
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+                                                                                                                                     b               c
+                                                                                                                           cos θ =     ,   cos φ =     ,
+                                                                                                                                     a               a
+-->
+
+<p>
+
+\begin{equation*}
+\cos \uptheta =\frac {b}{a}, \qquad \cos \upphi =\frac {c}{a},
+\end{equation*}
+
+</p>
+
+<p>
+and Tangent is opposite divided by adjacent
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+                                                                                                                                     c               b
+                                                                                                                           tan θ =     ,   sin φ =     .
+                                                                                                                                     b               c
+-->
+
+<p>
+
+\begin{equation*}
+\tan \uptheta =\frac {c}{b}, \qquad \sin \upphi =\frac {b}{c}.
+\end{equation*}
+
+</p>
+
+<p>
+There are associated inverse functions \(\arcsin ,\arccos ,\arctan \) which convert ratios of sides into angles. All of these functions are available on your calculator.<br />
+
+</p>
+
+<p>
+It is important to be careful with which units you are using to express angles. It is likely that you will have come across degrees where going around a full circle is represented by an angle of \(360^{\circ }\). However, it is often convenient to work with a different
+measure of angles called radians, in this case we take a full circle to be \(2\uppi \text {rad}\) and express angles as a number between \(0\) and \(2\uppi \). In this module you can probably get away with always working in degrees, other than for some of the formulas
+quoted for the pendulum. However, if you go further with maths or physics you will find that radians as much more convenient to work with.
+</p>
+<!--
+...... section Rearranging Equations ......
+-->
+<h4 id="autosec-223"><span class="sectionnumber">8.3&#x2003;</span>Rearranging Equations</h4>
+<a id="mat1001-autopage-223"></a>
+
+
+<p>
+A very important skill for solving mathematics problems, and finding the roots of functions, is to be able to rearrange equations. This is sometimes referred to as changing the subject of an equation. Newcastle University have a webpage, available <a
+href="https://www.mas.ncl.ac.uk/ask/numeracy-maths-statistics/core-mathematics/pure-maths/algebra/rearranging-equations.html" target="_blank" >here</a> that goes through some examples of how to rearrange equations. The webpage also has some self
+test questions that you can look at if you want more practice. Some of the details are reviewed here, along with examples for the specific equations that we have been using in this module.<br />
+
+</p>
+
+<p>
+In the equation
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                 x = 5y + 4z,
+
+-->
+
+<p>
+
+\begin{equation*}
+x=5y+4z,
+\end{equation*}
+
+</p>
+
+<p>
+\(x\) is called the subject, which is just a fancy way of saying that \(x\) is expressed in terms of the other variables. When we talk about rearranging an equation, we mean that we change the subject of the equation from \(x\) to another variable like \(y\) and \(z\). We
+do this by performing a variety of mathematical operations to both sides of the equation to swap some of the variables from one side to the other.<br />
+
+</p>
+
+<p>
+These operations can include: adding or subtracting a quantity from both sides, multiplying or dividing by a quantity, taking logarithms of or exponentiating both sides of the equation, raising both sides of the equation to any non-zero power.<br />
+
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-224"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.1</span></span>. </span> Returning to the above equation \(x=5y+4x\), we can rearrange it to make \(z\) the subject. Again, this means that we will
+perform mathematical operations on both sides of the equation to put it in the form \(z=\dots {}\) :
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                           x = 5y + 4z,    first subtract \(5y\) from both sides,
+                                                                                                       x − 5y = 5y + 4z − 5y = 4z,   then divide both sides by 4,
+                                                                                                       x − 5y   4z
+                                                                                                              =    = z.
+                                                                                                         4       4
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+x&amp;=5y+4z, \quad \text { first subtract $5y$ from both sides},\\ x-5y&amp;=5y+4z-5y=4z, \quad \text {then divide both sides by 4},\\ \frac {x-5y}{4}&amp;=\frac {4z}{4}=z.
+\end{align*}
+This gives us
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                 x − 5y
+                                                                                                                            z=          ,
+                                                                                                                                   4
+
+-->
+
+<p>
+
+
+\begin{equation*}
+z=\frac {x-5y}{4},
+\end{equation*}
+
+
+</p>
+
+<p>
+with \(z\) now the subject of the equation.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-225"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.2</span></span>. </span> As another example consider an equation from physics \(v=u+at\), which says that the if an object starts off with a velocity \(v\)
+and accelerates at a rate \(a\) then after time \(t\) its velocity will be \(v\). Here we go through this step by step what we do when solving for \(a\):
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                  v = u + at,   subtract \(u\) from both sides,
+                                                                                                              v − u = u + at − u = at,    divide both sides by \(t\),
+                                                                                                              v−u   at
+                                                                                                                  =    = a,
+                                                                                                               t    t
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+v&amp;=u+at, \quad \text {subtract $u$ from both sides},\\ v-u&amp;=u+at -u=at, \quad \text {divide both sides by $t$},\\ \frac {v-u}{t}&amp;=\frac {at}{t}=a,
+\end{align*}
+which gives us
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                         v−u
+                                                                                                                                   a=        .
+                                                                                                                                          t
+
+-->
+
+<p>
+
+
+\begin{equation*}
+a=\frac {v-u}{t}.
+\end{equation*}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-226"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.3</span></span>. </span> Another example is rearranging a different equation from physics,
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                                       1 2
+                                                                                                                                            s = ut +     at ,
+                                                                                                                                                       2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+s=ut+\frac {1}{2}at^{2},
+\end{equation*}
+
+
+</p>
+
+<p>
+to solve for either \(a\) or \(t\).<br />
+
+
+</p>
+
+<p>
+To make \(a\) the subject we proceed as follows:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                          1 2
+                                                                                                                 s = ut +   at , subtract \(ut\) from both sides,
+                                                                                                                          2
+                                                                                                                          1             1
+                                                                                                           s − ut = ut + at2 − ut = at2 , multiply both sides by \(2\),
+                                                                                                                          2             2
+                                                                                                                        1 2
+                                                                                                                            
+                                                                                                       2 (s − ut) = 2     at    = at2 , divide both sides by \(t^{2}\),
+                                                                                                                        2
+                                                                                                       2 (s − ut)   at2
+                                                                                                            2
+                                                                                                                  = 2 = a,
+                                                                                                           t         t
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+s&amp;=ut+\frac {1}{2}at^{2}, \quad \text {subtract $ut$ from both sides},\\ s-ut&amp;=ut+\frac {1}{2}at^{2}-ut=\frac {1}{2}at^{2}, \quad \text {multiply both sides by $2$},\\ 2\left (s-ut\right )&amp;=2\left (\frac {1}{2}at^{2}\right
+)=at^{2}, \quad \text {divide both sides by $t^{2}$},\\ \frac {2\left (s-ut\right )}{t^{2}}&amp;=\frac {at^{2}}{t^{2}}=a,
+\end{align*}
+thus the equation with \(a\) being the subject is
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                                 2 (s − ut)
+                                                                                                                                            a=              .
+                                                                                                                                                     t2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+a=\frac {2\left (s-ut\right )}{t^{2}}.
+\end{equation*}
+
+
+</p>
+
+<p>
+If instead we wanted \(t\) to be the subject then it is easier to put it in the form of a quadratic equation and then use the quadratic formula:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                               1 2
+                                                                                                    s = ut +     at ,    subtract \(s\) from both sides,
+                                                                                                               2
+                                                                                                       1
+                                                                                                    0 = at2 + ut − s, this is a qudratic equation for \(t\) and is solved by
+                                                                                                       2
+                                                                                                            √
+                                                                                                       −u ± u2 + 2as
+                                                                                                    t=                .
+                                                                                                              a
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+s&amp;=ut+\frac {1}{2}at^{2}, \quad \text {subtract $s$ from both sides},\\ 0&amp;=\frac {1}{2}at^{2}+ut-s,\quad \text {this is a qudratic equation for $t$ and is solved by}\\ t&amp;=\frac {-u\pm \sqrt {u^{2}+2as}}{a}.
+\end{align*}
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+There are a few special cases where we do not need to use the quadratic formula that it is worth being aware of. If \(s=0\) then we have
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                           1 2
+                                                                                                                   0 = ut + at , factor out the common factor,
+                                                                                                                         2
+                                                                                                                            1
+                                                                                                                                
+                                                                                                                   0 = t u + at ,
+                                                                                                                            2
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+0&amp;=ut+\frac {1}{2}at^{2}, \quad \text {factor out the common factor},\\ 0&amp;=t\left (u+\frac {1}{2}at\right ),
+\end{align*}
+This has two solutions \(t=0\), which is the start of the motion, and
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                    1
+                                                                                                                        0=u+          at,    subtract \(u\) from both sides,
+                                                                                                                                    2
+                                                                                                                        1
+                                                                                                                     −u = at, multiply both sides by \(2\),
+                                                                                                                        2
+                                                                                                                  −2u = at, divide both sides by \(a\),
+                                                                                                                     2u
+                                                                                                                 −      = t.
+                                                                                                                      a
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+0&amp;=u+\frac {1}{2}at, \quad \text {subtract $u$ from both sides},\\ -u&amp;=\frac {1}{2}at, \quad \text {multiply both sides by $2$},\\ -2u&amp;=at, \quad \text {divide both sides by $a$},\\ -\frac {2u}{a}&amp;=t.
+\end{align*}
+This case often appear when considering projectile motion and you want to calculate the total length of time that the projectile is in the air for.<br />
+
+</p>
+
+<p>
+The other common example is if \(u=0\), then:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                             1 2
+                                                                                                                         s=    at , multiply both sides by \(2\),
+                                                                                                                             2
+                                                                                                                        2s = at2 , divide both sides by \(a\),
+                                                                                                                        2s
+                                                                                                                           = t2 ,      take the square root of both sides,
+                                                                                                                        a
+                                                                                                                  r
+                                                                                                                        2s
+                                                                                                                           = t.
+                                                                                                                        a
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+s&amp;=\frac {1}{2}at^{2}, \quad \text {multiply both sides by $2$},\\ 2s&amp;=at^{2}, \quad \text {divide both sides by $a$},\\ \frac {2s}{a}&amp;=t^{2}, \quad \text {take the square root of both sides},\\ \sqrt {\frac {2s}{a}}&amp;=t.
+\end{align*}
+In the last line we have dropped the \(\pm \) that should be in front of the square root since we do not consider negative time. However, if you were just solving a quadratic equation then you would have to remember to include that. Both of these special cases can also be
+found by direct substitution into the quadratic formula of \(s=0\) or \(u=0\) respectively.<br />
+
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-227"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.4</span></span>. </span> The final example is to rearrange an equation involving a square root,
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+                                                                                                                                                                     r
+                                                                                                                                                                         l
+                                                                                                                                                        T = 2π             .
+                                                                                                                                                                         g
+
+-->
+
+<p>
+
+
+\begin{equation*}
+T=2\uppi \sqrt {\frac {l}{g}}.
+\end{equation*}
+
+
+</p>
+
+<p>
+If you are asked to make \(l\) the subject of this equation we proceed as follows:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                r
+                                                                                                                                    l
+                                                                                                                  T = 2π              ,       first divide both sides by \(2\uppi \),
+                                                                                                                                    g
+                                                                                                                                r             r
+                                                                                                                  T    2π           l             l
+                                                                                                                     =                =             ,         then square both sides of the equation,
+                                                                                                                  2π   2π           g             g
+                                                                                                                  2        r 2
+                                                                                                             T                      l             l
+                                                                                                         
+                                                                                                                       =                      =     ,     now multiply both sides by \(g\),
+                                                                                                             2π                     g             g
+                                                                                                                  2
+                                                                                                             T                  l
+                                                                                                         
+                                                                                                     g                 =g×        = l.
+                                                                                                             2π                 g
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+T&amp;=2\uppi \sqrt {\frac {l}{g}}, \quad \text {first divide both sides by $2\uppi $},\\ \frac {T}{2\uppi }&amp;=\frac {2\uppi }{2\uppi }\sqrt {\frac {l}{g}}=\sqrt {\frac {l}{g}}, \quad \text {then square both sides of the equation},\\
+\left (\frac {T}{2\uppi }\right )^{2}&amp;=\left (\sqrt {\frac {l}{g}}\right )^{2}=\frac {l}{g}, \quad \text {now multiply both sides by $g$},\\ g\left (\frac {T}{2\uppi }\right )^{2}&amp;=g\times \frac {l}{g}=l.
+\end{align*}
+This leaves us with
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+<!--
+
+                                                                                                                                                                    2
+                                                                                                                                                               T             gT 2
+                                                                                                                                                          
+                                                                                                                                                  l=g                    =        .
+                                                                                                                                                               2π            4π2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+l=g\left (\frac {T}{2\uppi }\right )^{2}=\frac {gT^{2}}{4\uppi ^{2}}.
+\end{equation*}
+
+
+</p>
+
+<p>
+This is the equation for a straight line \(y=mx+c\) where \(l\) plays the role of \(y\), the \(y\)-intercept \(c=0\), \(\left (\frac {T}{2\uppi }\right )^{2}\) plays the role of \(x\), and \(m=g\) is the gradient of the straight line. When analysing your data you would
+use plot your data and should observe a straight line whose gradient is \(g\).<br />
+
+
+</p>
+
+<p>
+At the last step of this rearrangement we could instead make \(g\) the subject. To do this we proceed as follows:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                       2       r 2
+                                                                                                                  T                       l             l
+                                                                                                             
+                                                                                                                            =                     =       ,     now multiply both sides by \(g\),
+                                                                                                                  2π                      g             g
+                                                                                                                       2                                                                      2
+                                                                                                                  T                     l                                                 T
+                                                                                                                                                                                     
+                                                                                                         g                  =g×           = l,          divide both sides by                        ,
+                                                                                                                  2π                    g                                                 2π
+                                                                                                                                    l             4π2 l
+                                                                                                                        g=               = T2 .
+                                                                                                                                T 2
+                                                                                                                                2π
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\left (\frac {T}{2\uppi }\right )^{2}&amp;=\left (\sqrt {\frac {l}{g}}\right )^{2}=\frac {l}{g}, \quad \text {now multiply both sides by $g$},\\ g\left (\frac {T}{2\uppi }\right )^{2}&amp;=g\times \frac {l}{g}=l, \quad \text {divide both
+sides by }\left (\frac {T}{2\uppi }\right )^{2}, \\ g&amp;=\frac {l}{\left (\frac {T}{2\uppi }\right )^{2}}=\frac {4\uppi ^{2} l}{T^{2}}.
+\end{align*}
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+If you want more examples there is a <b>Transposition of Formulae</b> workbook, designed by mathcentre, available <a href="https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf" target="_blank" >here</a>.
+</p>
+
+</section>
+
+</main>
+
+</div>
+
+<footer>
+
+<p>
+Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill[dot]ac[dot]uk</a> and Copyright CC BY 4.0
+</p>
+
+</footer>
+
+
+<nav class="botnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

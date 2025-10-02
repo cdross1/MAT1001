@@ -1,0 +1,4331 @@
+
+<!DOCTYPE html>
+<html lang="en-UK">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="Calum Ross" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="description" content="Lecture notes for the module MAT1001 Differential Calculus." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MAT1001 Differential Calculus: Lecture Notes — Functions</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="mat1001-autopage-14"></a>
+<nav class="topnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">MAT1001 Differential Calculus: Lecture Notes</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="index.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
+</p>
+
+
+<p>
+<a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-15" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-16" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-30" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-44" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-55" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-60" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
+</p>
+
+
+<p>
+<a href="Functions.html#autosec-74" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-91" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-92" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-101" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-121" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
+</p>
+
+
+<p>
+<a href="Differentiation.html#autosec-123" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-147" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-148" class="tocsection" >
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-158" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-167" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
+</p>
+
+
+<p>
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
+</p>
+
+
+<p>
+<a href="Differential-Equations.html#autosec-172" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-174" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-175" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-203" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Numerical differentiation</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-204" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
+</p>
+
+
+<p>
+<a href="Numerical-Methods.html#autosec-205" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical approaches to differential equations</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-207" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Advanced Topics</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-208" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-212" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Functions of two variables</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-213" class="tocsection" >
+<span class="sectionnumber">7.3</span>&#x2003;Multiple integrals</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-214" class="tocsection" >
+<span class="sectionnumber">7.4</span>&#x2003;Optimisation Problems</a>
+</p>
+
+
+<p>
+<a href="Advanced-Topics.html#autosec-215" class="tocsection" >
+<span class="sectionnumber">7.5</span>&#x2003;Polynomial approximation</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-217" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Background Mathematics</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-218" class="tocsection" >
+<span class="sectionnumber">8.1</span>&#x2003;Background and References</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-219" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometry Primer</a>
+</p>
+
+
+<p>
+<a href="Background-Mathematics.html#autosec-223" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Rearranging Equations</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-229" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Further Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-230" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Why Calculus Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-231" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Functions Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-232" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Differentiation Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-233" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Integration Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Differential Equations Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-235" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;Numerical Methods Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Further-Reading.html#autosec-236" class="tocsection" >
+<span class="sectionnumber">9.7</span>&#x2003;Advanced Topics Extra Reading</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Sheets.html#autosec-238" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Tutorial Sheets</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-240" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-243" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-244" class="tocsection" >
+<span class="sectionnumber">12.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-247" class="tocsection" >
+<span class="sectionnumber">12.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-251" class="tocchapter" >
+Bibliography</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>MAT1001 Differential Calculus: Lecture Notes</h1>
+
+<!--MathJax customizations:-->
+<div data-nosnippet
+    style="display:none"
+>
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\TextOrMath }[2]{#2}\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\require {upgreek}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\LWRsubmultirow }[2][]{#2}\)
+
+\(\newcommand {\LWRmultirow }[2][]{\LWRsubmultirow }\)
+
+\(\newcommand {\multirow }[2][]{\LWRmultirow }\)
+
+\(\newcommand {\mrowcell }{}\)
+
+\(\newcommand {\mcolrowcell }{}\)
+
+\(\newcommand {\STneed }[1]{}\)
+
+\(\def \ud {\mathrm {d}}\)
+
+\(\def \ui {\mathrm {i}}\)
+
+\(\def \uj {\mathrm {j}}\)
+
+\(\def \uh {\mathrm {h}}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\N }{\mathbb {N}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\CP }{\mathbb {C}P}\)
+
+\(\newcommand {\RP }{\mathbb {R}P}\)
+
+\(\def \bk {\vec {k}}\)
+
+\(\def \bm {\vec {m}}\)
+
+\(\def \bn {\vec {n}}\)
+
+\(\def \be {\vec {e}}\)
+
+\(\def \bE {\vec {E}}\)
+
+\(\def \bx {\vec {x}}\)
+
+\(\def \uL {\mathrm {L}}\)
+
+\(\def \uU {\mathrm {U}}\)
+
+\(\def \uW {\mathrm {W}}\)
+
+\(\def \uE {\mathrm {E}}\)
+
+\(\def \uT {\mathrm {T}}\)
+
+\(\def \uV {\mathrm {V}}\)
+
+\(\def \uM {\mathrm {M}}\)
+
+\(\def \uH {\mathrm {H}}\)
+
+\(\DeclareMathOperator {\sech }{sech}\)
+
+\(\DeclareMathOperator {\csch }{csch}\)
+
+\(\DeclareMathOperator {\arcsec }{arcsec}\)
+
+\(\DeclareMathOperator {\arccot }{arcCot}\)
+
+\(\DeclareMathOperator {\arccsc }{arcCsc}\)
+
+\(\DeclareMathOperator {\arccosh }{arcCosh}\)
+
+\(\DeclareMathOperator {\arcsinh }{arcsinh}\)
+
+\(\DeclareMathOperator {\arctanh }{arctanh}\)
+
+\(\DeclareMathOperator {\arcsech }{arcsech}\)
+
+\(\DeclareMathOperator {\arccsch }{arcCsch}\)
+
+\(\DeclareMathOperator {\arccoth }{arcCoth}\)
+
+\(\def \re {\textup {Re}}\)
+
+\(\def \im {\textup {Im}}\)
+
+\(\newcommand {\up }{\uppi }\)
+
+\(\newcommand {\ut }{\uptheta }\)
+
+\(\newcommand {\uw }{\upomega }\)
+
+\(\newcommand {\uph }{\upphi }\)
+
+\(\newcommand {\uvph }{\upvarphi }\)
+
+</div>
+
+<!--
+...... chapter Functions ......
+-->
+<h3 id="autosec-15">Chapter&nbsp;<span class="sectionnumber">2&#x2003;</span>Functions</h3>
+<a id="mat1001-autopage-15"></a>
+<a id="mat1001-autofile-2"></a>
+
+<a id="sec:functions"></a>
+
+<div class="epigraph" role="note">
+
+
+<div class="qitem">
+
+<p>
+The art of doing mathematics is finding that special case that contains all the germs of generality.
+</p>
+
+<div class="epigraphsource">
+
+<p>
+<i>David Hilbert</i>
+</p>
+</div>
+
+</div>
+
+</div>
+<!--
+...... section What is a function ......
+-->
+<h4 id="autosec-16"><span class="sectionnumber">2.1&#x2003;</span>What is a function</h4>
+<a id="mat1001-autopage-16"></a>
+
+
+<p>
+The concept of a function is essential to understand not just calculus but also computer programming. We can think of a function as being a black box that takes in information, potentially changes it in some way, and then outputs information.<br />
+
+</p>
+
+<figure id="autoid-5" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/Injection_keine_Injektion_2a.png" target="_blank" ><img
+    src="figures/Injection_keine_Injektion_2a.png"
+    style="
+    width:130pt;
+    "
+    class="inlineimage"
+    alt="(A schematic of how a function behaves produced by Bin Im Garten for Wikimedia Commons.)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.1: A schematic of how a function behaves, it maps objects \(1,2,3,\dots \) in the Set \(X\) to objects \(A,B,C,D,\dots \) in the set \(Y\). This image was produced by <a href="https://commons.wikimedia.org/wiki/File:Injection\_keine\_Injektion\_2a.svg"
+target="_blank" >Bin Im Garten</a> for Wikimedia Commons.
+
+</div>
+
+<a id="fig:    function schematic"></a>
+
+</div>
+
+</figure>
+
+<p>
+Being more precise, a function is a map between two spaces, the domain, and the codomain. e.g.
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                  f :X→Y
+
+-->
+
+<p>
+
+\begin{equation*}
+f:X\to Y
+\end{equation*}
+
+</p>
+
+<p>
+and it sends a point \(x\in X\) to a point \(f(x)=y\in Y\). Functions have the property that they map a point \(x\in X\) to a single point \(y\in Y\),for example:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                              y = f (x) = x2 + 1,
+
+-->
+
+<p>
+
+\begin{equation*}
+y=f(x)=x^{2}+1,
+\end{equation*}
+
+</p>
+
+<p>
+is a function since every value of \(x\) gives a single value of \(y\). However,
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                  y 2 = x + 1,
+
+-->
+
+<p>
+
+\begin{equation*}
+y^{2}=x+1,
+\end{equation*}
+
+</p>
+
+<p>
+is not a function since every \(x\) corresponds to two values of \(y\), e.g. if \(x=3\) then \(y^{2}=3+1=4\) and \(y\) can be both \(2\) and \(-2\).<br />
+
+</p>
+
+<p>
+Note that when we write \(f(x)\) we are not saying \(f\) times \(x\), but mean that \(f\) is a function of \(x\), e.g. \(f\) takes in a value of \(x\) and returns a number \(y=f(x)\).<br />
+
+</p>
+
+<p>
+Throughout this module we will meet several different types of functions so you will need to get familiar with this notation and understand how to evaluate functions. There will be some questions in the tutorial sheet to help you practice this.<br />
+
+</p>
+
+<p>
+A key property of a function is its <b>Roots</b> or zeros, these are the values of \(x\) such that \(f(x)=0\). For linear functions finding the roots is just a matter of rearranging the equation, sometimes referred to as changing the subject. In this module I am assuming
+that you have some familiarity with this, if not take a look at the background material in chapter&nbsp;<a href="Background-Mathematics.html#sec:background">8</a> or ask me to point you towards more resources. There will also be some revision questions on this
+topic in the first couple of weeks tutorials.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-18"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.1</span></span>. </span> Find all the roots of \(f(x)=9x^{3}-18x^{2}+6x\).<br />
+
+
+</p>
+
+<p>
+Remember the roots are where \(f(x)=0\) so we are solving \(9x^{3}-18x^{2}+6x=0\). First notice that there is a common factor of \(3x\) in all of the terms so we can factor that out and get
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                                                                                        
+                                                                                                                     0 = 9x3 − 18x2 + 6x = 3x 3x2 − 6x + 2 .
+
+-->
+
+<p>
+
+
+\begin{equation*}
+0=9x^{3}-18x^{2}+6x=3x\left (3x^{2}-6x+2\right ).
+\end{equation*}
+
+
+</p>
+
+<p>
+This means that either \(x\) is zero or the quadratic expression in brackets, \(3x^{2}-6x+2\), is zero. This means that \(x=0\) is a root of the equation, and there will be two more that we find by solving the quadratic. This can be done by using the quadratic formula:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                          p
+                                                                                                                                     6±       (−6)2 − 4(3)(2)
+                                                                                                                             x=
+                                                                                                                                                   2(3)
+                                                                                                                                          √
+                                                                                                                                     6±       12
+                                                                                                                                 =
+                                                                                                                                          6
+                                                                                                                                          √
+                                                                                                                                       3
+                                                                                                                                 =1±
+                                                                                                                                      3
+                                                                                                                                      1
+                                                                                                                                 =1± √ .
+                                                                                                                                       3
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+x&amp;=\frac {6\pm \sqrt {(-6)^{2}-4(3)(2)}}{2(3)}\\ &amp;=\frac {6\pm \sqrt {12}}{6}\\ &amp;=1\pm \frac {\sqrt {3}}{3}\\ &amp;=1\pm \frac {1}{\sqrt {3}}.
+\end{align*}
+
+
+</p>
+
+<p>
+So the three roots of \(f(x)\) are
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                                                                √                √
+                                                                                                                                                    3             3
+                                                                                                                        x = 0,       x=1+             ,   x=1−      .
+                                                                                                                                                   3             3
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x=0,\quad x=1+\frac {\sqrt {3}}{3},\quad x=1-\frac {\sqrt {3}}{3}.
+\end{equation*}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+If you do not remember how to use the quadratic formula then I suggest that you look at the background material in chapter&nbsp;<a href="Background-Mathematics.html#sec:background">8</a>.<br />
+
+</p>
+
+<p>
+If this was a course for mathematicians this is where we would spend time talking about the domain and range of a function. How they are defined, and when we need to be careful to avoid dividing by zero. Here, we will not go through this, and I will just remind you that
+in your algebraic manipulations you should not divide by any quantity that is zero.<br />
+
+</p>
+
+<p>
+A simple, yet useful, class of functions are the rational functions. There are functions who are the ratio of two polynomials, e.g.
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                                                                 4x + 10
+                                                                                                                                 f (x) =                   .
+                                                                                                                                              x2 − 2x − 15
+
+-->
+
+<p>
+
+\begin{equation*}
+f(x)=\frac {4x+10}{x^{2}-2x-15}.
+\end{equation*}
+
+</p>
+
+<p>
+A useful way to understand a function is draw a graph. In a graph, the domain of the function \(X\) is drawn horizontally and the codomain, \(Y\), is drawn vertically, using <b>Cartesian axes</b> \((x,y)\). The graph consists of the points \((x,y)\) with \(y=f(x)\).
+In many books \(x\) is called the independent variable and \(y\) the dependent variable. In the tutorials we will discuss how to produce plots using a computer, either using <b>MATLAB</b>, <b>Python</b>, or <a href="https://www.wolframalpha.com/"
+target="_blank" ><b>WolframAlpha</b></a>. There are also online graphing programs like <a href="https://www.desmos.com/" target="_blank" ><b>desmos</b></a> and <a href="https://www.geogebra.org/" target="_blank" ><b>GeoGebra</b></a>. In
+these notes most of the graphs are produced using the Tikz package for <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>, which is a typesetting and markup
+language<sup>1</sup>.
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-19"></a>
+
+<p>
+<sup>1</sup>&nbsp;If you want to produce professional looking documents which include mathematical formulas then it is worth your time learning how to use <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span
+class="latexlogosub">e</span>X</span></span>.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.2</span></span>. </span> Plot the graph of \(f(x)=2x^{2}-1\).<br />
+
+
+</p>
+<figure id="autoid-6" class="figure ">
+<div class="center">
+
+<p>
+<span
+      id="lateximage-mat1001-1"
+      class="lateximagesource"
+><!--
+y
+
+    f (x) = 2x2 − 1
+
+
+
+
+     x
+--><img
+    src="mat1001-images\image-1.svg"
+    alt="(Graph of a quadratic.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+
+<div class="figurecaption">
+Figure&nbsp;2.2: The graph of the quadratic function \(f(x)=2x^{2}-1\) is a parabola which intersects the \(y\)-axis at \(x=0\) and the \(x\)-axis at \(x=\pm \frac {1}{\sqrt {2}}\).
+
+</div>
+
+<a id="fig:    quadratic function graph"></a>
+
+</div>
+
+</figure>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Note that the equation \(y^{2}=x+1\) also defines a parabola, see fig.&nbsp;<a href="Functions.html#fig:   non equation">2.3</a>. However if we plot this function the curve is not the graph of a function. You should think about why this is.
+</p>
+
+<figure id="autoid-7" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/desmos-graph_non-function.png" target="_blank" ><img
+    src="figures/desmos-graph_non-function.png"
+    style="
+    width:173pt;
+    "
+    class="inlineimage"
+    alt="(An equation which does not give a graph.)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.3: A plot of \(y^{2}=x+1\), you should think about why this is not the graph of a function.
+
+</div>
+
+<a id="fig:   non equation"></a>
+
+</div>
+
+</figure>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-24"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.3</span></span>. </span> The function \(f(x)=\sin (x)\) has the graph shown in fig.&nbsp;<a
+href="Functions.html#fig:   sine function graph">2.4</a>.<br />
+
+
+</p>
+<figure id="autoid-8" class="figure ">
+<div class="center">
+
+<p>
+<span
+      id="lateximage-mat1001-2"
+      class="lateximagesource"
+><!--
+y
+
+
+    x
+        f (x) = sin(x)
+--><img
+    src="mat1001-images\image-2.svg"
+    alt="(graph of sin(x).)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+
+<div class="figurecaption">
+Figure&nbsp;2.4: The graph of the sine function \(f(x)=\sin (x)\).
+
+</div>
+
+<a id="fig:    sine function graph"></a>
+
+</div>
+
+</figure>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-28"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.4</span></span>. </span> Consider the two functions \(f(x)=3x-2\) and \(g(x)=x/3 +2/3\). These satisfy the relationship
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                     (f ◦ g) (x) = f (g(x))
+                                                                                                                                     x   2
+                                                                                                                                               
+                                                                                                                                =f     +
+                                                                                                                                     3   3
+                                                                                                                                     x   2
+                                                                                                                                          
+                                                                                                                                =3     +     −2
+                                                                                                                                     3   3
+                                                                                                                                =x+2−2=x
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\left (f\circ g\right )(x) &amp;=f\left (g(x)\right )\\ &amp;=f\left (\frac {x}{3}+\frac {2}{3}\right )\\ &amp;=3\left (\frac {x}{3}+\frac {2}{3}\right )-2\\ &amp;=x+2-2=x
+\end{align*}
+and
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                            (g ◦ f ) (x) = x.
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\left (g\circ f\right )(x)=x.
+\end{align*}
+
+
+</p>
+
+<p>
+When we have two functions whose composition leaves \(x\) unchanged, we say that they are <b>Inverse</b> to each other, and \(g\) is the inverse<sup>2</sup> of \(f\). As can be seen in Section 1.2 of [Dawkins, 2025] we can understand this a meaning that if
+\(f:x\mapsto y\) then \(g:y\mapsto x\), e.g. \(f(-1)=-5\) while \(g(-5)=-1\).
+</p>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-29"></a>
+
+<p>
+<sup>2</sup>&nbsp;Usually the inverse function is denoted as \(f^{-1}\), though we need to be careful to understand that this does not mean \(1/f\).
+</p>
+
+
+</div>
+
+</div>
+
+<p>
+The concept of an inverse function makes intuitive sense. However, if we pretend to be mathematicians and treat this carefully we quickly encounter some problems. For example, what happens if we have a function which sends two different values of \(x\) to the same
+value? Then we are unable to know which value we started with, so cannot build an inverse function. For example \(f(x)=x^{2}\) sends both \(x\) and \(-x\) to \(x^{2}\) so we cannot find an inverse that works everywhere, this is why when we firts meet the square root
+function you often see it as \(\pm \sqrt {\phantom {+}}\).<br />
+
+</p>
+
+<p>
+Mathematicians fix this by introducing the notion of a <b>One-to-one</b> function, sometimes called an <b>injective</b> function. A function is called one-to-one if no two values of \(x\) produce the same value of \(y\), so that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                       f (x1 ) ̸= f (x2 )   for x1 ̸= x2 .
+
+-->
+
+<p>
+
+\begin{equation*}
+f(x_{1})\neq f(x_{2}) \qquad \text { for } x_{1}\neq x_{2}.
+\end{equation*}
+
+</p>
+
+<p>
+The advantage of one-to-one functions is that we can find inverses for them. If we have two one-to-one functions which satisfy
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                         (f ◦ g) (x) = x = (g ◦ f ) (x),
+
+-->
+
+<p>
+
+\begin{equation*}
+\left (f\circ g\right )(x)=x=\left (g\circ f\right )(x),
+\end{equation*}
+
+</p>
+
+<p>
+then \(f\) and \(g\) are inverses and we write \(g(x)=f^{-1}(x)\).
+</p>
+<!--
+...... section Trigonometric functions ......
+-->
+<h4 id="autosec-30"><span class="sectionnumber">2.2&#x2003;</span>Trigonometric functions</h4>
+<a id="mat1001-autopage-30"></a>
+
+
+<a id="sec:   trig func"></a>
+
+<p>
+Now that we have discussed functions and how to graph them, we can focus on some specific functions which it is very common to encounter.<br />
+
+</p>
+
+<p>
+From your previous maths experience you have probably come across <b>Trigonometric</b> (trig) functions in the context of triangles, where they are used to calculate lengths and angles. If you do not remember how this works then I suggest that you have a look at the
+Triganometry primer in chapter&nbsp;<a href="Background-Mathematics.html#sec:background">8</a> or check out some revision material available <a href="https://corbettmaths.com/2013/03/30/trigonometry-introduction/" target="_blank" >here</a>.
+Another important thing to remember is that you should always work in radians rather than degrees when using trig functions. This is because radians are a more natural unit for angles and if we did not use them lots of formulas would need extra factors of \(\uppi \) to
+be added for them to be valid.<br />
+
+</p>
+
+<figure id="autoid-9" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-3"
+    class="lateximagesource"
+><!--
+sin θ
+
+        r
+        θ
+
+
+            r cos θ
+--><img
+    src="mat1001-images\image-3.svg"
+    alt="(Converting from a circle to trig functions.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.5: Trig functions and their relationship to a unit circle, this is true whatever the angle \(\ut \) is, though we need to be careful about the signs of \(x\) and \(y\)
+
+</div>
+
+<a id="fig:trig and circles"></a>
+
+</div>
+
+</figure>
+
+<p>
+In the setting of triangles the angles are restricted to run between \(0\) and \(\uppi \) radians as for angles greater than this we would no longer have a triangle. However, the functions are valid for any real values of the argument, \(x\). Typically we will be interested in
+angles within the range \([0,2\uppi )\), but need to remember that, as shown in fig.&nbsp;<a href="Functions.html#fig: trig functions">2.6</a>, these functions are \(2\uppi \) periodic. This means that
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                sin(x + 2π) = sin(x),
+                                                                                                                                cos(x + 2π) = cos(x),
+                                                                                                                               tan(x + 2π) = tan(x).
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sin (x+2\uppi )=\sin (x),\\ \cos (x+2\uppi )=\cos (x),\\ \tan (x+2\uppi )=\tan (x).
+\end{align*}
+
+</p>
+
+<p>
+We can think of these as functions from \([0,2\uppi )\to [-1,1]\) which reduce to the familar trig functions for angles between \(0\) and \(\uppi \).<br />
+
+</p>
+
+<figure id="autoid-10" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-4"
+    class="lateximagesource"
+><!--
+cos(x)
+
+   x
+sin(x)
+--><img
+    src="mat1001-images\image-4.svg"
+    alt="(Graph of sin(x) and cos(x).)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.6: Plots of the trig functions \(\sin (x)\) and \(\cos (x)\) for \(x\) between \(-2\uppi \) and \(2\uppi \).
+
+</div>
+
+<a id="fig:   trig functions"></a>
+
+</div>
+
+</figure>
+
+<figure id="autoid-11" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/tan_graph.png" target="_blank" ><img
+    src="figures/tan_graph.png"
+    style="
+    width:195pt;
+    "
+    class="inlineimage"
+    alt="(Graph of a tan(x).)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.7: A plot of the trig function \(\tan (x)\), unlike \(\sin \) and \(\cos \) above, \(\tan \) cannot be drawn without taking your pen off the page.
+
+</div>
+
+<a id="fig:    tan function"></a>
+
+</div>
+
+</figure>
+
+<p>
+The trig functions are clearly not one-to-one, since they are periodic, in fact even restricted to \(x\in [0,2\uppi )\) there are repeated values. However, just like with the square root, it is convenient to introduce inverse functions, where we need to be careful which
+quadrant our angle is in to get a single value out. These inverse functions are often denoted
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                sin−1 (x) = arcsin(x),
+                                                                                                                                cos−1 (x) = arccos(x),
+                                                                                                                               tan−1 (x) = arctan(x).
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sin ^{-1}(x)&amp;=\arcsin (x),\\ \cos ^{-1}(x)&amp;=\arccos (x),\\ \tan ^{-1}(x)&amp;=\arctan (x).
+\end{align*}
+
+</p>
+
+<p>
+Your calculator will have a button for each trig function, and a way to select the inverse functions, typically calculators return answers in the following ranges:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                                                  π                   π           π                   π
+                                                                                                       0 ≤ arccos(x) ≤ π,     −       ≤ arcsin(x) ≤       ,   −       < arctan(x) <       .
+                                                                                                                                  2                   2           2                   2
+-->
+
+<p>
+
+\begin{equation*}
+0\leq \arccos (x)\leq \uppi ,\qquad -\frac {\uppi }{2}\leq \arcsin (x)\leq \frac {\uppi }{2}, \qquad -\frac {\uppi }{2}&lt; \arctan (x)&lt; \frac {\uppi }{2}.
+\end{equation*}
+
+</p>
+
+<p>
+The inverse trig functions are useful if we need to solve equations involving trig functions.<br />
+
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-38"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.5</span></span>. </span> Find the solutions to \(4\cos (t)=3\) for \(t\in [-8,10]\).<br />
+
+
+</p>
+
+<p>
+The first step is to divide both sides by \(4\) to give us
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                           4
+                                                                                                                               cos(t) =      ,
+                                                                                                                                           3
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\cos (t)=\frac {4}{3},
+\end{equation*}
+
+
+</p>
+
+<p>
+now we can use
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                      3
+                                                                                                                                      
+                                                                                                                        t = arccos         = 0.7227.
+                                                                                                                                      4
+
+-->
+
+<p>
+
+
+\begin{equation*}
+t=\arccos \left (\frac {3}{4}\right )=0.7227.
+\end{equation*}
+
+
+</p>
+
+<p>
+Not that this is just one of an infinite<sup>3</sup> number of solutions to the above equation. in the range from \(0\) to \(2\uppi \) there are two solutions, \(t=0.7227\) and \(t=2\uppi -0.7227=5.5605\). We now add \(2\uppi n\) to both of our values, testing
+values of \(n\) so that the result stays within the interval :
+</p>
+
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">•</span> \(n=-2\) then \(t=0.7227-4\uppi =\cancel {-11.8437}\) and \(t=5.5605-4\uppi =-7.0059\),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> \(n=-1\) then \(t=0.7227-2\uppi = -5.5605\) and \(t=5.5605-2\uppi =-0.7227\),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> \(n=0\) then \(t=0.7227\) and \(t=5.5605\),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> \(n=1\) then \(t=0.7227+2\uppi = 7.0059\) and \(t=5.5605+2\uppi =\cancel {11.8437}\).
+</p>
+</li>
+</ul>
+
+<p>
+Thus there are six solutions in the interval \([-8,10]\),
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                          t = −7.0059, −5.5605, −0.7227, 0.7227, 5.5605, 7.0059.
+
+-->
+
+<p>
+
+
+\begin{equation*}
+t=-7.0059, -5.5605, -0.7227, 0.7227, 5.5605, 7.0059.
+\end{equation*}
+
+
+</p>
+
+<p>
+Not that the solutions come in positive and negative pairs.
+</p>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-39"></a>
+
+<p>
+<sup>3</sup>&nbsp;“Why infinitely many?” you ask. This is because \(\cos (x)\) is \(2\uppi \) periodic so if \(t\) is a solution in the range \([0,2\uppi )\) then \(t+2\uppi n\) is another solution for \(n\in \Z \).
+</p>
+
+
+</div>
+
+</div>
+
+<p>
+You will have the opportunity to practice more problems like this either by going through the week one tutorial sheet or by looking at Section 1.5 in [Dawkins, 2025].<br />
+
+</p>
+
+<p>
+The trig functions satisfy some nice relationships that you should try to learn, and which we quote here without any proof. Some of these are fairly easy to prove and are left as an exercise, while others are harder and can be looked up if you are curious.<br />
+
+</p>
+
+<p>
+The first one is that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                                                           sin(x)
+                                                                                                                                tan(x) =          .
+                                                                                                                                           cos(x)
+
+-->
+
+<p>
+
+\begin{equation*}
+\tan (x)=\frac {\sin (x)}{\cos (x)}.
+\end{equation*}
+
+</p>
+<!--
+......   paragraph Squares:   ......
+-->
+
+
+<p>
+<span class="paragraph" id="autosec-40">Squares:</span>
+<a id="mat1001-autopage-40"></a>
+The squares of trig functions have the nice property that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                            sin2 x + cos2 x = 1,
+
+-->
+
+<p>
+
+\begin{equation*}
+\sin ^{2}x+\cos ^{2}x =1,
+\end{equation*}
+
+</p>
+
+<p>
+which is a consequence of Pythagoras’ theorem.
+</p>
+<!--
+......   paragraph Multiple angles:      ......
+-->
+
+
+<p>
+<span class="paragraph" id="autosec-41">Multiple angles:</span>
+<a id="mat1001-autopage-41"></a>
+There are some very useful identities when we consider trig functions for the sum and difference of an angle:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                         sin (x ± y) = sin x cos y ± cos x sin y,
+                                                                                                                        cos (x ± y) = cos x cos y ∓ sin x sin y.
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sin \left (x\pm y\right )&amp;=\sin x \cos y \pm \cos x \sin y,\\ \cos \left (x\pm y\right )&amp;=\cos x \cos y \mp \sin x \sin y.
+\end{align*}
+For the special case of \(x=y\) this leads to
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                sin 2x = 2 sin x cos x,
+                                                                                                                cos 2x = cos2 x − sin2 x = 2 cos2 x − 1 = 1 − 2 sin2 x.
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sin 2x &amp;= 2\sin x \cos x,\\ \cos 2x &amp;=\cos ^{2}x-\sin ^{2}x = 2\cos ^{2}x -1 =1-2\sin ^{2}x.
+\end{align*}
+
+</p>
+
+<p>
+You should try to become familiar with these identities, at least for this module, as they will be useful wherever trig functions appear.<br />
+
+</p>
+<!--
+......   paragraph Further trig functions:       ......
+-->
+
+
+<p>
+<span class="paragraph" id="autosec-42">Further trig functions:</span>
+<a id="mat1001-autopage-42"></a>
+There are three more trig functions that you should be aware of. Again, these are not independent trig functions but are one over the familiar trig functions. These are:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+
+<!--
+
+
+                                                                                                                                           1
+                                                                                                                                 sec x =       ,
+                                                                                                                                         cos x
+                                                                                                                                           1
+                                                                                                                                 csc x =       ,
+                                                                                                                                         sin x
+                                                                                                                                           1
+                                                                                                                                 cot x =        .
+                                                                                                                                         tan x
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sec x &amp;=\frac {1}{\cos x},\\ \csc x &amp;=\frac {1}{\sin x},\\ \cot x &amp;=\frac {1}{\tan x}.
+\end{align*}
+Plots of these three functions are shown in fig.&nbsp;<a href="Functions.html#fig: sec function">2.8</a>.
+</p>
+
+<figure id="autoid-12" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/sec-cot-csc-fig.png" target="_blank" ><img
+    src="figures/sec-cot-csc-fig.png"
+    style="
+    width:347pt;
+    "
+    class="inlineimage"
+    alt="(Graphs of sec(x), csc(x), and cot(x).)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.8: A plot of the trig functions produced using GeoGebra: \(\sec (x)\) the green dashed line, \(\csc (x)\) the blue dotted line, and \(\cot (x)\) the solid red line. It is not possible to draw any of these functions without taking the pen off the page, we
+will see later that this is because these functions have vertical asymptotes where the functions head off to infinity.
+
+</div>
+
+<a id="fig:    sec function"></a>
+
+</div>
+
+</figure>
+<!--
+...... section Logarithms and Exponentials ......
+-->
+<h4 id="autosec-44"><span class="sectionnumber">2.3&#x2003;</span>Logarithms and Exponentials</h4>
+<a id="mat1001-autopage-44"></a>
+
+
+<a id="sec:   log and exp"></a>
+
+<p>
+Another pair of very useful functions which we need to be familiar with are the logarithm and the exponential function.<br />
+
+</p>
+
+<p>
+In your previous maths courses you may have come across the fact that we call powers exponents, e.g. in an expression \(f(x)=x^{b}\) then \(b\) is called the exponent„ or the index. An exponential function is then a function like
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+
+                                                                                                                                 f (x) = bx ,
+
+-->
+
+<p>
+
+\begin{equation*}
+f(x)=b^{x},
+\end{equation*}
+
+</p>
+
+<p>
+where a constant<sup>4</sup> \(b\) is raised to the power of the variable \(x\). In this case the number \(b\) is called the <b>Base</b> of the exponential function.<br />
+
+</p>
+
+<p>
+The exponential function with base \(2\) is shown in fig.&nbsp;<a href="Functions.html#fig:      exp and log 1">2.9</a>. It turns out that by appropriate scaling of \(x\) different bases are related<sup>5</sup> so we only need one standard basis.<br />
+
+</p>
+
+<p>
+When working with binary the basis \(b=2\) is chosen, while in scientific notation \(b=10\) is chosen. Nowadays the basis in general use is denoted \(e\) or \(\exp \) with \(\exp (x)\) called the <b>exponential function</b>.<br />
+
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-45"></a>
+
+<p>
+<sup>4</sup>&nbsp;here \(b&gt;0\) and \(b\neq 1\).
+</p>
+
+<p>
+<sup>5</sup>&nbsp;To get an idea of this consider that \(2^{x}=4^{x/2}\) so we can always transform from base \(2\) into base \(4\). In general we need to use the logarithm function that we will meet shortly.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.1</span></span>. </span> <b>Warning</b>! When talking to mathematicians there is a difference between \(e\) and \(\exp \), the first
+one is a number, close to \(2.71828\dots \), while \(\exp \) is a function. Often we will use \(e^{x}\) and \(\exp (x)\) interchangeably, but occasionally it is important to know the difference. The main difference is that \(\exp (x)\) is a one-to-one function, in
+particular when \(x=1/2\) we have that \(\exp (1/2)\simeq 1.65\) while when taking \(\sqrt {e}=e^{1/2}\) we need to pick either the positive or negative square root. Most likely you can just forget this distinction and work with \(e^{x}\) and \(\exp (x)\) as if they
+were the same thing. However, it is worth seeing the distinction at least once.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<figure id="autoid-13" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-5"
+    class="lateximagesource"
+><!--
+y
+    2x
+            y=x
+
+
+
+
+         log2 (x)
+
+
+
+              x
+--><img
+    src="mat1001-images\image-5.svg"
+    alt="(Graph of exponential and logarithm functions with base 2.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.9: Plots of the exponential and logarithm functions, \(y=2^{x}\) and \(y=\log _{2}(x)\).
+
+</div>
+
+<a id="fig:    exp and log 1"></a>
+
+</div>
+
+</figure>
+
+<p>
+The reason for picking \(e\) as the basis is that simplifies some of the algebra associated with exponential functions, it also has the advantage that the tangent to the curve has gradient \(1\) at \(x=0\). This last part boils down to
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{0}\)</span>
+
+<!--
+
+                                                                                                            1
+                                                                                                 e ≃ (1 + h) h                                                                                                 (2.1)              --><a id="eq:   exp approximation"></a><!--
+
+-->
+
+<p>
+
+\begin{equation}
+e\simeq \left (1+h\right )^{\frac {1}{h}} \label {eq:          exp approximation}
+\end{equation}
+
+</p>
+
+<p>
+for \(h\) close to zero.
+</p>
+
+<figure id="autoid-14" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-6"
+    class="lateximagesource"
+><!--
+y
+    exp(x)
+                y=x
+
+
+
+
+             ln(x)
+
+                 x
+--><img
+    src="mat1001-images\image-6.svg"
+    alt="(Graph of exponential and logarithm functions with base e.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.10: Plots of the exponential and logarithm functions, \(y=\exp (x)\) and \(y=\ln (x)\).
+
+</div>
+
+<a id="fig:   exp and log 2"></a>
+
+</div>
+
+</figure>
+
+<p>
+Closely related to \(\exp \) is its inverse function, called the <b>logarithm</b> function. You will see it written as either \(\log (x)\) or \(\ln (x)\), or rarely as \(\log _{e}(x)\) where the base is made explicit.<br />
+
+</p>
+
+<p>
+As this is an inverse function it is defined as the solution to the equation \(e^{y}=x\). For example \(e^{y}=4\) is solved by \(y=\ln (4)\).<br />
+
+</p>
+
+<p>
+The graphs of both \(\exp (x)\) and \(\ln (x)\) are shown in fig.&nbsp;<a href="Functions.html#fig:              exp and log 2">2.10</a>. Note that we are, currently, not defining \(\ln \) when \(x\) is negative <sup>6</sup><a id="mat1001-autopage-51"></a>. You may
+have guessed that we could take a logarithm in a different basis since it is defined so that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{1}\)</span>
+
+<!--
+
+
+                                                                                                                             ln(exp(x)) = x = exp(ln(x)).
+
+-->
+
+<p>
+
+\begin{equation*}
+\ln (\exp (x))=x=\exp (\ln (x)).
+\end{equation*}
+
+</p>
+
+<p>
+This is why there are several slightly different ways of writing the logarithm. If you learnt about it in school you probably used \(\log (x)\) to mean log with base \(10\). In this module if we work with a basis other than \(e\) we will make this explicit by writing \(\log
+_{b}(x)\) to mean log with base \(b\).<br />
+
+</p>
+
+<p>
+To be clear \(\log _{b}(x)\) is the function defined such that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{1}\)</span>
+
+<!--
+
+
+                                                                                                                               logb (bx ) = x = blogb (x) .
+
+-->
+
+<p>
+
+\begin{equation*}
+\log _{b}(b^{x})=x=b^{\log _{b}(x)}.
+\end{equation*}
+
+</p>
+
+<p>
+A nice property of exponentials and logarithms is that they map addition to multiplication. What this means is that
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{1}\)</span>
+
+
+<!--
+
+
+                                                                                                                            exp(a) exp(b) = exp(a + b),
+                                                                                                                                    ln(ab) = ln(a) + ln(b),
+                                                                                                                                        a
+                                                                                                                                        
+                                                                                                                                  ln          = ln(a) − ln(b).
+                                                                                                                                        b
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\exp (a)\exp (b)&amp;=\exp (a+b),\\ \ln (ab)&amp;=\ln (a)+\ln (b),\\ \ln \left (\frac {a}{b}\right )&amp;=\ln (a)-\ln (b).
+\end{align*}
+
+</p>
+
+<p>
+Some of the other properties of these functions are that:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{1}\)</span>
+
+
+<!--
+
+
+                                                                                                                                              1
+                                                                                                                            exp(−x) =              ,
+                                                                                                                                            exp(x)
+                                                                                                                              exp(x) > 0,
+                                                                                                                              exp(x) → ∞         as x → ∞,
+                                                                                                                              exp(x) → 0       as x → −∞,
+                                                                                                                               ln(x) → ∞         as x → ∞,
+                                                                                                                               ln(x) → −∞         as x → 0+ .
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\exp (-x)&amp;=\frac {1}{\exp (x)},\\ \exp (x)&amp;&gt;0,\\ \exp (x)&amp;\to \infty \quad \text {as } x\to \infty ,\\ \exp (x)&amp;\to 0 \quad \text {as } x\to -\infty ,\\ \ln (x) &amp;\to \infty \quad \text {as } x\to \infty ,\\ \ln
+(x)&amp;\to -\infty \quad \text {as } x\to 0^{+}.
+\end{align*}
+We will return to discussing limits shortly, but here the statement \(\exp (x)\to \infty \) as \(x\to \infty \) means that the function \(\exp (x)\) becomes infinitely large as \(x\) becomes infinitely large. The terminology for this is that \(\exp (x)\)
+<b>diverges</b> as \(x\) tends to infinity.<br />
+
+</p>
+
+<p>
+The final, useful, identity about logarithms is how to change the basis. The change of basis formula is
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{1}\)</span>
+
+<!--
+
+                                                                                                    loga (x)
+                                                                                       logb (x) =            .                                                                                  (2.2)                             --><a id="eq:log change of base"></a><!--
+                                                                                                    loga (b)
+
+-->
+
+<p>
+
+\begin{equation}
+\log _{b}(x)=\frac {\log _{a}(x)}{\log _{a}(b)}.         \label {eq:log change of base}
+\end{equation}
+
+</p>
+
+<p>
+As with trig functions in section&nbsp;<a href="Functions.html#sec:      trig func">2.2</a>, \(\ln \) and \(\exp \) are useful when solving equations. There are lots of examples in [Dawkins, 2025] but we will go through a couple of examples here, there will be more on
+the tutorial sheets.
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-52"></a>
+
+<p>
+<sup>6</sup>&nbsp;If you study more mathematics you will discover that we can make sense of \(\ln (x)\) when \(x\) is negative. However, it is no longer real and we need to understand complex numbers to make sense of it.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.6</span></span>. </span> Consider the equation
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+<!--
+
+
+                                                                                                                                xe−x − x = 0.
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x e^{-x} -x =0.
+\end{equation*}
+
+
+</p>
+
+<p>
+The first step in solving this is to factor out the \(x\) common to both terms. Note that we <b>cannot</b> divide by \(x\) as at this stage we do not know if it will be zero. This gives us
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                                  xe−x − x = 0
+                                                                                                                                          
+                                                                                                                               x e−x − 1 = 0,
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+x e^{-x} -x &amp;=0\\ x\left (e^{-x}-1\right )&amp;=0,
+\end{align*}
+so we get two possibilities<sup>7</sup>: either \(x=0\) or \(e^{-x}-1=0\). If we had divided by \(x\) we would have missed that \(x=0\) is a solution, and would not have completely solved the problem. Consider the second case,
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                               e−x = 1
+                                                                                                                                −x = ln(1) = 0
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+e^{-x}&amp;=1\\ -x&amp;=\ln (1)=0
+\end{align*}
+so this other case also reduces to \(x=0\) and we only have one solution in this case.
+</p>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-53"></a>
+
+<p>
+<sup>7</sup>&nbsp;Sometimes we will get more than two possibilities, remember with trig functions their periodicity meant that we had infinitely many solutions.
+</p>
+
+
+</div>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-54"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.7</span></span>. </span> <a id="ex:                     log equation"></a> Consider the equation
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+<!--
+
+
+                                                                                                                          1      
+                                                                                                                            ln x2 − ln (x − 1) = 4.
+                                                                                                                          2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\frac {1}{2}\ln \left (x^{2}\right )-\ln \left (x-1\right )=4.
+\end{equation*}
+
+
+</p>
+
+<p>
+If we make use of the log rules we have that \(\ln (x^{2})/2=\ln (\sqrt {x^{2}})=\ln x\), where we take the positive square root as currently we do not know how to make sense of logarithms with negative arguments. The equation thus becomes
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                               1      
+                                                                                                                          4=     ln x2 − ln (x − 1)
+                                                                                                                               2
+                                                                                                                            = ln (x) − ln (x − 1)
+                                                                                                                                        x
+                                                                                                                                            
+                                                                                                                            = ln                 .
+                                                                                                                                       x−1
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+4&amp;=\frac {1}{2}\ln \left (x^{2}\right )-\ln \left (x-1\right )\\ &amp;=\ln \left (x\right )-\ln \left (x-1\right )\\ &amp;=\ln \left (\frac {x}{x-1}\right ).
+\end{align*}
+Now we can exponentiate both sides and rearrange to solve for \(x\):
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                            x
+                                                                                                                               = e4
+                                                                                                                           x−1
+                                                                                                                               x = e4 (x − 1)
+                                                                                                                               x = −e4 + xe4
+                                                                                                                               
+                                                                                                                      x 1 − e4 = −e4
+                                                                                                                                          e4
+                                                                                                                               x=−             = 1.01866.
+                                                                                                                                        1 − e4
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\frac {x}{x-1}&amp;=e^{4}\\ x&amp;=e^{4}\left (x-1\right )\\ x&amp;=-e^{4}+xe^{4}\\ x\left (1-e^{4}\right )&amp;=-e^{4}\\ x&amp;=-\frac {e^{4}}{1-e^{4}}=1.01866.
+\end{align*}
+
+
+</p>
+
+<p>
+When we get an answer like this we need to check that it does not give a negative argument in any of the original logarithms, here we are fine since both \(x^{2}\) and \(x-1\) are positive.
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+It may seem like example&nbsp;<a href="Functions.html#ex: log equation">2.7</a> took quite a bit of working out, but with practice you will get faster at solving problems like this. In the lectures you will frequently hear me paraphrasing George Po&#x0301;lya and
+saying that Mathematics is not a spectator sport. This means that while reading these notes and attending the lectures can help you in your learning there is no substitute for actually rolling your sleeves up and solving problems. Remember that most modules
+<i>expect</i> you to be putting in around three hours of self study for every hour of contact time.
+</p>
+<!--
+...... section Hyperbolic functions ......
+-->
+<h4 id="autosec-55"><span class="sectionnumber">2.4&#x2003;</span>Hyperbolic functions</h4>
+<a id="mat1001-autopage-55"></a>
+
+
+<a id="sec:   hyperbolic functions"></a>
+
+<p>
+The next class of functions that it is useful to know about are the <b>hyperbolic</b> trig functions. As shown in fig.&nbsp;<a href="Functions.html#fig: hyperbolic functions">2.11</a>, the hyperbolic trig functions are the analogue of the standard trig functions
+of section&nbsp;<a href="Functions.html#sec: trig func">2.2</a> but adapted to the geometry of the hyperbola, \(x^{2}-y^{2}=1\) rather than the circle \(x^{2}+y^{2}=1\). For the standard trig functions, their argument was an angle related to how far round the
+unit circle we had gone. In the hyperbolic case the <i>angle</i> is now twice the shaded area shown in section&nbsp;<a href="Functions.html#sec: trig func">2.2</a>.<br />
+
+</p>
+
+<figure id="autoid-15" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/Hyperbolic_functions.png" target="_blank" ><img
+    src="figures/Hyperbolic_functions.png"
+    style="
+    width:173pt;
+    "
+    class="inlineimage"
+    alt="(Hyperbolic trig functions are related to the geometry of hyperbolas rather than circles.)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.11: Hyperbolic trig functions are defined in terms of the area enclosed by a radial ray and the hyperbola \(x^{2}-y^{2}=1\). The convention is to assume that \(a\) is negative for points below the \(x\)-axis. The image is from <a href="https://commons.wikimedia.org/wiki/File:Hyperbolic_functions-2.svg"
+target="_blank" >Wikimedia commons</a>.
+
+</div>
+
+<a id="fig:    hyperbolic functions"></a>
+
+</div>
+
+</figure>
+
+<p>
+There is a hyperbolic equivalent of all of the standard trig functions, and the notation is very similar just with an added \(h\) at the end:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+<li>
+<p>
+<span class="listmarker">•</span> <b>hyperbolic sine</b> \(\sinh \),
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> <b>hyperbolic cosine</b> \(\cosh \),
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> <b>hyperbolic tangent</b> \(\tanh \),
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> <b>inverse hyperbolic sine</b> \(\arcsinh \),
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> <b>inverse hyperbolic cosine</b> \(\arccosh \),
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> <b>inverse hyperbolic tangent</b> \(\arctan \).
+</p>
+</li>
+</ul>
+
+<p>
+There are also hyperbolic versions of the other trig functions but we will not be as concerned with them here.<br />
+
+</p>
+
+<p>
+As in the regular trig case the hyperbolic tangent is defined in terms of the other two functions as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{2}\)</span>
+
+<!--
+
+                                                                                                sinh(x)
+                                                                                    tanh(x) =           .                                                                              (2.3)                                --><a id="eq:    hyperbolic tangent"></a><!--
+                                                                                                cosh(x)
+
+-->
+
+<p>
+
+\begin{equation}
+\tanh (x)=\frac {\sinh (x)}{\cosh (x)}.        \label {eq:    hyperbolic tangent}
+\end{equation}
+
+</p>
+
+<p>
+The hyperbolic trig functions are actually defined in terms of the odd and even parts of the exponential function<sup>8</sup><a id="mat1001-autopage-56"></a> as follows:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{3}\)</span>
+
+
+<!--
+
+
+                                                                                                                                          ex − e−x
+                                                                                                                                sinh(x) =          ,                                                          (2.4)                    --><a id="eq:    sinh exp"></a><!--
+                                                                                                                                              2
+                                                                                                                                          ex + e−x
+                                                                                                                                cosh(x) =          .                                                          (2.5)                    --><a id="eq:    cosh exp"></a><!--
+                                                                                                                                              2
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\sinh (x)&amp;=\frac {e^{x}-e^{-x}}{2}, \label {eq: sinh exp}\\ \cosh (x)&amp;=\frac {e^{x}+e^{-x}}{2}.                    \label {eq:      cosh exp}
+\end{align}
+They have the following useful properties:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+
+<!--
+
+
+                                                                                                                                     sinh(−x) = − sinh(x),
+                                                                                                                                     cosh(−x) = cosh(x),
+                                                                                                                          cosh2 (x) − sinh2 (x) = 1,
+                                                                                                                                 1 − tanh2 (x) = sech2 (x).
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\sinh (-x)&amp;=-\sinh (x),\\ \cosh (-x)&amp;=\cosh (x),\\ \cosh ^{2}(x)-\sinh ^{2}(x)&amp;=1,\\ 1-\tanh ^{2}(x)&amp;=\sech ^{2}(x).
+\end{align*}
+These are very similar to the identities satisfied by the ordinary trig functions. However, the sign in front of \(\sinh (x)\) and \(\tanh (x)\) is negative while that in front of \(\sin (x)\) and \(\tan (x)\) in the equivalent formulae was positive. The rule of thumb
+when converting from identities for trig functions to identities for hyperbolic trig functions is to send \(\cos ^{2}(x)\to \cosh ^{2}(x)\) and \(\sin ^{2}(x)\to -\sinh ^{2}(x)\). There are also analogues of the addition of angle identity formulas that you can try to
+derive if you are interested.<br />
+
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-57"></a>
+
+<p>
+<sup>8</sup>&nbsp;If you have come across complex numbers then you may know that this is only true for real \(x\), if the argument is imaginary then relationships like this hold between the exponential function and the standard trig functions. We may see this in the
+advanced topics section of the module if there is enough time.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.8</span></span>. </span> Consider the hyperbolic equation \(\cosh (x)-5\sinh (x)-5=0\) from chapter 3.7 in [Riley et&nbsp;al., 2006]. The easiest way
+to solve this is to use the definitions of the hyperbolic functions in terms of the exponential function. This transforms the equation into
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+<!--
+
+
+                                                                                                                          1 x       5 x −x 
+                                                                                                                            e + e−x −   e −e  − 5 = 0,
+                                                                                                                          2           2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\frac {1}{2}\left (e^{x}+e^{-x}\right )-\frac {5}{2}\left (e^{x}-e^{-x}\right )-5=0,
+\end{equation*}
+
+
+</p>
+
+<p>
+which we rearrange to give
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+<!--
+
+
+                                                                                                                          1   5                   1   5
+                                                                                                                                                       
+                                                                                                             0 = ex         −         + e−x         +         − 5 = −2ex + 3e−x − 5.
+                                                                                                                          2   2                   2   2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+0=e^{x}\left (\frac {1}{2}-\frac {5}{2}\right )+e^{-x}\left (\frac {1}{2}+\frac {5}{2}\right )-5=-2e^{x}+3e^{-x}-5.
+\end{equation*}
+
+
+</p>
+
+<p>
+Then multiply through by \(-e^{x}\), which is allowed since this is never zero, to get
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+<!--
+
+
+                                                                                                                                       2e2x + 5ex − 3 = 0.
+
+-->
+
+<p>
+
+
+\begin{equation*}
+2e^{2x}+5e^{x}-3=0.
+\end{equation*}
+
+
+</p>
+
+<p>
+Now we could either let \(y=e^{x}\) and use the quadratic formula to solve for \(y\) or we can factorise this to get
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+<!--
+
+
+                                                                                                                                      (2ex − 1) (ex + 3) = 0,
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\left (2e^{x}-1\right )\left (e^{x}+3\right )=0,
+\end{equation*}
+
+
+</p>
+
+<p>
+so there are two solutions: \(e^{x}=1/2\) or \(x=-\ln (2)\), and \(e^{x}=-3\) or \(x=\ln (-3)\). Remember we have not discussed how to make sense of the logarithm of a negative number so for us there is only one real solution, \(x=-\ln (2)\).
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Since the hyperbolic trig functions are related to the exponential function you can probably guess that their inverses are related to the logarithm. It is worth thinking about how to show this relationship. I will show you how to do this for \(\sinh (x)\) and \(\tanh (x)\)
+but leave deriving the identify for \(\cosh (x)\) as an exercise for the interested reader.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-58"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.9</span></span>. </span> Consider \(y=\arcsinh (x)\), we can invert this to give \(x=\sinh (y)\). Next if we make use of eqs.&nbsp;<span
+class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:                 cosh exp">2.5</a>)</span> we have that
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                          ey = cosh(y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + sinh2 (y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + x2 + x.
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+e^{y} &amp;=\cosh (y)+\sinh (y)\\ &amp;=\sqrt {1+\sinh ^{2}(y)}+\sinh (y)\\ &amp;=\sqrt {1+x^{2}}+x.
+\end{align*}
+Taking \(\ln \) of both sides then gives that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
+
+<!--
+
+                                                                                                      p            
+                                                                                arcsinh(x) = y = ln        1 + x2 + x .                                                                          (2.6)             --><a id="eq:   arcsinh log"></a><!--
+
+-->
+
+<p>
+
+
+\begin{equation}
+\arcsinh (x)=y=\ln \left (\sqrt {1+x^{2}}+x\right ).         \label {eq:     arcsinh log}
+\end{equation}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+If you do a similar calculation for \(y=\arccosh (x)\) you will find that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{6}\)</span>
+
+<!--
+
+                                                                                                      p           
+                                                                                 arcCosh(x) = ln x ±         x2 − 1 .                                                                            (2.7)             --><a id="eq:   arccosh log"></a><!--
+
+-->
+
+<p>
+
+\begin{equation}
+\arccosh (x)=\ln \left (x\pm \sqrt {x^{2}-1}\right ).          \label {eq:    arccosh log}
+\end{equation}
+
+</p>
+
+<p>
+You should think about why there is a \(\pm \) in this formula but there was not one in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:              arcsinh log">2.6</a>)</span>.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-59"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.10</span></span>. </span> Consider \(y=\arctanh (x)\), which inverts to \(x=\tanh (y)\). Using the definition of \(\tanh (y)\) as being \(\sinh
+(y)/\cosh (y)\) and eqs.&nbsp;<span class="textup">(<a href="Functions.html#eq:           sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:             cosh exp">2.5</a>)</span> we have that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{7}\)</span>
+
+<!--
+
+
+                                                                                                                                           ey − e−y
+                                                                                                                                      x=
+                                                                                                                                           ey + e−y
+
+-->
+
+<p>
+
+
+\begin{equation*}
+x=\frac {e^{y}-e^{-y}}{e^{y}+e^{-y}}
+\end{equation*}
+
+
+</p>
+
+<p>
+which is equivalent to
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{7}\)</span>
+
+<!--
+
+
+                                                                                                                              (x + 1) e−y = (1 − x) ey .
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\left (x+1\right )e^{-y}=\left (1-x\right )e^{y}.
+\end{equation*}
+
+
+</p>
+
+<p>
+which can be further rearranged to give
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{7}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                                        1+x
+                                                                                                                                e2y =       ,
+                                                                                                                                        1−x
+                                                                                                                                        r
+                                                                                                                                  y         1+x
+                                                                                                                              ⇒e =              ,
+                                                                                                                                            1−x
+                                                                                                                                           r         
+                                                                                                                                                1+x
+                                                                                                                                  y = ln                  .
+                                                                                                                                                1−x
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+e^{2y}&amp;=\frac {1+x}{1-x},\\ \Rightarrow e^{y}&amp;=\sqrt {\frac {1+x}{1-x}},\\ y&amp;=\ln \left (\sqrt {\frac {1+x}{1-x}}\right ).
+\end{align*}
+This gives that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{7}\)</span>
+
+<!--
+
+
+                                                                                                     1          1+x
+                                                                                                                     
+                                                                                      arctanh(x) =     ln                 .                                                                              (2.8)                        --><a id="eq:    arctanh log"></a><!--
+                                                                                                     2          1−x
+
+-->
+
+<p>
+
+
+\begin{equation}
+\arctanh (x)=\frac {1}{2}\ln \left (\frac {1+x}{1-x}\right ).          \label {eq:   arctanh log}
+\end{equation}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+You may be asking why we have spend the time deriving these identities for the hyperbolic functions, and why we discussed their relationship with the exponential function. This is because when we start to differentiate or integrate hyperbolic functions it is often more
+straightforward to use the expressions involving exponentials and logarithms.
+</p>
+<!--
+...... section Limits and asymptotics ......
+-->
+<h4 id="autosec-60"><span class="sectionnumber">2.5&#x2003;</span>Limits and asymptotics</h4>
+<a id="mat1001-autopage-60"></a>
+
+
+<p>
+We have now spent quite a bit of time discussing different examples of functions and their properties, as well as how to plot them. If we consider the plot of the tangent function in fig.&nbsp;<a href="Functions.html#fig: tan function">2.7</a> you may have asked at
+the time, what happens when the red line goes off the top of the page and reappear at the bottom? If we followed both lines we would see that they are getting closer and closer to the point \(x=\uppi /2\). This idea of zooming in on a particular value \(x=a\) and asking
+what happens to a function there is known as <b>taking a limit</b> as \(x\) approaches \(a\) and is denoted \(\lim _{x\to a}f(x)\).<br />
+
+</p>
+
+<p>
+If the function is <i>well behaved</i> at the point \(a\), then the limit is just the value of the function evaluated at \(a\), \(f(a)\). For example
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{8}\)</span>
+
+<!--
+
+
+                                                                                                                              lim cos(x) = 1 = cos(0).
+                                                                                                                              x→0
+
+-->
+
+<p>
+
+\begin{equation*}
+\lim _{x\to 0}\cos (x)=1=\cos (0).
+\end{equation*}
+
+</p>
+
+<p>
+The value of the limit does not have to be finite, it can head off to infinity. A good example of this is the exponential function which just keeps getting larger as \(x\) increases. We denote this by
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{8}\)</span>
+
+<!--
+
+
+                                                                                                                                  lim exp(x) → ∞.
+                                                                                                                                 x→∞
+
+-->
+
+<p>
+
+\begin{equation*}
+\lim _{x\to \infty }\exp (x)\to \infty .
+\end{equation*}
+
+</p>
+
+<p>
+Notice that since the value of the limit is infinite we do not write an equals sign but instead use \(\to \) to denote that the limit <b>diverges</b><sup>9</sup>. There are lots of other examples of functions that diverge, and not always for large \(x\). A nice example to
+have in mind is \(y=1/x^{2}\) which diverges as \(x\to 0\).<br />
+
+</p>
+
+<p>
+In the case of \(\tan (x)\) we can observe that \(\lim _{x\to \uppi /2}\tan (x)\) will take on different values depending on if \(x\) is approaching \(\uppi /2\) from above or below. This means that the limit <b>does not exist</b>. In section&nbsp;<a
+href="Functions.html#sec: continuity">2.6</a> we will discuss the consequences of this for the function in more detail. If we are taking the limit from above we often say \(x\to a^{+}\), while the limit from below is denoted \(x\to a^{-}\). In this case
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{8}\)</span>
+
+
+<!--
+
+
+                                                                                                                                 lim tan(x) → ∞,
+                                                                                                                               x→ 2π +
+
+                                                                                                                                 lim tan(x) → −∞,
+                                                                                                                               x→ 2π −
+
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\lim _{x\to \frac {\uppi }{2}^{+}}\tan (x)&amp;\to \infty ,\\ \lim _{x\to \frac {\uppi }{2}^{-}}\tan (x)&amp;\to -\infty ,
+\end{align*}
+so \(\tan (x)\) diverges in different directions depending on how we approach \(\uppi /2\).
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-61"></a>
+
+<p>
+<sup>9</sup>&nbsp;This is just the term that mathematicians use for a function that heads off to infinity.
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.2</span></span>. </span> Putting our mathematician’s hats on for a brief moment, we would say that limit of a function \(f(x)\) as \(x\)
+approaches \(a\) is \(L\) and write it as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{8}\)</span>
+
+<!--
+
+
+                                                                                                                                  lim f (x) = L,
+                                                                                                                                  x→a
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\lim _{x\to a}f(x)=L,
+\end{equation*}
+
+
+</p>
+
+<p>
+as long as we can make \(f(x)\) as close to \(L\) as we want for all \(x\) sufficiently close to \(a\) on both sides, without taking \(x=a\).<br />
+
+
+</p>
+
+<p>
+If this was a maths module we would be even more precise and give what is called an \(\upepsilon ,\updelta \) definition. Fortunately for all of us this is not a maths module and we can focus on a more practical/ working definition rather than getting bogged down in
+the abstract details. If you are interested to know how to do this in detail, the section “The Definition of a Limit” in [Dawkins, 2025] is a good place to look.<br />
+
+
+</p>
+
+<p>
+<b>Remember</b> that \(x\to a\) does not mean that \(x\) becomes equal to \(a\), it just means that \(x\) is getting close to \(a\). It is also possible that \(f(x)\) may never equal \(L\), but also just get close to it. This is especially true when we take the limit near
+a point that the function is not defined at, e.g. \(x\to \uppi /2\) for \(\tan (x)\).
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Curve sketching is a useful way to understand the main features of a function and can help us to know if the limit exists and if we have the same limit when approaching from different directions.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-62"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.11</span></span>. </span> Consider the function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{8}\)</span>
+
+<!--
+
+
+                                                                                                        1
+                                                                                            f (x) =        ,                                                                                       (2.9)                    --><a id="eq:   reciprocal of x-2"></a><!--
+                                                                                                       x−2
+
+-->
+
+<p>
+
+
+\begin{equation}
+f(x)=\frac {1}{x-2}, \label {eq:      reciprocal of x-2}
+\end{equation}
+
+
+</p>
+
+<p>
+defined for \(x\neq 2\).<br />
+
+
+</p>
+
+<p>
+Notices that for \(x\to \pm \infty \) \(f(x)\to 0\), in fig.&nbsp;<a href="Functions.html#fig:           asymptotes function">2.12</a> we see that the plot approaches the horizontal axis <b>asymptotically</b><sup>10</sup>. We can also observe that for \(a\neq 2\)
+\(f(x)\to f(a)\) for \(x\to a\). The only point where we need to be careful is when \(x\) tends to \(2\) looking at fig.&nbsp;<a href="Functions.html#fig:        asymptotes function">2.12</a> we see that if we approach \(2\) from above that \(f(x)\to \infty \)
+while if we approach \(2\) from below \(f(x)\to -\infty \).<br />
+
+
+</p>
+
+<p>
+Note that the fact that \(f(x)\) is not defined at \(x=2\) has no bearing on the limiting behaviour.
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-63"></a>
+
+<p>
+<sup>10</sup>&nbsp;The definition of asymptotically is “approaching a given value or condition, as a variable or an expression containing a variable approaches a limit, usually infinity” [Collins]
+</p>
+
+
+</div>
+
+</div>
+
+<figure id="autoid-16" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/asymptotes.png" target="_blank" ><img
+    src="figures/asymptotes.png"
+    style="
+    width:260pt;
+    "
+    class="inlineimage"
+    alt="(A plot of the reciprocal of (x-2) which tends to zero as x goes to either plus or minus infinity and diverges as x tends to 2.)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.12: A plot of the function from eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:            reciprocal of x-2">2.9</a>)</span> produced using GeoGebra. The blue line is the function and the red line shows where the function diverges and has a
+vertical asymptote.
+
+</div>
+
+<a id="fig:    asymptotes function"></a>
+
+</div>
+
+</figure>
+
+<p>
+The general rule when curve sketching is to set \(y=f(x)\) for the function of interest \(f(x)\), and then to investigate the following:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+<li>
+<p>
+<span class="listmarker">•</span> The <b>intercepts</b> of \(f(x)\), these are the points where the function meets or crosses the coordinate axes, e.g. \(f(x=0)\) and \(f(x)=0\), as these position the graph relative to the coordinate axes.
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> What happens to \(y\) as \(x\to \pm \infty \)?
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> Which values of \(x\) make \(y\to \pm \infty \)?
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> Does the function have any <b>symmetry</b>? For example does \(f(-x)=f(x)\) (\(f\) is even), or \(f(-x)=-f(x)\) (\(f\) is odd).
+</p>
+
+</li>
+<li>
+
+<p>
+<span class="listmarker">•</span> Is the function periodic?
+</p>
+</li>
+</ul>
+
+<p>
+Note that a function can have several of these interesting features. e.g. the trig functions are all periodic, while \(\sin (x)\) and \(\tan (x)\) are odd functions and \(\cos (x)\) is an even function.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-65"></a>
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.3</span></span>. </span> An asymptote to a curve is a straight line that becomes close to the curve as either \(x\) or \(y\) tend to \(\pm
+\infty \). In our above example the curve of eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:          reciprocal of x-2">2.9</a>)</span> has two asymptotes, the horizontal \(x\)-axis for \(x\to \pm \infty \) and the vertical line \(x=2\) for \(x\to
+2\).<br />
+
+
+</p>
+
+<p>
+When sketching a curve it is often useful to start by drawing the asymptotes in as they help you to know how the function will behave in certain regions of the plot. In some books you may see \(f(x)\asymp mx +c\) as \(x\to \infty \) to signify that the straight line
+\(y=mx+c\) is an asymptote to the graph of \(f(x)\) as \(x\) tends to infinity.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-66"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">2.12</span></span>. </span> Apply the above rules to produce a sketch of the function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+<!--
+
+
+                                                                                                                                x+2
+                                                                                                                      f (x) =       .
+                                                                                                                                x−1
+
+-->
+
+<p>
+
+
+\begin{equation*}
+f(x)=\frac {x+2}{x-1}.
+\end{equation*}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-67"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.13</span></span>. </span> Consider the rational function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+<!--
+
+
+                                                                                                                                      x2 + 4x − 12
+                                                                                                                           f (x) =
+                                                                                                                                        x2 − 2x
+
+-->
+
+<p>
+
+
+\begin{equation*}
+f(x)=\frac {x^{2}+4x-12}{x^{2}-2x}
+\end{equation*}
+
+
+</p>
+
+<p>
+and compute its limit as \(x\to 2\).
+</p>
+
+<p>
+Looking at the function you may think that it will diverge as \(x\to 2\) since the denominator vanishes there. However the first step is always to look at if there are any common factors between the numerator and denominator. Factorising both we have
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                                  x2 + 4x − 12
+                                                                                                                           f (x) =
+                                                                                                                                     x2 − 2x
+                                                                                                                                  (x + 6)(x − 2)
+                                                                                                                                =
+                                                                                                                                     x(x − 2)
+                                                                                                                                  x+6
+                                                                                                                                =       .
+                                                                                                                                    x
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+f(x)&amp;=\frac {x^{2}+4x-12}{x^{2}-2x}\\ &amp;=\frac {(x+6)(x-2)}{x(x-2)}\\ &amp;=\frac {x+6}{x}.
+\end{align*}
+So the denominator does not vanish at \(x=2\). We can now evaluate the limit to be
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+<!--
+
+
+                                                                                                                                           x+6  8
+                                                                                                                     lim f (x) = lim           = = 4.
+                                                                                                                     x→2             x→2    x   2
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\lim _{x\to 2}f(x)=\lim _{x\to 2}\frac {x+6}{x}=\frac {8}{2}=4.
+\end{equation*}
+
+
+</p>
+
+<p>
+The limit is the same regardless of which direction we approach \(2\) from.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-68"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">2.14</span></span>. </span> Estimate the limit from the above example by constructing a table of values of \(x\) and \(f(x)\) for \(x\) approaching 2 from
+both above and below.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+As a warning, this approach of tabulating the values does not work if the function is oscillating. For example, if you try to evaluate the limit as \(x\to 0\) of \(\cos \left (\uppi /x\right )\) it can look like it is tending to a constant if we are not careful with the
+values that we pick. However, if we plot the function we see that it is highly oscillatory around zero.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-69"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.15</span></span>. </span> Consider the rational function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+<!--
+
+
+                                                                                                                                           x3 + x2 − 5x − 2
+                                                                                                                              f (x) =                        .
+                                                                                                                                          2x3 − 7x2 + 4x + 4
+
+-->
+
+<p>
+
+
+\begin{equation*}
+f(x)=\frac {x^{3}+x^{2}-5x-2}{2x^{3}-7x^{2}+4x+4}.
+\end{equation*}
+
+
+</p>
+
+<p>
+It has three interesting limits, \(x\to 0,\infty ,2\). We can evaluate the first two of these here, but need to leave the third, \(x\to 2\) until we have learnt about L’Ho&#x0302;pital’s rule in chapter&nbsp;<a href="Advanced-Topics.html#sec:advanced topics">7</a>.
+We will do \(x\to 0\) first. As usual we check that the numerator and denominator both make sense as \(x\to 0\) and then can evaluate the limit
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                                               x3 + x2 − 5x − 2
+                                                                                                                        lim f (x) = lim
+                                                                                                                        x→0               x→0 2x3 − 7x2 + 4x + 4
+                                                                                                                                          −2
+                                                                                                                                        =
+                                                                                                                                           4
+                                                                                                                                            1
+                                                                                                                                        =− .
+                                                                                                                                            2
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\lim _{x\to 0}f(x)&amp;=\lim _{x\to 0}\frac {x^{3}+x^{2}-5x-2}{2x^{3}-7x^{2}+4x+4}\\ &amp;=\frac {-2}{4}\\ &amp;=-\frac {1}{2}.
+\end{align*}
+
+
+</p>
+
+<p>
+Next we do the \(x\to \infty \) limit. Before we do this we need to multiply \(f(x)\) by \(x^{-3}/x^{-3}\) so that it becomes
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                      
+                                                                                                                                              x−3 x3 + x2 − 5x − 2
+                                                                                                                   lim f (x) = lim
+                                                                                                                  x→∞             x→∞         x−3 2x3 − 7x2 + 4x + 4
+                                                                                                                                                                      
+                                                                                                                                              1 + x−1 − 5x−2 − 2x−3
+                                                                                                                              = lim
+                                                                                                                                  x→∞         2 − 7x−1 + 4x−2 + 4x−3
+                                                                                                                                  1
+                                                                                                                              =     .
+                                                                                                                                  2
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+\lim _{x\to \infty }f(x) &amp;=\lim _{x\to \infty }\left (\frac {x^{-3}}{x^{-3}}\frac {x^{3}+x^{2}-5x-2}{2x^{3}-7x^{2}+4x+4}\right )\\ &amp;=\lim _{x\to \infty }\left (\frac {1+x^{-1}-5x^{-2}-2x^{-3}}{2-7x^{-1}+4x^{-2}+4x^{-3}}\right )\\
+&amp;=\frac {1}{2}.
+\end{align*}
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Remember that when evaluating a limit we want to look for as many cancellations as possible to simplify the calculation. This can be looking for common factors between the numerator and denominator, but can also mean fully expanding out all terms as there may be
+cancellations hidden by the way the function has been written.
+</p>
+
+<p>
+Often it is useful to plot a function when we are estimating the limit, while this is not compulsory it can be very helpful, particularly if as in the case of \(\tan (x)\), the value of the limit depends on the direction of approach.<br />
+
+</p>
+
+<figure id="autoid-17" class="figure ">
+<div class="center">
+
+<p>
+
+<a href="figures/step_function.png" target="_blank" ><img
+    src="figures/step_function.png"
+    style="
+    width:217pt;
+    "
+    class="inlineimage"
+    alt="(A plot of a step function.)"
+></a>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.13: A plot of a step function from eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:   step function">2.10</a>)</span> produced using GeoGebra.
+
+</div>
+
+<a id="fig:   step function"></a>
+
+</div>
+
+</figure>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-71"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.16</span></span>. </span> Consider the step function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{9}\)</span>
+
+<!--
+
+                                                                                     (
+                                                                                         0   x<0
+                                                                           f (x) =                                                                                          (2.10)                                                --><a id="eq:    step function"></a><!--
+                                                                                         1   x ≥ 0,
+
+-->
+
+<p>
+
+
+\begin{equation}
+f(x)=\begin{cases} &amp;0 \quad x &lt; 0\\ &amp;1 \quad x\geq 0, \end {cases} \label {eq:             step function}
+\end{equation}
+
+
+</p>
+
+<p>
+shown in fig.&nbsp;<a href="Functions.html#fig:      step function">2.13</a>. By looking at the graph we see that the limit of \(f(x)\) as \(x\to 0\) will depend on the direction of approach. If we start from below zero it is clear that \(f(x)\to 0\), while starting
+above zero it is clear that \(f(x)\to 1\). In contrast to the case of \(\tan (x)\) the function is not diverging in the limit, but we still end up with a <b>One Sided Limit</b><sup>11</sup>
+</p>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-72"></a>
+
+<p>
+<sup>11</sup>&nbsp;This just means that the function is well behaved in the limit as long as we only look at one side.
+</p>
+
+
+</div>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-73"></a>
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.4</span></span>. </span> Note that it can be dangerous to use \(\infty \) in calculations as if it were a number. This is because there are
+certain limits and other expressions that we may see which do not make sense:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{10}\)</span>
+
+<!--
+
+
+                                                                                                                                   0            ∞     ∞     1
+                                                                                                                 ∞0 ,   ∞ − ∞,       ,   00 ,     ,     ,     .
+                                                                                                                                   0            ∞     0     0
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\infty ^{0}, \quad \infty -\infty , \quad \frac {0}{0}, \quad 0^{0}, \quad \frac {\infty }{\infty }, \quad \frac {\infty }{0}, \quad \frac {1}{0}.
+\end{equation*}
+
+
+</p>
+
+<p>
+Just because we see one of these expressions coming out a limit does not necessarily mean that the limit does not exist. It can instead mean that we need to be very careful how we evaluate the limit. In chapter&nbsp;<a
+href="Advanced-Topics.html#sec:advanced topics">7</a> we will discuss L’Ho&#x0302;pital’s rule which is a techniques for evaluating limits that initially look like they do not make sense.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+There are a few limits that we need to know that we will not prove here, time permitting we will prove these in chapter&nbsp;<a href="Advanced-Topics.html#sec:advanced topics">7</a>, but you can also look at the “Proof of Trig Limits” section of Dawkins [2025] to
+see one approach to proving them. These limits are
+</p>
+<span class="hidden"> \(\seteqnumber{0}{2.}{10}\)</span>
+
+
+<!--
+
+
+                                                                                                                                        sin x
+                                                                                                                                  lim         = 1,                                                            (2.11)             --><a id="eq:    sin limit"></a><!--
+                                                                                                                                  x→0     x
+                                                                                                                                   cos x − 1
+                                                                                                                              lim             = 0,                                                            (2.12)             --><a id="eq:    cos limit"></a><!--
+                                                                                                                             x→0       x
+                                                                                                                                      eh − 1
+                                                                                                                                 lim          = 1,                                                            (2.13)             --><a id="eq:    exp limit"></a><!--
+                                                                                                                                h→0      h
+                                                                                                                                   ln(1 + h)
+                                                                                                                             lim              = 1.                                                             (2.14)             --><a id="eq:    ln limit"></a><!--
+                                                                                                                             h→0       h
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\lim _{x\to 0}\frac {\sin x}{x}&amp;=1, \label {eq: sin limit}\\ \lim _{x\to 0}\frac {\cos x -1}{x}&amp;=0, \label {eq: cos limit}\\ \lim _{h\to 0}\frac {e^{h}-1}{h}&amp;=1, \label {eq: exp limit}\\ \lim _{h\to 0}\frac {\ln
+(1+h)}{h}&amp;=1. \label {eq: ln limit}
+\end{align}
+Note that eq.&nbsp;<span class="textup">(<a href="Functions.html#eq: exp limit">2.13</a>)</span> is equivalent to eq.&nbsp;<span class="textup">(<a href="Functions.html#eq: exp approximation">2.1</a>)</span> which we discussed above as one of the
+definitions of the exponential function.
+</p>
+<!--
+...... section Continuity and differentiability ......
+-->
+<h4 id="autosec-74"><span class="sectionnumber">2.6&#x2003;</span>Continuity and differentiability</h4>
+<a id="mat1001-autopage-74"></a>
+
+
+<a id="sec:    continuity"></a>
+
+<p>
+Now that we have some examples of functions and understand how to take limits, we can define two properties of a function which will be very important later in the course: <b>continuity</b> and <b>differentiability</b>.<br />
+
+</p>
+
+<p>
+A function \(f(x)\) is said to be continuous at a point \(x=a\) if
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{14}\)</span>
+
+<!--
+
+
+                                                                                                lim f (x) = f (a).                                                                                               (2.15)                   --><a id="eq:    continuity"></a><!--
+                                                                                                x→a
+
+-->
+
+<p>
+
+\begin{equation}
+\lim _{x\to a}f(x)=f(a).      \label {eq:    continuity}
+\end{equation}
+
+</p>
+
+<p>
+If \(X\) is the domain of \(f(x)\), we say that \(f\) is continuous on \(X\) if it is continuous at each point in \(X\), often we would just say that \(f\) is a continuous function. As a rule of thumb, we can say that a function is continuous if its graph can be drawn from
+start to finish without taking your pen off the paper. Functions which are not continuous will have jumps or divergences at the point that fails to be continuous.<br />
+
+</p>
+
+<p>
+If we have a rational function then we can find where it is not continuous, called being <b>discontinuous</b>, by finding the roots of the denominator.<br />
+
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-75"></a>
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.5</span></span>. </span> If we are being careful we need to give three parts to the definition of continuity:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1)</span> The limit of \(f(x)\) as \(x\to a\) exists.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2)</span> The value of \(f(x)\) is defined at \(x=a\). i.e. \(f(a)\) is defined and is finite.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3)</span> The limit of \(f(x)\) as \(x\to a\) agrees with the value of \(f(a)\).
+</p>
+</li>
+</ul>
+
+<p>
+This is another place where as this is not a course for mathematicians we can combine all three of these into the one statement in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:   continuity">2.15</a>)</span>. This is another example of being able
+to use a working definition and not needing to get sidetracked by all of the technical details.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-76"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.17</span></span>. </span> We have already met several examples of continuous and discontinuous functions:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">•</span> The trig functions \(\cos (x)\) and \(\sin (x)\) are continuous on all of \(\R \).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> The exponential function \(\exp (x)\) is continuous on all of \(\R \).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> The natural logarithm is continuous on the positive real numbers \(\R \) as, currently we have not defined it for negative \(x\), and it diverges in the limit \(x\to 0\).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> The tangent function \(\tan (x)\) are not continuous on \(\R \) due to its divergences at \(\pm \frac {\uppi }{2},\pm \frac {3\uppi }{2},\dots {}\). However, it is continuous on its domain<sup>12</sup> \(\left (-\frac
+{\uppi }{2},\frac {\uppi }{2}\right )\)
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> The step function of eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:            step function">2.10</a>)</span> is not continuous at \(x=0\).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">•</span> The function in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:            reciprocal of x-2">2.9</a>)</span> has a discontinuity at \(x=2\)
+</p>
+</li>
+</ul>
+
+</li>
+
+</ul>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-77"></a>
+
+<p>
+<sup>12</sup>&nbsp;Strictly speaking this is the principle domain of \(\tan (x)\) its domain is really \(\{x\in \R \vert x\neq \uppi /2 +n\uppi , n\in \Z \}\)
+</p>
+
+
+</div>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-78"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">2.18</span></span>. </span> Use the definition of continuity to determine if the function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{15}\)</span>
+
+<!--
+
+
+                                                                                                                                         4x + 10
+                                                                                                                             g(x) =                                                                                                                                     (2.16)
+                                                                                                                                      x2 − 2x − 15
+
+-->
+
+<p>
+
+
+\begin{equation}
+g(x)=\frac {4x+10}{x^{2}-2x-15}
+\end{equation}
+
+
+</p>
+
+<p>
+is continuous and if not find the points where it has discontinuities.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+Related to continuity is differentiability. A function \(f(x)\) is differentiable at a point \(a\) if the limit
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{16}\)</span>
+
+<!--
+
+                                                                                                                                      f (x) − f (a)
+                                                                                                                                lim
+                                                                                                                               x→a        x−a
+
+-->
+
+<p>
+
+\begin{equation*}
+\lim _{x\to a}\frac {f(x)-f(a)}{x-a}
+\end{equation*}
+
+</p>
+
+<p>
+exists. We call this limit the derivative of the function at the point \(a\),
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{16}\)</span>
+
+<!--
+
+                                                                                                          f (x) − f (a)
+                                                                                          f ′ (a) = lim                 ,                                                                            (2.17)                     --><a id="eq:   rate of change at a"></a><!--
+                                                                                                   x→a        x−a
+
+-->
+
+<p>
+
+\begin{equation}
+f&apos;(a)=\lim _{x\to a}\frac {f(x)-f(a)}{x-a}, \label {eq:              rate of change at a}
+\end{equation}
+
+</p>
+
+<p>
+the notation \(\frac {\ud f}{\ud x}(a)\) is sometimes used instead of \(f&apos;(a)\). A function is called continuously differentiable if its derivative is also continuous.<br />
+
+</p>
+
+<p>
+It is important to note that differentiability at \(a\) implies continuity at \(a\), but continuity does not imply differentiability. For example the absolute value function shown in fig.&nbsp;<a href="Functions.html#fig:    abs function">2.14</a> is continuous
+everywhere, but is only differentiable everywhere except at \(x=0\).
+</p>
+
+<figure id="autoid-18" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-7"
+    class="lateximagesource"
+><!--
+y
+
+    f (x) = |x|
+
+
+
+
+        x
+--><img
+    src="mat1001-images\image-7.svg"
+    alt="(Graph of the absolute value function.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.14: The absolute value function \(f(x)=\vert x\vert \) is continuous at every point, but it is not differentiable at the point \(x=0\).
+
+</div>
+
+<a id="fig:   abs function"></a>
+
+</div>
+
+</figure>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-82"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.19</span></span>. </span> Consider the modulus or absolute value function shown in fig.&nbsp;<a href="Functions.html#fig:   abs function">2.14</a>.
+We have said that this is a continuous function which is not differentiable at \(x=0\), but how do we show this? We do it by checking all of the limits.<br />
+
+
+</p>
+
+<p>
+Checking continuity at \(x=0\) is left as an exercise. For differentiability we need to check the limits as \(x\to 0^{+}\) and \(x\to 0^{-}\).
+</p>
+
+<p>
+In the first one we have:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{17}\)</span>
+
+<!--
+
+
+                                                                                                                          f (x) − f (0)       x−0
+                                                                                                                    lim                 = lim     lim 1 = 1,
+                                                                                                                 x→0+           x        x→0+  x x→0+
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\lim _{x\to 0^{+}}\frac {f(x)-f(0)}{x}=\lim _{x\to 0^{+}}\frac {x-0}{x}\lim _{x\to 0^{+}}1=1,
+\end{equation*}
+
+
+</p>
+
+<p>
+while approaching from the other direction gives:
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{17}\)</span>
+
+<!--
+
+
+                                                                                                                     f (x) − f (0)       (−x) − 0
+                                                                                                              lim                  = lim           lim −1 = −1.
+                                                                                                             x→0−          x        x→0−    x     x→0−
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\lim _{x\to 0^{-}}\frac {f(x)-f(0)}{x}=\lim _{x\to 0^{-}}\frac {(-x)-0}{x}\lim _{x\to 0^{-}}-1=-1.
+\end{equation*}
+
+
+</p>
+
+<p>
+These do not agree, so the limit does not exist and the modulus function is not differentiable.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<figure id="autoid-19" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-8"
+    class="lateximagesource"
+><!--
+y axis
+
+
+                    y2 at x2
+
+
+
+
+         y1 at x1
+
+
+
+
+                        x axis
+--><img
+    src="mat1001-images\image-8.svg"
+    alt="(Graph of a straight line function.)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.15: A plot of the straight line \(y=x\) and example of \(y=mx+c\) with gradient \(m=1\) and \(y\)-intercept \(c=0\), with two points on the line marked.
+
+</div>
+
+<a id="fig:   straight line graph."></a>
+
+</div>
+
+</figure>
+
+<p>
+The fraction in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:         rate of change at a">2.17</a>)</span> may look familiar to you. If we had a straight line \(y=f(x)=mx+c\) where \(m\) is the gradient of the straight line and \(c\) is the
+\(y\)-intercept, then calculating this fraction gives
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{17}\)</span>
+
+<!--
+
+                                                                                                              f (x) − f (a)   mx + c − (ma + c)   m(x − a)
+                                                                                                                            =                   =          = m,
+                                                                                                                  x−a               x−a            x−a
+
+-->
+
+<p>
+
+\begin{equation*}
+\frac {f(x)-f(a)}{x-a}=\frac {mx+c-(ma+c)}{x-a}=\frac {m(x-a)}{x-a}=m,
+\end{equation*}
+
+</p>
+
+<p>
+which is the gradient of the curve. For a function that is not a straight line, this procedure gives the gradient of the straight line between \(x\) and \(a\). In the limit that \(x\to a\) this fraction becomes the gradient of the <b>tangent</b> line<sup>13</sup><a
+id="mat1001-autopage-85"></a> to the curve at \(a\). See fig.&nbsp;<a href="Functions.html#fig: parabola tangent">2.16</a> for the example of the tangent to parabola \(y=x^{2}\).
+</p>
+<div role="note" class="footnotes">
+
+<a id="mat1001-autopage-86"></a>
+
+<p>
+<sup>13</sup>&nbsp;A tangent is a line that touches a curve at one point
+</p>
+
+
+</div>
+
+
+
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">
+<span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">2.6</span></span>. </span> The fraction
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{2.}{17}\)</span>
+
+<!--
+
+
+                                                                                                                                 f (x) − f (a)
+                                                                                                                                     x−a
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\frac {f(x)-f(a)}{x-a}
+\end{equation*}
+
+
+</p>
+
+<p>
+is sometimes referred to as the Newton quotient of the function \(f(x)\) at the point \(a\). This is after Isaac Newton because when calculating a derivative we are calculating this quotient for smaller and smaller differences \(x-a\).
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<figure id="autoid-20" class="figure ">
+<div class="center">
+
+<p>
+<span
+    id="lateximage-mat1001-9"
+    class="lateximagesource"
+><!--
+y
+
+
+
+
+    x
+--><img
+    src="mat1001-images\image-9.svg"
+    alt="(Graph of a parabola with a tangent curve shown .)"
+    style=""
+    class="lateximage"
+></span>
+</p>
+
+
+<div class="figurecaption">
+Figure&nbsp;2.16: A plot of a parabola in black and its tangent in red
+
+</div>
+
+<a id="fig:   parabola tangent"></a>
+
+</div>
+
+</figure>
+
+</section>
+
+</main>
+
+</div>
+
+<footer>
+
+<p>
+Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill[dot]ac[dot]uk</a> and Copyright CC BY 4.0
+</p>
+
+</footer>
+
+
+<nav class="botnavigation"><a href="index.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>
