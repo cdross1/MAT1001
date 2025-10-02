@@ -1,0 +1,178 @@
+
+\chapter{Background Mathematics}
+\label{sec:background}
+
+\epigraph{Try as you may you just can't get away from Mathematics }{\textit{That's Mathematics by Tom Lehrer}}
+
+\section{Background and References}
+As this is a maths module there is a lot of assumed background.  This means that to understand the material in the module and to be able to solve the tutorial problems, you need to have a experience with a variety of mathematical techniques such as:
+\begin{itemize}
+%\setlength{\itemsep}{-5pt}
+    \item solving linear equation,
+    \item solving quadratic equations
+    \item using trigonometry,
+    \item knowning some simple functions.
+\end{itemize}
+
+These topics will be familiar to many of you. However, it may have been a while since some of you studied mathematics and I am aiming to briefly introduce any new mathematical topics when we need them. However, I also want to link to some extra resources where you can brush up on your maths beforehand.\\
+
+
+A great resource is the website \href{https://tutorial.math.lamar.edu/}{Pauls Online Math Notes}. The website contains notes for a variety of mathematics courses including algebra and calculus. The most useful background materials are the Algebra and trigonometry review \href{https://tutorial.math.lamar.edu/Extras/AlgebraTrigReview/AlgebraTrigIntro.aspx}{linked here} and the preliminaries section of the algebra notes, \href{https://tutorial.math.lamar.edu/Classes/Alg/Preliminaries.aspx}{linked here}.\\
+
+As the module goes on I may add more background resources or add some examples.\\
+
+%The essential maths skills needed for studying physics at this level are nicely summarised in \citep{garrett2015essential}. It is worth having a look at this book if you want to revise the maths background.
+
+\section{Trigonometry Primer}
+Since trigonometric functions come up a lot in this course a review of the basics is included here. If you are not familiar with it you can either check out the links suggested above or ask me to provide more background information.\\
+
+Here we will only discuss trigonometry for right angled triangles, but in the main content of the module we will deal with general trig functions. \textbf{Trigonometry} is an area of mathematics related to the study of triangles and provides a way to compute the lengths and angles in a triangle provided that you now some of them already.
+
+\begin{figure}[ht]
+    \centering
+   % \pdftooltip{
+   \begin{tikzpicture}[scale=2]
+  \coordinate [label=left:$\uptheta$] (C) at (-1.5cm,-1.cm);
+  \coordinate (A) at (1.5cm,-1.0cm);
+  \coordinate [label=above:$\upphi$] (B) at (1.5cm,1.0cm);
+  \draw (C) -- node[above] {$a$} (B) -- node[right] {$c$} (A) -- node[below] {$b$} (C);
+  \draw (1.25cm,-1.0cm) rectangle (1.5cm,-0.75cm);
+  \tkzMarkAngle[size=1cm,color=blue](A,C,B)
+  \tkzMarkAngle[size=1cm,color=blue](C,B,A)
+\end{tikzpicture}
+%}{A right angle triangle with all the angles and sides marked.}
+    \caption{A right angle triangle with all the angles and sides marked.}
+    \label{fig: Trig definitions}
+\end{figure}
+
+The typical mnemonic used to remember trigonometry is \textbf{SOH CAH TOA} which means Sine is opposite over hypotenuse
+\begin{equation*}
+\sin\uptheta=\frac{c}{a}, \qquad \sin\upphi =\frac{b}{a},
+\end{equation*}
+Cosine is adjacent divided by hypotenuse
+\begin{equation*}
+\cos\uptheta=\frac{b}{a}, \qquad \cos\upphi =\frac{c}{a},
+\end{equation*}
+and Tangent is opposite divided by adjacent
+\begin{equation*}
+\tan\uptheta=\frac{c}{b}, \qquad \sin\upphi =\frac{b}{c}.
+\end{equation*}
+There are associated inverse functions $\arcsin,\arccos,\arctan$ which convert ratios of sides into angles. All of these functions are available on your calculator. \\
+
+It is important to be careful with which units you are using to express angles. It is likely that you will have come across degrees where going around a full circle is represented by an angle of $360^{\circ}$. However, it is often convenient to work with a different measure of angles called radians, in this case we take a full circle to be $2\uppi\text{rad}$ and express angles as a number between $0$ and $2\uppi$. In this module you can probably get away with always working in degrees, other than for some of the formulas quoted for the pendulum. However, if you go further with maths or physics you will find that radians as much more convenient to work with.
+
+\section{Rearranging Equations}
+A very important skill for solving mathematics problems, and finding the roots of functions, is to be able to rearrange equations. This is sometimes referred to as changing the subject of an equation. Newcastle University have a webpage, available \href{https://www.mas.ncl.ac.uk/ask/numeracy-maths-statistics/core-mathematics/pure-maths/algebra/rearranging-equations.html}{here} that goes through some examples of how to rearrange equations. The webpage also has some self test questions that you can look at if you want more practice. Some of the details are reviewed here, along with examples for the specific equations that we have been using in this module.\\
+
+
+In the equation
+\begin{equation*}
+x=5y+4z,
+\end{equation*}
+$x$ is called the subject, which is just a fancy way of saying that $x$ is expressed in terms of the other variables. When we talk about rearranging an equation, we mean that we change the subject of the equation from $x$ to another variable like $y$ and $z$. We do this by performing a variety of mathematical operations to both sides of the equation to swap some of the variables from one side to the other. \\
+
+These operations can include: adding or subtracting a quantity from both sides, multiplying or dividing by a quantity, taking logarithms of or exponentiating both sides of the equation, raising both sides of the equation to any non-zero power.\\
+\begin{ex}
+Returning to the above equation $x=5y+4x$, we can rearrange it to make $z$ the subject. Again, this means that we will perform mathematical operations on both sides of the equation to put it in the form $z=\dots{}$ : 
+\begin{align*}
+x&=5y+4z, \quad \text{ first subtract $5y$ from both sides},\\
+x-5y&=5y+4z-5y=4z, \quad \text{then divide both sides by 4},\\
+\frac{x-5y}{4}&=\frac{4z}{4}=z.
+\end{align*}
+This gives us
+\begin{equation*}
+z=\frac{x-5y}{4},
+\end{equation*}
+with $z$ now the subject of the equation.
+\end{ex}
+
+\begin{ex}
+As another example consider an equation from physics $v=u+at$, which says that the if an object starts off with a velocity $v$ and accelerates at a rate $a$ then after time $t$ its velocity will be $v$. Here we go through this step by step what we do when solving for $a$:
+\begin{align*}
+v&=u+at, \quad \text{subtract $u$ from both sides},\\
+v-u&=u+at -u=at, \quad \text{divide both sides by $t$},\\
+\frac{v-u}{t}&=\frac{at}{t}=a,
+\end{align*}
+which gives us
+\begin{equation*}
+a=\frac{v-u}{t}.
+\end{equation*}
+\end{ex}
+
+\begin{ex}
+Another example is rearranging a different equation from physics,
+\begin{equation*}
+s=ut+\frac{1}{2}at^{2},
+\end{equation*}
+to solve for either $a$ or $t$.\\
+
+To make $a$ the subject we proceed as follows:
+\begin{align*}
+s&=ut+\frac{1}{2}at^{2}, \quad \text{subtract $ut$ from both sides},\\
+s-ut&=ut+\frac{1}{2}at^{2}-ut=\frac{1}{2}at^{2}, \quad \text{multiply both sides by $2$},\\
+2\left(s-ut\right)&=2\left(\frac{1}{2}at^{2}\right)=at^{2}, \quad \text{divide both sides by $t^{2}$},\\
+\frac{2\left(s-ut\right)}{t^{2}}&=\frac{at^{2}}{t^{2}}=a,
+\end{align*}
+thus the equation with $a$ being the subject is 
+\begin{equation*}
+a=\frac{2\left(s-ut\right)}{t^{2}}.
+\end{equation*}
+
+If instead we wanted $t$ to be the subject then it is easier to put it in the form of a quadratic equation and then use the quadratic formula:
+\begin{align*}
+s&=ut+\frac{1}{2}at^{2}, \quad \text{subtract $s$ from both sides},\\
+0&=\frac{1}{2}at^{2}+ut-s,\quad \text{this is a qudratic equation for $t$ and is solved by}\\
+t&=\frac{-u\pm\sqrt{u^{2}+2as}}{a}.
+\end{align*}
+\end{ex}
+
+There are a few special cases where we do not need to use the quadratic formula that it is worth being aware of. If $s=0$ then we have
+\begin{align*}
+0&=ut+\frac{1}{2}at^{2}, \quad \text{factor out the common factor},\\
+0&=t\left(u+\frac{1}{2}at\right),
+\end{align*}
+This has two solutions $t=0$, which is the start of the motion, and
+\begin{align*}
+0&=u+\frac{1}{2}at, \quad \text{subtract $u$ from both sides},\\
+-u&=\frac{1}{2}at, \quad \text{multiply both sides by $2$},\\
+-2u&=at, \quad \text{divide both sides by $a$},\\
+-\frac{2u}{a}&=t.
+\end{align*}
+This case often appear when considering projectile motion and you want to calculate the total length of time that the projectile is in the air for.\\
+
+The other common example is if $u=0$, then:
+\begin{align*}
+s&=\frac{1}{2}at^{2}, \quad \text{multiply both sides by $2$},\\
+2s&=at^{2}, \quad \text{divide both sides by $a$},\\
+\frac{2s}{a}&=t^{2}, \quad \text{take the square root of both sides},\\
+\sqrt{\frac{2s}{a}}&=t.
+\end{align*}
+In the last line we have dropped the $\pm$ that should be in front of the square root since we do not consider negative time. However, if you were just solving a quadratic equation then you would have to remember to include that.  Both of these special cases can also be found by direct substitution into the quadratic formula of $s=0$ or $u=0$ respectively.\\
+
+\begin{ex}
+The final example is to rearrange an equation involving a square root,
+\begin{equation*}
+T=2\uppi\sqrt{\frac{l}{g}}.
+\end{equation*}
+If you are asked to make $l$ the subject of this equation we proceed as follows:
+\begin{align*}
+T&=2\uppi\sqrt{\frac{l}{g}}, \quad \text{first divide both sides by $2\uppi$},\\
+\frac{T}{2\uppi}&=\frac{2\uppi}{2\uppi}\sqrt{\frac{l}{g}}=\sqrt{\frac{l}{g}}, \quad \text{then square both sides of the equation},\\
+\left(\frac{T}{2\uppi}\right)^{2}&=\left(\sqrt{\frac{l}{g}}\right)^{2}=\frac{l}{g}, \quad \text{now multiply both sides by $g$},\\
+g\left(\frac{T}{2\uppi}\right)^{2}&=g\times\frac{l}{g}=l.
+\end{align*}
+This leaves us with
+\begin{equation*}
+l=g\left(\frac{T}{2\uppi}\right)^{2}=\frac{gT^{2}}{4\uppi^{2}}.
+\end{equation*}
+This is the equation for a straight line $y=mx+c$ where $l$ plays the role of $y$, the $y$-intercept $c=0$, $\left(\frac{T}{2\uppi}\right)^{2}$ plays the role of $x$, and $m=g$ is the gradient of the straight line. When analysing your data you would use plot your data and should observe a straight line whose gradient is $g$.\\
+
+At the last step of this rearrangement we could instead make $g$ the subject. To do this we proceed as follows:
+\begin{align*}
+\left(\frac{T}{2\uppi}\right)^{2}&=\left(\sqrt{\frac{l}{g}}\right)^{2}=\frac{l}{g}, \quad \text{now multiply both sides by $g$},\\
+g\left(\frac{T}{2\uppi}\right)^{2}&=g\times \frac{l}{g}=l, \quad \text{divide both sides by }\left(\frac{T}{2\uppi}\right)^{2}, \\
+g&=\frac{l}{\left(\frac{T}{2\uppi}\right)^{2}}=\frac{4\uppi^{2} l}{T^{2}}.
+\end{align*}
+\end{ex}
+
+If you want more examples there is a \textbf{Transposition of Formulae} workbook, designed by mathcentre,  available \href{https://www.mathcentre.ac.uk/resources/uploaded/mc-ty-transposition-2009-1.pdf}{here}.

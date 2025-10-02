@@ -1,0 +1,276 @@
+%===Version2.0 Edge Hill University contact calum.ross@edgehill.ac.uk===%
+% % This is my first pass at a lecture notes package. Currently it is set up to work with the lwarp package to create html files.
+% % calum_lecture.sty % %
+
+\ProvidesPackage{calum_lecture}
+
+% % %PACKAGE LOADING
+\usepackage{microtype}
+\usepackage{epigraph}
+\usepackage{graphicx}
+%Allows the inclusion of graphics and also allows the inclusion of captions to describe images or figures.
+\usepackage{natbib}
+\usepackage[Symbolsmallscale]{upgreek}
+\usepackage[xindy,toc]{glossaries} %Enables the creation of a glossary of terms.
+
+\usepackage{appendix}
+\usepackage[normalem]{ulem}
+\usepackage{cancel}
+\usepackage{amsmath,amssymb,amscd,amsthm} % Loads various ams maths packages
+\usepackage{textcomp}% This should give an interrobang symbol
+\usepackage{caption}
+
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{calc, scopes, circuits.ee.IEC, patterns}
+\usetikzlibrary{arrows,arrows.meta}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{angles,quotes} % for pic (angle labels)
+\usetikzlibrary{shapes,snakes}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{tkz-euclide}
+%\usepackage{mathtools} % Currently this package does not work with lwarp so needs to be avoided if an html version is required.
+\usepackage{tabularx}
+\usepackage{multirow}
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=1.5cm,lmargin=2cm,rmargin=3cm,headheight=1cm,headsep=1cm,footskip=1cm}
+
+%Remove indents at the start of paragraphs. Why is this not the default?
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+
+\usepackage{makeidx} \makeindex
+\usepackage{xcolor} % (Demonstration purposes only.)
+\usepackage[
+nottoc,
+%numbib, % adds a chapter number
+]{tocbibind} % This makes the bibliography a chapter in the table of contents
+\usepackage[hidelinks]{hyperref}\usepackage{cleveref} % LOAD THESE LAST!
+
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{Example}{\protect\examplename}[chapter]
+\newtheorem{diversion}{\protect\examplename}[chapter]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary} 
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exercise}[thm]{Exercise}
+\newtheorem{mdiv}[diversion]{Mathematical Diversion}
+
+% % % Custom Commands
+\def\ud{\mathrm{d}}
+\def\ui{\mathrm{i}}
+\def\uj{\mathrm{j}}
+\def\uh{\mathrm{h}}
+\newcommand{\up}{\uppi}
+\newcommand{\ut}{\uptheta}
+\newcommand{\uw}{\upomega}
+\newcommand{\uph}{\upphi}
+\newcommand{\uvph}{\upvarphi}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\CP}{\mathbb{C}P}
+\newcommand{\RP}{\mathbb{R}P}
+\def\bk{\vec{k}}
+\def\bm{\vec{m}}
+\def\bn{\vec{n}}
+\def\be{\vec{e}}
+\def\bE{\vec{E}}
+\def\bx{\vec{x}}
+\def\uL{\mathrm{L}}
+\def\uU{\mathrm{U}}
+\def\uW{\mathrm{W}}
+\def\uE{\mathrm{E}}
+\def\uT{\mathrm{T}}
+\def\uV{\mathrm{V}}
+\def\uM{\mathrm{M}}
+\def\uH{\mathrm{H}}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arcCot}
+\DeclareMathOperator{\arccsc}{arcCsc}
+\DeclareMathOperator{\arccosh}{arcCosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arcCsch}
+\DeclareMathOperator{\arccoth}{arcCoth} 
+\def\re{\textup{Re}}
+\def\im{\textup{Im}}
+
+% `Standard' solution:
+\begin{warpHTML}
+\CustomizeMathJax{\def\ud{\mathrm{d}}}
+\CustomizeMathJax{\def\ui{\mathrm{i}}}
+\CustomizeMathJax{\def\uj{\mathrm{j}}}
+\CustomizeMathJax{\def\uh{\mathrm{h}}}  
+\CustomizeMathJax{\newcommand{\R}{\mathbb{R}}}
+\CustomizeMathJax{\newcommand{\N}{\mathbb{N}}}
+\CustomizeMathJax{\newcommand{\C}{\mathbb{C}}}
+\CustomizeMathJax{\newcommand{\Z}{\mathbb{Z}}}
+\CustomizeMathJax{\newcommand{\CP}{\mathbb{C}P}}
+\CustomizeMathJax{\newcommand{\RP}{\mathbb{R}P}}
+\CustomizeMathJax{\def\bk{\vec{k}}}
+\CustomizeMathJax{\def\bm{\vec{m}}}
+\CustomizeMathJax{\def\bn{\vec{n}}}
+\CustomizeMathJax{\def\be{\vec{e}}}
+\CustomizeMathJax{\def\bE{\vec{E}}}
+\CustomizeMathJax{\def\bx{\vec{x}}}
+\CustomizeMathJax{\def\uL{\mathrm{L}}}
+\CustomizeMathJax{\def\uU{\mathrm{U}}}
+\CustomizeMathJax{\def\uW{\mathrm{W}}}
+\CustomizeMathJax{\def\uE{\mathrm{E}}}
+\CustomizeMathJax{\def\uT{\mathrm{T}}}
+\CustomizeMathJax{\def\uV{\mathrm{V}}}
+\CustomizeMathJax{\def\uM{\mathrm{M}}}
+\CustomizeMathJax{\def\uH{\mathrm{H}}}
+\CustomizeMathJax{\DeclareMathOperator{\sech}{sech}}
+\CustomizeMathJax{\DeclareMathOperator{\csch}{csch}}
+\CustomizeMathJax{\DeclareMathOperator{\arcsec}{arcsec}}
+\CustomizeMathJax{\DeclareMathOperator{\arccot}{arcCot}}
+\CustomizeMathJax{\DeclareMathOperator{\arccsc}{arcCsc}}
+\CustomizeMathJax{\DeclareMathOperator{\arccosh}{arcCosh}}
+\CustomizeMathJax{\DeclareMathOperator{\arcsinh}{arcsinh}}
+\CustomizeMathJax{\DeclareMathOperator{\arctanh}{arctanh}}
+\CustomizeMathJax{\DeclareMathOperator{\arcsech}{arcsech}}
+\CustomizeMathJax{\DeclareMathOperator{\arccsch}{arcCsch}}
+\CustomizeMathJax{\DeclareMathOperator{\arccoth}{arcCoth}}
+\CustomizeMathJax{\def\re{\textup{Re}}}
+\CustomizeMathJax{\def\im{\textup{Im}}}
+\CustomizeMathJax{\newcommand{\up}{\uppi}}
+\CustomizeMathJax{\newcommand{\ut}{\uptheta}}
+\CustomizeMathJax{\newcommand{\uw}{\upomega}}
+\CustomizeMathJax{\newcommand{\uph}{\upphi}}
+\CustomizeMathJax{\newcommand{\uvph}{\upvarphi}}
+\end{warpHTML}
+% % % Formula Triangle
+\newcommand{\formulatriang}[7][.33]{
+    % optional first argument PW: variables will be placed on the angle
+    % bisectors, PW of the way between vertex and opposite side.
+    \begin{tikzpicture}[x=3.5em,y=3.5em]
+    \def\pw{#1}
+    \coordinate (B) at (0,0);
+    \coordinate (A) at (60:1);
+    \coordinate (C) at (1,0);
+    \coordinate (AB) at ($ (A)!.5!(B)$);
+    \coordinate (AC) at ($ (A)!.5!(C)$);
+    \coordinate (a) at ($ (60:1)!\pw!(.5,0)$);
+    \coordinate (b) at ($ (0,0)!\pw!(30:0.866)$);
+    \coordinate (c) at ($ (1,0)!\pw!(60:0.5) $);
+    \draw[style=thick,rounded corners=.5ex]
+    (A) node[anchor=south,rotate=-60] {#3}
+    -- 
+    (B) node[anchor=south,rotate=60] {#5}
+    --
+    (C) node[anchor=north,rotate=0] {#7}
+    -- cycle;       
+    \draw  (AB) -- ($ (AB)!.2!(C)$);
+    \draw  (AC) -- ($ (AC)!.2!(B)$);
+    \node at ($(b)!.5!(c)$) {$\times$};
+    \path 
+    (a) node[shape=circle,anchor=center] {#2}
+    --
+    (b) node[shape=circle,anchor=center] {#4}
+    --
+    (c)
+    node[shape=circle,anchor=center] {#6}
+    ;
+    \end{tikzpicture}
+}
+
+
+
+% % %COLOURS
+\colorlet{CDnavy}{blue!50!black}
+\colorlet{CDred}{red!80!black}
+\colorlet{CDgreen}{green!50!black}
+\definecolor{CDorange}{HTML}{C74E00}
+\definecolor{yellowbg}{HTML}{FEFFBD}
+
+\definecolor{AVEred}{HTML}{CC0000}
+\definecolor{AVEblue}{HTML}{32619E}
+\definecolor{AVEgreen}{HTML}{4D9906}
+
+\definecolor{msorange}{HTML}{FFA366}
+\definecolor{msblue}{HTML}{2EA3D0}
+
+\definecolor{bold1}{cmyk}{0.82,0.54,0,   0}%{HTML}{0074dd}
+\definecolor{bold2}{cmyk}{0.76,0.10,1,0.01}%{0.82,0.30,1,   0.19}%{HTML}{2f7604}%{41a406}%
+\definecolor{bold3}{cmyk}{0,   0.62,0.97,0}%{HTML}{fd7f20}
+\definecolor{bold4}{cmyk}{0.65,1,   0.29,0.21}%{HTML}{660a60}%{a31099}%
+\definecolor{bold5}{cmyk}{0.08,0.97,0,   0}%{HTML}{de1890}%{e41994}%
+\definecolor{bold6}{cmyk}{0.04,0.16,1,   0}%{HTML}{f6ce00}
+
+\colorlet{past1}{bold1!20!white}
+\colorlet{past2}{bold2!20!white}
+\colorlet{past3}{bold3!20!white}
+\colorlet{past4}{bold4!20!white}
+\colorlet{past5}{bold5!20!white}
+\colorlet{past6}{bold6!20!white}
+
+\definecolor{toptenyellow}{HTML}{FBFF08}
+
+\newcommand{\describecolor}[1]{%
+\ifthenelse{\equal{#1}{CDnavy}}{blue}{}%
+\ifthenelse{\equal{#1}{CDred}}{red}{}%
+\ifthenelse{\equal{#1}{CDgreen}}{green}{}%
+\ifthenelse{\equal{#1}{CDorange}}{orange}{}%
+\ifthenelse{\equal{#1}{yellowbg}}{yellow}{}%
+\ifthenelse{\equal{#1}{toptenyellow}}{yellow}{}%
+\ifthenelse{\equal{#1}{AVEred}}{red}{}%
+\ifthenelse{\equal{#1}{AVEblue}}{blue}{}%
+\ifthenelse{\equal{#1}{AVEgreen}}{green}{}%
+\ifthenelse{\equal{#1}{msblue}}{blue}{}%
+\ifthenelse{\equal{#1}{msorange}}{orange}{}%
+\ifthenelse{\equal{#1}{bold1}}{blue}{}%
+\ifthenelse{\equal{#1}{bold2}}{green}{}%
+\ifthenelse{\equal{#1}{bold3}}{orange}{}%
+\ifthenelse{\equal{#1}{bold4}}{purple}{}%
+\ifthenelse{\equal{#1}{bold5}}{pink}{}%
+\ifthenelse{\equal{#1}{bold6}}{yellow}{}%
+\ifthenelse{\equal{#1}{past1}}{blue}{}%
+\ifthenelse{\equal{#1}{past2}}{green}{}%
+\ifthenelse{\equal{#1}{past3}}{orange}{}%
+\ifthenelse{\equal{#1}{past4}}{purple}{}%
+\ifthenelse{\equal{#1}{past5}}{pink}{}%
+\ifthenelse{\equal{#1}{past6}}{yellow}{}%
+}
+\newcommand{\Describecolor}[1]{%
+\ifthenelse{\equal{#1}{CDnavy}}{Blue}{}%
+\ifthenelse{\equal{#1}{CDred}}{Red}{}%
+\ifthenelse{\equal{#1}{CDgreen}}{Green}{}%
+\ifthenelse{\equal{#1}{CDorange}}{Orange}{}%
+\ifthenelse{\equal{#1}{yellowbg}}{Yellow}{}%
+\ifthenelse{\equal{#1}{toptenyellow}}{Yellow}{}%
+\ifthenelse{\equal{#1}{AVEred}}{Red}{}%
+\ifthenelse{\equal{#1}{AVEblue}}{Blue}{}%
+\ifthenelse{\equal{#1}{AVEgreen}}{Green}{}%
+\ifthenelse{\equal{#1}{msblue}}{Blue}{}%
+\ifthenelse{\equal{#1}{msorange}}{Orange}{}%
+\ifthenelse{\equal{#1}{bold1}}{Blue}{}%
+\ifthenelse{\equal{#1}{bold2}}{Green}{}%
+\ifthenelse{\equal{#1}{bold3}}{Orange}{}%
+\ifthenelse{\equal{#1}{bold4}}{Purple}{}%
+\ifthenelse{\equal{#1}{bold5}}{Pink}{}%
+\ifthenelse{\equal{#1}{bold6}}{Yellow}{}%
+\ifthenelse{\equal{#1}{past1}}{Blue}{}%
+\ifthenelse{\equal{#1}{past2}}{Green}{}%
+\ifthenelse{\equal{#1}{past3}}{Orange}{}%
+\ifthenelse{\equal{#1}{past4}}{Purple}{}%
+\ifthenelse{\equal{#1}{past5}}{Pink}{}%
+\ifthenelse{\equal{#1}{past6}}{Yellow}{}%
+}
+
+% % % Tikz stuff
+\def\tick#1#2{\draw[thick] (#1)++(#2:0.12) --++ (#2-180:0.24)}

@@ -1,0 +1,45 @@
+\chapter{Extra Proofs and Derivations}
+\label{sec: proofs}
+The material in this chapter is not examinable and is included for completeness. Here we will give a selection of proof and derivations for results and formulas that were used in the rest of the notes. You could consider this whole chapter to be one big mathematical deviation.
+
+To prove the product rule from first principles we proceed as follows. Consider $f(x)=p(x)q(x)$ then
+\begin{align*}
+\frac{\ud f}{\ud x}		&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+				&=\lim_{h\to 0}\frac{p(x+h)q(x+h)-p(x)q(x)}{h}\\
+				&=\lim_{h\to 0}\frac{p(x+h)q(x+h)-p(x+h)q(x)+p(x+h)q(x)-p(x)q(x)}{h}\\
+				&=\lim_{h\to0}\frac{p(x+h)\left(q(x+h)-g(x)\right)}{h}+\lim_{h\to 0}\frac{\left(p(x+h)-p(x)\right)q(x)}{h}\\
+				&=\lim_{h\to 0}p(x+h)\frac{q(x+h)-q(x)}{h}+q(x)\lim_{h\to 0}\frac{p(x+h)-p(x)}{h}\\
+				&=p(x)\lim_{h\to 0}\frac{q(x+h)-q(x)}{h}+q(x)\lim_{h\to 0}\frac{p(x+h)-p(x)}{h}\\
+				&=p(x)\frac{\ud q}{\ud x}+q(x)\frac{\ud p}{\ud x},
+\end{align*}
+which is the product rule.\\
+
+For the quotient rule, we can either prove it from first principles, which is fiddly, or we can use the product rule on $f(x)=p(x)g(x)$ where $g(x)=1/q(x)$.  Here we will take the second approach as hopefully that will be easier to follow.  Consider $f(x)=p(x)/q(x)$ and let $g(x)=1/q(x)$ then applying the product rule means that
+\begin{align*}
+\frac{\ud f}{\ud x}		&=\frac{\ud }{\ud x}\left(p(x)g(x)\right)\\
+				&=p(x)\frac{\ud g}{\ud x}+g(x)\frac{\ud p}{\ud x}\\
+				&=p(x)\frac{\ud}{\ud x}\left(q^{-1}\right)+\frac{1}{q(x)}\frac{\ud p}{\ud x}\\
+				&=-p(x)q^{-2}\frac{\ud q}{\ud x}+\frac{1}{q(x)}\frac{\ud p}{\ud x}\\
+				&=\frac{1}{q^{2}}\left(q(x)\frac{\ud p}{\ud x}-p(x)\frac{\ud q}{\ud x}\right).
+\end{align*}
+
+\begin{mdiv}
+Note that in the above calculation we have used the chain rule, $\left((f\circ g)(x)\right)'=f'(g(x))g'(x)$, which we did not discuss until after we had introduced the quotient rule.  Also, note that if we were mathematicians we would need to carefully think about when $p(x)/q(x)$ is differentiable, and implementing the product rule does not need that, it just gives that $p(x)(q(x))^{-1}$ is differentiable if $p(x)$ and $(q(x))^{-1}$ is.  This is why for mathematicians, they would prove the quotient rule using differentiation from first principles, or using logarithmic differentiation. The interested reader should have a look at the Proof of various derivative properties section of \citep{calcI} to see the proof in this way.
+\end{mdiv}
+
+Next, following \citep{calcI}, we prove the chain rule as follows: let $y=f(u), u=g(x)$ then we know that
+\begin{equation*}
+\frac{\ud u}{\ud x}=\lim_{h\to 0}\frac{u(x+h)-u(x)}{h},
+\end{equation*}
+and that 
+\begin{equation*}
+\lim_{h\to 0}\left(\frac{u(x+h)-u(x)}{h}-\frac{\ud u}{\ud x}\right)=\lim_{h\to 0}\frac{u(x+h)-u(x)}{h}-\lim_{h\to 0}\frac{\ud u}{\ud x}=\frac{\ud u}{\ud x}-\frac{\ud u}{\ud x}=0.,
+\end{equation*}
+Now we can define
+\begin{equation*}
+v(h)=\begin{cases}
+\frac{u(x+h)-u(x)}{h}-\frac{\ud u}{\ud x} \quad \text{if } h\neq 0\\
+0 \quad \text{if } h=0
+\end{cases}
+\end{equation*}
+which is continuous at $h=0$ since $\lim_{h\to 0}v(h)=0=v(0)$. \dots{}

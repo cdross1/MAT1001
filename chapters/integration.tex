@@ -1,0 +1,426 @@
+\chapter{Integration}
+\label{sec:integration}
+\epigraph{\textbf{Integration}: The inverse process to differentiation, i.e. the process of finding a function with a derivative that is a given function. }{\textit{Penguin Dictionary of Mathematics}}
+
+\section{Integration and antiderivatives}
+As the above quote from the \textit{Penguin Dictionary of Mathematics} says, integration is the reverse process to differentiation. If differentiation is all about finding the rates of change of functions then we an think of integration as being about the areas under curves.  As with differentiation it is a process that was discovered to handle problems from physics so you can find plenty of examples of applications by looking into topics from mechanics. We may meet some of those at the end of this chapter, but for now we will focus on the mathematics.\\
+
+\begin{figure}[htbp]
+    \centering
+\ThisAltText{Graph of sin(x).}
+  %  \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round,
+    %domain=-0:4.712, 
+    smooth,variable=\x
+    ]
+    \begin{axis}[
+    axis lines = middle,
+    xlabel = {$x$},
+    ylabel = {$y$},
+    xmin=0, xmax=4.8,
+    ymin=-1.1, ymax=1.1,
+   xtick={1.57,3.14,4.712},
+   xticklabels={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$}, ]
+    \addplot [CDnavy,name path=A,domain=0:4.712]
+        {sin(\x r)};
+ 
+    \addplot [black, name path=B,domain=0:4.712,samples=2]
+        {0};
+ 
+    \addplot [CDred] fill between [of=A and B];
+     \filldraw[black] (1.57,0.5) circle (0pt) node[anchor=north]{$A_{1}$};
+  \filldraw[black] (4,-0.4) circle (0pt) node[anchor=north]{$A_{2}$};
+\end{axis}
+%     \draw[->] (0,0) -- (4.8,0)node[above] {$x$};
+%  \draw[->] (0,-1.2) -- (0,1.2) node[above] {$y$};
+% \draw[color=CDnavy]   plot (\x,{sin(\x r)}) node[right] {$f(x)=\sin(x)$};
+% 
+% \begin{axis}[
+%    axis lines = middle,
+%    xlabel = {$x$},
+%    ylabel = {$y$},
+%    xmin=0, xmax=4.8,
+%    ymin=-1.1, ymax=1.1]
+% 
+%% Plot 1
+%\addplot [name path = A,
+%    -latex,
+%    domain = 0:4.712,
+%    samples = 1000] {sin(x)} 
+%    node [very near end, right] {$y=\sin(x)$};
+% 
+%% Plot 2
+%\addplot [name path = B,
+%    -latex,
+%    domain = 0:4.712] {0} ;
+%
+%% Fill area between paths
+%\addplot [CDnavy] fill between [of = A and B, soft clip={domain=0:3.14}];
+%\addplot [CDred] fill between [of = A and B, soft clip={domain=3.14:4.712}];
+% \end{axis} 
+
+    \end{tikzpicture}
+  %  }{graph of sin}
+    \caption{The graph of the sine function  $f(x)=\sin(x)$ with the area between the curve and the $x$-axis between $x=0$ and $x=3\pi/2$ shaded. Note that the total shaded area is $A=A_{1}+A_{2}$.}
+        \label{fig: sine function graph shaded}
+\end{figure}
+
+
+The integral of a function over an interval is a measure of the signed area between the curve and the $x$-axis, with the convention that areas above the $x$-axis are positive and areas under the $x$-axis are negative.  This is shown for $f(x)=\sin(x)$ between $0$ and $3\pi/2$ in \cref{fig: sine function graph shaded}. When we discuss numerical methods of integration in \cref{sec:numerics} we will understand how to approximate these areas using thin rectangles as is shown in \cref{fig: integral approximation}. \\
+
+For now we will approach integration as the reverse of differentiation. In other words, if we have a function $f(x)$ we want to find the function whose derivative is $f(x)$.
+
+\begin{ex}
+If we have the function
+\begin{equation*}
+f(x)=x^{4}+2x^{2}+2
+\end{equation*}
+what function is this the derivative of?\\
+
+To find this we need to remember our rules for differentiation, in particular the monomial rule of \cref{eq: monomial derivative}, which says that  we need to find an $x^{n}, x^{m}$ and an $x^{p}$ such that
+\begin{align*}
+\frac{\ud (ax^{n})}{\ud x}&=anx^{n-1}=x^{4},\\
+\frac{\ud (bx^{m})}{\ud x}&=bmx^{m-1}=2x^{2},\\
+\frac{\ud (cx^{p})}{\ud x}&=cpx^{p-1}=2.
+\end{align*}
+
+By observation we find that $n=5, a=1/5$, $m=3, b=2/3$, $p=1$ and $c=2$. Thus if we have the function
+\begin{equation*}
+F(x)=\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x,
+\end{equation*}
+its derivative is $F'(x)=f(x)$.\\
+
+This looks like we are done. However, recall that in \cref{eq: derivative of constant} we said that the derivative of a constant is zero. Thus we could add any constant to $F(x)$ and still have a function whose derivative is $f(x)$. This means that we should write
+\begin{equation*}
+F(x)=\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x+c,
+\end{equation*}
+where $c$ can be any constant such as $0, 10, \pi, 11/25, -2, \dots$ , when we have our brief discussion in \cref{sec:diff eqs}, we will see that often there are conditions that we need to apply which determine the constant.  
+\end{ex}
+
+Notice that since the constant in the example is arbitrary there are actually an infinite number of $F(x)$'s such that their derivative is the given $f(x)$. We call such functions $F(x)$ \textbf{antiderivatives} of $f(x)$.\\
+
+As an aside, you might be wondering why a constant shows up here, but we did not mention anything about a constant when giving the intuition of an integral as the area under a curve. Surely the area is a fixed concept and cannot be arbitrarily changed by a constant? This is true. The difference is because when we talked about the area under a curve, we specified a region of the $x$-axis that we were interested in.\\
+
+This leads to what is called a \textbf{definite integral} which we will study in more detail later. When we are constructing an antiderivative like $F(x)$, we are not specifying any limits which is why we need to add the constant. You will gain more experience with this as we look at some more examples.\\
+
+In general we say that given a function $f(x)$, an antiderivative of $f(x)$ is any function $F(x)$ such that 
+\begin{equation}
+\frac{\ud F}{\ud x}=f(x).
+\label{eq: antiderivative}
+\end{equation}
+
+When we are explicitly including the arbitrary constant $c$ we refer to the \textbf{indefinite integral} of $f(x)$ denoted by
+\begin{equation}
+\int f(x) \ud x=F(x)+c.
+\label{eq: indefinite integral}
+\end{equation}
+
+The symbol $\int$ is the \textbf{integral} or \textbf{integration} symbol and in the above expression $f(x)$ is called the \textbf{integrand}, the function being integrated, while $x$ is called the \textbf{integration variable} and $c$ is the \textbf{constant of integration}.\\
+
+As with many things in this module, the easiest way to get to grips with the content and the new terminology is through solving example problems.
+\begin{ex}
+The indefinite integral 
+\begin{equation*}
+\int \left(x^{4}+2x^{2}+2\right)\ud x
+\end{equation*}
+is calculated as in the same way as the antiderivative above. Thus we have 
+
+\begin{equation*}
+\int \left(x^{4}+2x^{2}+2\right)\ud x=\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x+c.
+\end{equation*}
+\end{ex}
+
+It is important to include the $\ud x$ after the $\int$ so that it is clear what is being integrated over. I also like to put brackets round the integrand when it involves multiple terms to make it unambiguous what is being integrated over. \\
+
+\textbf{Warning!} If you are asked to calculate an indefinite integral you \textbf{must} include the constant of integration for your answer to be counted as correct.\\
+
+Note that the integral has several nice properties which we will not prove here:
+
+\begin{align}
+\int c f(x) \ud x &= c\int f(x) \ud x, \label{eq: integral scalar multiplication}\\
+\int \left(-f(x)\right)\ud x&=-\int f(x)\ud x, \\
+\int \left(f(x)\pm g(x)\right)\ud x &=\int f(x)\ud x \pm \int g(x)\ud x. \label{eq: derivative of sum}
+\end{align}
+These are analogous to \cref{eq: derivative of sum,eq: derivative of difference,eq: derivative scalar multiplication} for the derivative. We have implicitly been using them already.\\
+
+Note that for all of the functions that we know the derivative of we now know the integral of by reversing the identities so we have that
+\begin{align*}
+\int\cos(x)\ud x &=\sin(x) +c,\\
+\int \sin(x) \ud x &=-\cos(x)+c,\\
+\int \frac{1}{x}\ud x &=\ln(x) +c,\\
+\int e^{x}\ud x &=e^{x}+c.
+\end{align*}
+
+We can also invert the identity that 
+\begin{equation*}
+\frac{\ud x^{n}}{\ud x}=nx^{n-1}
+\end{equation*}
+to be
+\begin{equation}
+\int x^{n}\ud x =\frac{1}{n+1}x^{n+1} +c
+\label{eq: integral of monomial}
+\end{equation}
+which holds for $n\neq -1$.
+\begin{ex}
+We know that the derivative of $\tan(x)$ is $\sec^{2}(x)$ which means that the antiderivative of $\sec^{2}(x)$ is
+\begin{equation*}
+F(x)=\tan(x),
+\end{equation*}
+and the indefinite integral is thus
+\begin{equation*}
+\int \sec^{2}(x)\ud x = \tan(x)+c.
+\end{equation*}
+\end{ex}
+
+\begin{exercise}
+Show that these trig functions have the claimed indefinite integrals:
+\begin{align*}
+\int \csc^{2}(x)\ud x &=-\cot(x) +c,\\
+\int \sec(x)\tan(x)\ud x &=\sec(x) +c,\\
+\int \csc(x)\cot(x)\ud x &=-\csc(x) +c.
+\end{align*}
+\end{exercise}
+
+The process of calculating an integral by finding the antiderivative as the reverse of differentiation is sometimes called \textbf{integration by inspection}. This is very useful when you have a simple enough function that you already know what you differentiate to get it.\\
+
+\begin{ex}
+The integral
+\begin{equation*}
+\int \ud x,
+\end{equation*}
+is found by inverting the derivative identity $\left(x\right)'=1$ to give
+\begin{equation*}
+\int \ud x=\int 1\ud x =x+c.
+\end{equation*}
+\end{ex}
+
+
+\begin{ex}
+Using some of the standard integrals that we have given above we evaluate 
+\begin{equation*}
+\int \left(x^{2}+x^{-3}+x^{-1}\right)\ud x
+\end{equation*}
+as follows:
+\begin{align*}
+\int \left(x^{2}+x^{-3}+x^{-1}\right)\ud x&=\int x^{2}\ud x+\int x^{-3}\ud x+\int x^{-1}\ud x\\
+							&=\frac{1}{3}x^{3}-\frac{1}{2}x^{-2}+\ln(x) +c\\
+							&=\frac{x^{3}}{3}-\frac{1}{2x^{2}}+\ln(x)+c.
+\end{align*}
+Note that here we have used \cref{eq: integral of monomial} for both the positive and negative power terms.
+\end{ex}
+
+
+\section{Techniques for integration}
+
+\subsection*{Integration by substitution}
+Now that we know the basics of how to calculate indefinite integrals we can introduce some common techniques. The first of these is \textbf{integration by substitution}, which is a way to integrate more complicated expressions by making them look like expressions that we already know how to integrate. \\
+
+The idea behind integration by substitution is to consider an integral like
+\begin{equation*}
+I= \int 3x^{2}\sqrt[3]{x^{3}+4}\ud x.
+\end{equation*}
+
+We then observe that if we let $u=x^{3}+4$ and differentiate $u$ with respect to $x$ we get
+\begin{equation*}
+\frac{\ud u}{\ud x}=3x^{2}.
+\end{equation*}
+Then we see that we can rewrite $I$ as
+\begin{equation*}
+I=\int \frac{\ud u}{\ud x}\sqrt[3]{u}\ud x.
+\end{equation*}
+Remember back in \cref{sec:differentiation} we said that in certain circumstances we could treat a derivative as a bit like a fraction, well we can do this under an integral sign. It turns out that if we define a function $u(x)$ then integrating over $u$ is related to integrating over $x$ in the following way
+\begin{equation}
+\int f(u)\ud u=\int f(u(x))\frac{\ud u}{\ud x}\ud x.
+\label{eq: measure change of variable}
+\end{equation}
+
+This means that in our above integral we can rewrite $\frac{\ud u}{\ud x}\ud x=\ud u$ so that
+\begin{equation*}
+I=\int \frac{\ud u}{\ud x}\sqrt[3]{u}\ud x=\int \sqrt[3]{u}\ud u=\frac{3}{4}u^{\frac{4}{3}}.
+\end{equation*}
+
+This is the same recipe that we will always use when integrating by substitution:
+
+\begin{itemize}
+\item Simplify the integrand as much as possible.
+\item Guess at a simplifying substitution $u=u(x)$, or use the substitution that you are given.
+\item Calculate the derivative $\ud u/\ud x$ and turn the integral over $x$ into an integral over $u$.
+\item Evaluate the integral over $u$
+\end{itemize}
+
+Not all substitutions are as obvious as the above one, this is particularly true for trig substitutions where identifying the correct substitution to use takes practice.
+
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int \frac{1}{x^{2}+1}\ud x.
+\end{equation*}
+We can evaluate this using the substitution $x=\tan(u)$, then since $\tan(u)=\sin(u)/\cos(u)$ we use the quotient rule to evaluate the derivative of $\sin(u)$
+\begin{align*}
+\frac{\ud}{\ud u}\tan(u)	&=\frac{\ud }{\ud u}\left(\frac{\sin(u)}{\cos(u)}\right)\\
+					&=\frac{1}{\cos^{2}}\left(\cos^{2}(u)+\sin^{2}(u)\right)\\
+					&=1+\tan^{2}(u).
+\end{align*}
+Recalling that $x=\tan(u)$ we have that
+\begin{equation*}
+\frac{\ud x}{\ud u}=1+x^{2},
+\end{equation*}
+which means that
+\begin{align*}
+I 	&=\int \frac{1}{x^{2}+1}\ud x\\
+	&=\int \frac{1}{x^{2}+1}\frac{\ud x}{\ud u}\ud u\\
+	&=\int \frac{1}{x^{2}+1}(x^{2}+1)\ud u\\
+	&=\int \ud u\\
+	&=u+c\\
+	&=\arctan(x)+c.
+\end{align*}
+\end{ex}
+
+Approaches like the above example are how we can calculate integral expressions for all of the inverse trig functions. We just need to know the correct substitution. 
+
+\subsection*{Integration by parts}
+\textbf{Integration by parts} is the integral equivalent of the product rule from differentiation. We can use it whenever we have an integral which is the product of two functions and we know how to differentiate one of them and how to integrate the other. \\
+
+Recall that the product rule says that given two functions of $x$, $f(x),g(x)$ the derivative of their product is 
+\begin{equation*}
+\frac{\ud }{\ud x}\left(fg\right)=\frac{\ud f}{\ud x}g(x)+f(x)\frac{\ud g}{\ud x}.
+\end{equation*}
+If we integrate this expression we have that
+\begin{align*}
+\int \frac{\ud }{\ud x}\left(fg\right)\ud x 	&=f(x)g(x)+c,\\
+								&=\int \left(\frac{\ud f}{\ud x}g(x)+f(x)\frac{\ud g}{\ud x}\right)\ud x\\
+								&=\int \frac{\ud f}{\ud x}g(x)\ud x+\int f(x)\frac{\ud g}{\ud x}\ud x.
+\end{align*}
+rearranging this and setting $c$ to zero gives
+\begin{equation}
+\int f(x)\frac{\ud g}{\ud x}\ud x=f(x)g(x)-\int \frac{\ud f}{\ud x}g(x)\ud x.
+\label{eq: integration by parts}
+\end{equation}
+The reason that we can set $c$ to zero is that we still have some other indefinite integrals that have not been evaluated and these contain a constant of integration. Thus we can absorb $c$ into the remaining integral.\\
+
+The formula in \cref{eq: integration by parts} is known as the integration by parts formula. We will apply it for indefinite integrals first and then turn to definite integrals.\\
+
+\begin{ex}
+Consider the integral
+\begin{equation*}
+\int \ln(x)\ud x=\int \ln(x) 1 \ud x=\int \ln(x)\frac{\ud x}{\ud x}\ud x
+\end{equation*}
+this can be evaluated using integration by parts with $f(x)=\ln(x)$ and $g(x)=x$.
+
+Applying \cref{eq: integration by parts}  gives
+\begin{align*}
+\int \ln(x)\ud x 	&=\int \ln(x)\frac{\ud x}{\ud x}\ud x\\
+			&=\ln(x) x -\int \left(\frac{\ud}{\ud x}\ln(x)\right)x\ud x\\
+			&=x\ln(x)-\int \frac{1}{x}x \ud x\\
+			&=x\ln(x)-x+c.
+\end{align*}
+\end{ex}
+
+The trick when applying integration by parts is to look for one function that is easy to integrate, which will be our $\ud g(x)/\ud x$, and another that is easy to differentiate, our $f(x)$.
+
+\begin{ex}
+Consider the integral
+\begin{equation*}
+\int x\sin(x)\ud x =\int x\frac{\ud}{\ud x}\left(-\cos(x)\right)\ud x.
+\end{equation*}
+We integrate this by parts taking $f(x)=x$ and $g(x)=-\cos(x)$, so that
+\begin{align*}
+\int x\sin(x)\ud x 	&=\int x\frac{\ud}{\ud x}\left(-\cos(x)\right)\ud x\\
+				&=x(-\cos(x))-\int\left(\frac{\ud x}{\ud x}\right)(-\cos(x))\ud x\\
+				&=-x\cos(x)+\int \cos(x)\ud x\\
+				&=-x\cos(x)+\sin(x)+c.
+\end{align*}
+\end{ex}
+
+\begin{exercise}
+Use integration by parts to evaluate 
+\begin{equation*}
+I=\int x e^{2x}\ud x.
+\end{equation*}
+\end{exercise}
+
+In this module we will only come across problems where you need to apply integration by parts once. However, some integrals require us to apply integration by parts more than once, and some require other tricks.
+
+\begin{mdiv}
+As an example of repeated integration by parts consider
+\begin{equation*}
+I=\int x^{2}\sin(x)\ud x=\int x^{2}\frac{\ud}{\ud x}(-\cos(x))\ud x.
+\end{equation*}
+
+We can carry out an integration by parts taking $f(x)=x^{2}$ and $g(x)=-\cos(x)$ to get
+\begin{align*}
+I 	&=\int x^{2}(-\cos(x))\ud x\\
+	&=-x^{2}\cos(x)-\int 2x(-\cos(x))\ud x\\
+	&=-x^{2}\cos(x)+2\int x\cos(x)\ud x\\
+	&=-x^{2}\cos(x)+2\int x\frac{\ud}{\ud x}(\sin(x))\ud x.
+\end{align*}
+The integral in the last line is one that we have to do by parts taking $f(x)=x$ and $g(x)=\sin(x)$. This means that
+\begin{align*}
+I 	&=-x^{2}\cos(x)+2\int x\frac{\ud}{\ud x}(\sin(x))\ud x\\
+	&=-x^{2}\cos(x)+2\left(x\sin(x)-\int \sin(x)\ud x\right)\\
+	&=-x^{2}\cos(x)+2\left(x\sin(x)+\cos(x)+c\right)\\
+	&=-x^{2}\cos(x)+2x\sin(x)+2\cos(x)+\tilde{c},
+\end{align*}
+where in the last line we have redefined the constant of integration to be $\tilde{c}=2c$.
+\end{mdiv}
+
+\subsection*{Partial fractions}
+Another integration technique that is useful for integration fractions is known as \textbf{Partial fractions}. It is an example of a simplification method and is not examinable within this module. However, it may be useful for you to have seen it at least once.
+
+The idea is to take an expression like $1/(x^{2}-1)$ and express it as the some of two fractions
+\begin{equation*}
+\frac{1}{x^{2}-1}=\frac{1}{(x-1)(x+1)}=\frac{A}{x+1}+\frac{B}{x-1},
+\end{equation*}
+for $A$ and $B$ constants that need to be determined. This is done by multiplying through by $(x+1)(x-1)$ to get
+\begin{equation*}
+1=A(x-1)+B(x+1),
+\end{equation*}
+which rearranges to 
+\begin{equation*}
+(A+B)x-A+B-1=0.
+\end{equation*}
+For this to be true we need to match up coefficients of powers of $x$ on both sides of the equation so that
+\begin{align*}
+A+B&=0,\\
+B-A-1&=0,
+\end{align*}
+which is solved by 
+\begin{align*}
+A&=-\frac{1}{2},\\
+B&=\frac{1}{2}.
+\end{align*}
+Which gives
+\begin{equation*}
+\frac{1}{x^{2}-1}=-\frac{1}{2}\left[\frac{1}{x+1}-\frac{1}{x-1}\right].
+\end{equation*}
+These are both expressions that we can integrate to get
+\begin{align*}
+\int\frac{1}{x^{2}-1}\ud x 	&=-\frac{1}{2}\left[\int \frac{1}{x+1}\ud x-\int \frac{1}{x-1}\ud x\right]\\
+					&=-\frac{1}{2}\ln\left(x+1\right)+\frac{1}{2}\ln\left(x-1\right)+c\\
+					&=\ln\left[\left(\frac{x-1}{x+1}\right)^{\frac{1}{2}}\right]+c. 
+\end{align*}
+Note that in terms of what we know at this stage, the right hand side is only valid for $x>1$. 
+
+The general procedure is as follows:
+\begin{itemize}
+\item Factorise the denominator in terms of its roots.
+\item Write down a sum of the reciprocals of the roots with arbitrary coefficients. This steps becomes complicated if there are repeated roots.
+\item Multiply through by the denominator on the left hand side and express it as a polynomial in $x$.
+\item Solve the system of equations for the coefficients $A, B, \dots{}$.
+\item Substitute the coefficients into the partial fractions expression and carry out the integral making use of integration by parts or substitutions as necessary.
+\end{itemize}
+
+As mentioned in the second step, if there are repeated roots this becomes trickier, since this is already a non examinable diversion we will not give the details here. 
+
+\section{Definite integrals}
+
+In the previous section we focussed on antiderivatives and indefinite integrals, now we return to the original motivation for the integral, as the measure of the area under a curve. This is called a definite integral and returns a number rather than a function as it involves us carrying out a definite integral and then evaluating the result at the end points. This may sound confusing at first but we will learn how to do it by seeing some examples.
+
+\section{Applications of integrals}
+As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.
+
+\subsection*{Averaging functions}
+
+\subsection*{Areas between curves}
+
+%\subsection*{Uses in mechanics}

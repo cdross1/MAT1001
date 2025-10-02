@@ -1,0 +1,75 @@
+\chapter{Advanced Topics}
+\label{sec:advanced topics}
+This section is non examinable and is included so that you have a feel for how the material in this module can be taken further.
+
+\section{L'H\^{o}pital's rule for evaluating limits}
+\label{sec:l'hopital}
+We saw in \cref{sec:functions} that some limits lead to nonsense expressions. For example, If we were confronted with $\lim_{x\to 0}\sin(x)/x$, this looks like it will result in $0/0$ which is does not make sense. Remember that not all limits that look indeterminate really are. For example
+\begin{equation*}
+\lim_{x\to 4}\frac{x^{2}-16}{x-4}
+\end{equation*}
+looks at first glance like it will have the form $0/0$ since both the numerator and denominator vanish for $x=4$. However, the numerator can be factored as $x^{2}-16=(x-4)(x+4)$ so the limit simplifies to
+\begin{equation*}
+\lim_{x\to 4}\frac{x^{2}-16}{x-4}=\lim_{x\to 4}\frac{(x-4)(x+4)}{x-4}=\lim_{x\to4}(x+4)=8.
+\end{equation*}
+This is why we said that you should try to expand and simplify the function that you are taking the limit of as much as possible. \\
+
+L'H\^{o}pital\footnote{Originally spelt L'Hospital, with a silent s and no circumflex}'s rule enable us to make sense of some of those limits which still look indeterminate after they have been simplified. To apply L'H\^{o}pital's rule, we have to be taking the limit of a ratio of functions $f(x),g(x)$, where both are differentiable, the derivative of $g(x)$ does not vanish, and in the limit $f(x)$ and $g(x)$ wither both go to zero or both go to infinity. Then we have that
+\begin{equation}
+\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)},
+\label{eq: l'hopital's rule}
+\end{equation}
+so we can replace the ratio of the functions with the ratio of their derivatives. If both of the derivatives still vanish, or diverge, in the limit, then process can be repeated and we end up with more derivatives
+\begin{equation*}
+\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f^{(n)}(x)}{g^{(n)}(x)},
+\end{equation*}
+where the superscript $(n)$ means that we are differentiating the functions $n$ times.\\
+
+Note that if the limit does not lead to an indeterminate then L'H\^{o}pital's rule does not hold!
+
+\begin{ex}
+As a counter example consider the limit
+\begin{equation*}
+\lim_{x\to 1}\frac{f(x)}{g(x)}=\lim_{x\to 1}\frac{x+1}{2x+1}.
+\end{equation*}
+Both $\lim_{x\to 1}f(x)=2$ and $\lim_{x\to1}g(x)=3$ are finite and no-zero. Evaluating the limit directly gives
+\begin{equation*}
+\lim_{x\to 1}\frac{x+1}{2x+1}=\frac{2}{3}.
+\end{equation*}
+We can also calculate the limit of the ratio of derivatives,
+\begin{equation*}
+\lim_{x\to 1}\frac{f'(x)}{g'(x)}\lim_{x\to 1}\frac{1}{2}=\frac{1}{2}\neq \frac{2}{3}.
+\end{equation*}
+So the limit of the ratio does not match the limit of the ratio of derivatives.
+\end{ex}
+
+
+As long as our original limit looks like it is indeterminate we can use L'H\^{o}pital's rule.
+
+\begin{ex}
+The limit of $\sin(x)/x$ as $x\to 0$ is evaluated as follows
+\begin{equation*}
+\lim_{x\to0}\frac{\sin(x)}{x}=\lim_{x\to0}\frac{\cos(x)}{1}=1.
+\end{equation*}
+\end{ex}
+
+We can also evaluate other limits that may not at first look like a ratio of functions.
+\begin{ex}
+Consider the limit $\lim_{x\to-\infty}xe^{x}$ this looks like it becomes the indeterminate $(-\infty)(0)$. If we recall that $1/e^{x}=e^{-x}$ then we can rewrite the limit as
+\begin{equation*}
+\lim_{x\to-\infty}xe^{x}=\lim_{x\to-\infty}\frac{x}{e^{-x}},
+\end{equation*}
+which looks like the indeterminate $-\infty/\infty$. Now we can apply L'H\^{o}pital's rule to get
+\begin{equation*}
+\lim_{x\to-\infty}\frac{x}{e^{-x}}=\lim_{x\to-\infty}\frac{1}{-e^{-x}}=0,
+\end{equation*}
+since $1/\infty$ is zero.
+\end{ex}
+
+\section{Functions of two variables}
+
+\section{Multiple integrals}
+
+\section{Optimisation Problems}
+
+\section{Polynomial approximation}

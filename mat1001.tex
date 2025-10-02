@@ -1,0 +1,150 @@
+% Save this as tutorial.tex for the lwarp package tutorial.
+\documentclass{book}
+\usepackage{iftex}
+% --- LOAD FONT SELECTION AND ENCODING BEFORE LOADING LWARP ---
+\ifPDFTeX
+\usepackage{lmodern} % pdflatex or dvi latex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\else
+\usepackage{fontspec} % XeLaTeX or LuaLaTeX
+\fi
+% --- LWARP IS LOADED NEXT ---
+\usepackage[
+HomeHTMLFilename=index, % Filename of the homepage.
+% HTMLFilename={node-}, % Filename prefix of other pages.
+% IndexLanguage=english, % Language for xindy index, glossary.
+% latexmk, % Use latexmk to compile.
+% OSWindows, % Force Windows. (Usually automatic.)
+ mathjax, % Use MathJax to display math.
+%mathsvg% Show math using SVG images.
+GlossaryCmd={perl makeglossaries},
+GlossaryCmd={makeglossaries -L english},
+]{lwarp}
+% \boolfalse{FileSectionNames} % If false, numbers the files.
+% --- LOAD PDFLATEX MATH FONTS HERE ---
+% --- OTHER PACKAGES ARE LOADED AFTER LWARP ---
+\usepackage{calum_lecture} % My style file contains all of the packages, page, geometries, and custom commands that I like to use.
+\makeglossaries
+\usepackage{mat1001_glos}
+\glstoctrue %Adds glossary to the table of contents
+
+% --- LATEX AND HTML CUSTOMIZATION ---
+%\title{MAT1001 Differential Calculus: Lecture Notes}
+%\author{Calum Ross}
+\setcounter{tocdepth}{2} % Include subsections in the \TOC.
+\setcounter{secnumdepth}{2} % Number down to subsections.
+\setcounter{FileDepth}{0} % Split \HTML\ files at sections
+\booltrue{CombineHigherDepths} % Combine parts/chapters/sections
+\setcounter{SideTOCDepth}{1} % Include subsections in the side\TOC
+\HTMLTitle{MAT1001 Differential Calculus: Lecture Notes} % Overrides \title for the web page.
+\HTMLAuthor{Calum Ross} % Sets the HTML meta author tag.
+\HTMLLanguage{en-UK} % Sets the HTML meta language.
+\HTMLDescription{Lecture notes for the module MAT1001 Differential Calculus.}% Sets the HTML meta description.
+%\HTMLFirstPageTop{Name and \fbox{HOMEPAGE LOGO}}
+%\HTMLPageTop{\fbox{LOGO}}
+\HTMLPageBottom{Contact \href{mailto:rossc@edgehill.ac.uk}{rossc[at]edgehill[dot]ac[dot]uk} and Copyright CC BY 4.0}
+%\CSSFilename{STM0005-physics.css} % This loads a css file that enables us to customise the webpage more. Currently I have not written a css file to be included here.
+
+\MathJaxFilename{lwarp_mathjax.txt}
+
+%%% Compact lists slightly less compact
+%%\setlength{\plitemsep}{3pt}
+\begin{document}
+\pagenumbering{Alph} % to stop hyperref warnings
+%\frontmatter
+\title{MAT1001 Differential Calculus: Lecture Notes}
+\author{Calum Ross}
+\affiliation{Edge Hill University}
+\date{Last modified: \today}
+\maketitle % Or titlepage/titlingpage environment.
+% An article abstract would go here.
+\pagenumbering{roman}
+\tableofcontents % MUST BE BEFORE THE FIRST SECTION BREAK!
+%\listoffigures
+
+\mainmatter
+
+\input{chapters/course_intro}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/functions}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/differentiation}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/integration}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/diffeqs}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/numerical_methods}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/advanced_topics}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/maths_appendix}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/further_reading}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/tutorial_sheets}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/extras}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/standard_identities}
+
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+\ForceHTMLPage
+
+\begin{warpprint}
+\printglossaries
+\end{warpprint}
+
+\bibliographystyle{unsrtnat}
+\bibliography{physics}
+
+%\begin{warpprint} % For print output ...
+%\cleardoublepage % ... a common method to place index entry into TOC.
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\indexname}
+%\end{warpprint}
+%\ForceHTMLPage % HTML index will be on its own page.
+%\ForceHTMLTOC % HTML index will have its own toc entry.
+%\printindex
+\end{document}

@@ -1,0 +1,698 @@
+
+\chapter{Differentiation}
+\label{sec:differentiation}
+\epigraph{You take a function of $x$ and you call it $y$.\\ Take any $x_{0}$ that you care to try.\\ You make a little change and call it $\Delta x$.\\ The corresponding change in $y$ is what you find next. }{\textit{The Derivative Song by Tom Lehrer}}
+
+\section{Differentiation from first principles}
+In the previous \namecref{sec:functions}, we encountered the derivative of a function at a point in \cref{eq: rate of change at a} and its interpretation as the tangent to a curve at the point $a$. With a small amount of rewriting, setting $x=a+h$ for $x$ ``near'' $a$, this becomes
+\begin{align*}
+f'(a)&=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\\
+&=\lim_{h\to 0}\frac{f(a+h)-f(a)}{a+h-a}\\
+&=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.
+\end{align*} 
+This is still an expression for the tangent to a curve at a specific point $x=a$. However, if we are interested in the gradient at an arbitrary point $x$, then we can rewrite it as
+\begin{equation}
+f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.
+\label{eq: derivative definition}
+\end{equation}
+
+The formula in \cref{eq: derivative definition} is the definition of the \textbf{derivative} of the function $f(x)$. Not that only functions where the derivative exists for all points are called \textbf{differentiable}. There is a range of notation\footnote{We will only use the two most common notations in this course. However, another notation that you may see in books is $f_{x}(x)$, where the subscript shows what we are differentiating with respect to. This notation shows up a lot if we have functions of more than one variable where we need to make it clear which variable we are differentiating with respect to. In the assessed part of this course we will only care about functions of one variable so do not need this notation.} and terminology used to denote derivative. The notation used above,  $f'(x)$ is known as the \textbf{Lagrange} or \textbf{Euler} notation\footnote{In an example of Sigler's law of eponymy, this is most commonly called Lagrange's notation even though it was first used by Euler. It is also quite close to the original notation that Newton used when he discovered calculus and referred to it as the \textbf{method of fluxions}. }.  The other very common notation is due to \textbf{Leibniz} where we write
+\begin{equation}
+\frac{\ud f}{\ud x}=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h},
+\label{eq: Leibniz definition}
+\end{equation}
+this notation is particularly useful when we learn about integration as in certain contexts we can treat the derivative like a fraction.\\
+
+\begin{mdiv}
+In \cref{eq: Leibniz definition} it looks like the right hand side is a fraction. This is not true, other than in certain very specific circumstances, we will not see $\ud f$ or $\ud x$ appearing on their own. In Newton's approach the Newton quotient is sometimes written as
+\begin{equation*}
+\frac{\Delta f}{\Delta x}=\frac{f(x)-f(a)}{x-a},
+\end{equation*}
+which does make sense as a fraction. The limit where this becomes the derivative is when the change in $x$, $\Delta x=x-a$, goes to zero. In this limit if we really had a fraction it would look like $0/0$, which is one of the nonsense expressions that we mentioned earlier. The power of calculus is that it enables us to make sense of this limit, but what we loose is the ability to treat it as a fraction. When we discuss integration and differential equations later on in the module we will return to this idea.
+\end{mdiv}
+
+If we use \cref{eq: derivative definition} to calculate the derivative of a function this is called \textbf{differentiation by first principles}. As you might expect, when the function $f(x)$ becomes more complicate calculating the derivative in this way becomes more complicated as well. Fortunately, there are certain standard rules and techniques that we can learn to simplify matters. With a little work all of these can be proved from the definition of the derivative, some of these proofs will be given here but others are left as an exercise to the interested reader.\\
+
+As a warm up we will use \cref{eq: derivative definition} to calculate the derivative of a straight line.
+\begin{ex}
+Consider $f(x)=mx+c$ and calculate the derivative from first principles:
+\begin{align*}
+f'(x)	&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+	&=\lim_{h\to 0}\frac{m(x+h)+c-(mx+c)}{h}\\
+	&=\lim_{h\to 0}\frac{mx+mh+c-mx-c}{h}\\
+	&=\lim_{h\to 0}m\frac{h}{h}\\
+	&=\lim_{h\to 0}m=m.
+\end{align*}
+So derivative of a straight lime is a constant, the gradient of the line. We already knew this, but it is a good consistency check to ensure that our definition of the derivative is working as expected.
+\end{ex}
+
+\begin{ex}
+Consider the function $f(x)=4x^2 -6x +2$, using \cref{eq: derivative definition} we calculate its derivative as follows:
+\begin{align*}
+f'(x)	&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+	&=\lim_{h\to 0}\frac{4(x+h)^2 -6(x+h) +2)-(4x^2 -6x +2)}{h}\\
+	&=\lim_{h\to 0}\frac{4(x^{2}+2xh+h^{2})-6x-6h+2-4x^{2}+6x-2}{h}\\
+	&=\lim_{h\to 0}\frac{8xh+4h^{2}}{h}\\
+	&=\lim_{h\to 0}\left(8x+4h\right)=8x.
+\end{align*}
+Notice that since the curve is no longer a straight line the derivative , and thus the gradient of the tangent to the curve, depends where the point is along the curve. 
+\end{ex}
+
+Remember that if the limit in \cref{eq: derivative definition} does not exist at a particular value of $x$, then the derivative does not exist. In other words, the definition of the derivative only makes sense for functions which satisfy the condition of differentiability.
+
+\begin{ex}
+Consider the function 
+\begin{equation*}
+g(x)=\frac{1}{x+1},
+\end{equation*}
+and calculate its derivative. Note that this function has a discontinuity at $x=-1$ so it will not be differentiable at that point.\\
+
+Calculating $g'(x)$ is good practice as we need to be careful when we have fractions.
+\begin{align*}
+g'(x)	&=\lim_{h\to 0}\frac{g(x+h)-g(x)}{h}\\
+	&=\lim_{h\to 0}\frac{1}{h}\left(\frac{1}{x+h+1}-\frac{1}{x+1}\right)\\
+	&=\lim_{h\to 0}\frac{1}{h}\left(\frac{x+1}{(x+h+1)(x+1)}-\frac{x+h+1}{(x+1)(x+h+1)}\right)\\
+	&=\lim_{h\to 0}\frac{1}{h}\left(\frac{x+1-x-h-1}{(x+h+1)(x+1)}\right)\\
+	&=\lim_{h\to 0}\frac{1}{h}\left(\frac{-h}{(x+h+1)(x+1)}\right)\\
+	&=\lim_{h\to 0}\frac{-1}{(x+h+1)(x+1)}\\
+	&=-\frac{1}{(x+1)^{2}}.
+\end{align*}
+\end{ex}
+
+We can also calculate the derivatives of some of the special functions from first principles.
+\begin{ex}
+Consider $f(x)=\sin(x)$, this is a continuous function so we can hope that the derivative exists. Note that we can use the addition formula for $\sin(x)$ to expand $\sin(x+h)$ as
+\begin{equation*}
+\sin(x+h)=\sin(x)\cos(h)+\sin(h)\cos(x).
+\end{equation*}
+Thus \cref{eq: derivative definition} becomes
+\begin{align*}
+f'(x)	&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+	&=\lim_{h\to 0}\frac{\sin(x+h)-\sin(x)}{h}\\
+	&=\lim_{h\to 0}\frac{\sin(x)\cos(h)+\sin(h)\cos(x)-\sin(x)}{h}\\
+	&=\lim_{h\to 0}\left(\sin(x)\frac{\cos(h)-1}{h}+\cos(x)\frac{\sin(h)}{h}\right)\\
+	&=\sin(x)\lim_{h\to 0}\frac{\cos(h)-1}{h}+\cos(x)\lim_{h\to 0}\frac{\sin(h)}{h}\\
+	&=\cos(x),
+\end{align*}
+where we have used the trig limits from \cref{eq: sin limit,eq: cos limit}
+\end{ex}
+
+\begin{exercise}
+Show that the derivative of $f(x)=\cos(x)$ is $f'(x)=-\sin(x)$ using differentiation from first principles.
+\end{exercise}
+
+\begin{ex}
+Consider $f(x)=e^{x}$, its derivative is
+\begin{align*}
+f'(x)	&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+	&=\lim_{h\to 0}\frac{e^{x+h}-e^{x}}{h}\\
+	&=\lim_{h\to 0}\frac{e^{x}e^{h}-1}{h}\\
+	&=e^{x}\lim_{h\to 0}\frac{e^{h}-1}{h}\\
+	&=e^{x}.
+\end{align*}
+Where we use \cref{eq: exp limit} to evaluate the limit in the final line. This result that the derivative of $e^{x}$ is equal to $e^{x}$, is sometimes taken to be a definition of the exponential function. 
+\end{ex}
+
+The other standard derivative that you need to know is the derivative of the natural logarithm.
+\begin{ex}
+Consider $f(x)=\ln(x)$, we calculate its derivative as
+\begin{align*}
+f'(x)	&=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\\
+	&=\lim_{h\to 0}\frac{\ln(x+h)-\ln(x)}{h}\\
+	&=\lim_{h\to 0}\frac{1}{h}\ln\left(\frac{x+h}{x}\right)\\
+	&=\lim_{h\to 0}\frac{1}{h}\ln\left(1+\frac{h}{x}\right),
+\end{align*}
+now we can let  $\epsilon =h/x$ which is tending to zero as $h$ tends to zero. Thus the derivative becomes
+\begin{align*}
+f'(x)	&=\lim_{\epsilon\to 0}\frac{1}{x\epsilon}\ln\left(1+\epsilon\right)\\
+	&=\frac{1}{x}\lim_{\epsilon\to 0}\frac{\ln\left(1+\epsilon\right)}{\epsilon}\\
+	&=\frac{1}{x},
+\end{align*}
+where we have made use of \cref{eq: ln limit}
+\end{ex}
+
+Using the first principles definition to calculate derivatives is hard work and involves careful manipulation of limits. You will be please to know that we will only use it in certain relatively simple cases. For more complicated expressions we can use a range of other techniques and formulas. Eventually you will internalise some of the standard derivative expressions or use a formula sheet like that in \cref{sec: deriv sheet}.
+
+%\section{Standard derivatives}
+
+
+\section{Differentiation techniques}
+
+\subsection*{Properties of the derivative}
+In this section we will see the various formulae and rules in both the Lagrange and Leibniz notation so you should be familiar with both and use the notation that you feel most comfortable with.\\
+
+The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number.  The proof of these results will be given in \cref{sec: proofs}. These formulae are:
+\begin{align}
+\frac{\ud}{\ud x}\left(f(x)+g(x)\right)	&=\frac{\ud f(x)}{\ud x}+\frac{\ud g(x)}{\ud x}, \label{eq: derivative of sum}\\
+\frac{\ud}{\ud x}\left(f(x)-g(x)\right)	&=\frac{\ud f(x)}{\ud x}-\frac{\ud g(x)}{\ud x}, \label{eq: derivative of difference}\\
+\frac{\ud}{\ud x}\left(cf(x)\right)	&=c\frac{\ud f(x)}{\ud x},\label{eq: derivative scalar multiplication}
+\end{align}
+where $c$ is any number.\\
+
+In the Lagrange/Euler notation these formulae are:
+\begin{align}
+\left(f(x)+g(x)\right)'	&=f'(x)+g'{x}, \label{eq: derivative of sum 2}\\
+\left(f(x)-g(x)\right)'&=f'(x)-g'(x), \label{eq: derivative of difference 2}\\
+\left(cf(x)\right)'	&=cf'(x). \label{eq: derivative scalar multiplication 2}
+\end{align}
+
+These are useful formulae that we will frequently use in calculations as it enables us to split up the functions that we are differentiating into smaller tractable parts. The other shortcuts that we have is that the derivative of a constant is zero,
+\begin{equation}
+\frac{\ud c}{\ud x}=0, \label{eq: derivative of constant}
+\end{equation}
+and that the derivative of a \textbf{monomial} is
+\begin{equation}
+\frac{\ud}{\ud x}\left(x^{n}\right)=nx^{n-1}. \label{eq: monomial derivative}
+\end{equation}
+Sometimes the second formula is referred to as the \textbf{power rule}, and is one of the most important rules that you can learn as it enables you to differentiate any polynomial.\\
+
+The formula in \cref{eq: derivative of constant}, which says that the derivative of a constant is zero makes sense since the derivative measures the rate of change of a function. A constant is, by definition, not changing so its rate of change is zero.\\
+
+We can now use these rules to calculate some example derivatives.
+\begin{ex}
+Consider the function 
+\begin{equation*}
+f(x)=15x^{20}-3x^{5}+2x+4.
+\end{equation*}
+We calculate its derivative as follows:
+\begin{align*}
+\frac{\ud f}{\ud x}	&=\frac{\ud}{\ud x}\left(15x^{20}-3x^{5}+2x+4\right)\\
+			&=15\frac{\ud}{\ud x}\left(x^{20}\right)-2\frac{\ud}{\ud x}\left(x^{5}\right)+2\frac{\ud}{\ud x}\left(x\right)+\frac{\ud}{\ud x}\left(4\right)\\
+			&=15 \times 20 x^{19}-2\times 5 x^{4}+2 +0\\
+			&=300 x^{19}-10x^{4}+2.
+\end{align*}
+\end{ex}
+
+\begin{ex}
+Consider the function 
+\begin{equation*}
+g(x)=\frac{6}{x^{2}}-4x^{2}+2x.
+\end{equation*}
+Its derivative is calculated as follows 
+\begin{align*}
+\frac{\ud g}{\ud x}	&=\frac{\ud}{\ud x}\left(\frac{6}{x^{2}}-4x^{2}+2x\right)\\
+			&=6\frac{\ud}{\ud x}\left(x^{-2}\right)-4\frac{\ud}{\ud x}\left(x^{4}\right)+2\frac{\ud }{\ud x}\left(x\right)\\
+			&=6\times (-2) x^{-3}-4\times 4 x^{3}+2\\
+			&=-\frac{12}{x^{3}}-16x^{3}+2.
+\end{align*}
+\end{ex}
+
+\begin{exercise}
+Calculate the derivative of 
+\begin{equation*}
+y=8x^{2}+2x-\frac{1}{x}.
+\end{equation*}
+\end{exercise}
+
+\subsection*{Product rule}
+So far we have not discussed differentiating the product of two functions, unless you count $x^{a+b}=x^{a}x^{b}$. A very useful formula is the \textbf{Leibniz} or \textbf{product rule} which tells us how to differentiate the product of two functions. The product rule is
+\begin{equation}
+\frac{\ud }{\ud x}\left(f(x)g(x)\right)=\frac{\ud f}{\ud x}g(x)+f(x)\frac{\ud g}{\ud x}. \label{eq: product rule}
+\end{equation}
+
+You may think that it is disappointing that the derivative of a product is not just the product of the derivatives. However, you will come to appreciate the product rule as you make use of it. It will become particularly useful once we have discussed more about how to differentiate trig functions and exponentials. 
+
+\begin{ex}
+For the product of two functions $\sqrt{x^{3}}\sin(x)$ we find the derivative as follows. Let $f(x)=\sqrt{x^{3}}$ and $g(x)=\sin(x)$ and calculate the individual derivatives to be
+\begin{equation*}
+f'(x)=(x^{\frac{3}{2}})'=\frac{3}{2}x^{\frac{3}{2}-1}=\frac{3}{2}\sqrt{x}, \qquad g'(x)=(\sin(x))'=\cos(x).
+\end{equation*}
+Then we use product rule to calculate
+\begin{align*}
+\left(\sqrt{x^{3}}\sin(x)\right)'	&=\left(f(x)g(x)\right)'\\
+					&=f'(x)g(x)+f(x)g'(x)\\
+					&=\frac{3}{2}\sqrt{x}\sin(x)+\sqrt{x^{3}}\cos(x).
+\end{align*}
+\end{ex}
+
+\begin{ex}
+We can use the product rule to calculate the derivative of $f(x)=\sin^{2}(x)$. In this case the two functions are the same so we can evaluate the derivative as follows
+\begin{align*}
+f'(x)	&=\left(\sin^{2}(x)\right)'\\
+	&=2\sin(x)\left(\sin(x)\right)'\\
+	&=2\sin(x)\cos(x)\\
+	&=\cos(2x),
+\end{align*}
+where we have used one of the trig double angle identities in the last line.
+\end{ex}
+
+\begin{exercise}
+Use the product rule to calculate the derivative of 
+\begin{equation*}
+f(x)g(x)=e^{x}\sin(x).
+\end{equation*}
+\end{exercise}
+
+Note that the product rule applies if we have the product of more than two functions, we just have to iterate it for each pair of functions.
+
+\subsection*{Quotient rule}
+If instead of a product of functions we have the ratio of two functions then there is a rule for that, the \textbf{quotient} rule\footnote{You may be looking at these two formula and thinking that we could just use the product rule with $f(x)$ and $(g(x))^{-1}$. If you do this you will get an answer that looks just like the quotient rule. There are some technical differences between this approach and the quotient rule we give here, but as we are not mathematicians here we do not need to worry about them. }. In Leibniz notation the quotient rule is 
+\begin{equation}
+\frac{\ud }{\ud x}\left(\frac{f(x)}{g(x)}\right)=\frac{\frac{\ud f}{\ud x}g(x)-f(x)\frac{\ud g}{\ud x}}{g^{2}(x)}. \label{eq: quotient rule}
+\end{equation}
+
+Remember that in most circumstances you can use either the product rule or the quotient rule, it depends how you want to approach the problem.\\
+
+\begin{ex}
+Consider the function
+\begin{equation*}
+F(x)=\frac{\sin(x)}{e^{x}}.
+\end{equation*}
+Note that we could use the product rule on $e^{-x}\sin(x)$ but will instead use the quotient rule here. Spilt $F(x)$ into the two functions $f(x)=\sin(x)$ and $g(x)=e^{x}$, applying the quotient rule \cref{eq: quotient rule} gives
+\begin{align*}
+\frac{\ud }{\ud x}\left(\frac{f(x)}{g(x)}\right)&=\frac{\frac{\ud f}{\ud x}g(x)-f(x)\frac{\ud g}{\ud x}}{g^{2}(x)}\\
+							&=\frac{e^{x}\cos(x)-\sin(x)e^{x}}{e^{2x}}\\
+							&=e^{-x}\left(\cos(x)-\sin(x)\right).
+\end{align*}
+\end{ex}
+
+\begin{ex}
+Consider 
+\begin{equation*}
+F(x)=\frac{1}{\sin^{2}(x)},
+\end{equation*}
+and split it into two functions $f(x)=1$ and $g(x)=\sin^{2}(x)$, which have derivatives
+\begin{equation*}
+\frac{\ud f}{\ud x}=0, \qquad \frac{\ud g}{\ud x}=2\sin(x)\cos(x)=\sin(2x).
+\end{equation*}
+The quotient rule thus gives that
+\begin{align*}
+\frac{\ud }{\ud x}\left(\frac{f(x)}{g(x)}\right)&=\frac{\frac{\ud f}{\ud x}g(x)-f(x)\frac{\ud g}{\ud x}}{g^{2}(x)}\\
+							&=\frac{0-2\sin(x)\cos(x)}{\sin^{4}(x)}\\
+							&=-2\frac{\cot(x)}{\sin^{2}(x)}\\
+							&=-2\cot(x)\csc^{2}(x).
+\end{align*}
+\end{ex}
+
+\subsection*{Derivatives of trig functions}
+Armed with the quotient rule we can now give the derivatives of the six trig functions
+\begin{align}
+\frac{\ud}{\ud x}\sin(ax)&=a\cos(ax),\label{eq: sine derivative}\\
+\frac{\ud}{\ud x}\cos(ax)&=-a\sin(ax),\label{eq: cos derivative}\\
+\frac{\ud}{\ud x}\tan(ax)&=a\sec^{2}(ax),\label{eq: tan derivative}\\
+\frac{\ud}{\ud x}\cot(ax)&=-a\csc^{2}(ax),\label{eq: cot derivative}\\
+\frac{\ud}{\ud x}\sec(ax)&=a\sec(ax)\tan(ax), \label{eq: sec derivative}\\
+\frac{\ud}{\ud x}\csc(ax)&=-a\csc(ax)\cot(ax).\label{eq: csc derivative}
+\end{align}
+
+We have seen how to prove two of these and can now calculate the derivative of $\tan(x)$ the other three will be left as exercises.
+\begin{ex}
+Consider $f(x)=\tan(x)$, which can be expressed as
+\begin{equation*}
+f(x)=\tan(x)=\frac{\sin(x)}{\cos(x)}.
+\end{equation*}
+Using the quotient rule we have that
+\begin{align*}
+\frac{\ud}{\ud x}\tan(x)	&=\frac{\ud }{\ud x}\left(\frac{\sin(x)}{\cos(x)}\right)\\
+				&=\frac{1}{(\cos(x))^{2}}\left(\cos(x)\frac{\ud }{\ud x}\sin(x)-\sin(x)\frac{\ud }{\ud x}\cos(x)\right)\\
+				&=\frac{1}{\cos^{2}(x)}\left(\cos(x)\cos(x)-\sin(x)(-\sin(x))\right)\\
+				&=\frac{1}{\cos^{2}(x)}\left(\cos^{2}(x)+\sin^{2}(x)\right)\\
+				&=\frac{1}{\cos^{2}(x)}\\
+				&=\sec^{2}(x).
+\end{align*}
+Where we have used the identity that $\cos^{2}(x)+\sin^{2}(x)=1$ and the definition of $\sec(x)=1/\cos(x)$.
+\end{ex}
+
+\begin{exercise}
+Compute the derivatives of $\cot(x), \sec(x),\csc(x)$.
+\end{exercise}
+
+\subsection*{Chain rule}
+If we have a function of a function, e.g. $f(x)=\exp\left(x^{2}+x\right)$ or $g(x)=\cos\left(x+c\right)$, none of the rules that we have given so far will work. We could go back to first principles, which is exactly what we did when calculating the derivative of $1/(x+1)$, but this would mean that we had to do lots of long and tricky calculations. Fortunately this is not necessary.\\
+
+Consider the function
+\begin{equation}
+f(x)=\sqrt{4x+2},
+\label{eq: function of a function1}
+\end{equation}
+we can write this as the \textbf{composition} of two functions if we think of $g(x)=\sqrt{x}$ and $h(x)=4x+2$,
+\begin{equation*}
+f(x)=\left(g\circ h\right)(x)=g(h(x))=g\left(4x+2\right)=\sqrt{4x+2}.
+\end{equation*} 
+
+The \textbf{chain rule} is the, fairly, simple method to differentiate such compositions of functions.  As long as both functions are differentiable, we have that if $f(x)=(g\circ h)(x)$ then
+\begin{equation}
+f'(x)=g'(h(x))g'(x). \label{eq: chain rule 1}
+\end{equation}
+
+An alternative way of writing the chain rule, that is easier to understand in Leibniz notation, works when $y=f(u)$ and $u=g(x)$ then
+\begin{equation}
+\frac{\ud y}{\ud x}=\frac{\ud y}{\ud u}\frac{\ud u}{\ud x}. \label{eq: chain rule 2}
+\end{equation}
+This second way of phrasing the chain rule makes it look like we are treating the derivative like a fraction, we are not, it is just a coincidence that the formula looks like this.\\
+
+
+Armed with the chain rule, \cref{eq: chain rule 1} we can return to \cref{eq: function of a function1}  and calculate its derivative
+\begin{ex}
+Consider the function
+\begin{equation*}
+f(x)=\sqrt{4x+2},
+\end{equation*}
+and let $g(x)=\sqrt{x}$ and $h(x)=4x+2$. The rules we already know about differentiation tell us that
+\begin{equation*}
+g'(x)=\frac{1}{2\sqrt{x}}, \qquad h'(x)=4.
+\end{equation*}
+Thus applying the chain rule gives
+\begin{align*}
+f'(x)	&=g'(h(x))h'(x)\\
+	&=g'(4x+2)(4)\\
+	&=\frac{4}{2\sqrt{4x+2}}\\
+	&=\frac{2}{\sqrt{4x+2}}.
+\end{align*}
+\end{ex}
+
+While we have kept tract of the function composition here, this is not how we proceed in general, particularly since this can become very complicated if we have a matryoshka doll like set up with many nested functions. Usually we will just think about an \textit{inside} and \textit{outside} function and then differentiate the \textit{outside} function using the rules that we already know for powers, trig, exponential, or logarithmic functions, then multiply this by the derivative of the \textit{inside} function. \\
+
+This may still sound quite complicated, and as is always the case in mathematics, the best way to get to grips with the concept is by solving lots of examples.
+
+\begin{ex}
+Consider the function
+\begin{equation*}
+g(x)=\cos\left(x+c\right).
+\end{equation*}
+
+Its derivative is given by
+\begin{align*}
+g'(x)	&=-\sin\left(x+c\right)\left(x+c\right)'\\
+	&=-\sin\left(x+c\right).
+\end{align*}
+\end{ex}
+
+\begin{ex}
+Consider the function 
+\begin{equation*}
+f(x)=\left(2x^{2}+\cos(x)\right)^{2}.
+\end{equation*}
+Its derivative is given by
+\begin{align*}
+f'(x)	&=2\left(2x^{2}+\cos(x)\right)\left(2x^{2}+\cos(x)\right)'\\
+	&=2\left(2x^{2}+\cos(x)\right)\left(4x-\sin(x)\right)
+\end{align*}
+\end{ex}
+
+\begin{exercise}
+Calculate the derivative of
+\begin{equation*}
+ f(x)=\exp\left(x^{2}+x\right).
+\end{equation*}
+\end{exercise}
+
+\section{Multiple derivatives}
+So far we have only talked about calculating the derivative once. However, for a function $f(x)$ its derivative is also a function $f'(x)$ which we could differentiate again. The notation for taking the second derivative is
+\begin{equation*}
+f''(x)=\frac{\ud^{2}f}{\ud x^{2}}.
+\end{equation*}
+We can keep doing this and the notation for the $n'$th derivative is
+\begin{equation*}
+f^{(n)}=\frac{\ud^{n}f}{\ud x^{n}}.
+\end{equation*}
+
+\begin{ex}
+Consider the function $f(x)=2x^{3}+4x$, its second derivative is
+\begin{align*}
+\frac{\ud^{2}f}{\ud x^{2}}	&=\frac{\ud}{\ud x}\left(\frac{\ud f}{\ud x}\right)\\
+					&=\frac{\ud}{\ud x}\left(6x^{2}+4\right)\\
+					&=12x.
+\end{align*}
+The third derivative is
+\begin{align*}
+\frac{\ud^{3}f}{\ud x^{3}}	&=\frac{\ud}{\ud x}\left(\frac{\ud^{2}f}{\ud x^{2}}\right)\\
+					&=\frac{\ud}{\ud x}\left(12x\right)\\
+					&=12.
+\end{align*}
+\end{ex}
+
+We will not do much with second, or higher, derivatives, other than when discussing optimisation problems in \cref{sec:advanced topics}. However, you may come across them in your future studies so it is worth having some exposure to them.
+
+\section{Applications of differentiation}
+So, now we have met the derivative and learnt some rules for using it. Some of you reading this are likely to be saying ``Ok, we can calculate derivatives. So what\textinterrobang'' Well, now we will look at a few applications of differentiation.
+
+\subsection*{Finding critical points}
+A critical point of a function $f(x)$ is a point $a$ where the derivative,  $f'(a)$, vanishes. Sometimes critical points are called \textbf{stationary points}\footnote{This is because of the main examples of a first derivative is speed being the derivative of the position in mechanics. In this case a vanishing derivative means that the speed is zero so the object is stationary.}.
+
+\begin{mdiv}
+Strictly speaking there are a couple of extra points to consider. First we need that at the point $a$ we have that $f(a)$ exists. Then $a$ is a critical point if either $f'(a)=0$ or $f'(a)$ does not exist. In \citep{calcI} there is a discussion of this emphasising the fact that the point $a$ needs to be in the domain of the function $f$.
+\end{mdiv}
+
+If we have a function like $f(x)=4x^{2}+3x-2$ we can ask, does it have critical points, if so what are they and what does the function look like near them. The way that we answer the first two parts of this is to calculate the the derivative of the function, set it to zero, and then solve the algebraic equation that we get. In other words, finding a critical point boils down to solving an algebraic equation. The easiest way to understand this is by considering an explicit example. \\
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of a quadratic with its critical point marked.}
+ %   \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x, yscale = 1, xscale = 3]
+     \draw[->] (-1.5,0) -- (0.8,0) node[above] {$x$};
+  \draw[->] (0,-3) -- (0,3.3)node[above]{$y$};
+ \draw[color=CDnavy, domain=-1.45:0.7]   plot[samples=300] (\x,{(4*\x*\x + 3*\x -2}) node[right] {$f(x)=4x^{2}+3x-2$};
+  \draw[color=CDgreen, domain=-0.8:0.1]   plot[samples=300] (\x,{(-2.5625}) node[right] {$f'(x)$};
+\filldraw[black] (0.5,0) circle (0.5pt) node[anchor=north]{$0.5$};
+\filldraw[black] (-0.5,0) circle (0.5pt) node[anchor=north]{$-0.5$};
+\filldraw[black] (-1,0) circle (0.5pt) node[anchor=north]{$-1$};
+\filldraw[black] (-1.5,0) circle (0.5pt) node[anchor=north]{$-1.5$};
+\filldraw[black] (0,-3) circle (0.5pt) node[anchor=east]{$-3$};
+\filldraw[black] (0,-2) circle (0.5pt) node[anchor=east]{$-2$};
+\filldraw[black] (0,-1) circle (0.5pt) node[anchor=east]{$-1$};
+\filldraw[black] (0,1) circle (0.5pt) node[anchor=east]{$1$};
+\filldraw[black] (0,2) circle (0.5pt) node[anchor=east]{$2$};
+\filldraw[black] (0,3) circle (0.5pt) node[anchor=east]{$3$};
+\filldraw[CDred] (-0.375,-2.5625) circle (0.5pt) node[below]{$f'(x)=0$};
+    \end{tikzpicture}
+%    }{plots of an exponential and logarithm }
+    \caption{A plot of the function $f(x)=4x^{2}+3x-2$ with its critical point marked.}
+        \label{fig: crit points 1}
+\end{figure}
+
+\begin{ex}
+Consider the function
+\begin{equation*}
+f(x)=4x^{2}+3x-2.
+\end{equation*}
+
+We find its critical points by calculating $f'(x)$ and setting it to zero. The derivative is
+\begin{align*}
+\frac{\ud f}{\ud x}	&=\frac{\ud}{\ud x}\left(4x^{2}+3x-2\right)\\
+			&=8x+3.
+\end{align*}
+Setting this equal to zero gives 
+\begin{align*}
+8x+3&=0\\
+x=-\frac{3}{8}.
+\end{align*}
+
+This polynomial is plotted in \cref{fig: crit points 1} with its critical point marked and its derivative plotted in green. Notice that the critical point corresponds to the minimum of the function.
+\end{ex}
+
+This is a general observation, critical points are related to where a function changes direction or stops moving. One way to understand this is that the derivative measures how ``fast'' a function is changing, it is the \textbf{rate of change} of the function. \\
+
+As a check to see that this makes sense consider the plots of sine and cosine in \cref{fig: trig functions}. Notice that when sine has its maxima and minima cosine is zero and the other way around. Recall that cosine is the derivative of sine, and that the derivative of cosine is minus sine, so the maxima and minima are critical points.\\
+
+We need to be aware that not all critical points are maxima or minima. Even if the function does not change direction at a point, its derivative can still vanish there. These are called \textbf{points of inflection}, sometimes they are called \textbf{saddle points} as for functions of more than one variable they often have the shape of a saddle. See \cref{fig: crit points 2} for an example of a point of inflection.\\
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of a cubic with a point of inflection.}
+ %   \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x, yscale = 1, xscale = 3]
+     \draw[->] (-1.6,0) -- (1.6,0) node[above] {$x$};
+  \draw[->] (0,-3.5) -- (0,3.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=-1.5:1.5]   plot[samples=300] (\x,{(\x*\x*\x }) node[right] {$f(x)=x^{3}$};
+ % \draw[color=CDgreen, domain=-0.8:0.1]   plot[samples=300] (\x,{(-2.5625}) node[right] {$f'(x)$};
+\filldraw[black] (0.5,0) circle (0.5pt) node[anchor=north]{$0.5$};
+\filldraw[black] (-0.5,0) circle (0.5pt) node[anchor=north]{$-0.5$};
+\filldraw[black] (-1,0) circle (0.5pt) node[anchor=north]{$-1$};
+\filldraw[black] (1,0) circle (0.5pt) node[anchor=north]{$1$};
+\filldraw[black] (0,-3) circle (0.5pt) node[anchor=east]{$-3$};
+\filldraw[black] (0,-2) circle (0.5pt) node[anchor=east]{$-2$};
+\filldraw[black] (0,-1) circle (0.5pt) node[anchor=east]{$-1$};
+\filldraw[black] (0,1) circle (0.5pt) node[anchor=east]{$1$};
+\filldraw[black] (0,2) circle (0.5pt) node[anchor=east]{$2$};
+\filldraw[black] (0,3) circle (0.5pt) node[anchor=east]{$3$};
+\filldraw[CDred] (0,0) circle (0.5pt) node[above]{$f'(x)=0$};
+    \end{tikzpicture}
+%    }{plots of an exponential and logarithm }
+    \caption{A plot of the function $f(x)=x^{3}$. The function has a critical point at $x=0$ but it does not change direction there. }
+        \label{fig: crit points 2}
+\end{figure}
+
+The other point to be aware of is that we are detecting critical, which can be \textbf{local} maxima or minima rather than just the \textbf{global} maxima and minima. For example if $f(x)=x^{3}/2 +4x^{2}/5$, which is plotted in \cref{fig: crit points 3}, then we find the critical points as follows:
+\begin{align*}
+0	&=f'(x)\\
+	&=\frac{3}{2}x^{2}+\frac{8}{5}x\\
+	&=x^{2}+\frac{16}{15}x.
+\end{align*}
+This is a quadratic equation which we solve either by using the quadratic formula or by extracting a common factor as follows,
+\begin{align*}
+0	&=x^{2}+\frac{16}{15}x\\
+	&=x\left(x+\frac{16}{15}\right),
+\end{align*}
+so the critical points are at $x=0$ and $x=-16/15\simeq -1.067$. By inspecting the graph we see that $x=0$ is a local minima and $x=-16/15$ is a local maxima. They are local since for $x<-1.6$ $f(x)$ is below $f(x)$, and similarly for positive $x$ $f(x)$ reaches values larger than at $x=-16/15$. The true maxima and minima are only reached asymptotically.\\
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of a cubic with its critical points marked.}
+ %   \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x, yscale = 3, xscale = 3]
+     \draw[->] (-2,0) -- (1,0) node[above] {$x$};
+  \draw[->] (0,-0.5) -- (0,1)node[above]{$y$};
+ \draw[color=CDnavy, domain=-2:1]   plot[samples=300] (\x,{(0.5*\x*\x*\x+0.8*\x*\x }) node[right] {$f(x)=\frac{1}{2}x^{3} +\frac{4}{5}x^{2}$};
+ % \draw[color=CDgreen, domain=-0.8:0.1]   plot[samples=300] (\x,{(-2.5625}) node[right] {$f'(x)$};
+\filldraw[black] (0.4,0) circle (0.5pt) node[anchor=north]{$0.4$};
+\filldraw[black] (-0.4,0) circle (0.5pt) node[anchor=north]{$-0.4$};
+\filldraw[black] (-0.8,0) circle (0.5pt) node[anchor=north]{$-0.8$};
+\filldraw[black] (-1.2,0) circle (0.5pt) node[anchor=north]{$-1.2$};
+\filldraw[black] (-1.6,0) circle (0.5pt) node[anchor=north]{$-1.6$};
+\filldraw[black] (0.8,0) circle (0.5pt) node[anchor=north]{$0.8$};
+\filldraw[black] (0,-0.4) circle (0.5pt) node[anchor=east]{$-0.4$};
+\filldraw[black] (0,0.8) circle (0.5pt) node[anchor=east]{$0.8$};
+\filldraw[black] (0,0.4) circle (0.5pt) node[anchor=east]{$0.4$};
+
+\filldraw[CDred] (0,0) circle (0.5pt) node[above]{$f'(x)=0$};
+\filldraw[CDred] (-1.067,0.303) circle (0.5pt) node[above]{$f'(x)=0$};
+    \end{tikzpicture}
+%    }{plots of an exponential and logarithm }
+    \caption{A plot of the function $f(x)=x^{3}/2 +4x^{2}/5$. The function has a local minima at $x=0$ but the global minima is at $x\to -\infty$. }
+        \label{fig: crit points 3}
+\end{figure}
+
+Above we worked out whether a critical point was a maxima or a minima by consulting the graph. However, we can do this systematically without sketching the graph, which is handy since maxima and minima are useful to know before sketching a function. There are two ways to do this:
+
+\begin{enumerate}
+%\setlength{\itemsep}{-5pt}
+    \item After finding a critical point $a$ substitute it into the function to find its value $f(a)$, then pick two values of $x$, one just less than $a$, $a_{-}$ and the other just bigger than $a$, $a_{+}$. Then substitute these into $f(a)$.
+\begin{itemize}
+%\setlength{\itemsep}{-5pt}
+   	\item If $f(a)$ is larger than both $f(a_{-})$ and $f(a_{+})$ then $a$ is a local maxima.
+	\item If $f(a)$ is lower than both $f(a_{-})$ and $f(a_{+})$ the $a$ is a local minima.
+	\item If we find that $f(a_{-})>f(a)> f(a_{+})$ or $f(a_{+})>f(a)> f(a_{-})$ then $a$ is a point of inflection.
+\end{itemize}
+\item The other approach involves calculating the second derivative. If the derivative tells you about the rate of change of the function, then the second derivative tells you about the rate of change of the derivative.
+\begin{itemize}
+%\setlength{\itemsep}{-5pt}
+   	\item If the derivative is decreasing at a critical point $a$, e.g. $f''(a)<0$ then the point is a maxima.
+	\item If $f''(a)>0$ is the $a$ is a local minima.
+	\item If $f''(a)=0$ then $a$ could be a a maxima, minima, or point of inflection and we need to examine the sign of $f'(x)$ on either side of $a$.
+\end{itemize} 
+\end{enumerate}
+
+In this module you can follow whichever approach you want if you are asked to identify the critical values.
+
+\begin{ex}
+Consider the function
+\begin{equation*}
+f(x)=x^{3}-3x,
+\end{equation*}
+we find and classify the critical points as follows. For the critical points we find the derivative
+\begin{equation*}
+f'(x)=\left(x^{3}-3x\right)^{'}=3x^{2}-3,
+\end{equation*}
+and set it to zero,
+\begin{align*}
+0&=3x^{2}-3\\
+	&=x^{2}-1,\\
+x^{2}=1,\\
+x&=\pm 1.
+\end{align*}
+So there are two critical points. To find the nature of the critical points we need the second derivative
+\begin{equation*}
+f''(x)=\left(3x^{2}-3\right)^{'}=6x.
+\end{equation*}
+At the critical points this is
+\begin{align*}
+f''(1)&=6,\\
+f''(-1)&=-6.
+\end{align*}
+So $f''(1)$ is positive meaning that $x=1$ is a minimum, while $f''(-1)$ is positive so $x=-1$ is a maxima. When we plot the graph in \cref{fig: crit points 4} we see that these are only local minima and maxima.
+\end{ex}
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of a cubic with its critical points marked.}
+ %   \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-2.2,0) -- (2.2,0) node[above] {$x$};
+  \draw[->] (0,-2.2) -- (0,2.2)node[above]{$y$};
+ \draw[color=CDnavy, domain=-2:2]   plot[samples=300] (\x,{(\x*\x*\x-3*\x }) node[right] {$f(x)=x^{3} -3x$};
+\filldraw[black] (1,0) circle (1pt) node[anchor=north]{$1$};
+\filldraw[black] (-1,0) circle (1pt) node[anchor=north]{$-1$};
+\filldraw[black] (-2,0) circle (1pt) node[anchor=north]{$-2$};
+\filldraw[black] (2,0) circle (1pt) node[anchor=north]{$2$};
+\filldraw[black] (0,-2) circle (1pt) node[anchor=east]{$-2$};
+\filldraw[black] (0,-1) circle (1pt) node[anchor=east]{$-1$};
+\filldraw[black] (0,1) circle (1pt) node[anchor=east]{$1$};
+\filldraw[black] (0,2) circle (1pt) node[anchor=east]{$2$};
+\filldraw[CDred] (-1,2) circle (0.5pt) node[above]{$f'(x)=0$};
+\filldraw[CDred] (1,-2) circle (0.5pt) node[below]{$f'(x)=0$};
+    \end{tikzpicture}
+%    }{plots of an exponential and logarithm }
+    \caption{A plot of the function $f(x)=x^{3}-3x$ with its local minima and maxima marked. }
+        \label{fig: crit points 4}
+\end{figure}
+
+\begin{exercise}
+Find and classify the critical points of 
+\begin{equation*}
+f(x)=x^{4}-3x^{2}+2.
+\end{equation*}
+\end{exercise}
+
+
+
+\subsection*{Linear approximations}
+Now we are going to look at how to approximate functions using their tangent lines. This is called the \textbf{linear approximation} to the function, and can be good near the point that the line is tangent to. However, the approximation will get worse and worse the further away we go from the point\footnote{We could make the approximation better by using higher order derivative terms, but the approximation would no longer be linear and would now be via a polynomial. Considering this would lead us to the \textbf{Taylor} or \textbf{Maclaurin series} of a function. You may have met this in A-level maths if not we may meet this in \cref{sec:advanced topics} depending on which of the advanced topics we have time for. }.  There is a nice, if brief, discussion of linear approximation in \citep{calcI} which we draw on for the discussion here.\\
+
+For a function $f(x)$, its tangent line at $x=a$ is given by the line
+\begin{equation}
+L(x)=f(a)+f'(a)\left(x-a\right).
+\label{eq: linear approximation}
+\end{equation}
+For $f(x)=x^{2}/2+1/2$ the function and its linear approximation at $x=1$ are plotted in \cref{fig: linear approximation}. We see that near the point $x=1$ the tangent line is a good approximation to the full function as the graphs almost lie on top of each other. \\
+
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of a quadratic with its linear approximation at x=1 marked.}
+ %   \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x, scale =2]
+     \draw[->] (-2.2,0) -- (2.2,0) node[above] {$x$};
+  \draw[->] (0,0) -- (0,2.6)node[above]{$y$};
+ \draw[color=CDnavy, domain=-2:2]   plot[samples=300] (\x,{(0.5*\x*\x+0.5 }) node[right] {$f(x)=\frac{1}{2}x^{2}+\frac{1}{2}$};
+ \draw[color=CDgreen, domain=0:2]   plot[samples=300] (\x,{(\x }) node[right] {$L(x)=x$};
+\filldraw[black] (1,0) circle (1pt) node[anchor=north]{$1$};
+\filldraw[black] (-1,0) circle (1pt) node[anchor=north]{$-1$};
+\filldraw[black] (-2,0) circle (1pt) node[anchor=north]{$-2$};
+\filldraw[black] (2,0) circle (1pt) node[anchor=north]{$2$};
+\filldraw[black] (0,1) circle (1pt) node[anchor=east]{$1$};
+\filldraw[black] (0,2) circle (1pt) node[anchor=east]{$2$};
+\filldraw[CDred] (1,1) circle (1pt) node[below, xshift=7pt]{$(1,1)$};
+    \end{tikzpicture}
+%    }{plots of an exponential and logarithm }
+    \caption{A plot of the function $f(x)=x^{2}/2+1/2$ with its linear approximation at $x=1$ marked in red. }
+        \label{fig: linear approximation}
+\end{figure}
+
+
+This means that if we want to find the values of $f(x)$ near the point $a$ we can use \cref{eq: linear approximation} instead of the full function.  You may think that this does not seem very useful since we can fairly easily work out the value of $f(x)$ for many of the functions that we have considered in this module. The main advantage comes when we have to work out lots of values of a function, such as if we are simulating something on a computer. Every time the function is evaluated this takes time and it is much quicker to use an approximation than to use the full function. \\
+
+\begin{ex}
+Consider $f(x)=\sin(x)$, its linear approximation at $x=0$ is given by \cref{eq: linear approximation}. To calculate this we need that
+\begin{equation*}
+f'(x)=\cos(x),
+\end{equation*}
+so we can calculate $f'(0)=1$. This means that \cref{eq: linear approximation} becomes
+\begin{align*}
+L(x)	&=\sin(0)+\cos(0)\left(x-0\right)\\
+	&=0+1\left(x\right)\\
+	&=0.
+\end{align*}
+So for small angles we can use the approximation that $\sin(x)\simeq x$. This is an incredibly useful approximation, particularly if you are interested in studying the physics of pendulums. 
+\end{ex}
+
+If we repeated the above calculation for $\cos(x)$ we would find that $L(x)=1$ at $x=0$. 
+
+%\subsection*{$\star$ Mechanics $\star$}
+%This is a non examinable application as it goes beyond the scope of this module. The original motivation for calculus, at least with regards to Newton, came from physics.  \textbf{Mechanics} is the study of moving objects, if you did maths or physics at A-level then you may have come across some of the ideas. It is all about how far an object is travelling, at what speed, and understanding if and how the speed is changing. If you want a refresher on these concepts then you can look at the lecture notes for the STEM foundation physics module that I teach \citep{STM0005}.\\
+%
+%Now that you have been exposed to calculus that hopefully makes you think that the derivatives will be useful here. In fact, mechanics is secretly all about calculus, both the derivatives that we have already met and the integrals that we will discuss soon. \\
+% 
+
+
+
