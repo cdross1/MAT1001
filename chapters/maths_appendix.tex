@@ -59,7 +59,67 @@ and Tangent is opposite divided by adjacent
 \end{equation*}
 There are associated inverse functions $\arcsin,\arccos,\arctan$ which convert ratios of sides into angles. All of these functions are available on your calculator. \\
 
-It is important to be careful with which units you are using to express angles. It is likely that you will have come across degrees where going around a full circle is represented by an angle of $360^{\circ}$. However, it is often convenient to work with a different measure of angles called radians, in this case we take a full circle to be $2\uppi\text{rad}$ and express angles as a number between $0$ and $2\uppi$. In this module you can probably get away with always working in degrees, other than for some of the formulas quoted for the pendulum. However, if you go further with maths or physics you will find that radians as much more convenient to work with.
+It is important to be careful with which units you are using to express angles. It is likely that you will have come across degrees where going around a full circle is represented by an angle of $360^{\circ}$. However, it is often convenient to work with a different measure of angles called radians, in this case we take a full circle to be $2\uppi\text{rad}$ and express angles as a number between $0$ and $2\uppi$. In this module you need to work in radians as otherwise the derivative expressions for trig functions will become more complicated. If you are unfamiliar with  radians have a look at the next section which explains more about them and how to convert between degrees and radians.
+
+\section{Radians and Degrees}
+To work with trig functions  we need to know how to describe angles, eg how round in a circle we have gone. Often when working with circles we do not describe angles in terms of degrees but instead use units called radians.  You are likely to be familiar with describing angles in a degrees where a full rotation is $360^{\circ}$ and a half rotation is $180^{\circ}$. \textbf{Radians} are an alternative, and some would say ``better'' method of measuring angles, the certainly simplify some computations, though they can seem confusing when we first meet them.\\
+
+The basic idea of radians is to work in terms of the distance around the circle that the angle corresponds to.  For a circle with radius $r$ the circumference is $c=2\uppi r$, while an arc of the circle would have length s, shown in red in Figure. \ref{fig: radians}. Radians are defined in terms of the length of arcs as
+\begin{equation}
+\ut =\frac{s}{r},
+\label{eq: definition of radians}
+\end{equation}
+in other words, an angle measured in radians is the ratio of the distance travelled on an arc round the circle to the radius of the circle. 
+This means that a full rotation $360^{\circ}$ corresponds to $2\uppi$ radians as in this case $s=2\uppi r$, half a rotation or $180^{\circ}$ then corresponds to $\uppi$ radians. 
+
+\begin{figure}[ht]
+    \centering
+ %   \pdftooltip{
+    \begin{tikzpicture}
+   % \draw[step=1cm,gray,very thin] (3,-3) grid (3,3);
+   \filldraw[color = blue, ultra thick](0,0) circle (0.05);
+    \draw[ ultra thick](0,0) circle (2);
+    \draw[ultra thick] (0,0) -- (1.414,1.414);
+  \node[anchor =south] at (0.7,0.7) {$r$};
+    \draw[ultra thick] (0,0) -- (2,0);
+    \draw[ultra thick] (1,0) arc (0:45:1) node[anchor=north]{$\ut$};
+     \draw[ultra thick, color=red] (2,0) arc (0:45:2) node[anchor=north]{$s$};
+    \end{tikzpicture}
+  %  }{A circle}
+    \caption{A circle of radius $r$ showing how arc length around the circle corresponds to angles}
+        \label{fig: radians}
+\end{figure}
+
+More generally the conversion rule is that
+\begin{equation*}
+\text{radians} = \frac{180^{\circ}}{\uppi}\times \text{degrees}.
+\end{equation*}
+The main advantage of radians comes when differentiating and expanding functions as working in degrees requires extra terms to be included and greater care to be taken. While we will not be doing any differentiation in this module we will come across some expressions where we need to work in radians for the quoted expressions to be valid. When this happens we will include a warning so that it is clear where you need to be careful.\\
+
+One way to motivate working in radians is to think of unwinding the circle to get a straight line, for a circle of radius $r$ this length will be the circumference, if we divide this length by $r$ we will have a line if length $2\uppi$ and the angle in radians will be the distance travelled along this line. In other words, working in radians is a bit like converting from circular motion to linear motion.
+
+\begin{figure}[ht]
+    \centering
+  %  \pdftooltip{
+    \begin{tikzpicture}
+   % \draw[step=1cm,gray,very thin] (3,-3) grid (3,3);
+   \filldraw[color = blue, ultra thick](0,0) circle (0.05);
+    \draw[ ultra thick](0,0) circle (2);
+    \draw[ultra thick] (0,0) -- (1.414,1.414);
+ % \node[anchor =south] at (0.7,0.7) {$r$};
+    \draw[ultra thick] (0,0) -- (2,0);
+    \draw[ultra thick] (1,0) arc (0:45:1) node[anchor=north]{$\ut$};
+     \draw[ultra thick, color=red] (2,0) arc (0:45:2) node[anchor=north]{$s$};
+     \draw[ultra thick] (6,-3.14) --(6,3.14);
+     \draw[ultra thick, color = red] (6,-3.14) --(6,-2.355) node[anchor=west]{$\ut$};
+     \draw[ultra thick, ->] (2.5,0) -- (5.5,0);
+    \end{tikzpicture}
+  %  }{A circle}
+    \caption{A circle of radius $r$ showing how arc length around the circle corresponds to angles}
+        \label{fig: radians 2}
+\end{figure}
+
+As evidenced in Figures \ref{fig: radians} and \ref{fig: radians 2}, it is common practice to use the Greek letter theta, $\ut$, to denote an angle. Other Greek letters like phi, $\upphi$ or $\upvarphi$, and psi, $\uppsi$, are sometimes used as well. It is worth spending some time familiarising yourself with these Greek letters so you do not think that they are just badly written English letters.
 
 \section{Rearranging Equations}
 A very important skill for solving mathematics problems, and finding the roots of functions, is to be able to rearrange equations. This is sometimes referred to as changing the subject of an equation. Newcastle University have a webpage, available \href{https://www.mas.ncl.ac.uk/ask/numeracy-maths-statistics/core-mathematics/pure-maths/algebra/rearranging-equations.html}{here} that goes through some examples of how to rearrange equations. The webpage also has some self test questions that you can look at if you want more practice. Some of the details are reviewed here, along with examples for the specific equations that we have been using in this module.\\
