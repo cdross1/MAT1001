@@ -23,6 +23,67 @@ As the module goes on I may add more background resources or add some examples.\
 
 %The essential maths skills needed for studying physics at this level are nicely summarised in \citep{garrett2015essential}. It is worth having a look at this book if you want to revise the maths background.
 
+\section{Polynomials and roots}
+One of the most common examples of a function that we will meet is a polynomial. These are functions wher ethe variable $x$ is sent to a sum of powers of $x$,
+\begin{equation}
+p(x)=a_{n}x^{n}+a_{n-1}x^{n-1}\cdots +a_{1}x+a_{0}.
+\label{eq: polynomial}
+\end{equation}
+If we plot a polynomial, e.g. produce the graph $(x,y=p(x))$, then the locations where the plot cuts the $x$-axis, where $y=p(x)=0$, are called the zeros or roots. For a linear equation we solve it via rearrangement, see \cref{sec: rearranging}. For a quadratic equation like
+\begin{equation*}
+ax^{2}+bx+c=0,
+\end{equation*}
+we solve it using the quadratic formula
+\begin{equation}
+x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}.
+\end{equation}
+
+As an example consider the quadratic equation
+\begin{equation*}
+2x^{2}-4x-2=0.
+\end{equation*}
+To apply the quadratic formula we compare this specific equation to the general quadratic equation above, and note that $a=2,b=-4,c=-2$. The quadratic formula thus gives
+\begin{align*}
+x 	&=\frac{4\pm\sqrt{4^{2}+4\times2\times2}}{4}\\
+	&=\frac{4\pm\sqrt{16+16}}{4}\\
+	&=1\pm\frac{\sqrt{32}}{4}\\
+	&=1\pm\frac{\sqrt{16}\sqrt{2}}{4}\\
+	&=1\pm\sqrt{2}.
+\end{align*}
+So the two roots are $1+\sqrt{2}$, $1-\sqrt{2}$.\\
+
+Note that we can guess the roots by looking at the polynomial. A quadratic can always be written as 
+\begin{align*}
+a(x-\alpha)(x-\beta)	&=a\left(x^{2}-(\alpha+\beta)x+\alpha\beta\right)\\
+				&=ax^{2}-a\left(\alpha+\beta\right)+a\alpha\beta.
+\end{align*}
+So the product of the roots is related to the constant term, and the sum of the roots is related to the linear term. This means that we can guess one of the roots by looking at the factors of the constant term. For quadratics we do not need to do this, but with higher order equations this is very useful.\\
+
+For higher order polynomials we do not have a formula to find the solutions\footnote{The exception is cubic equations. There is a cubic formula. However, it is fairly complicated and there is no point in trying to use it.} In this case we use the higher order versions of the above identity that the constant term in the polynomial is related to the product of the roots. We can then use a technique like polynomial long division to reduce the order of the equation.\\
+
+Consider the equation
+\begin{equation*}
+x^{3}+x^{2}-x-1=0
+\end{equation*}
+Since $(x-a)(x-b)(x-c)$ has a constant term $-abc$ we see that the product of the three roots is $1$. This means that we can guess that $1$ is one of the roots. We can the perform polynomial long division to find that
+\begin{equation*}
+\polylongdiv{x^3+x^2-x-1}{x-1}
+\end{equation*}
+This means that we can rewrite
+\begin{equation*}
+x^{3}+x^{2}-x-1=(x-1)(x^{2}+2x+1),
+\end{equation*}
+and then we can either factorise the quadratic directly or use the quadratic formula. Note that we culd also solve this case using polynomial long division by noting that the product of the roots is $1$ so we can guess that $-1$ is a repeated root and calculate
+\begin{equation*}
+\polylongdiv{x^{2}+2x+1}{x+1}
+\end{equation*}
+so we have that
+\begin{equation*}
+x^{3}+x^{2}-x-1=(x-1)(x+1)^{2}.
+\end{equation*}
+
+This style of apprach can be applied to any polynomial equation. There is a more complete description of polynomials and their roots given in \cite{algI}
+
 \section{Trigonometry Primer}
 Since trigonometric functions come up a lot in this course a review of the basics is included here. If you are not familiar with it you can either check out the links suggested above or ask me to provide more background information.\\
 
@@ -122,6 +183,7 @@ One way to motivate working in radians is to think of unwinding the circle to ge
 As evidenced in \cref{fig: radians,fig: radians 2}, it is common practice to use the Greek letter theta, $\ut$, to denote an angle. Other Greek letters like phi, $\upphi$ or $\upvarphi$, and psi, $\uppsi$, are sometimes used as well. It is worth spending some time familiarising yourself with these Greek letters so you do not think that they are just badly written English letters.
 
 \section{Rearranging Equations}
+\label{sec: rearranging}
 A very important skill for solving mathematics problems, and finding the roots of functions, is to be able to rearrange equations. This is sometimes referred to as changing the subject of an equation. Newcastle University have a webpage, available \href{https://www.mas.ncl.ac.uk/ask/numeracy-maths-statistics/core-mathematics/pure-maths/algebra/rearranging-equations.html}{here} that goes through some examples of how to rearrange equations. The webpage also has some self test questions that you can look at if you want more practice. Some of the details are reviewed here, along with examples for the specific equations that we have been using in this module.\\
 
 
