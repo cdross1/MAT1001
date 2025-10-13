@@ -910,14 +910,14 @@ One of the most common examples of a function that we will meet is a polynomial.
 <!--
 
 
-                                                                                  p(x) = an xn + an−1 xn−1 · · · + a1 x + a0 .                                                                               (8.1)                       --><a id="eq:    polynomial"></a><!--
+                                                                                   p(x) = an xn + an−1 xn−1 · · · + a1 x + a0 .                                                                              (8.1)                       --><a id="eq:    polynomial"></a><!--
 
 -->
 
 <p>
 
 \begin{equation}
-p(x)=a_{n}x^{n}+a_{n-1}x^{n-1}\cdots +a_{1}x+a_{0}.         \label {eq:    polynomial}
+p(x)=a_{n}x^{n}+a_{n-1}x^{n-1}\cdots +a_{1}x+a_{0}.          \label {eq:      polynomial}
 \end{equation}
 
 </p>
@@ -932,7 +932,7 @@ href="Background-Mathematics.html#sec: rearranging">8.5</a>. For a quadratic equ
 <!--
 
 
-                                                                                                                                      ax2 + bx + c = 0,
+                                                                                                                                       ax2 + bx + c = 0,
 
 -->
 
@@ -952,10 +952,10 @@ we solve it using the quadratic formula
 
 <!--
 
-                                                                                                                                                   √
-                                                                                                                                          −b ±       b2 − 4ac
-                                                                                                                                 x=                           .                                                                                                              (8.2)
-                                                                                                                                                    2a
+                                                                                                                                                 √
+                                                                                                                                         −b ±      b2 − 4ac
+                                                                                                                                   x=                       .                                                                                                                (8.2)
+                                                                                                                                                  2a
 -->
 
 <p>
@@ -975,7 +975,7 @@ As an example consider the quadratic equation
 <!--
 
 
-                                                                                                                                   2x2 − 4x − 2 = 0.
+                                                                                                                                    2x2 − 4x − 2 = 0.
 
 -->
 
@@ -996,24 +996,24 @@ To apply the quadratic formula we compare this specific equation to the general 
 <!--
 
 
-                                                                                                                                               √
-                                                                                                                                      4± 42 + 4 × 2 × 2
-                                                                                                                                 x=
-                                                                                                                                            4
-                                                                                                                                       √
-                                                                                                                                    4 ± 16 + 16
-                                                                                                                                  =
-                                                                                                                                         4
-                                                                                                                                       √
-                                                                                                                                         32
-                                                                                                                                  =1±
-                                                                                                                                        4
-                                                                                                                                       √ √
-                                                                                                                                         16 2
-                                                                                                                                  =1±
+                                                                                                                                            √
+                                                                                                                                       4± 42 + 4 × 2 × 2
+                                                                                                                                  x=
+                                                                                                                                             4
+                                                                                                                                        √
+                                                                                                                                     4 ± 16 + 16
+                                                                                                                                   =
                                                                                                                                           4
-                                                                                                                                       √
-                                                                                                                                  = 1 ± 2.
+                                                                                                                                        √
+                                                                                                                                          32
+                                                                                                                                   =1±
+                                                                                                                                         4
+                                                                                                                                        √ √
+                                                                                                                                          16 2
+                                                                                                                                   =1±
+                                                                                                                                           4
+                                                                                                                                        √
+                                                                                                                                   = 1 ± 2.
 
 
 -->
@@ -1037,9 +1037,9 @@ Note that we can guess the roots by looking at the polynomial. A quadratic can a
 <!--
 
 
-                                                                                                                                                                      
-                                                                                                                     a(x − α)(x − β) = a x2 − (α + β)x + αβ
-                                                                                                                                           = ax2 − a (α + β) + aαβ.
+                                                                                                                                                                 
+                                                                                                                      a(x − α)(x − β) = a x2 − (α + β)x + αβ
+                                                                                                                                          = ax2 − a (α + β) + aαβ.
 
 
 -->
@@ -1070,7 +1070,7 @@ Consider the equation
 <!--
 
 
-                                                                                                                                  x3 + x2 − x − 1 = 0
+                                                                                                                                   x3 + x2 − x − 1 = 0
 
 -->
 
@@ -1083,7 +1083,18 @@ x^{3}+x^{2}-x-1=0
 </p>
 
 <p>
-Since \((x-a)(x-b)(x-c)\) has a constant term \(-abc\) we see that the product of the three roots is \(1\). This means that we can guess that \(1\) is one of the roots. We can the perform polynomial long division to find that
+Since \((x-a)(x-b)(x-c)\) has a constant term \(-abc\) we see that the product of the three roots is \(1\). This means that we can guess that \(1\) is one of the roots.
+</p>
+
+<p>
+We then need to use polynomial long division to factor out this root and reduce our equation to a quadratic that we can then solve. If you read the pdf version of these notes then it is nice and easy to include examples of polynomial long division. Unfortunately in the
+HTML version this does not display properly so we need to proceed more slowly.<br />
+
+</p>
+
+<p>
+You may remember for your time at school learning about long division, the idea is you want to know how many times a small number goes into a big number. You are likely familiar with a couple of notations for this such as \(a\div b\) or \(a/b\). When the number we
+are dividing, \(a\) involves lots of digits it is easier to write it as
 </p>
 
 <span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
@@ -1091,28 +1102,190 @@ Since \((x-a)(x-b)(x-c)\) has a constant term \(-abc\) we see that the product o
 <!--
 
 
-                                                                                                                                                       x2 + 2x + 1
-                                                                                                                                      
-                                                                                                                             x−1            x3  + x2 − x − 1
-                                                                                                                                          − x 3 + x2
-                                                                                                                                                     2x2 − x
-                                                                                                                                                   − 2x2 + 2x
-                                                                                                                                                           x−1
-                                                                                                                                                          −x+1
-                                                                                                                                                                  0
+                                                                                                                                                b)a.
 
 -->
 
 <p>
 
 \begin{equation*}
-\polylongdiv {x^3+x^2-x-1}{x-1}
+b)\overline {a}.
 \end{equation*}
 
 </p>
 
 <p>
-This means that we can rewrite
+Long division is the process of carrying out these calculations.<br />
+
+</p>
+
+<p>
+Consider the problem of dividing \(1260257\) by 37, this is done as follows
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                               34061
+                                                         37)1260257
+                                                            1110000                                                                 150257 148000                                                          2257      2220
+                                                                  37
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp; \phantom {++}34061\\ 37&amp;)\overline {1260257}\\ &amp;\underline {1110000} &amp;\phantom {1}150257 &amp;\phantom {1}\underline {148000} &amp;\phantom {111}2257 &amp;\phantom {111}\underline {2220}\\ &amp;\phantom {11111}37
+\end{align*}
+For understanding the steps I recommend having a look at the Wikipedia article on long division if you want a refresher as it contains lots of examples. The key idea is that you work term by term, typically ignoring the digits on the right, until you have a number that is
+bigger than your starting one, in this case \(37\). Then you write down how many times 37 goes it to that number, in this case \(37\) goes into \(126\) \(3\) times, and \(3\times 37=111\), and you proceed onwards like this.<br />
+
+</p>
+
+<p>
+For polynomials the process is pretty much the same you write down the polynomial that you were given originally, eg \(x^{3}+x^{2}-x-1\), then you write down the linear expression that you want to divide it by, here \(x-1\). This means we have the division problem
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                  x − 1)x3 + x2 − x − 1.
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+x-1&amp;)\overline {x^{3}+x^{2}-x-1}.
+\end{align*}
+First we look at the highest order \(x\) terms and see that we need to multiply \(x-1\) by \(x^2\) to get an \(x^3\) term so we can write down
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                            x2
+                                                                                                                                  x − 1)x3 + x2 − x − 1
+                                                                                                                                            x3 − x 2
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp;\phantom {+}x^{2}\\ x-1&amp;)\overline {x^{3}+x^{2}-x-1}\\ &amp;\phantom {+}\underline {x^{3}-x^{2}}
+\end{align*}
+We can then subtracted the third line from the second line to get
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                            x2
+                                                                                                                                  x − 1)x3 + x2 − x − 1
+                                                                                                                                            x3 − x 2
+                                                                                                                                             2x2 − x − 1
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp;\phantom {+}x^{2}\\ x-1&amp;)\overline {x^{3}+x^{2}-x-1}\\ &amp;\phantom {+}\underline {x^{3}-x^{2}}\\ &amp;\phantom {++}2x^{2}-x-1
+\end{align*}
+Now we need to multiply \(x-1\) by \(2x\) to cancel the highest order term so we have that
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                            x2 + 2x
+                                                                                                                                  x − 1)x3 + x2 − x − 1
+                                                                                                                                            x3 − x 2
+                                                                                                                                             2x2 − x − 1
+                                                                                                                                             2x2 − 2x
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp;\phantom {+}x^{2}+2x\\ x-1&amp;)\overline {x^{3}+x^{2}-x-1}\\ &amp;\phantom {+}\underline {x^{3}-x^{2}}\\ &amp;\phantom {++}2x^{2}-x-1\\ &amp;\phantom {++}\underline {2x^{2}-2x}
+\end{align*}
+Carrying out the subtraction now gives
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                            x2 + 2x
+                                                                                                                                  x − 1)x3 + x2 − x − 1
+                                                                                                                                            x3 − x 2
+                                                                                                                                             2x2 − x − 1
+                                                                                                                                             2x2 − 2x
+                                                                                                                                                       x−1
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp;\phantom {+}x^{2}+2x\\ x-1&amp;)\overline {x^{3}+x^{2}-x-1}\\ &amp;\phantom {+}\underline {x^{3}-x^{2}}\\ &amp;\phantom {++}2x^{2}-x-1\\ &amp;\phantom {++}\underline {2x^{2}-2x}\\ &amp;\phantom {++++}x-1
+\end{align*}
+which is exactly what we are dividing by. Thus
+</p>
+<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                            x2 + 2x + 1
+                                                                                                                                  x − 1)x3 + x2 − x − 1
+                                                                                                                                            x3 − x 2
+                                                                                                                                             2x2 − x − 1
+                                                                                                                                             2x2 − 2x
+                                                                                                                                                       x−1
+                                                                                                                                                       x−1
+                                                                                                                                                         0.
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+&amp;\phantom {+}x^{2}+2x+1\\ x-1&amp;)\overline {x^{3}+x^{2}-x-1}\\ &amp;\phantom {+}\underline {x^{3}-x^{2}}\\ &amp;\phantom {++}2x^{2}-x-1\\ &amp;\phantom {++}\underline {2x^{2}-2x}\\ &amp;\phantom {++++}x-1\\ &amp;\phantom
+{++++}\underline {x-1}\\ &amp;\phantom {++++++}0.
+\end{align*}
+Then we can either factorise the quadratic directly or use the quadratic formula. Note that we could also solve this case using polynomial long division by noting that the product of the roots is \(1\) so we can guess that \(-1\) is a repeated root. Which ever way we
+approach it we get that
 </p>
 
 <span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
@@ -1120,41 +1293,14 @@ This means that we can rewrite
 <!--
 
 
-                                                                                                                       x3 + x2 − x − 1 = (x − 1)(x2 + 2x + 1),
+                                                                                                                                  x2 + 2x + 1 = (x + 1)2 .
 
 -->
 
 <p>
 
 \begin{equation*}
-x^{3}+x^{2}-x-1=(x-1)(x^{2}+2x+1),
-\end{equation*}
-
-</p>
-
-<p>
-and then we can either factorise the quadratic directly or use the quadratic formula. Note that we culd also solve this case using polynomial long division by noting that the product of the roots is \(1\) so we can guess that \(-1\) is a repeated root and calculate
-</p>
-
-<span class="hidden"> \(\seteqnumber{0}{8.}{2}\)</span>
-
-<!--
-
-
-                                                                                                                                                          x+1
-                                                                                                                                           
-                                                                                                                                  x+1              x2 + 2x + 1
-                                                                                                                                               − x2 − x
-                                                                                                                                                        x+1
-                                                                                                                                                       −x−1
-                                                                                                                                                             0
-
--->
-
-<p>
-
-\begin{equation*}
-\polylongdiv {x^{2}+2x+1}{x+1}
+x^{2}+2x+1=(x+1)^{2}.
 \end{equation*}
 
 </p>
@@ -1168,7 +1314,7 @@ so we have that
 <!--
 
 
-                                                                                                                          x3 + x2 − x − 1 = (x − 1)(x + 1)2 .
+                                                                                                                           x3 + x2 − x − 1 = (x − 1)(x + 1)2 .
 
 -->
 
@@ -1181,7 +1327,7 @@ x^{3}+x^{2}-x-1=(x-1)(x+1)^{2}.
 </p>
 
 <p>
-This style of apprach can be applied to any polynomial equation. There is a more complete description of polynomials and their roots given in Dawkins [2025b]
+This style of approach can be applied to any polynomial equation. There is a more complete description of polynomials and their roots given in Dawkins [2025b].
 </p>
 <div role="note" class="footnotes">
 
@@ -1346,9 +1492,9 @@ href="Background-Mathematics.html#fig: radians">8.2</a>. Radians are defined in 
 
 <!--
 
-                                                                                        s
-                                                                                   θ=     ,                                                                                   (8.3)                                          --><a id="eq:     definition of radians"></a><!--
-                                                                                        r
+                                                                                                   s
+                                                                                              θ=     ,                                                                                             (8.3)                     --><a id="eq:     definition of radians"></a><!--
+                                                                                                   r
 -->
 
 <p>
