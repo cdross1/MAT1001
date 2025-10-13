@@ -65,7 +65,10 @@ Consider the equation
 \begin{equation*}
 x^{3}+x^{2}-x-1=0
 \end{equation*}
-Since $(x-a)(x-b)(x-c)$ has a constant term $-abc$ we see that the product of the three roots is $1$. This means that we can guess that $1$ is one of the roots. We can the perform polynomial long division to find that
+Since $(x-a)(x-b)(x-c)$ has a constant term $-abc$ we see that the product of the three roots is $1$. This means that we can guess that $1$ is one of the roots. 
+
+\begin{warpprint}
+We can the perform polynomial long division to find that
 \begin{equation*}
 \polylongdiv{x^3+x^2-x-1}{x-1}
 \end{equation*}
@@ -73,16 +76,91 @@ This means that we can rewrite
 \begin{equation*}
 x^{3}+x^{2}-x-1=(x-1)(x^{2}+2x+1),
 \end{equation*}
-and then we can either factorise the quadratic directly or use the quadratic formula. Note that we culd also solve this case using polynomial long division by noting that the product of the roots is $1$ so we can guess that $-1$ is a repeated root and calculate
+and then we can either factorise the quadratic directly or use the quadratic formula. Note that we could also solve this case using polynomial long division by noting that the product of the roots is $1$ so we can guess that $-1$ is a repeated root and calculate
 \begin{equation*}
 \polylongdiv{x^{2}+2x+1}{x+1}
 \end{equation*}
+\end{warpprint}
+
+\begin{warpHTML}
+We then need to use polynomial long division to factor out this root and reduce our equation to a quadratic that we can then solve. If you read the pdf version of these notes then it is nice and easy to include examples of polynomial long division. Unfortunately in the HTML version this does not display properly so we need to proceed more slowly.\\
+
+You may remember for your time at school learning about long division, the idea is you want to know how many times a small number goes into a big number. You are likely familiar with a couple of notations for this such as $a\div b$ or $a/b$.  When the number we are dividing, $a$ involves lots of digits it is easier to write it as
+\begin{equation*}
+b)\overline{a}.
+\end{equation*}
+Long division is the process of carrying out these calculations.\\
+
+Consider the problem of dividing $1260257$ by 37, this is done as follows
+\begin{align*}
+& \phantom{++}34061\\
+37&)\overline{1260257}\\
+&\underline{1110000}
+&\phantom{1}150257
+&\phantom{1}\underline{148000}
+&\phantom{111}2257
+&\phantom{111}\underline{2220}\\
+&\phantom{11111}37
+\end{align*}
+For understanding the steps I recommend having a look at the Wikipedia article on long division if you want a refresher as it contains lots of examples. The key idea is that you work term by term, typically ignoring the digits on the right, until you have a number that is bigger than your starting one, in this case $37$. Then you write down how many times 37 goes it to that number, in this case $37$ goes into $126$ $3$ times, and $3\times 37=111$, and you proceed onwards like this.\\
+
+For polynomials the process is pretty much the same you write down the polynomial that you were given originally, eg $x^{3}+x^{2}-x-1$, then you write down the linear expression that you want to divide it by, here $x-1$. This means we have the division problem
+\begin{align*}
+x-1&)\overline{x^{3}+x^{2}-x-1}.
+\end{align*}
+First we look at the highest order $x$ terms and see that we need to multiply $x-1$ by $x^2$ to get an $x^3$ term so we can write down
+\begin{align*}
+&\phantom{+}x^{2}\\
+x-1&)\overline{x^{3}+x^{2}-x-1}\\
+&\phantom{+}\underline{x^{3}-x^{2}}
+\end{align*}
+We can then subtracted the third line from the second line to get
+\begin{align*}
+&\phantom{+}x^{2}\\
+x-1&)\overline{x^{3}+x^{2}-x-1}\\
+&\phantom{+}\underline{x^{3}-x^{2}}\\
+&\phantom{++}2x^{2}-x-1
+\end{align*}
+Now we need to multiply $x-1$ by $2x$ to cancel the highest order term so we have that
+\begin{align*}
+&\phantom{+}x^{2}+2x\\
+x-1&)\overline{x^{3}+x^{2}-x-1}\\
+&\phantom{+}\underline{x^{3}-x^{2}}\\
+&\phantom{++}2x^{2}-x-1\\
+&\phantom{++}\underline{2x^{2}-2x}
+\end{align*}
+Carrying out the subtraction now gives
+\begin{align*}
+&\phantom{+}x^{2}+2x\\
+x-1&)\overline{x^{3}+x^{2}-x-1}\\
+&\phantom{+}\underline{x^{3}-x^{2}}\\
+&\phantom{++}2x^{2}-x-1\\
+&\phantom{++}\underline{2x^{2}-2x}\\
+&\phantom{++++}x-1
+\end{align*}
+which is exactly what we are dividing by. Thus
+\begin{align*}
+&\phantom{+}x^{2}+2x+1\\
+x-1&)\overline{x^{3}+x^{2}-x-1}\\
+&\phantom{+}\underline{x^{3}-x^{2}}\\
+&\phantom{++}2x^{2}-x-1\\
+&\phantom{++}\underline{2x^{2}-2x}\\
+&\phantom{++++}x-1\\
+&\phantom{++++}\underline{x-1}\\
+&\phantom{++++++}0.
+\end{align*}
+Then we can either factorise the quadratic directly or use the quadratic formula. Note that we could also solve this case using polynomial long division by noting that the product of the roots is $1$ so we can guess that $-1$ is a repeated root. Which ever way we approach it we get that
+\begin{equation*}
+x^{2}+2x+1=(x+1)^{2}.
+\end{equation*}
+\end{warpHTML}
+
 so we have that
 \begin{equation*}
 x^{3}+x^{2}-x-1=(x-1)(x+1)^{2}.
 \end{equation*}
 
-This style of apprach can be applied to any polynomial equation. There is a more complete description of polynomials and their roots given in \cite{algI}
+This style of approach can be applied to any polynomial equation. There is a more complete description of polynomials and their roots given in \cite{algI}.
 
 \section{Trigonometry Primer}
 Since trigonometric functions come up a lot in this course a review of the basics is included here. If you are not familiar with it you can either check out the links suggested above or ask me to provide more background information.\\
