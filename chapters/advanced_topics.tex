@@ -66,6 +66,32 @@ which looks like the indeterminate $-\infty/\infty$. Now we can apply L'H\^{o}pi
 since $1/\infty$ is zero.
 \end{ex}
 
+\section{Trigonometric Derivatives in Degrees}
+At various points in this module I have said that you should always work with angles in radians as this makes life easier when differentiating trig functions. Here I want to discuss how to take the derivative if we are measuring the angle in degrees.\\
+
+First we need some notation, we will use the subscript $\text{rad}$ when our function has an argument in degrees and $\text{deg}$ when our function has an argument in degrees. Then we can assume the result that we were given in \cref{sec:differentiation}, but rewritten in this new notation, that
+\begin{equation*}
+\frac{\ud }{\ud x}\sin_{\text{rad}}(x)=\cos_{\text{rad}}(x).
+\end{equation*}
+
+Now recall that if $x$ is an angle in radians then the corresponding angle, $\theta$ in degrees is
+\begin{equation*}
+\theta =\frac{180^{\circ}}{\uppi}x, \qquad \text{or } x=\frac{\uppi}{180^{\circ}}\theta.
+\end{equation*}
+
+Now we can calculate the derivative of $\sin_{\text{deg}}$ using the chain rule
+\begin{align*}
+\frac{\ud}{\ud \theta}\sin_{\text{deg}}(\theta)&=\frac{\ud}{\ud \theta}\sin_{\text{rad}}\left(\frac{\uppi}{180^{\circ}}\theta\right)\\
+&=\frac{\ud x}{\ud \theta}\frac{\ud }{\ud x}\sin_{\text{rad}}(x)\\
+&=\frac{\uppi}{180^{\circ}}\cos_{\text{rad}}(x)\\
+&=\frac{\uppi}{180^{\circ}}\cos_{\text{rad}}\left(\frac{\uppi}{180^{\circ}}\theta\right)\\
+&=\frac{\uppi}{180^{\circ}}\cos_{\text{deg}}\left(\theta\right).
+\end{align*}
+
+The derivatives of other trig functions can be calculated in similar ways.   This is why we have to be careful to use radians as we do not want to have to keep track of factors of $\uppi/180^{\circ}$ every time we differentiate.\\
+
+There is an interesting discussion of this result and how to think about the difference between trig functions that take arguments in radians and degrees \href{https://math.stackexchange.com/questions/214912/derivative-of-the-sine-function-when-the-argument-is-measured-in-degrees}{here}
+
 \section{Functions of two variables}
 
 \section{Multiple integrals}

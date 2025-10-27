@@ -1174,25 +1174,131 @@ since \(1/\infty \) is zero.
 
 </div>
 <!--
+...... section Trigonometric Derivatives in Degrees ......
+-->
+<h4 id="autosec-212"><span class="sectionnumber">7.2&#x2003;</span>Trigonometric Derivatives in Degrees</h4>
+<a id="mat1001-autopage-212"></a>
+
+
+<p>
+At various points in this module I have said that you should always work with angles in radians as this makes life easier when differentiating trig functions. Here I want to discuss how to take the derivative if we are measuring the angle in degrees.<br />
+
+</p>
+
+<p>
+First we need some notation, we will use the subscript \(\text {rad}\) when our function has an argument in degrees and \(\text {deg}\) when our function has an argument in degrees. Then we can assume the result that we were given in chapter&nbsp;<a
+href="Differentiation.html#sec:differentiation">3</a>, but rewritten in this new notation, that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{7.}{1}\)</span>
+
+<!--
+
+                                                                                                                             d
+                                                                                                                               sinrad (x) = cosrad (x).
+                                                                                                                            dx
+-->
+
+<p>
+
+\begin{equation*}
+\frac {\ud }{\ud x}\sin _{\text {rad}}(x)=\cos _{\text {rad}}(x).
+\end{equation*}
+
+</p>
+
+<p>
+Now recall that if \(x\) is an angle in radians then the corresponding angle, \(\theta \) in degrees is
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{7.}{1}\)</span>
+
+<!--
+
+                                                                                                                              180◦                         π
+                                                                                                                         θ=          x,        or x =            θ.
+                                                                                                                               π                          180◦
+-->
+
+<p>
+
+\begin{equation*}
+\theta =\frac {180^{\circ }}{\uppi }x, \qquad \text {or } x=\frac {\uppi }{180^{\circ }}\theta .
+\end{equation*}
+
+</p>
+
+<p>
+Now we can calculate the derivative of \(\sin _{\text {deg}}\) using the chain rule
+</p>
+<span class="hidden"> \(\seteqnumber{0}{7.}{1}\)</span>
+
+
+<!--
+
+
+                                                                                                                      d               d
+                                                                                                                                                                  
+                                                                                                                                                     π
+                                                                                                                         sindeg (θ) =    sinrad         θ
+                                                                                                                      dθ              dθ          180◦
+                                                                                                                                      dx d
+                                                                                                                                    =        sinrad (x)
+                                                                                                                                      dθ dx
+                                                                                                                                           π
+                                                                                                                                     =           cosrad (x)
+                                                                                                                                          180◦
+                                                                                                                                                                         
+                                                                                                                                           π                   π
+                                                                                                                                     =           cosrad               θ
+                                                                                                                                          180◦                180◦
+                                                                                                                                           π
+                                                                                                                                     =           cosdeg (θ) .
+                                                                                                                                          180◦
+
+
+-->
+
+
+<p>
+
+\begin{align*}
+\frac {\ud }{\ud \theta }\sin _{\text {deg}}(\theta )&amp;=\frac {\ud }{\ud \theta }\sin _{\text {rad}}\left (\frac {\uppi }{180^{\circ }}\theta \right )\\ &amp;=\frac {\ud x}{\ud \theta }\frac {\ud }{\ud x}\sin _{\text {rad}}(x)\\
+&amp;=\frac {\uppi }{180^{\circ }}\cos _{\text {rad}}(x)\\ &amp;=\frac {\uppi }{180^{\circ }}\cos _{\text {rad}}\left (\frac {\uppi }{180^{\circ }}\theta \right )\\ &amp;=\frac {\uppi }{180^{\circ }}\cos _{\text {deg}}\left (\theta \right
+).
+\end{align*}
+
+</p>
+
+<p>
+The derivatives of other trig functions can be calculated in similar ways. This is why we have to be careful to use radians as we do not want to have to keep track of factors of \(\uppi /180^{\circ }\) every time we differentiate.<br />
+
+</p>
+
+<p>
+There is an interesting discussion of this result and how to think about the difference between trig functions that take arguments in radians and degrees <a
+href="https://math.stackexchange.com/questions/214912/derivative-of-the-sine-function-when-the-argument-is-measured-in-degrees" target="_blank" >here</a>
+</p>
+<!--
 ...... section Functions of two variables ......
 -->
-<h4 id="autosec-212"><span class="sectionnumber">7.2&#x2003;</span>Functions of two variables</h4>
-<a id="mat1001-autopage-212"></a>
+<h4 id="autosec-213"><span class="sectionnumber">7.3&#x2003;</span>Functions of two variables</h4>
+<a id="mat1001-autopage-213"></a>
 <!--
 ...... section Multiple integrals ......
 -->
-<h4 id="autosec-213"><span class="sectionnumber">7.3&#x2003;</span>Multiple integrals</h4>
-<a id="mat1001-autopage-213"></a>
+<h4 id="autosec-214"><span class="sectionnumber">7.4&#x2003;</span>Multiple integrals</h4>
+<a id="mat1001-autopage-214"></a>
 <!--
 ...... section Optimisation Problems ......
 -->
-<h4 id="autosec-214"><span class="sectionnumber">7.4&#x2003;</span>Optimisation Problems</h4>
-<a id="mat1001-autopage-214"></a>
+<h4 id="autosec-215"><span class="sectionnumber">7.5&#x2003;</span>Optimisation Problems</h4>
+<a id="mat1001-autopage-215"></a>
 <!--
 ...... section Polynomial approximation ......
 -->
-<h4 id="autosec-215"><span class="sectionnumber">7.5&#x2003;</span>Polynomial approximation</h4>
-<a id="mat1001-autopage-215"></a>
+<h4 id="autosec-216"><span class="sectionnumber">7.6&#x2003;</span>Polynomial approximation</h4>
+<a id="mat1001-autopage-216"></a>
 
 
 </section>
