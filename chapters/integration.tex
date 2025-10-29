@@ -534,6 +534,7 @@ A\simeq f(x_{1}^{*})\Delta x+f(x_{2}^{*})\Delta x +\cdots + f(x_{i}^{*})\Delta x
 This approximation gets better and better the more subintervals we take, as they will become narrower and narrower, and their height becomes a better match for the functions value over that interval. If we could take the limit of $n\to \infty$ the sub intervals will become a single point and the height is the value of the function at that point. The sum would then become the exact area,
 \begin{equation}
 A=\lim_{n\to\infty}\sum_{i=1}^{n} f(x_{i}^{*})\Delta x.
+\label{eq: Riemann Sum}
 \end{equation}
 
 It is important to note that if our function was below the $x$-axis, then we would get a negative answer for the area. This is because we take the heights of the rectangles to be the value of the value of the function at some point in the interval. So if the function takes negative values, we will find a negative area.\\
@@ -544,6 +545,121 @@ This is a feature and not a bug! The integral will be a signed count of the area
 \begin{exercise}
 Consider the function $x^{2}-4$ on the interval $[0,2]$. Take $n=8$ and use the midpoint approach to estimate the area between the function and the $x$-axis. You should find $A_{m}=-171/32$.
 \end{exercise}
+
+The sum in \cref{eq: Riemann Sum} is taken as the definition of the definite integral:
+\begin{equation}
+\int_{a}^{b}f(x)\ud x = \lim_{n\to\infty}\sum_{i=1}^{n} f(x_{i}^{*})\Delta x.
+\label{eq: definite integral}
+\end{equation}
+This is the integral of the function $f(x)$ over the interval $[a,b]$. The terminology that is usually used is that $a$ is called the lower limit and $b$ the upper limit.
+
+\begin{mdiv}
+If this was a module for mathematicians, we would spend a bit of time here discussing how to calculate this using the sum definition given on the right hand side of \cref{eq: definite integral}.  Doing this involves knowing some standard expressions for summations such as:
+\begin{align*}
+\sum_{i=1}^{n}1&=n,\\
+\sum_{i=1}^{n}i&=\frac{n(n+1)}{2},\\
+\sum_{i=1}^{n}i^{2}&=\frac{n(n+1)(2n+2)}{6}.
+\end{align*}
+Armed with these and a few other expressions one can evaluate the Riemann sum expression for a wide variety of functions. Including $f(x)=x^{2}+1$ that we discussed above. If you are interested in trying this it is worth doing at least once, though is an exercise for maths enthusiasts only as you are unlikely to need to use the Riemann sum definition of an integral directly.
+\end{mdiv}
+
+The properties that we discussed for indefinite integrals still hold here, but now we get some new properties:
+\begin{align*}
+\int_{a}^{b}f(x)\ud x&=-\int_{b}^{a}f(x)\ud x, \quad \text{swapping limits introduces a minus sign.}\\
+\int_{a}^{a}f(x)\ud x&=0, \quad \text{if the limits agree the integral is zero.}\\
+\int_{a}^{b}f(x)\ud x &=\int_{a}^{c}f(x)\ud x +\int_{c}^{b}f(x)\ud x, \quad \text{ where $c$ is any number between $a$ and $b$.}
+\end{align*}
+
+Recall that the antiderivative $F(x)$ for the function $f(x)$ is defined as any function such that
+\begin{equation*}
+\frac{\ud F}{\ud x}=f(x).
+\end{equation*}
+For a definite integral  antiderivatives make an appearance through the fundamental theorem of calculus. This states that for a function $f(x)$ which is continuous on $[a,b]$ and has antiderivative $F(x)$ then:
+\begin{equation}
+\int_{a}^{b}f(x)\ud x=\left[F(x)\right]_{a}^{b}=F(b)-F(a).
+\label{eq: ftc I}
+\end{equation}
+
+In other words, a definite integral is just the difference between the antiderivative evaluated at the endpoints of the interval. This result is proved in \cite{calcI}, and a proof may be added to \cref{sec: proofs} at some stage.
+
+\begin{ex}
+Consider the function $f(x)=x^{2}+1$, we know that an antiderivative for this is 
+\begin{equation*}
+F(x)=\frac{1}{3}x^{3}+x,
+\end{equation*}
+where we have carried out the indefinite integral of $f(x)$. Using \cref{eq: ftc I} we get that the definite integral over the interval $[0,2]$ is
+\begin{align*}
+\int_{0}^{2}\left(x^{2}+1\right)\ud x 	&=\left[\frac{1}{3}x^{3}+x\right]_{0}^{2}\\
+						&=\frac{1}{3}(2)^{3}+2-\left(\frac{1}{3}(0)^{3}+0\right)\\
+						&=\frac{8}{3}+2-0\\
+						&=\frac{14}{3}
+\end{align*}
+which is what we claimed was the exact value above.\\
+
+Note that we can use any antiderivative since the constant piece will cancel out in the difference for example if we took
+\begin{equation*}
+F_{2}(x)=\frac{1}{3}x^{3}+c,
+\end{equation*}
+then 
+\begin{equation*}
+\left[\frac{1}{3}x^{3}+x+c\right]_{0}^{2}=\frac{14}{3}+c-\left(0+c\right)=\frac{14}{3}+c-c=\frac{14}{3}.
+\end{equation*}
+This is why we always take the simplest antiderivative when evaluating definite integrals.
+\end{ex}
+
+
+\begin{ex}
+Consider the function $f(x)=x^{4}+2x^{2}+2$ and calculate its integral over the interval $[0,1]$. Recall that an antiderivative of this function is
+\begin{equation*}
+F(x)=\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x,
+\end{equation*}
+so using \cref{eq: ftc I} the definite integral is
+\begin{align*}
+\int_{0}^{1}\left(x^{4}+2x^{2}+2\right)\ud x 	&=\left[\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x\right]_{0}^{1}\\
+								&=\frac{1}{5}+\frac{2}{3}+2 -0\\
+								&=\frac{43}{15}.
+\end{align*}
+\end{ex}
+
+As with derivatives you will not evaluate every integral by finding an antiderivative. You will become familiar with a range of standard integrals, and techniques for evaluating integrals so that you do not have to calculate an antiderivative every time. The techniques of substitution and integration by parts that we met above are very useful here. Though we now need to be careful about what happens to the limits when we perform a substitution and when dealing with the total derivative part of integration by parts.
+
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int_{0}^{1}\frac{1}{x^{2}+1}\ud x.
+\end{equation*}
+We evaluated the indefinite integral above using the substitution $x=\tan(u)$ which meant that
+\begin{equation*}
+\int\frac{1}{x^{2}+1}\ud x=\int\ud u.
+\end{equation*}
+The new step is that we need to look at what happens to the limits of the integral upon substitution. e.g. find the values of $u$ such that $\tan(u)=0$ and $\tan(u)=1$, remembering that we need to work in radians. In this case $\tan(0)=0$ and $\tan(\uppi/4)=1$ so we have that 
+\begin{equation*}
+I=\int_{0}^{1}\frac{1}{x^{2}+1}\ud x=\int_{0}^{\frac{\uppi}{4}}\ud u=\left[u\right]^{\frac{\uppi}{4}}_{0}=\frac{\uppi}{4}.
+\end{equation*}
+\end{ex}
+
+Any time you use integration by substitution for a definite integral you similarly need to keep track of how the limits transform under the substitution.
+
+With integration by parts the identity in \cref{eq: integration by parts} is modified to become
+\begin{equation}
+\int^{b}_{a} f(x)\frac{\ud g}{\ud x}\ud x =\left[f(x)g(x)\right]_{a}^{b}-\int_{a}^{b}\frac{\ud f}{\ud x}g(x)\ud x.
+\end{equation}
+In other words we need to evaluate the total derivative at the limits of integration.
+
+\begin{ex}
+Consider the integral
+\begin{equation*}
+I=\int_{1}^{2}\ln(x)\ud x.
+\end{equation*}
+We saw above that integration by parts gave that 
+\begin{equation*}
+\int\ln(x)\ud x=x\ln(x)-x+c.
+\end{equation*}
+
+
+\end{ex} 
+
+
 
 \section{Applications of integrals}
 As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.
