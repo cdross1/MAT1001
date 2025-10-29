@@ -414,7 +414,136 @@ As mentioned in the second step, if there are repeated roots this becomes tricki
 
 \section{Definite integrals}
 
-In the previous section we focussed on antiderivatives and indefinite integrals, now we return to the original motivation for the integral, as the measure of the area under a curve. This is called a definite integral and returns a number rather than a function as it involves us carrying out a definite integral and then evaluating the result at the end points. This may sound confusing at first but we will learn how to do it by seeing some examples.
+In the previous section we focussed on antiderivatives and indefinite integrals, now we return to the original motivation for the integral, as the measure of the area under a curve. This is called a definite integral and returns a number rather than a function as it involves us carrying out a definite integral and then evaluating the result at the end points. This may sound confusing at first but we will learn how to do it by seeing some examples.\\
+
+To start consider the function $f(x)=x^{2}+1$ on the interval $[0,2]$, the full details of this example are given in \cite{calcI}. The idea is that we want to find teh area enclosed between the curve and the $x$-axis, shown in \cref{fig: first integral}. Once we can integrate we will eb able to compute this exactly, but for now we should consider how to approximate this area.\\
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function x squared plus one.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+ \draw[-, color =CDred ] (0,0) -- (0,1) ;
+  \draw[-, color =CDred ] (4,0) -- (4,5);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+    \end{tikzpicture}
+    \caption{A plot of our favourite function $f(x)=x^{2}+1$.}
+        \label{fig: first integral}
+\end{figure}
+
+A shape that we understand how to calculate the area of really well is a rectangle. If a rectangle has height $\Delta y$ and base length $\Delta x$ then its area is $\Delta x \times \Delta y$. The aim is then to find the area under the curve by breaking it up into rectangles with a regular width. We do this by splitting up the interval, $[0,2]$ in this case, into $n$ subintervals. This will give us an approximation of the area which will improve the more sub integrals we take, in other words the larger that $n$ is. The width of a subinterval is then 
+\begin{equation*}
+\Delta x=\frac{2-0}{n}=\frac{2}{n}.
+\end{equation*}
+In general it will be $\Delta x=(b-a)/n$, where the interval is $[a,b]$. \\
+
+We will choose the height of the intervals so that the agree with the value of $f$ at the right hand side of the subinterval. For example if $n=4$ we have four subintervals of length $1/2$, 
+\begin{equation*}
+\left[0,\frac{1}{2}\right], \quad \left(\frac{1}{2},1\right], \quad \left(1,\frac{3}{2}\right], \quad \left(\frac{3}{2},2\right].
+\end{equation*}
+In the each sub interval we take the height of our rectangle to be 
+\begin{align*}
+f\left(\frac{1}{2}\right)&=\frac{5}{4},\\
+f(1)&=2,\\
+f\left(\frac{3}{2}\right)&=\frac{13}{4},\\
+f(2)&=5.
+\end{align*}
+Plotting the rectangles we get the picture in \cref{fig: approximate area}, note that the area of the rectangles is larger than the area under the curve. As an exercise consider the case where we take the rectangle to have the height of the function on the left boundary of the integral, what changes?\\
+
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function x squared plus one with rectangles approximating the area under the curve.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+  \draw[-, color =CDgreen ] (4,0) -- (4,5);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+\draw[-, color =CDgreen ] (1,0) -- (1,2) ;
+\draw[-, color =CDgreen ] (2,0) -- (2,3.25);
+\draw[-, color =CDgreen ] (3,0) -- (3,5) ;
+ \draw[-, color =CDgreen ] (0,1.25) -- (1,1.25);
+\draw[-, color =CDgreen ] (1,2) -- (2,2);
+\draw[-, color =CDgreen ] (2,3.25) -- (3,3.25) ;
+\draw[-, color =CDgreen ] (3,5) -- (4,5);
+    \end{tikzpicture}
+    \caption{A plot of  $f(x)=x^{2}+1$ with rectangles approximating the area under the curve.}
+        \label{fig: approximate area}
+\end{figure}
+
+Now lets calculate the area of each of these integrals by multiplying the width, $1/2$ for all four, by the height:
+\begin{align*}
+A_{1}&=\frac{1}{2}\times\frac{5}{4}=\frac{5}{8} ,\\
+A_{2}&=\frac{1}{2}\times 2=1,\\
+A_{3}&=\frac{1}{2}\times\frac{13}{4}=\frac{13}{8},\\
+A_{4}&=\frac{1}{2}\times 5=\frac{5}{2}.
+\end{align*}
+Adding all of these together gives
+\begin{align*}
+A_{r} 	&=A_{1}+A_{2}+A_{3}+A_{4}\\
+	&=\frac{5}{8}+1+\frac{13}{8}+\frac{5}{2}\\
+	&=\frac{23}{4}=5.75.
+\end{align*}
+
+If we had taken the heights at the end points we would have found $A_{l}=37/8 =4.625$, which is an underestimate of the area, again I invite you to check the details for yourself, or look at \cite{calcI} which goes through it.\\
+
+Finally, we could make a third choice where we take the height of the rectangle to be the value of the function at the midpoint, shown in \cref{fig: approximate area mid}, then we find that the area is $A_{m}=37/8=4.625$.\\
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function x squared plus one with rectangles approximating the area under the curve.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+  \draw[-, color =CDgreen ] (4,0) -- (4,4.0625);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+\draw[-, color =CDgreen ] (1,0) -- (1,1.5625) ;
+\draw[-, dashed] (0.5,0) -- (0.5,1.0625);
+\draw[-, dashed](1.5,0)--(1.5,1.5625);
+\draw[-, dashed] (2.5,0) -- (2.5,2.5625);
+\draw[-, dashed](3.5,0)--(3.5,4.0625);
+\draw[-, color =CDgreen ] (2,0) -- (2,2.5625);
+\draw[-, color =CDgreen ] (3,0) -- (3,4.0625) ;
+\draw[-, color =CDgreen ] (4,0) -- (4,4.0625) ;
+ \draw[-, color =CDgreen ] (0,1.0625) -- (1,1.0625);
+\draw[-, color =CDgreen ] (1,1.5625) -- (2,1.5625);
+\draw[-, color =CDgreen ] (2,2.5625) -- (3,2.5625) ;
+\draw[-, color =CDgreen ] (3,4.0625) -- (4,4.0625);
+    \end{tikzpicture}
+    \caption{A plot of  $f(x)=x^{2}+1$ with rectangles approximating the area under the curve.}
+        \label{fig: approximate area mid}
+\end{figure}
+
+You will see that the value of the value of the area that we calculate depends on the size of our rectangles. This should not be surprising, but suggests that we need a more systematic way to do this, which enables us to find a unique answer. This is what integration will give us. Once we have the machinery of integration we can calculate the actual area under the curve to be $A=14/3=4.67$. So the mid point method above is the closest to the true value.\\
+
+This leads us to the concept of the \textbf{Riemann sum}\footnote{Bernhard Riemann was a German Mathematician who contributed to many different areas of mathematics and is maybe most famous for the Riemann hypothesis about the distribution of prime numbers.}.  Consider a function plotted over an interval. Split the integral into $n$ subintervals each of width $\Delta x$ as above. Then pick a point $x_{i}^{\star}$ in each sub interval and use the rectangle of height $f(x_{i}^{*})$ as our approximation for the area of the function over that sub interval. The total area is then
+\begin{equation}
+A\simeq f(x_{1}^{*})\Delta x+f(x_{2}^{*})\Delta x +\cdots + f(x_{i}^{*})\Delta x+\cdots +f(x_{n}^{*})\Delta x=\sum_{i=1}^{n} f(x_{i}^{*})\Delta x.
+\end{equation}
+
+This approximation gets better and better the more subintervals we take, as they will become narrower and narrower, and their height becomes a better match for the functions value over that interval. If we could take the limit of $n\to \infty$ the sub intervals will become a single point and the height is the value of the function at that point. The sum would then become the exact area,
+\begin{equation}
+A=\lim_{n\to\infty}\sum_{i=1}^{n} f(x_{i}^{*})\Delta x.
+\end{equation}
+
+It is important to note that if our function was below the $x$-axis, then we would get a negative answer for the area. This is because we take the heights of the rectangles to be the value of the value of the function at some point in the interval. So if the function takes negative values, we will find a negative area.\\
+
+This is a feature and not a bug! The integral will be a signed count of the area under a curve. This does mean that if a function crosses the axis in the interval that we are interested in, we will need to be careful whether we are interested in the net area under the curve, the difference between the positive and negative areas, or the total area, which does not care about the sign.
+
+
+\begin{exercise}
+Consider the function $x^{2}-4$ on the interval $[0,2]$. Take $n=8$ and use the midpoint approach to estimate the area between the function and the $x$-axis. You should find $A_{m}=-171/32$.
+\end{exercise}
 
 \section{Applications of integrals}
 As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.

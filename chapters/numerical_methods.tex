@@ -397,6 +397,53 @@ The absolute error of a numerical method is the difference between the true solu
 
 We say that an iteration scheme converges when it subsequent iterations do not change the value of $x_{n}$, at least to the accuracy that we are looking for. Not every method will converge for a given problem, We have already seen that Newton's method does not converge for the cube root, $\sqrt[3]{x}$. You will gain experience of which methods works best for which type of of problem. In this module, you will mainly be using Newton's method so you need to remember that it can fail.
 
+\section{Approximating functions}
+Through much of this module we have been discussing functions and how to work with them. Now we will look at a method for approximating functions using polynomials. This is one of the reasons that we spent so long discussing polynomials at the start. If we can understand polynomials then we can get a good idea of how many functions behave.\\
+
+If we have time, in \cref{sec:advanced topics} we will discuss the continuous analogue of this which goes by the name of the \textbf{Taylor} or \textbf{Maclaurin} series. However, to understand these properly, we need to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using a discrete method known as the \textbf{Newton interpolating polynomial}, or \textbf{Newton's divided difference method}.\\
+
+The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \cite{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \cite{lissamen2004mei} is can a formula be found which fits all of these points. The 
+
+
+\begin{table}[ht]
+\centering
+\caption{Measurements of the average height increase per year at various ages taken from \cite{lissamen2004mei}.}
+
+\vspace{2mm}
+
+\label{table:heights}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|} 
+ \hline
+Age in years& $2$ &$6$ & $10$& $14$& $18$\\
+ \hline
+Rate of Growth in cm per year & $7.8$ & $6.0$ & $4.8$&$7.0$&$1.1$\\
+ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function that fits the heights.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (9.2,0) node[below] {Age (years)};
+  \draw[->] (0,-0.2) -- (0,8)node[above]{Growth rate (cm per year)};
+ \draw[color=CDnavy, domain=0:9]   plot[samples=300] (\x ,{ 4.13984375 + (3.34791667*2)*\x - (0.91315104*(2)^(2))*\x^(2)+(0.08177083*(2)^(3))*\x^(3) - (0.00232747*(2)^(4))*\x^(4)}) ;
+ \draw[step=1cm,gray,very thin] (0,0) grid (9,8);
+ %node[right] {$f(x)=x^{5}-3x^3+2x-4$};
+\filldraw[black] (1,7.8) circle (1pt);
+\filldraw[black] (3,6.0) circle (1pt) ;
+\filldraw[black] (5,4.8) circle (1pt);
+\filldraw[black] (7,7.0) circle (1pt) ;
+\filldraw[black] (9,1.1) circle (1pt) ;
+    \end{tikzpicture}
+    \caption{A plot of the function which fits the heights from \cref{table:heights} with an approximate polynomial fitted. The polynomial does not quite go through all of the points but passes close to all of them.}
+        \label{fig: heights fit}
+\end{figure}
+
 \section{Numerical differentiation}
 
 \section{Numerical integration}
