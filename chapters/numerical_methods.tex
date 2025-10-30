@@ -400,9 +400,17 @@ We say that an iteration scheme converges when it subsequent iterations do not c
 \section{Approximating functions}
 Through much of this module we have been discussing functions and how to work with them. Now we will look at a method for approximating functions using polynomials. This is one of the reasons that we spent so long discussing polynomials at the start. If we can understand polynomials then we can get a good idea of how many functions behave.\\
 
+In essence this function is all about fitting data points, or establishing if there is a relationship or trend between known data. We are not framing it like this here but if you go on to take any statistics or data analysis modules then the approximation ideas here will prove useful to you.
+
 If we have time, in \cref{sec:advanced topics} we will discuss the continuous analogue of this which goes by the name of the \textbf{Taylor} or \textbf{Maclaurin} series. However, to understand these properly, we need to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using a discrete method known as the \textbf{Newton interpolating polynomial}, or \textbf{Newton's divided difference method}.\\
 
-The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \cite{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \cite{lissamen2004mei} is can a formula be found which fits all of these points. The 
+The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \cite{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \cite{lissamen2004mei} is can a formula be found which fits all of these points. The formula given in \cite{lissamen2004mei} is
+\begin{equation*}
+f(x)=4.13984375+3.34791667x-0.91315104x^{2}+0.08177083x^{3}-0.00232747x^{4}.
+\end{equation*}
+The intuition behind this is that we first guess that the function has the form of a straight line $f(x)=mx+c$, notice that this does not fit the data, then add higher order monomials such as $x^{2},x^{3},x^{4}$ with appropriate sized coefficients until we get the correct shape and the curve passes through, or close to, the points. \\
+
+By the end of this section you will know how to calculate the approximate function which fits the given data.\\
 
 
 \begin{table}[ht]
@@ -443,6 +451,160 @@ Rate of Growth in cm per year & $7.8$ & $6.0$ & $4.8$&$7.0$&$1.1$\\
     \caption{A plot of the function which fits the heights from \cref{table:heights} with an approximate polynomial fitted. The polynomial does not quite go through all of the points but passes close to all of them.}
         \label{fig: heights fit}
 \end{figure}
+
+Following \cite{lissamen2004mei}, we will use the notation in \cref{table:notation}. We start our labelling from the left most point and moving rightwards until we get to the last point. Here we are taking $x$ values that have a constant spacing which we denote by $h$\footnote{If this seems suggestive of our notation when doing differentiation from first principles, that is on purpose. The separation between points is precisely what we want to take to zero to get the derivative. }.\\
+
+
+\begin{table}[ht]
+\centering
+\caption{Our standard notation for putting a list of $n$ points and the values the true function takes at these points into a table.}
+
+\vspace{2mm}
+
+\label{table:notation}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|} 
+ \hline
+$x$& $x_{0}$ &$x_{1}$ & $x_{2}$& $x_{3}$& $x_{4}$&\dots&$x_{n}$\\
+ \hline
+$f(x)$ & $f(x_{0})$ & $f(x_{1})$ & $f(x_{2})$&$f(x_{3})$&$f(x_{4})$&\dots&$f(x_{n})$\\
+ \hline
+\end{tabular}
+\end{table}
+
+One approach to finding the polynomial is via a finite difference table. This is a means of keeping track of the points, the values of the function at the points, the differences between the values of the function at neighbouring points, the differences between the differences, and so on.\\
+
+As usual we take $\Delta$ to mean the change in some quantity. Here it is technically being used to denote the \textbf{forward difference operator},
+\begin{equation}
+\Delta f_{0}=f_{1}-f_{0}, \quad \Delta f_{1}=f_{2}-f_{1}, \quad \dots, \Delta f_{n-1}=f_{n}-f_{n-1}.
+\label{eq: forward differences}
+\end{equation}
+
+This is called the forward difference because it is defined as $f_{1}-f_{2}$, e.g we subtract the value of the function at the point on the left from the value at the point on the left. There is a corresponding \textbf{backward difference operator} coming from considering $f_{0}-f_{1}$. We will not consider backwards differences here, but you can come up with an alternative method using them. If you go into numerical analysis, or solving real world problems by writing computer programmes then you will need to be familiar with both methods.\\
+
+The differences between differences are then denoted
+\begin{equation}
+\Delta^{2}f_{0}=\Delta f_{1}-\Delta f_{0}, \quad \Delta^{2}f_{1}=\Delta f_{2}-\Delta f_{1}, \dots.
+\end{equation}
+If we wanted to we can keep going with differences of differences of differences etc. How far you go will depend on the specific problem,  as well as how precise you want your approximation to be. 
+
+A convenient way to keep track of everything is to put it all in a table as in \cref{table: fd1} which has four points and works up to third order differences $\Delta^{3}f_{i}$. If we wanted to include more differences then we would need to add more columns. 
+
+
+\begin{table}[ht]
+\centering
+\caption{A finite difference table with four points working up to the third differences.}
+
+\vspace{2mm}
+
+\label{table: fd1}
+
+
+
+\begin{tabular}{|c|c|c|c|c|} 
+ \hline
+$x_{i}$& $f_{i}$ & $\Delta f_{i}$ & $\Delta^{2} f_{i}$ & $\Delta^{3}f_{i}$\\
+ \hline
+$x_{0}$ & $f_{1}$ & & & \\
+ \hline
+ & & $\Delta f_{0}=f_{1}-f_{0}$ & & \\
+ \hline
+ $x_{1}$&$f_{1}$& &$\Delta^{2}f_{0}=\Delta f_{1}-\Delta f_{0} $ & \\
+ \hline
+ & & $\Delta f_{1}=f_{2}-f_{1}$ & &$\Delta^{3}f_{0}=\Delta^{2}f_{1}-\Delta^{2}f_{0}$ \\
+ \hline
+ $x_{2}$&$f_{2}$& &$\Delta^{2}f_{1}=\Delta f_{2}-\Delta f_{1}$  & \\
+ \hline
+  & &$\Delta f_{2}=f_{3}-f_{2}$ & & \\
+ \hline
+ $x_{3}$&$f_{3}$& & & \\
+ \hline
+\end{tabular}
+\end{table}
+
+\begin{ex}
+If we consider the data in \cref{table:heights} and work to fourth order differences we get the table in \cref{table: fd ex1}. This finite difference table is what we can use to construct the approximate function.
+\begin{table}[ht]
+\centering
+\caption{A finite difference table with four points working up to the third differences for the data in \cref{table:heights}.}
+
+\vspace{2mm}
+
+\label{table: fd ex1}
+
+
+
+\begin{tabular}{|c|c|c|c|c|} 
+ \hline
+$x_{i}$& $f_{i}$ & $\Delta f_{i}$ & $\Delta^{2} f_{i}$ & $\Delta^{3}f_{i}$\\
+ \hline
+$2$ & $7.8$ & & & \\
+ \hline
+ & & $6-7.8 =-1.8$ & & \\
+ \hline
+ $4$&$6$& &$0-(-1.8)=1.8$ & \\
+ \hline
+ & & $6-6=0$ & &$0.5-1.8=-1.3$ \\
+ \hline
+ $6$&$6$& &$0.5-0=0.5$  & \\
+ \hline
+  & &$6.5-6=0.5$ & & \\
+ \hline
+ $8$&$6.5$& & & \\
+ \hline
+\end{tabular}
+\end{table}
+\end{ex}
+
+\begin{ex}
+Consider the quadratic function $f(x)=x^{2}+1$, working up to fourth order differences, this gives the finite difference table in \cref{table: fd ex2}. Notice that the third and fourth differences all vanish. 
+
+\begin{table}[ht]
+\centering
+\caption{A finite difference table with four points working up to the fourth order differences for the function $f(x)=x^{2}+1$.}
+
+\vspace{2mm}
+
+\label{table: fd ex2}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|} 
+ \hline
+$x_{i}$& $f_{i}$ & $\Delta f$ & $\Delta^{2} f$ & $\Delta^{3}f$&$\Delta^{4}f$\\
+ \hline
+$0$ 	& $1$	& 		&	 & 	& \\
+ \hline
+ 	& 		& $1$ 	& 	& 	&\\
+ \hline
+ $1$	&$2$		& 		&$2$ & 	& \\
+ \hline
+	 &  		& $3$ 	& 	&$0$	& \\
+ \hline
+ $2$	&$5$		& 		&$2$  & 	&$0$\\
+ \hline
+  	& 		&$5$ 	& 	& $0$&\\
+ \hline
+ $3$	&$10$	& 		&$2$ & 	&\\
+ \hline
+  	& 		&$7$ 	& 	& 	&\\
+ \hline
+  $4$	&$17$	& 		& 	&	& \\
+ \hline
+\end{tabular}
+\end{table}
+\end{ex}
+
+\begin{exercise}
+Construct the finite difference table, up to third order differences, for the linear function $f(x)=2x+1$.
+\end{exercise}
+\begin{exercise}
+Construct the finite difference table, up to third order differences, for a cubic function of your choice. How many differences do you think you need to include?
+\end{exercise}
+
+It is a general property of polynomials that for a polynomial with highest order term $x^{n}$, the $n$'th differences will be constant and all higher order differences will vanish.
 
 \section{Numerical differentiation}
 

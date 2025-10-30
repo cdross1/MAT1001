@@ -20,7 +20,7 @@ As the above quote from the \textit{Penguin Dictionary of Mathematics} says, int
     xmin=0, xmax=4.8,
     ymin=-1.1, ymax=1.1,
    xtick={1.57,3.14,4.712},
-   xticklabels={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$}, ]
+   xticklabels={$\frac{\uppi}{2}$,$\uppi$,$\frac{3\uppi}{2}$}, ]
     \addplot [CDnavy,name path=A,domain=0:4.712]
         {sin(\x r)};
  
@@ -61,12 +61,12 @@ As the above quote from the \textit{Penguin Dictionary of Mathematics} says, int
 
     \end{tikzpicture}
   %  }{graph of sin}
-    \caption{The graph of the sine function  $f(x)=\sin(x)$ with the area between the curve and the $x$-axis between $x=0$ and $x=3\pi/2$ shaded. Note that the total shaded area is $A=A_{1}+A_{2}$.}
+    \caption{The graph of the sine function  $f(x)=\sin(x)$ with the area between the curve and the $x$-axis between $x=0$ and $x=3\uppi/2$ shaded. Note that the total shaded area is $A=A_{1}+A_{2}$.}
         \label{fig: sine function graph shaded}
 \end{figure}
 
 
-The integral of a function over an interval is a measure of the signed area between the curve and the $x$-axis, with the convention that areas above the $x$-axis are positive and areas under the $x$-axis are negative.  This is shown for $f(x)=\sin(x)$ between $0$ and $3\pi/2$ in \cref{fig: sine function graph shaded}. When we discuss numerical methods of integration in \cref{sec:numerics} we will understand how to approximate these areas using thin rectangles as is shown in \cref{fig: integral approximation}. \\
+The integral of a function over an interval is a measure of the signed area between the curve and the $x$-axis, with the convention that areas above the $x$-axis are positive and areas under the $x$-axis are negative.  This is shown for $f(x)=\sin(x)$ between $0$ and $3\uppi/2$ in \cref{fig: sine function graph shaded}. When we discuss numerical methods of integration in \cref{sec:numerics} we will understand how to approximate these areas using thin rectangles as is shown in \cref{fig: integral approximation}. \\
 
 For now we will approach integration as the reverse of differentiation. In other words, if we have a function $f(x)$ we want to find the function whose derivative is $f(x)$.
 
@@ -94,7 +94,7 @@ This looks like we are done. However, recall that in \cref{eq: derivative of con
 \begin{equation*}
 F(x)=\frac{1}{5}x^{5}+\frac{2}{3}x^{3}+2x+c,
 \end{equation*}
-where $c$ can be any constant such as $0, 10, \pi, 11/25, -2, \dots$ , when we have our brief discussion in \cref{sec:diff eqs}, we will see that often there are conditions that we need to apply which determine the constant.  
+where $c$ can be any constant such as $0, 10, \uppi, 11/25, -2, \dots$ , when we have our brief discussion in \cref{sec:diff eqs}, we will see that often there are conditions that we need to apply which determine the constant.  
 \end{ex}
 
 Notice that since the constant in the example is arbitrary there are actually an infinite number of $F(x)$'s such that their derivative is the given $f(x)$. We call such functions $F(x)$ \textbf{antiderivatives} of $f(x)$.\\
@@ -655,17 +655,251 @@ We saw above that integration by parts gave that
 \begin{equation*}
 \int\ln(x)\ud x=x\ln(x)-x+c.
 \end{equation*}
-
+When we calculated this we took $f(x)=\ln(x)$ and $g(x)=x$ so that
+\begin{align*}
+I 	&=\int_{1}^{2}\ln(x)\ud x\\
+	&=\int_{1}^{2}\ln(x)\frac{\ud x}{\ud x}\\
+	&=\left[\ln(x)x\right]_{1}^{2}-\int{1}^{2}\ud x\\
+	&=2\ln(2)-\ln(1)-\left[x\right]_{1}^{2}\\
+	&=2\ln(2)-(2-1)\\
+	&=2\ln(2)-1.
+\end{align*}
 
 \end{ex} 
 
 
+\subsection*{Improper integrals}
+An important type of definite integrals are the \textbf{improper integrals}. These are definite integrals
+\begin{equation*}
+\int_{a}^{b}f(x)\ud x,
+\end{equation*}
+where either $f(x)$ becomes infinite for $a\leq x\leq b$, or one of the limits goes to infinity. \\
+
+The following integrals are improper:
+
+\begin{itemize}
+\item \begin{equation*}
+\int_{1}^{\infty}\frac{1}{x^{2}}\ud x,
+\end{equation*}
+because the upper limit is infinity,
+\item \begin{equation*}
+\int_{0}^{1}\frac{1}{\sqrt{x}}\ud x
+\end{equation*}
+because $1/\sqrt{x}$ becomes infinite for $x=0$.
+\item \begin{equation*}
+\int_{1}^{\infty}\sin(x)\ud x,
+\end{equation*}
+because the upper limit is infinity,
+\end{itemize}
+
+It turns out that some improper integrals can still give sensible results, we just need to interpret them properly.\\
+
+First up, we reinterpret them using a limit so that
+\begin{align*}
+\int_{1}^{\infty}\frac{1}{x^{2}}\ud x 	&=\lim_{X\to \infty}\int_{1}^{X}\frac{1}{x^{2}}\ud x\\
+						&=\lim_{X\to \infty}\left[-\frac{1}{x}\right]_{0}^{X}\\
+						&=\lim_{X\to \infty}\left(1-\frac{1}{X}\right)\\
+						&=1.
+\end{align*}
+Thus the improper integral gives us a sensible answer.
+
+Next consider
+\begin{align*}
+\int_{0}^{1}\frac{1}{\sqrt{x}}\ud x 	&=\lim_{X\to 0}\int_{X}^{1}\frac{1}{\sqrt{x}}\ud x\\
+						&=\lim_{X\to 0}\left[2\sqrt{x}\right]_{X}^{1}\\
+						&=\lim_{X\to 0}2\left(1-\sqrt{X}\right)\\
+						&=2.
+\end{align*}
+
+When we can reinterpret improper integrals using limits and get a finite answer we say that the integral is \textbf{convergent}. However, this does not always work as sometimes the improper integral is \textbf{divergent}. 
+
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int_{0}^{\infty}\sin(x)\ud x.
+\end{equation*}
+If we try to interpret it as above we find that
+\begin{align*}
+I 	&=\int_{0}^{\infty}\sin(x)\ud x\\
+	&=\lim_{X\to\infty}\int_{0}^{X}\sin(x)\ud x\\
+	&=\lim_{X\to\infty}\left[-\cos(x)\right]_{0}^{X}\\
+	&\lim_{X\to\infty}\left(1-\cos(x)\right)
+\end{align*}
+which does not converge as $\cos(x)$ oscillates between $-1$ and $1$.
+\end{ex}
+
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int_{0}^{\infty}x\ud x.
+\end{equation*}
+We can attempt to evaluate this as follows:
+\begin{align*}
+I 	&=\int_{0}^{\infty}x\ud x\\
+	&=\lim_{X\to \infty}\int_{0}^{X}x\ud x\\
+	&=\lim_{X\to \infty}\left[\frac{1}{2}x^{2}\right]_{0}^{X}\\
+	&=\lim_{X\to\infty}\frac{1}{2}X^{2},
+\end{align*}
+which tends to infinity, so this is another divergent integral.
+\end{ex}
+
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int_{0}^{1}\frac{1}{x}\ud x.
+\end{equation*}
+We attempt to evaluate this as follows:
+\begin{align*}
+I 	&=\int_{0}^{1}\frac{1}{x}\ud x\\
+	&=\lim_{X\to 0^{+}}\int_{X}^{1}\frac{1}{x}\ud x\\
+	&=\lim_{X\to 0^{+}}\left[\ln(x)\right]_{X}^{1}\\
+	&=\lim_{X\to 0^{+}}\left(-\ln(X)\right),
+\end{align*}
+which again tends to infinity.
+\end{ex}
+
+\subsection*{Splitting the range}
+Another useful technique for evaluating definite integrals is to split the range of integration. For example if we are interested in the integral of 
+\begin{equation*}
+\vert x\vert=\begin{cases}
+&0 \quad x < 0\\
+&1 \quad x\geq 0,
+\end{cases}
+\end{equation*}
+between $-1$ and $1$. Because the function changes when the interval goes from negative to positive we need to split the integral using the identity that we learnt above:
+\begin{align*}
+\int_{-1}^{1}\vert x\vert\ud x 	&=\int_{-1}^{0}\vert x\vert\ud x+\int_{0}^{1}\vert x\vert\ud x\\
+					&=-\int_{-1}^{0}x\ud x+\int_{0}^{1}x\ud x\\
+					&=-\frac{1}{2}\left[x^{2}\right]_{-1}^{0}+\frac{1}{2}\left[x^{2}\right]_{0}^{1}\\
+					&=\frac{1}{2}+\frac{1}{2}=1.
+\end{align*}
+
+\begin{exercise}
+Evaluate the integral
+\begin{equation*}
+I=\int_{-\frac{\uppi}{2}}^{\frac{\uppi}{2}}\sin\left(\vert x\vert\right)\ud x
+\end{equation*}
+by splitting the range of the integral.
+\end{exercise}
+
+\subsection*{Symmetries of functions}
+Before moving on to some applications of integration we have time to learn one more useful trick. We call a function $f(x)$ even if 
+\begin{equation}
+f(-x)=f(x)
+\label{eq: even fn}
+\end{equation}
+and we call it odd if
+\begin{equation}
+f(-x)=-f(x).
+\label{eq: odd fn}
+\end{equation}
+In other words an even function does not care about the sign of its argument, while and odd function changes sign if its argument does.
+
+An example of an even function is $\cos(x)$ while $\sin(x)$ is an odd function.
+
+\begin{exercise}
+Can you come up with more examples of even and odd functions? 
+\end{exercise}
+
+When we integrate an even function over a symmetric range, $[-a,a]$ we have that 
+\begin{equation}
+\int_{-a}^{a}f(x)\ud x=2\int_{0}^{a}f(x)\ud x.
+\end{equation}
+
+while if we integrate an odd function over the same region it will vanish,
+\begin{equation}
+\int_{-a}^{a}f(x)\ud x=0.
+\end{equation}
+
+\begin{exercise}
+Prove that these formulae are true. Hint: You will want to use the range splitting that we learnt about  previously.
+\end{exercise}
 
 \section{Applications of integrals}
-As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.
+As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.\\
 
 \subsection*{Averaging functions}
 
-\subsection*{Areas between curves}
+The average value of a continuous function $f(x)$ can be calculated by integration. For  a discrete set of $n$ numbers $\{x_{1},x_{2},\dots, x_{n}\}$ the average  is given by
+\begin{equation*}
+\bar{x}=\sum_{i=1}^{n}\frac{x_{i}}{n}.
+\end{equation*}
+If we went back to the Riemann sum definition of the integral in \cref{eq: Riemann Sum}, then it can be shown that for a continuous function on the interval $[a,b]$ that
+\begin{equation}
+f_{\text{avg}}=\frac{1}{b-a}\int_{a}^{b}f(x)\ud x.
+\label{eq: average function}
+\end{equation}
 
-%\subsection*{Uses in mechanics}
+\begin{mdiv}
+In this module you do not need to know where the identity in \cref{eq: average function} comes from, but if you are interested a proof is included in the Proof of Various Integral Properties section of \cite{calcI}. Going through the proof of the result shows you that this is the natural extension of the concept of an average to a continuous function. In a module for mathematicians, we would also be learning some interesting results on upper bounds of the value of an integral, called the \textbf{ML Lemma} in many places, where we can show that under some assumptions that 
+\begin{equation*}
+\left|\int_{a}^{b}f(x)\ud x\right| \leq M L,
+\end{equation*}
+where $L=b-a$ is the length of the interval, and $M$ is an upper bound on the value of $ \vert f(x)\vert$ over the interval.
+\end{mdiv}
+
+\begin{ex}
+We can find the average of $f(x)=\sin(x)$ on the interval $[0,\uppi]$ as follows:
+\begin{align*}
+f_{\text{avg}} 	&=\frac{1}{b-a}\int_{a}^{b}f(x)\ud x\\
+			&=\frac{\uppi-0}\int_{0}^{\uppi}\sin(x)\ud x\\
+			&=\frac{1}{\uppi}\left[-\cos(x)\right]_{0}^{\uppi}\\
+			&=\frac{2}{\uppi}
+\end{align*}
+\end{ex}
+
+\begin{exercise}
+Find the average value of $\cos(x)$ over the interval $[0,2\uppi]$.
+\end{exercise}
+
+In some applications it is the average value of the function so you can use this approach to calculate it.
+
+\subsection*{Areas between curves}
+\textcolor{red}{This subsection is currently lacking pictures, this will be added eventually.}\\
+
+
+When we introduced the integral we gave the intuition to think of it as the area between the curve given by $y=f(x)$ and the $x$-axis.  Now the $x$-axis is just the curve given by $y=0$, so a natural question to ask is if we can use an integral to calculate the area between two curves. The answer is yes. \\
+
+Consider two functions $f(x),g(x)$ on the interval $[a,b]$. The area is given by the integral of the difference between these two function $f(x)-g(x)$ or $g(x)-f(x)$, but we need to decide which way round to calculate the difference. The convention is to look at the graphs of the functions and subtract the lower function from the upper function.\\
+
+This means that if $f(x)\geq g(x)$ for all $a\leq x\leq b$, the area between the curves is
+\begin{equation}
+A=\int_{a}^{b}\left(f(x)-g(x)\right)\ud x.
+\label{eq: integral for area}
+\end{equation}
+
+If we took the functions the other way around we would get the same numerical answer but with a negative sign. It is important that you always check which function is greater over the interval. This can be checked by producing a plot of the functions. If the functions cross in the interval, then you should split the integral in to two regions and evaluate these separately to find the total area enclosed between the two curves. There are some examples of problems like this in the Area Between Curves section of \cite{calcI}.
+
+\begin{ex}
+Consider the two functions $f(x)=x^{2}$ and $g(x)=x^{3}$ shown in \cref{fig: area between functions}. Over the interval $[0,1]$ $f(x)\geq g(x)$ so the area is given by
+\begin{equation*}
+A=\int_{0}^{1}\left(x^{2}-x^{3}\right)\ud x.
+\end{equation*}
+Evaluating this integral we find that
+\begin{align*}
+A 	&=\int_{0}^{1}\left(x^{2}-x^{3}\right)\ud x\\
+	&=\left[\frac{1}{3}x^{3}-\frac{1}{4}x^{4}\right]_{0}^{1}\\
+	&=\frac{1}{3}-\frac{1}{4}-0\\
+	&=\frac{1}{12}.
+\end{align*}
+\end{ex}
+\begin{figure}[ht]
+    \centering
+\ThisAltText{A plot of the functions x squared and x cubed over the interval from zero to one.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x, scale =2]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,2)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{ ((0.25)^(2))*\x^(2)}) ;
+  \draw[color=CDred, domain=0:4]   plot[samples=300] (\x ,{ ((0.25)^(3))*\x^(3)});
+  \filldraw[black] (4,0) circle (1pt)node[anchor=north]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+ \draw[-,dashed] (4,0) -- (4,1);
+    \end{tikzpicture}
+    \caption{A plot of the functions $f(x)=x^{2}$ and $g(x)=x^{3}$ over the interval $[0,1]$.}
+        \label{fig: area between functions}
+\end{figure}
+
+
+\begin{exercise}
+Calculate the area between the curves $\cos(x)$ and $\sin(x)$ over the interval $[0,\uppi/4]$.
+\end{exercise}
