@@ -482,7 +482,7 @@ Calum Ross
 <div class="titledate">
 
 <p>
-Last modified: October 30, 2025
+Last modified: November 1, 2025
 </p>
 </div>
 
@@ -11686,9 +11686,9 @@ The idea behind integration by substitution is to consider an integral like
 
 <!--
 
-                                                                                                                                       Z         p
-                                                                                                                                                 3
-                                                                                                                                  I=       3x2   x3 + 4dx.
+                                                                                                                                       Z          p
+                                                                                                                                                  3
+                                                                                                                                I=          3x2    x3 + 4dx.
 
 
 -->
@@ -11709,9 +11709,9 @@ We then observe that if we let \(u=x^{3}+4\) and differentiate \(u\) with respec
 
 <!--
 
-                                                                                                                                           du
-                                                                                                                                              = 3x2 .
-                                                                                                                                           dx
+                                                                                                                                            du
+                                                                                                                                               = 3x2 .
+                                                                                                                                            dx
 -->
 
 <p>
@@ -11730,11 +11730,11 @@ Then we see that we can rewrite \(I\) as
 
 <!--
 
-                                                                                                                                           Z
-                                                                                                                                               du √
-                                                                                                                                                  3
-                                                                                                                                    I=              udx.
-                                                                                                                                               dx
+                                                                                                                                            Z
+                                                                                                                                                du √
+                                                                                                                                                   3
+                                                                                                                                       I=            udx.
+                                                                                                                                                dx
 
 -->
 
@@ -11757,7 +11757,7 @@ Remember back in chapter&nbsp;<a href="Differentiation.html#sec:differentiation"
 
                                                              Z               Z
                                                                                             du
-                                                                 f (u)du =       f (u(x))      dx.                                                               (4.7)                                          --><a id="eq:    measure change of variable"></a><!--
+                                                                 f (u)du =       f (u(x))      dx.                                                             (4.7)                                            --><a id="eq:    measure change of variable"></a><!--
                                                                                             dx
 
 -->
@@ -11778,20 +11778,20 @@ This means that in our above integral we can rewrite \(\frac {\ud u}{\ud x}\ud x
 
 <!--
 
-                                                                                                                              Z                  Z
-                                                                                                                                  du √
-                                                                                                                                     3
-                                                                                                                                                     √
-                                                                                                                                                     3           3 4
-                                                                                                                         I=            udx =             udu =     u3 .
-                                                                                                                                  dx                             4
+                                                                                                                  Z                Z
+                                                                                                                      du √
+                                                                                                                         3
+                                                                                                                                       √
+                                                                                                                                       3           3 4        3 3    4
+                                                                                                             I=            udx =           udu =     u3 + c =   x + 4 3 + c.
+                                                                                                                      dx                           4          4
 
 -->
 
 <p>
 
 \begin{equation*}
-I=\int \frac {\ud u}{\ud x}\sqrt [3]{u}\ud x=\int \sqrt [3]{u}\ud u=\frac {3}{4}u^{\frac {4}{3}}.
+I=\int \frac {\ud u}{\ud x}\sqrt [3]{u}\ud x=\int \sqrt [3]{u}\ud u=\frac {3}{4}u^{\frac {4}{3}}+c=\frac {3}{4}\left (x^{3}+4\right )^{\frac {4}{3}}+c.
 \end{equation*}
 
 </p>
