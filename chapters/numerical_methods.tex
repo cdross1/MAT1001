@@ -179,6 +179,59 @@ $n$& $A_{n}$ &$f(A_{n})$& $B_{n}$ & $f(B_{n})$& $x_{n}$& $f(x_{n})$\\
 We can see from this example that the linear interpolation method is much slower than rearrangement method, this will not always be true, but is your first hint that you should play around with several approaches before settling on the one that works the best. If you are writing code for these problems, then it is a good idea to have code that can implement any of the iteration schemes that we are discussing here.
 
 \subsection*{Bisection method}
+Another method for finding roots is the Bisection method.  Consider a root $a$ of a function $f(x)$.  The idea here is to guess two points, one on either side of the root $a$, and then keep shrinking the size of the interval until we have an estimate of the value of the root. Since the function is zero at the root, we can check that we have actually picked points on either side of the root by checking that the function has different signs on either side  of the interval.\\
+
+\begin{ex}
+Consider the function $f(x)=x^{4}+2x-2$, we start by guessing that the root is contained in the interval $[1/2, 1]$. We can check this by computing that $f(1/2)=-0.9375$ while $f(1)=1$. Since the function changes sign across the interval, we know that it has a zero in the interval. We call the left end of teh interval $a_{0}$ and the right end $b_{0}$, and for each step of refining the interval we will have an $a_{r}$ and a $b_{r}$. To narrow down the position of the root we find the mid point of the interval and evaluate the function there:
+\begin{equation*}
+c_{1}=\frac{a_{1}+b_{1}}{2}=\frac{1/2 +1}{2}=\frac{3}{4}=0.75.
+\end{equation*}
+and $f(0.75)=-0.1836$. Since this is still negative we then know that the root lies in the interval $[0.75,1]$ and again we can find the new mid point:
+\begin{equation*}
+c_{2}=\frac{a_{2}+b_{2}}{2}=\frac{0.75 +1}{2}=0.875,.
+\end{equation*}
+with $f(0.875)=0.3362$. Since this is positive we can again restrict the interval to $[0.75,0.875]$. We can keep repeating this until we get the desired precision. Though it is much easier to do this in a table,  as seen in \cref{table:bisection}
+
+\begin{table}[ht]
+\centering
+\caption{Successive approximations to the root of $x^{4}+2x-2$ using the bisection method. }
+
+\vspace{2mm}
+
+\label{table:bisection}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|} 
+ \hline
+ $r$& $a_{r}$ &sign of $f(a_{r})$& $b_{r}$ & sign of $f(b_{r})$& $c_{r}$& sign of  $f(c_{r})$\\
+ \hline
+ $1$ & $0.500000$ & $-$& $1.000000$ &$+$& $0.750000$&  $-$\\
+ \hline
+ $2$& $0.750000$&  $-$&$1.000000$ &$+$& $0.875000$&$+$\\
+ \hline
+ $3$& $0.750000$&  $-$ &$0.875000$&$+$& $0.812500$ & $+$ \\
+ \hline
+ $4$& $0.750000$&  $-$ & $0.812500$ & $+$ & $0.781250$ & $-$\\
+ \hline
+ $5$& $0.781250$ & $-$ &$0.812500$ & $+$  & $0.796875$ & $-$\\
+ \hline
+ $6$& $0.796875$ & $-$ &$0.812500$ & $+$  & $0.804688$ & $+$\\
+ \hline
+  $7$& $0.796875$ & $-$ &$0.804688$ & $+$  & $0.800781$ & $+$\\
+ \hline
+   $8$& $0.796875$ & $-$ &$0.800781$ & $+$  & $0.798828$ & $+$\\
+ \hline
+\end{tabular}
+\end{table}
+
+If we want an answer to two decimal places we find that the root is at $x=0.80$. If we kept going we would find that to four decimal places the root is at $x=0.7976$.
+\end{ex}
+
+
+\begin{exercise}
+The function $f(x)=x^{3}+3x-5$ has a root between $1$ and $2$, use the method of bisection four times to find the root.
+\end{exercise}
 
 \subsection*{Newton's method}
 The main numerical method that is needed in this module is \textbf{Newton's method}, sometimes called the \textbf{Newton-Raphson} method. Newton's method finds the root by constructing the tangent to a curve through the initial point $x_{0}$, and then taking the next point $x_{1}$ to be where the tangent line intersects the $x$-axis.\\
@@ -608,7 +661,7 @@ It is a general property of polynomials that for a polynomial with highest order
 
 The polynomial built from the finite difference table is known as the interpolating polynomial. This gives the interpolating, or approximating function as
 \begin{equation}
-f(x)=f_{0}+\frac{x-x_{0}}{h}\delta f_{0}+\frac{(x-x_{0})(x-x_{1})}{2!h^{2}}\Delta^{2}f_{0}+\frac{(x-x_{0})(x-x_{1})(x-x_{2})}{3!h^{3}}\Delta^{3}f_{0}+\dots,
+f(x)=f_{0}+\frac{x-x_{0}}{h}\Delta f_{0}+\frac{(x-x_{0})(x-x_{1})}{2!h^{2}}\Delta^{2}f_{0}+\frac{(x-x_{0})(x-x_{1})(x-x_{2})}{3!h^{3}}\Delta^{3}f_{0}+\dots,
 \label{eq: NIP}
 \end{equation}
 with $h$ the constant spacing between the $x$ values.\\
@@ -637,8 +690,51 @@ This is the polynomial that we started with which is a good sign.
 Consider the finite difference table in \cref{table: fd ex1}, and find the Newton interpolation polynomial for this data.
 \end{exercise}
 
+\begin{exercise}
+ Consider the data in \cref{table: data table for exercise} and find the polynomial that fits the data.
+\begin{table}[ht]
+\centering
+\caption{A table of data that you need to find the Newton polynomial for.}
+
+\vspace{2mm}
+
+\label{table: data table for exercise}
+
+
+
+\begin{tabular}{|c|c|c|c|c|} 
+ \hline
+$x$& $2$ &$3$ & $4$& $5$\\
+ \hline
+$f(x)$ & $1$ & $1$ & $2$&$2$\\
+ \hline
+\end{tabular}
+\end{table}
+
+Then use your approximation to find the value of $f(4.3)$.
+
+\end{exercise}
+
+Note that if all of the differences of a given order are approximately constant then we can sometimes get away with a lower order polynomial approximation, even if the higher order terms do not actually vanish.
+
 \subsection*{Lagrange's Method}
-There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \cite{lissamen2004mei}.
+There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \cite{lissamen2004mei}.\\
+
+The linear case of Lagrange's equation is very similar to \cref{eq: linear interpolation formula} that we met when discussing linear interpolation as a method of root finding. \\
+
+Given two points $(a,A)$ and $(b,B)$, the straight line  that passes through them is given by
+\begin{equation*}
+f(x)=\frac{A(x-b)}{a-b}+\frac{B(x-a)}{b-a}
+\end{equation*}
+where we need that $a\neq b$.\\
+
+If we have three points, $(a,A), (b,B), (c,C)$ then they lie on a quadratic given by
+\begin{equation*}
+f(x)=\frac{A(x-b)(x-c)}{(a-b)(a-c)}+\frac{B(x-c)(x-a)}{(b-c)(b-a)}+\frac{C(x-a)(x-b)}{(c-a)(c-b)},
+\end{equation*}
+where we now need that $a,b,c$ are non equal.\\
+
+This approach can be generalised to a polynomial going through $n$ points. This will be a polynomial of degree $n-1$ for $n$ points.
 
 \section{Numerical differentiation}
 
