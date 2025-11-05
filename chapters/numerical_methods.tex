@@ -606,7 +606,39 @@ Construct the finite difference table, up to third order differences, for a cubi
 
 It is a general property of polynomials that for a polynomial with highest order term $x^{n}$, the $n$'th differences will be constant and all higher order differences will vanish.
 
+The polynomial built from the finite difference table is known as the interpolating polynomial. This gives the interpolating, or approximating function as
+\begin{equation}
+f(x)=f_{0}+\frac{x-x_{0}}{h}\delta f_{0}+\frac{(x-x_{0})(x-x_{1})}{2!h^{2}}\Delta^{2}f_{0}+\frac{(x-x_{0})(x-x_{1})(x-x_{2})}{3!h^{3}}\Delta^{3}f_{0}+\dots,
+\label{eq: NIP}
+\end{equation}
+with $h$ the constant spacing between the $x$ values.\\
 
+This may look complicated, but there is a set pattern to the terms, and the sum will terminate, either when all of the $\Delta^{a}f_{0}=0$ or because of the number of data points we are given.\\
+
+When we only have two points this method is called \textbf{linear interpolation} as only the first two terms in \cref{eq: NIP} are non-zero.\\
+
+\begin{ex}
+Consider the finite difference table in \cref{table: fd ex2}. The corresponding Newton interpolating polynomial is found as follows:
+\begin{itemize}
+\item $h=1$,
+\item $\Delta f_{0}=1$,\\
+\item $\Delta^{2}f=2$, \\
+\item $\Delta^{3}f=0$,
+\end{itemize}
+and we know what the $x_{i}$ are, so we can substitute everything in to find:
+\begin{align*}
+f(x) 	&= 1+x+\frac{x(x-1)}{2}2\\
+	&=1+x-x+x^{2}=1+x^{2}.
+\end{align*}
+This is the polynomial that we started with which is a good sign.
+\end{ex}
+
+\begin{exercise}
+Consider the finite difference table in \cref{table: fd ex1}, and find the Newton interpolation polynomial for this data.
+\end{exercise}
+
+\subsection*{Lagrange's Method}
+There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \cite{lissamen2004mei}.
 
 \section{Numerical differentiation}
 
