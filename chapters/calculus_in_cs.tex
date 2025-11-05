@@ -1,0 +1,27 @@
+\chapter{Calculus in Computer Science}
+\label{sec:CS calc}
+In most of this module we have focussed on the mathematics, and even when trying to motivate the connection to computer science we have been fairly sketchy. In this chapter we are going to rectify that and discuss some concrete examples of where the material that you have studied here is of relevance to Computer Science, AI, and Machine Learning.\\
+
+If you try to read this chapter before covering all of the basics you may find the examples hard to follow, but if you have finished everything up to \cref{sec:integration}, then you should be fine.\\
+
+This chapter is split into three sections, one for each degree scheme, \textbf{Computer Science, Computer Science and AI, and Robotics and AI}. This does not mean that you will not find examples of interest in other sections, it just means that I am trying to group the examples thematically.  As with several other chapters, this is a work in progress and will be adapted and expanded over time. Be sure to check back frequently if you want to see the most up to date examples.
+
+\section{Computer Science}
+
+\section{Computer Science and AI}
+A key concept in machine learning is the \textbf{loss function}, sometimes called the cost or error function, which calculates the difference between the output and the true or expected value. Loss functions appear generally in decision theory and the study of optimisation problems. In Computer science they appear whenever you are training an AI or Large Language model, where they measure the deviation of the model's output against the true value for the training data. \\
+
+It could be that you are checking if your model can perform a mathematical calculation, in which case you will be comparing two numbers, the output number against the true solution. It could also be a more general problem where you are training a model to recognise images, in which case you will be comparing the answer output by your model to the true answer. The main idea is that this can always be described by some function. In fact a key step will be deciding what is an appropriate loss function for your problem. \\
+
+Once we have the loss function, training is then the process of tweaking our model to minimise the loss function, so that the output of your model most closely matches the true values.
+
+
+\begin{ex}
+Consider a quadratic loss function 
+\begin{equation*}
+\lambda(x)=C\left(X-x\right)^{2}
+\label{eq: square loss function}
+\end{equation*}
+\end{ex}
+
+\section{Robotics and AI}

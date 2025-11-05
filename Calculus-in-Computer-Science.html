@@ -7,7 +7,7 @@
 <meta name="generator" content="LaTeX Lwarp package" />
 <meta name="description" content="Lecture notes for the module MAT1001 Differential Calculus." />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MAT1001 Differential Calculus: Lecture Notes — Differential Equations</title>
+<title>MAT1001 Differential Calculus: Lecture Notes — Calculus in Computer Science</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
 
 <script>
@@ -221,7 +221,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-203"></a>
+<a id="mat1001-autopage-256"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -862,17 +862,102 @@ Bibliography</a>
 </div>
 
 <!--
-...... chapter Differential Equations ......
+...... chapter Calculus in Computer Science ......
 -->
-<h3 id="autosec-204">Chapter&nbsp;<span class="sectionnumber">5&#x2003;</span>Differential Equations</h3>
-<a id="mat1001-autopage-204"></a>
-<a id="mat1001-autofile-5"></a>
+<h3 id="autosec-257">Chapter&nbsp;<span class="sectionnumber">7&#x2003;</span>Calculus in Computer Science</h3>
+<a id="mat1001-autopage-257"></a>
+<a id="mat1001-autofile-7"></a>
 
-<a id="sec:diff eqs"></a>
+<a id="sec:CS calc"></a>
 
 <p>
-This is a non-examinable section and is not taught every year. It is included in the indicative content of the module but is not assessed by the learning outcomes. No content has been included here yet, but when it is it can all be considered one big mathematical deviation.
+In most of this module we have focussed on the mathematics, and even when trying to motivate the connection to computer science we have been fairly sketchy. In this chapter we are going to rectify that and discuss some concrete examples of where the material that you
+have studied here is of relevance to Computer Science, AI, and Machine Learning.<br />
+
 </p>
+
+<p>
+If you try to read this chapter before covering all of the basics you may find the examples hard to follow, but if you have finished everything up to chapter&nbsp;<a href="Integration.html#sec:integration">4</a>, then you should be fine.<br />
+
+</p>
+
+<p>
+This chapter is split into three sections, one for each degree scheme, <b>Computer Science, Computer Science and AI, and Robotics and AI</b>. This does not mean that you will not find examples of interest in other sections, it just means that I am trying to
+group the examples thematically. As with several other chapters, this is a work in progress and will be adapted and expanded over time. Be sure to check back frequently if you want to see the most up to date examples.
+</p>
+<!--
+...... section Computer Science ......
+-->
+<h4 id="autosec-258"><span class="sectionnumber">7.1&#x2003;</span>Computer Science</h4>
+<a id="mat1001-autopage-258"></a>
+<!--
+...... section Computer Science and AI ......
+-->
+<h4 id="autosec-259"><span class="sectionnumber">7.2&#x2003;</span>Computer Science and AI</h4>
+<a id="mat1001-autopage-259"></a>
+
+
+<p>
+A key concept in machine learning is the <b>loss function</b>, sometimes called the cost or error function, which calculates the difference between the output and the true or expected value. Loss functions appear generally in decision theory and the study of optimisation
+problems. In Computer science they appear whenever you are training an AI or Large Language model, where they measure the deviation of the model’s output against the true value for the training data.<br />
+
+</p>
+
+<p>
+It could be that you are checking if your model can perform a mathematical calculation, in which case you will be comparing two numbers, the output number against the true solution. It could also be a more general problem where you are training a model to recognise
+images, in which case you will be comparing the answer output by your model to the true answer. The main idea is that this can always be described by some function. In fact a key step will be deciding what is an appropriate loss function for your problem.<br />
+
+</p>
+
+<p>
+Once we have the loss function, training is then the process of tweaking our model to minimise the loss function, so that the output of your model most closely matches the true values.
+</p>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-260"></a>
+<span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">7.1</span></span>. </span> Consider a quadratic loss function
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{7.}{0}\)</span>
+
+<!--
+
+
+                                                                                λ(x) = C (X − x)2                     --><a id="eq:   square loss function"></a><!--
+
+-->
+
+<p>
+
+
+\begin{equation*}
+\lambda (x)=C\left (X-x\right )^{2} \label {eq:   square loss function}
+\end{equation*}
+
+
+</p>
+
+<p>
+
+
+</p>
+
+</li>
+
+</ul>
+
+</div>
+<!--
+...... section Robotics and AI ......
+-->
+<h4 id="autosec-261"><span class="sectionnumber">7.3&#x2003;</span>Robotics and AI</h4>
+<a id="mat1001-autopage-261"></a>
+
 
 </section>
 
