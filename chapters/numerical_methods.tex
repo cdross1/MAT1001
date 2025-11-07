@@ -455,7 +455,9 @@ Through much of this module we have been discussing functions and how to work wi
 
 In essence this function is all about fitting data points, or establishing if there is a relationship or trend between known data. We are not framing it like this here but if you go on to take any statistics or data analysis modules then the approximation ideas here will prove useful to you.
 
-If we have time, in \cref{sec:advanced topics} we will discuss the continuous analogue of this which goes by the name of the \textbf{Taylor} or \textbf{Maclaurin} series. However, to understand these properly, we need to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using a discrete method known as the \textbf{Newton interpolating polynomial}, or \textbf{Newton's divided difference method}.\\
+If we have time, in \cref{sec:advanced topics} we will discuss the continuous analogue of this which goes by the name of the \textbf{Taylor} or \textbf{Maclaurin} series. However, to understand these properly, we need to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using two discrete methods, one known as the \textbf{Newton interpolating polynomial}, or \textbf{Newton's divided difference method}, and the other \textbf{Lagrange's method}.
+
+\subsection*{Newton's method}
 
 The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \cite{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \cite{lissamen2004mei} is can a formula be found which fits all of these points. The formula given in \cite{lissamen2004mei} is
 \begin{equation*}
@@ -717,7 +719,7 @@ Then use your approximation to find the value of $f(4.3)$.
 
 Note that if all of the differences of a given order are approximately constant then we can sometimes get away with a lower order polynomial approximation, even if the higher order terms do not actually vanish.
 
-\subsection*{Lagrange's Method}
+\subsection*{Lagrange's method}
 There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \cite{lissamen2004mei}.\\
 
 The linear case of Lagrange's equation is very similar to \cref{eq: linear interpolation formula} that we met when discussing linear interpolation as a method of root finding. \\
@@ -736,9 +738,26 @@ where we now need that $a,b,c$ are non equal.\\
 
 This approach can be generalised to a polynomial going through $n$ points. This will be a polynomial of degree $n-1$ for $n$ points.
 
-\section{Numerical differentiation}
+\begin{exercise}
+Find the expression for the degree $3$ polynomial going through four points, then use the pattern that you can see between the line, quadratic, and cubic, cases to find the general expression for the polynomial passing through $n$ points.
+\end{exercise}
 
 \section{Numerical integration}
+
+We now turn to numerical methods of integration. We have already carried out some numerical integration when we discussed definite integrals and the relationship between integrals and sums. In fact the first method we will use to carry out numerical integration, the \textbf{midpoint rule}, is one we have already seen.  We will also discuss two other related rules that estimate the area under a graph, the \textbf{trapezium rule} and \textbf{Simpson's rule}. These are not independent methods, and Simpson's rule is actually a weighted average of the mid point and trapezium rule which improves the accuracy.\\
+
+In practice, when you ask a computer to carry out a definite integration, unless you use a symbolic computation method in \textbf{Maple}, \textbf{Mathematica}, or similar, the computer will be implementing one of these rules. This means that by understanding how they work and how to implement them by hand, you will be able to code up your own numerical integrator. I recommend this as a challenge to an keen students who want to make practical use of what you are learning in this module and I will put an exercise at the end of each section suggesting that you do this for each of the rules.
+
+\subsection*{Midpoint rule}
+
+The mid point rule is the approximation approach that we met in \cref{sec:integration}  when approximating the area under the curve for the function $f(x)=x^{2}+1$. 
+
+\subsection*{Trapezium rule}
+
+\subsection*{Simpson's rule}
+
+\section{Numerical differentiation}
+
 
 \section{Numerical approaches to differential equations}
 This is a non-examinable section and is not taught every year. It is included in the indicative content of the module but is not assessed in the learning outcomes. Content will be added here at the same time as content is added to \cref{sec:diff eqs} since that is the theoretical background for what will be discussed numerically here.
