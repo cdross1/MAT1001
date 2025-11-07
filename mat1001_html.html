@@ -482,7 +482,7 @@ Calum Ross
 <div class="titledate">
 
 <p>
-Last modified: November 6, 2025
+Last modified: November 7, 2025
 </p>
 </div>
 
@@ -17875,10 +17875,15 @@ useful to you.
 
 <p>
 If we have time, in chapter&nbsp;<a href="Advanced-Topics.html#sec:advanced topics">8</a> we will discuss the continuous analogue of this which goes by the name of the <b>Taylor</b> or <b>Maclaurin</b> series. However, to understand these properly, we need
-to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using a discrete method known as the <b>Newton interpolating polynomial</b>, or <b>Newton’s divided difference
-method</b>.<br />
-
+to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using two discrete methods, one known as the <b>Newton interpolating polynomial</b>, or <b>Newton’s divided
+difference method</b>, and the other <b>Lagrange’s method</b>.
 </p>
+<!--
+...... subsection Newton’s method ......
+-->
+<h5 id="autosec-240">Newton’s method</h5>
+<a id="mat1001-autopage-240"></a>
+
 
 <p>
 The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in Lissamen and West [2004] is to consider the growth rate per year for a group of young people. The results are given in table&nbsp;<a
@@ -17890,7 +17895,7 @@ href="Numerical-Methods.html#table:heights">6.6</a> and can be plotted as five p
 <!--
 
 
-                                                                                                f (x) = 4.13984375 + 3.34791667x − 0.91315104x2 + 0.08177083x3 − 0.00232747x4 .
+                                                                                               f (x) = 4.13984375 + 3.34791667x − 0.91315104x2 + 0.08177083x3 − 0.00232747x4 .
 
 -->
 
@@ -17918,7 +17923,7 @@ By the end of this section you will know how to calculate the approximate functi
 
 
 <div class="figurecaption">
-Table&nbsp;6.6: Measurements of the average height increase per year at various ages taken from <a id="mat1001-autopage-240"></a>Lissamen and West [2004].
+Table&nbsp;6.6: Measurements of the average height increase per year at various ages taken from <a id="mat1001-autopage-241"></a>Lissamen and West [2004].
 
 </div>
 
@@ -17995,7 +18000,7 @@ this is an artefact of the plot being scaled, This will be fixed soon.
 </figure>
 
 <p>
-Following <a id="mat1001-autopage-244"></a>Lissamen and West [2004], we will use the notation in table&nbsp;<a href="Numerical-Methods.html#table:notation">6.7</a>. We start our labelling from the left most point and moving rightwards until we get to the last
+Following <a id="mat1001-autopage-245"></a>Lissamen and West [2004], we will use the notation in table&nbsp;<a href="Numerical-Methods.html#table:notation">6.7</a>. We start our labelling from the left most point and moving rightwards until we get to the last
 point. Here we are taking \(x\) values that have a constant spacing which we denote by \(h\)<sup>3</sup>.<br />
 
 </p>
@@ -18208,7 +18213,7 @@ Table&nbsp;6.8: A finite difference table with four points working up to the thi
 </figure>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-249"></a>
+<a id="mat1001-autopage-250"></a>
 
 <p>
 <sup>3</sup>&nbsp;If this seems suggestive of our notation when doing differentiation from first principles, that is on purpose. The separation between points is precisely what we want to take to zero to get the derivative.
@@ -18342,7 +18347,7 @@ Table&nbsp;6.9: A finite difference table with four points working up to the thi
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-252"></a>
+<span class="listmarker"><a id="mat1001-autopage-253"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.9</span></span>. </span> Consider the quadratic function \(f(x)=x^{2}+1\), working up to fourth order differences, this gives the finite difference table in
 table&nbsp;<a href="Numerical-Methods.html#table:    fd ex2">6.10</a>. Notice that the third and fourth differences all vanish.
 </p>
@@ -18488,7 +18493,7 @@ Table&nbsp;6.10: A finite difference table with four points working up to the fo
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-255"></a>
+<span class="listmarker"><a id="mat1001-autopage-256"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.10</span></span>. </span> Construct the finite difference table, up to third order differences, for the linear function \(f(x)=2x+1\).
 </p>
 
@@ -18504,7 +18509,7 @@ Table&nbsp;6.10: A finite difference table with four points working up to the fo
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-256"></a>
+<span class="listmarker"><a id="mat1001-autopage-257"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.11</span></span>. </span> Construct the finite difference table, up to third order differences, for a cubic function of your choice. How many differences do
 you think you need to include?
 </p>
@@ -18561,7 +18566,7 @@ When we only have two points this method is called <b>linear interpolation</b> a
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-257"></a>
+<span class="listmarker"><a id="mat1001-autopage-258"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.12</span></span>. </span> Consider the finite difference table in table&nbsp;<a href="Numerical-Methods.html#table:   fd ex2">6.10</a>. The
 corresponding Newton interpolating polynomial is found as follows:
 </p>
@@ -18647,7 +18652,7 @@ This is the polynomial that we started with which is a good sign.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-258"></a>
+<span class="listmarker"><a id="mat1001-autopage-259"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.13</span></span>. </span> Consider the finite difference table in table&nbsp;<a href="Numerical-Methods.html#table:   fd ex1">6.9</a>, and find the
 Newton interpolation polynomial for this data.
 </p>
@@ -18664,7 +18669,7 @@ Newton interpolation polynomial for this data.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-259"></a>
+<span class="listmarker"><a id="mat1001-autopage-260"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.14</span></span>. </span> Consider the data in table&nbsp;<a href="Numerical-Methods.html#table:   data table for exercise">6.11</a> and find the
 polynomial that fits the data.
 </p>
@@ -18728,10 +18733,10 @@ Then use your approximation to find the value of \(f(4.3)\).
 Note that if all of the differences of a given order are approximately constant then we can sometimes get away with a lower order polynomial approximation, even if the higher order terms do not actually vanish.
 </p>
 <!--
-...... subsection Lagrange’s Method ......
+...... subsection Lagrange’s method ......
 -->
-<h5 id="autosec-262">Lagrange’s Method</h5>
-<a id="mat1001-autopage-262"></a>
+<h5 id="autosec-263">Lagrange’s method</h5>
+<a id="mat1001-autopage-263"></a>
 
 
 <p>
@@ -18802,21 +18807,72 @@ where we now need that \(a,b,c\) are non equal.<br />
 <p>
 This approach can be generalised to a polynomial going through \(n\) points. This will be a polynomial of degree \(n-1\) for \(n\) points.
 </p>
-<!--
-...... section Numerical differentiation ......
--->
-<h4 id="autosec-263"><span class="sectionnumber">6.3&#x2003;</span>Numerical differentiation</h4>
-<a id="mat1001-autopage-263"></a>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-264"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.15</span></span>. </span> Find the expression for the degree \(3\) polynomial going through four points, then use the pattern that you can see between the
+line, quadratic, and cubic, cases to find the general expression for the polynomial passing through \(n\) points.
+</p>
+
+</li>
+
+</ul>
+
+</div>
 <!--
 ...... section Numerical integration ......
 -->
-<h4 id="autosec-264"><span class="sectionnumber">6.4&#x2003;</span>Numerical integration</h4>
-<a id="mat1001-autopage-264"></a>
+<h4 id="autosec-265"><span class="sectionnumber">6.3&#x2003;</span>Numerical integration</h4>
+<a id="mat1001-autopage-265"></a>
+
+
+<p>
+We now turn to numerical methods of integration. We have already carried out some numerical integration when we discussed definite integrals and the relationship between integrals and sums. In fact the first method we will use to carry out numerical integration, the
+<b>midpoint rule</b>, is one we have already seen. We will also discuss two other related rules that estimate the area under a graph, the <b>trapezium rule</b> and <b>Simpson’s rule</b>. These are not independent methods, and Simpson’s rule is actually a
+weighted average of the mid point and trapezium rule which improves the accuracy.<br />
+
+</p>
+
+<p>
+In practice, when you ask a computer to carry out a definite integration, unless you use a symbolic computation method in <b>Maple</b>, <b>Mathematica</b>, or similar, the computer will be implementing one of these rules. This means that by understanding how
+they work and how to implement them by hand, you will be able to code up your own numerical integrator. I recommend this as a challenge to an keen students who want to make practical use of what you are learning in this module and I will put an exercise at the end of
+each section suggesting that you do this for each of the rules.
+</p>
+<!--
+...... subsection Midpoint rule ......
+-->
+<h5 id="autosec-266">Midpoint rule</h5>
+<a id="mat1001-autopage-266"></a>
+
+
+<p>
+The mid point rule is the approximation approach that we met in chapter&nbsp;<a href="Integration.html#sec:integration">4</a> when approximating the area under the curve for the function \(f(x)=x^{2}+1\).
+</p>
+<!--
+...... subsection Trapezium rule ......
+-->
+<h5 id="autosec-267">Trapezium rule</h5>
+<a id="mat1001-autopage-267"></a>
+<!--
+...... subsection Simpson’s rule ......
+-->
+<h5 id="autosec-268">Simpson’s rule</h5>
+<a id="mat1001-autopage-268"></a>
+<!--
+...... section Numerical differentiation ......
+-->
+<h4 id="autosec-269"><span class="sectionnumber">6.4&#x2003;</span>Numerical differentiation</h4>
+<a id="mat1001-autopage-269"></a>
 <!--
 ...... section Numerical approaches to differential equations ......
 -->
-<h4 id="autosec-265"><span class="sectionnumber">6.5&#x2003;</span>Numerical approaches to differential equations</h4>
-<a id="mat1001-autopage-265"></a>
+<h4 id="autosec-270"><span class="sectionnumber">6.5&#x2003;</span>Numerical approaches to differential equations</h4>
+<a id="mat1001-autopage-270"></a>
 
 
 <p>
@@ -19068,7 +19124,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-266"></a>
+<a id="mat1001-autopage-271"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -19711,8 +19767,8 @@ Bibliography</a>
 <!--
 ...... chapter Calculus in Computer Science ......
 -->
-<h3 id="autosec-267">Chapter&nbsp;<span class="sectionnumber">7&#x2003;</span>Calculus in Computer Science</h3>
-<a id="mat1001-autopage-267"></a>
+<h3 id="autosec-272">Chapter&nbsp;<span class="sectionnumber">7&#x2003;</span>Calculus in Computer Science</h3>
+<a id="mat1001-autopage-272"></a>
 <a id="mat1001-autofile-7"></a>
 
 <a id="sec:CS calc"></a>
@@ -19735,13 +19791,13 @@ group the examples thematically. As with several other chapters, this is a work 
 <!--
 ...... section Computer Science ......
 -->
-<h4 id="autosec-268"><span class="sectionnumber">7.1&#x2003;</span>Computer Science</h4>
-<a id="mat1001-autopage-268"></a>
+<h4 id="autosec-273"><span class="sectionnumber">7.1&#x2003;</span>Computer Science</h4>
+<a id="mat1001-autopage-273"></a>
 <!--
 ...... section Computer Science and AI ......
 -->
-<h4 id="autosec-269"><span class="sectionnumber">7.2&#x2003;</span>Computer Science and AI</h4>
-<a id="mat1001-autopage-269"></a>
+<h4 id="autosec-274"><span class="sectionnumber">7.2&#x2003;</span>Computer Science and AI</h4>
+<a id="mat1001-autopage-274"></a>
 
 
 <p>
@@ -19766,7 +19822,7 @@ Once we have the loss function, training is then the process of tweaking our mod
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-270"></a>
+<span class="listmarker"><a id="mat1001-autopage-275"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">7.1</span></span>. </span> Consider a quadratic loss function
 </p>
 
@@ -19802,8 +19858,8 @@ Once we have the loss function, training is then the process of tweaking our mod
 <!--
 ...... section Robotics and AI ......
 -->
-<h4 id="autosec-271"><span class="sectionnumber">7.3&#x2003;</span>Robotics and AI</h4>
-<a id="mat1001-autopage-271"></a>
+<h4 id="autosec-276"><span class="sectionnumber">7.3&#x2003;</span>Robotics and AI</h4>
+<a id="mat1001-autopage-276"></a>
 
 
 </section>
@@ -20050,7 +20106,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-272"></a>
+<a id="mat1001-autopage-277"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -20693,8 +20749,8 @@ Bibliography</a>
 <!--
 ...... chapter Advanced Topics ......
 -->
-<h3 id="autosec-273">Chapter&nbsp;<span class="sectionnumber">8&#x2003;</span>Advanced Topics</h3>
-<a id="mat1001-autopage-273"></a>
+<h3 id="autosec-278">Chapter&nbsp;<span class="sectionnumber">8&#x2003;</span>Advanced Topics</h3>
+<a id="mat1001-autopage-278"></a>
 <a id="mat1001-autofile-8"></a>
 
 <a id="sec:advanced topics"></a>
@@ -20705,8 +20761,8 @@ This section is non examinable and is included so that you have a feel for how t
 <!--
 ...... section L’Hopital’s rule for evaluating limits ......
 -->
-<h4 id="autosec-274"><span class="sectionnumber">8.1&#x2003;</span>L’Ho&#x0302;pital’s rule for evaluating limits</h4>
-<a id="mat1001-autopage-274"></a>
+<h4 id="autosec-279"><span class="sectionnumber">8.1&#x2003;</span>L’Ho&#x0302;pital’s rule for evaluating limits</h4>
+<a id="mat1001-autopage-279"></a>
 
 
 <a id="sec:l’hopital"></a>
@@ -20819,7 +20875,7 @@ Note that if the limit does not lead to an indeterminate then L’Ho&#x0302;pita
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-275"></a>
+<a id="mat1001-autopage-280"></a>
 
 <p>
 <sup>1</sup>&nbsp;Originally spelt L’Hospital, with a silent s and no circumflex
@@ -20932,7 +20988,7 @@ As long as our original limit looks like it is indeterminate we can use L’Ho&#
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-276"></a>
+<span class="listmarker"><a id="mat1001-autopage-281"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.2</span></span>. </span> The limit of \(\sin (x)/x\) as \(x\to 0\) is evaluated as follows
 </p>
 
@@ -20978,7 +21034,7 @@ We can also evaluate other limits that may not at first look like a ratio of fun
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-277"></a>
+<span class="listmarker"><a id="mat1001-autopage-282"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.3</span></span>. </span> Consider the limit \(\lim _{x\to -\infty }xe^{x}\) this looks like it becomes the indeterminate \((-\infty )(0)\). If we recall
 that \(1/e^{x}=e^{-x}\) then we can rewrite the limit as
 </p>
@@ -21041,8 +21097,8 @@ since \(1/\infty \) is zero.
 <!--
 ...... section Trigonometric Derivatives in Degrees ......
 -->
-<h4 id="autosec-278"><span class="sectionnumber">8.2&#x2003;</span>Trigonometric Derivatives in Degrees</h4>
-<a id="mat1001-autopage-278"></a>
+<h4 id="autosec-283"><span class="sectionnumber">8.2&#x2003;</span>Trigonometric Derivatives in Degrees</h4>
+<a id="mat1001-autopage-283"></a>
 
 
 <p>
@@ -21147,23 +21203,23 @@ href="https://math.stackexchange.com/questions/214912/derivative-of-the-sine-fun
 <!--
 ...... section Functions of two variables ......
 -->
-<h4 id="autosec-279"><span class="sectionnumber">8.3&#x2003;</span>Functions of two variables</h4>
-<a id="mat1001-autopage-279"></a>
+<h4 id="autosec-284"><span class="sectionnumber">8.3&#x2003;</span>Functions of two variables</h4>
+<a id="mat1001-autopage-284"></a>
 <!--
 ...... section Multiple integrals ......
 -->
-<h4 id="autosec-280"><span class="sectionnumber">8.4&#x2003;</span>Multiple integrals</h4>
-<a id="mat1001-autopage-280"></a>
+<h4 id="autosec-285"><span class="sectionnumber">8.4&#x2003;</span>Multiple integrals</h4>
+<a id="mat1001-autopage-285"></a>
 <!--
 ...... section Optimisation Problems ......
 -->
-<h4 id="autosec-281"><span class="sectionnumber">8.5&#x2003;</span>Optimisation Problems</h4>
-<a id="mat1001-autopage-281"></a>
+<h4 id="autosec-286"><span class="sectionnumber">8.5&#x2003;</span>Optimisation Problems</h4>
+<a id="mat1001-autopage-286"></a>
 <!--
 ...... section Polynomial approximation ......
 -->
-<h4 id="autosec-282"><span class="sectionnumber">8.6&#x2003;</span>Polynomial approximation</h4>
-<a id="mat1001-autopage-282"></a>
+<h4 id="autosec-287"><span class="sectionnumber">8.6&#x2003;</span>Polynomial approximation</h4>
+<a id="mat1001-autopage-287"></a>
 
 
 </section>
@@ -21410,7 +21466,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-283"></a>
+<a id="mat1001-autopage-288"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -22053,8 +22109,8 @@ Bibliography</a>
 <!--
 ...... chapter Background Mathematics ......
 -->
-<h3 id="autosec-284">Chapter&nbsp;<span class="sectionnumber">9&#x2003;</span>Background Mathematics</h3>
-<a id="mat1001-autopage-284"></a>
+<h3 id="autosec-289">Chapter&nbsp;<span class="sectionnumber">9&#x2003;</span>Background Mathematics</h3>
+<a id="mat1001-autopage-289"></a>
 <a id="mat1001-autofile-9"></a>
 
 <a id="sec:background"></a>
@@ -22081,8 +22137,8 @@ Try as you may you just can’t get away from Mathematics
 <!--
 ...... section Background and References ......
 -->
-<h4 id="autosec-285"><span class="sectionnumber">9.1&#x2003;</span>Background and References</h4>
-<a id="mat1001-autopage-285"></a>
+<h4 id="autosec-290"><span class="sectionnumber">9.1&#x2003;</span>Background and References</h4>
+<a id="mat1001-autopage-290"></a>
 
 
 <p>
@@ -22138,8 +22194,8 @@ As the module goes on I may add more background resources or add some examples.<
 <!--
 ...... section Polynomials and roots ......
 -->
-<h4 id="autosec-286"><span class="sectionnumber">9.2&#x2003;</span>Polynomials and roots</h4>
-<a id="mat1001-autopage-286"></a>
+<h4 id="autosec-291"><span class="sectionnumber">9.2&#x2003;</span>Polynomials and roots</h4>
+<a id="mat1001-autopage-291"></a>
 
 
 <p>
@@ -22576,7 +22632,7 @@ This style of approach can be applied to any polynomial equation. There is a mor
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-287"></a>
+<a id="mat1001-autopage-292"></a>
 <p>
 <sup>1</sup>&nbsp;The exception is cubic equations. There is a cubic formula. However, it is fairly complicated and there is no point in trying to use it.
 </p>
@@ -22586,8 +22642,8 @@ This style of approach can be applied to any polynomial equation. There is a mor
 <!--
 ...... section Trigonometry Primer ......
 -->
-<h4 id="autosec-288"><span class="sectionnumber">9.3&#x2003;</span>Trigonometry Primer</h4>
-<a id="mat1001-autopage-288"></a>
+<h4 id="autosec-293"><span class="sectionnumber">9.3&#x2003;</span>Trigonometry Primer</h4>
+<a id="mat1001-autopage-293"></a>
 
 
 <p>
@@ -22717,8 +22773,8 @@ become more complicated. If you are unfamiliar with radians have a look at the n
 <!--
 ...... section Radians and Degrees ......
 -->
-<h4 id="autosec-292"><span class="sectionnumber">9.4&#x2003;</span>Radians and Degrees</h4>
-<a id="mat1001-autopage-292"></a>
+<h4 id="autosec-297"><span class="sectionnumber">9.4&#x2003;</span>Radians and Degrees</h4>
+<a id="mat1001-autopage-297"></a>
 
 
 <p>
@@ -22861,8 +22917,8 @@ letters like phi, \(\upphi \) or \(\upvarphi \), and psi, \(\uppsi \), are somet
 <!--
 ...... section Rearranging Equations ......
 -->
-<h4 id="autosec-299"><span class="sectionnumber">9.5&#x2003;</span>Rearranging Equations</h4>
-<a id="mat1001-autopage-299"></a>
+<h4 id="autosec-304"><span class="sectionnumber">9.5&#x2003;</span>Rearranging Equations</h4>
+<a id="mat1001-autopage-304"></a>
 
 
 <a id="sec:   rearranging"></a>
@@ -22912,7 +22968,7 @@ These operations can include: adding or subtracting a quantity from both sides, 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-300"></a>
+<span class="listmarker"><a id="mat1001-autopage-305"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.1</span></span>. </span> Returning to the above equation \(x=5y+4x\), we can rearrange it to make \(z\) the subject. Again, this means that we will
 perform mathematical operations on both sides of the equation to put it in the form \(z=\dots {}\) :
 </p>
@@ -22979,7 +23035,7 @@ with \(z\) now the subject of the equation.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-301"></a>
+<span class="listmarker"><a id="mat1001-autopage-306"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.2</span></span>. </span> As another example consider an equation from physics \(v=u+at\), which says that the if an object starts off with a velocity \(v\)
 and accelerates at a rate \(a\) then after time \(t\) its velocity will be \(v\). Here we go through this step by step what we do when solving for \(a\):
 </p>
@@ -23047,7 +23103,7 @@ a=\frac {v-u}{t}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-302"></a>
+<span class="listmarker"><a id="mat1001-autopage-307"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.3</span></span>. </span> Another example is rearranging a different equation from physics,
 </p>
 
@@ -23278,7 +23334,7 @@ found by direct substitution into the quadratic formula of \(s=0\) or \(u=0\) re
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-303"></a>
+<span class="listmarker"><a id="mat1001-autopage-308"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.4</span></span>. </span> The final example is to rearrange an equation involving a square root,
 </p>
 
@@ -23669,7 +23725,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-304"></a>
+<a id="mat1001-autopage-309"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -24312,8 +24368,8 @@ Bibliography</a>
 <!--
 ...... chapter Further Reading ......
 -->
-<h3 id="autosec-305">Chapter&nbsp;<span class="sectionnumber">10&#x2003;</span>Further Reading</h3>
-<a id="mat1001-autopage-305"></a>
+<h3 id="autosec-310">Chapter&nbsp;<span class="sectionnumber">10&#x2003;</span>Further Reading</h3>
+<a id="mat1001-autopage-310"></a>
 <a id="mat1001-autofile-10"></a>
 
 <a id="sec:further reading"></a>
@@ -24353,8 +24409,8 @@ course. Each 20 credit module is considered 200 hours of work, only 36 hours of 
 <!--
 ...... section Why Calculus Extra Reading ......
 -->
-<h4 id="autosec-306"><span class="sectionnumber">10.1&#x2003;</span>Why Calculus Extra Reading</h4>
-<a id="mat1001-autopage-306"></a>
+<h4 id="autosec-311"><span class="sectionnumber">10.1&#x2003;</span>Why Calculus Extra Reading</h4>
+<a id="mat1001-autopage-311"></a>
 
 
 <p>
@@ -24364,13 +24420,13 @@ some sections of it, particularly <b>Chapter 0: Why Study Calculus?</b> are wort
 <!--
 ...... section Functions Extra Reading ......
 -->
-<h4 id="autosec-307"><span class="sectionnumber">10.2&#x2003;</span>Functions Extra Reading</h4>
-<a id="mat1001-autopage-307"></a>
+<h4 id="autosec-312"><span class="sectionnumber">10.2&#x2003;</span>Functions Extra Reading</h4>
+<a id="mat1001-autopage-312"></a>
 <!--
 ...... section Differentiation Extra Reading ......
 -->
-<h4 id="autosec-308"><span class="sectionnumber">10.3&#x2003;</span>Differentiation Extra Reading</h4>
-<a id="mat1001-autopage-308"></a>
+<h4 id="autosec-313"><span class="sectionnumber">10.3&#x2003;</span>Differentiation Extra Reading</h4>
+<a id="mat1001-autopage-313"></a>
 
 
 <p>
@@ -24381,23 +24437,23 @@ manual in the library and I recommend that you try and have a look at this at so
 <!--
 ...... section Integration Extra Reading ......
 -->
-<h4 id="autosec-309"><span class="sectionnumber">10.4&#x2003;</span>Integration Extra Reading</h4>
-<a id="mat1001-autopage-309"></a>
+<h4 id="autosec-314"><span class="sectionnumber">10.4&#x2003;</span>Integration Extra Reading</h4>
+<a id="mat1001-autopage-314"></a>
 <!--
 ...... section Differential Equations Extra Reading ......
 -->
-<h4 id="autosec-310"><span class="sectionnumber">10.5&#x2003;</span>Differential Equations Extra Reading</h4>
-<a id="mat1001-autopage-310"></a>
+<h4 id="autosec-315"><span class="sectionnumber">10.5&#x2003;</span>Differential Equations Extra Reading</h4>
+<a id="mat1001-autopage-315"></a>
 <!--
 ...... section Numerical Methods Extra Reading ......
 -->
-<h4 id="autosec-311"><span class="sectionnumber">10.6&#x2003;</span>Numerical Methods Extra Reading</h4>
-<a id="mat1001-autopage-311"></a>
+<h4 id="autosec-316"><span class="sectionnumber">10.6&#x2003;</span>Numerical Methods Extra Reading</h4>
+<a id="mat1001-autopage-316"></a>
 <!--
 ...... section Advanced Topics Extra Reading ......
 -->
-<h4 id="autosec-312"><span class="sectionnumber">10.7&#x2003;</span>Advanced Topics Extra Reading</h4>
-<a id="mat1001-autopage-312"></a>
+<h4 id="autosec-317"><span class="sectionnumber">10.7&#x2003;</span>Advanced Topics Extra Reading</h4>
+<a id="mat1001-autopage-317"></a>
 
 
 </section>
@@ -24644,7 +24700,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-313"></a>
+<a id="mat1001-autopage-318"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -25287,8 +25343,8 @@ Bibliography</a>
 <!--
 ...... chapter Tutorial Sheets ......
 -->
-<h3 id="autosec-314">Chapter&nbsp;<span class="sectionnumber">11&#x2003;</span>Tutorial Sheets</h3>
-<a id="mat1001-autopage-314"></a>
+<h3 id="autosec-319">Chapter&nbsp;<span class="sectionnumber">11&#x2003;</span>Tutorial Sheets</h3>
+<a id="mat1001-autopage-319"></a>
 <a id="mat1001-autofile-11"></a>
 
 <a id="sec:   tutorial sheets"></a>
@@ -25316,8 +25372,8 @@ challenge problems. Sometime the challenge problems from one week will be quite 
 <!--
 ...... section Week 1 ......
 -->
-<h4 id="autosec-315"><span class="sectionnumber">11.1&#x2003;</span>Week 1</h4>
-<a id="mat1001-autopage-315"></a>
+<h4 id="autosec-320"><span class="sectionnumber">11.1&#x2003;</span>Week 1</h4>
+<a id="mat1001-autopage-320"></a>
 
 
 <a id="sec:   Tutorial sheet 1"></a>
@@ -25327,8 +25383,8 @@ challenge problems. Sometime the challenge problems from one week will be quite 
 
 
 <p>
-<span class="paragraph" id="autosec-316">Functions</span>
-<a id="mat1001-autopage-316"></a>
+<span class="paragraph" id="autosec-321">Functions</span>
+<a id="mat1001-autopage-321"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -25338,7 +25394,7 @@ challenge problems. Sometime the challenge problems from one week will be quite 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-317"></a>
+<span class="listmarker"><a id="mat1001-autopage-322"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.1</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Find the roots of the polynomial
 </p>
 
@@ -25377,7 +25433,7 @@ and plot the function.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-318"></a>
+<span class="listmarker"><a id="mat1001-autopage-323"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.2</span></span>. </span> Find the roots of the polynomial
 </p>
 
@@ -25416,7 +25472,7 @@ and plot the function.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-319"></a>
+<span class="listmarker"><a id="mat1001-autopage-324"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.3</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Consider the function
 </p>
 
@@ -25455,7 +25511,7 @@ produce a plot of the function by calculating its value at a selection of points
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-320"></a>
+<span class="listmarker"><a id="mat1001-autopage-325"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.4</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Consider the function
 </p>
 
@@ -25502,7 +25558,7 @@ Plot the function and comment on its behaviour.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-321"></a>
+<span class="listmarker"><a id="mat1001-autopage-326"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.5</span></span>. </span> Draw a schematic of a one-to-one function between the sets
 </p>
 
@@ -25543,7 +25599,7 @@ Is there only one way to do this?
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-322"></a>
+<span class="listmarker"><a id="mat1001-autopage-327"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.6</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Given the function
 </p>
 
@@ -25645,7 +25701,7 @@ find:
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-323"></a>
+<span class="listmarker"><a id="mat1001-autopage-328"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.7</span></span>. </span> Consider the function
 </p>
 
@@ -25685,7 +25741,7 @@ Find the points where the denominator vanishes, then plot the function avoiding 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-324"></a>
+<span class="listmarker"><a id="mat1001-autopage-329"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.8</span></span>. </span> Given the functions
 </p>
 <span class="hidden"> \(\seteqnumber{0}{11.}{0}\)</span>
@@ -25760,7 +25816,7 @@ find:
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-325"></a>
+<span class="listmarker"><a id="mat1001-autopage-330"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.9</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Given the functions
 </p>
 <span class="hidden"> \(\seteqnumber{0}{11.}{0}\)</span>
@@ -25827,7 +25883,7 @@ find:
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-326"></a>
+<span class="listmarker"><a id="mat1001-autopage-331"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.10</span></span><span class="amsthmnoteplain"> (\(\dagger \))</span>. </span> Given the function
 </p>
 
@@ -25867,8 +25923,8 @@ identify when it has an inverse and calculate the inverse.
 
 
 <p>
-<span class="paragraph" id="autosec-327">Challenge Problems</span>
-<a id="mat1001-autopage-327"></a>
+<span class="paragraph" id="autosec-332">Challenge Problems</span>
+<a id="mat1001-autopage-332"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -25878,7 +25934,7 @@ identify when it has an inverse and calculate the inverse.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-328"></a>
+<span class="listmarker"><a id="mat1001-autopage-333"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.11</span></span>. </span> Consider the function
 </p>
 
@@ -25919,7 +25975,7 @@ Identify the points where the numerator and denominator vanish. Plot the functio
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-329"></a>
+<span class="listmarker"><a id="mat1001-autopage-334"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.12</span></span>. </span> Given the function
 </p>
 
@@ -25958,7 +26014,7 @@ find the inverse function \(f^{-1}(x)\).
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-330"></a>
+<span class="listmarker"><a id="mat1001-autopage-335"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.1.13</span></span><span class="amsthmnoteplain"> (\(\dagger \dagger \))</span>. </span> Build a schematic of a bijection between the natural
 numbers
 </p>
@@ -26023,8 +26079,8 @@ Could you do the same for the real numbers \(\R \)? If you find this interesting
 <!--
 ...... section Week 2 ......
 -->
-<h4 id="autosec-331"><span class="sectionnumber">11.2&#x2003;</span>Week 2</h4>
-<a id="mat1001-autopage-331"></a>
+<h4 id="autosec-336"><span class="sectionnumber">11.2&#x2003;</span>Week 2</h4>
+<a id="mat1001-autopage-336"></a>
 
 
 <a id="sec:   Tutorial sheet 2"></a>
@@ -26034,8 +26090,8 @@ Could you do the same for the real numbers \(\R \)? If you find this interesting
 
 
 <p>
-<span class="paragraph" id="autosec-332">Polynomials</span>
-<a id="mat1001-autopage-332"></a>
+<span class="paragraph" id="autosec-337">Polynomials</span>
+<a id="mat1001-autopage-337"></a>
 [\(\star \)]
 </p>
 <div class="amsthmbodyplain">
@@ -26045,7 +26101,7 @@ Could you do the same for the real numbers \(\R \)? If you find this interesting
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-333"></a>
+<span class="listmarker"><a id="mat1001-autopage-338"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.1</span></span>. </span> For the polynomial equation
 </p>
 
@@ -26113,7 +26169,7 @@ where \(a,b,c\) are the roots of the polynomial.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-334"></a>
+<span class="listmarker"><a id="mat1001-autopage-339"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.2</span></span>. </span> Find the roots of the following polynomial equation
 </p>
 
@@ -26152,8 +26208,8 @@ x^{4}-4x^{3}+6x^{2}-4x+1=0.
 
 
 <p>
-<span class="paragraph" id="autosec-335">Trig functions</span>
-<a id="mat1001-autopage-335"></a>
+<span class="paragraph" id="autosec-340">Trig functions</span>
+<a id="mat1001-autopage-340"></a>
 Remember to work in radians for any problems related to trigonometry.
 </p>
 <div class="amsthmbodyplain">
@@ -26163,7 +26219,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-336"></a>
+<span class="listmarker"><a id="mat1001-autopage-341"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.3</span></span>. </span> Find the solutions to
 </p>
 
@@ -26204,7 +26260,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-337"></a>
+<span class="listmarker"><a id="mat1001-autopage-342"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.4</span></span>. </span> Identify any solutions to the equation
 </p>
 
@@ -26244,7 +26300,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-338"></a>
+<span class="listmarker"><a id="mat1001-autopage-343"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.5</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Solve
 </p>
 
@@ -26283,8 +26339,8 @@ Remember to work in radians for any problems related to trigonometry.
 
 
 <p>
-<span class="paragraph" id="autosec-339">Exponentials and Logarithms</span>
-<a id="mat1001-autopage-339"></a>
+<span class="paragraph" id="autosec-344">Exponentials and Logarithms</span>
+<a id="mat1001-autopage-344"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -26294,7 +26350,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-340"></a>
+<span class="listmarker"><a id="mat1001-autopage-345"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.6</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Solve the equation
 </p>
 
@@ -26334,7 +26390,7 @@ x=xe^{4x}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-341"></a>
+<span class="listmarker"><a id="mat1001-autopage-346"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.7</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Solve
 </p>
 
@@ -26373,8 +26429,8 @@ x=xe^{4x}.
 
 
 <p>
-<span class="paragraph" id="autosec-342">Limits and Asymptotes</span>
-<a id="mat1001-autopage-342"></a>
+<span class="paragraph" id="autosec-347">Limits and Asymptotes</span>
+<a id="mat1001-autopage-347"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -26384,7 +26440,7 @@ x=xe^{4x}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-343"></a>
+<span class="listmarker"><a id="mat1001-autopage-348"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.8</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> For the function
 </p>
 
@@ -26450,7 +26506,7 @@ evaluate the limit
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-344"></a>
+<span class="listmarker"><a id="mat1001-autopage-349"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.9</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> For the function
 </p>
 
@@ -26519,7 +26575,7 @@ evaluate the limits
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-345"></a>
+<span class="listmarker"><a id="mat1001-autopage-350"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.10</span></span><span class="amsthmnoteplain"> (\(\dagger \))</span>. </span> For the function
 </p>
 
@@ -26585,7 +26641,7 @@ evaluate the limit
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-346"></a>
+<span class="listmarker"><a id="mat1001-autopage-351"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.11</span></span>. </span> Using an appropriate plot evaluate the limits
 </p>
 <span class="hidden"> \(\seteqnumber{0}{11.}{0}\)</span>
@@ -26630,7 +26686,7 @@ evaluate the limit
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-347"></a>
+<span class="listmarker"><a id="mat1001-autopage-352"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.12</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Determine where the function
 </p>
 
@@ -26670,8 +26726,8 @@ fails to be continuous. What do these points correspond to on a plot of \(g(x)\)
 
 
 <p>
-<span class="paragraph" id="autosec-348">Challenge Problems</span>
-<a id="mat1001-autopage-348"></a>
+<span class="paragraph" id="autosec-353">Challenge Problems</span>
+<a id="mat1001-autopage-353"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -26681,7 +26737,7 @@ fails to be continuous. What do these points correspond to on a plot of \(g(x)\)
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-349"></a>
+<span class="listmarker"><a id="mat1001-autopage-354"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.13</span></span>. </span> By making a table of values of \(f(x), x\) estimate the limit
 </p>
 
@@ -26747,7 +26803,7 @@ f(x)=\frac {x^{2}+4x-12}{x^{2}-2x}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-350"></a>
+<span class="listmarker"><a id="mat1001-autopage-355"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.14</span></span>. </span> Use the definition of continuity to determine in the function
 </p>
 
@@ -26788,7 +26844,7 @@ is continuous and if not find the points where it has discontinuities.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-351"></a>
+<span class="listmarker"><a id="mat1001-autopage-356"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.15</span></span><span class="amsthmnoteplain"> (\(\dagger \))</span>. </span> For the function \(g(x)\) in the previous problem look at the
 definition of differentiability and work out where \(g(x)\) fails to be differentiable.
 </p>
@@ -26804,8 +26860,8 @@ definition of differentiability and work out where \(g(x)\) fails to be differen
 
 
 <p>
-<span class="paragraph" id="autosec-352">Hyperbolic Trig functions</span>
-<a id="mat1001-autopage-352"></a>
+<span class="paragraph" id="autosec-357">Hyperbolic Trig functions</span>
+<a id="mat1001-autopage-357"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -26815,7 +26871,7 @@ definition of differentiability and work out where \(g(x)\) fails to be differen
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-353"></a>
+<span class="listmarker"><a id="mat1001-autopage-358"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.16</span></span><span class="amsthmnoteplain"> (\(\dagger \))</span>. </span> Show that
 </p>
 
@@ -26855,7 +26911,7 @@ definition of differentiability and work out where \(g(x)\) fails to be differen
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-354"></a>
+<span class="listmarker"><a id="mat1001-autopage-359"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.2.17</span></span><span class="amsthmnoteplain"> (\(\dagger \))</span>. </span> Following some of the examples in section&nbsp;<a
 href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 </p>
@@ -26892,8 +26948,8 @@ href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 <!--
 ...... section Week 3 ......
 -->
-<h4 id="autosec-355"><span class="sectionnumber">11.3&#x2003;</span>Week 3</h4>
-<a id="mat1001-autopage-355"></a>
+<h4 id="autosec-360"><span class="sectionnumber">11.3&#x2003;</span>Week 3</h4>
+<a id="mat1001-autopage-360"></a>
 
 
 <a id="sec:   Tutorial sheet 3"></a>
@@ -26903,8 +26959,8 @@ href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 
 
 <p>
-<span class="paragraph" id="autosec-356">Differentiation</span>
-<a id="mat1001-autopage-356"></a>
+<span class="paragraph" id="autosec-361">Differentiation</span>
+<a id="mat1001-autopage-361"></a>
 
 </p>
 <div class="amsthmbodyplain">
@@ -26914,7 +26970,7 @@ href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-357"></a>
+<span class="listmarker"><a id="mat1001-autopage-362"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.3.1</span></span><span class="amsthmnoteplain"> (\(\star \))</span>. </span> Find the derivative of
 </p>
 
@@ -26968,7 +27024,7 @@ f(x)=7x^{2}
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-358"></a>
+<span class="listmarker"><a id="mat1001-autopage-363"></a>
 <span class="amsthmnameplain">Problem</span><span class="amsthmnumberplain"> <span class="textup">11.3.2</span></span>. </span> Find the derivative of
 </p>
 
@@ -27007,8 +27063,8 @@ f(x)=3x^{3}-8x.
 
 
 <p>
-<span class="paragraph" id="autosec-359">Challenge Problems</span>
-<a id="mat1001-autopage-359"></a>
+<span class="paragraph" id="autosec-364">Challenge Problems</span>
+<a id="mat1001-autopage-364"></a>
 
 </p>
 
@@ -27256,7 +27312,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-360"></a>
+<a id="mat1001-autopage-365"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -27899,8 +27955,8 @@ Bibliography</a>
 <!--
 ...... chapter Extra Proofs and Derivations ......
 -->
-<h3 id="autosec-361">Chapter&nbsp;<span class="sectionnumber">12&#x2003;</span>Extra Proofs and Derivations</h3>
-<a id="mat1001-autopage-361"></a>
+<h3 id="autosec-366">Chapter&nbsp;<span class="sectionnumber">12&#x2003;</span>Extra Proofs and Derivations</h3>
+<a id="mat1001-autopage-366"></a>
 <a id="mat1001-autofile-12"></a>
 
 <a id="sec:   proofs"></a>
@@ -28002,7 +28058,7 @@ and let \(g(x)=1/q(x)\) then applying the product rule means that
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-362"></a>
+<span class="listmarker"><a id="mat1001-autopage-367"></a>
 <span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">12.1</span></span>. </span> Note that in the above calculation we have used the chain rule, \(\left ((f\circ g)(x)\right
 )&apos;=f&apos;(g(x))g&apos;(x)\), which we did not discuss until after we had introduced the quotient rule. Also, note that if we were mathematicians we would need to carefully think about when \(p(x)/q(x)\) is differentiable, and implementing the product rule does
 not need that, it just gives that \(p(x)(q(x))^{-1}\) is differentiable if \(p(x)\) and \((q(x))^{-1}\) is. This is why for mathematicians, they would prove the quotient rule using differentiation from first principles, or using logarithmic differentiation. The interested
@@ -28334,7 +28390,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-363"></a>
+<a id="mat1001-autopage-368"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -28977,8 +29033,8 @@ Bibliography</a>
 <!--
 ...... chapter Standard Derivatives and Integrals ......
 -->
-<h3 id="autosec-364">Chapter&nbsp;<span class="sectionnumber">13&#x2003;</span>Standard Derivatives and Integrals</h3>
-<a id="mat1001-autopage-364"></a>
+<h3 id="autosec-369">Chapter&nbsp;<span class="sectionnumber">13&#x2003;</span>Standard Derivatives and Integrals</h3>
+<a id="mat1001-autopage-369"></a>
 <a id="mat1001-autofile-13"></a>
 
 <a id="sec:    deriv sheet"></a>
@@ -28995,8 +29051,8 @@ Remember, you should still be able to derive these results if you need to, the l
 <!--
 ...... section Derivatives ......
 -->
-<h4 id="autosec-365"><span class="sectionnumber">13.1&#x2003;</span>Derivatives</h4>
-<a id="mat1001-autopage-365"></a>
+<h4 id="autosec-370"><span class="sectionnumber">13.1&#x2003;</span>Derivatives</h4>
+<a id="mat1001-autopage-370"></a>
 
 
 <figure id="autoid-49" class="table ">
@@ -29105,8 +29161,8 @@ Table&nbsp;13.1: Table of standard derivatives
 <!--
 ...... section Integrals ......
 -->
-<h4 id="autosec-368"><span class="sectionnumber">13.2&#x2003;</span>Integrals</h4>
-<a id="mat1001-autopage-368"></a>
+<h4 id="autosec-373"><span class="sectionnumber">13.2&#x2003;</span>Integrals</h4>
+<a id="mat1001-autopage-373"></a>
 
 
 <figure id="autoid-50" class="table ">
@@ -29422,7 +29478,7 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-371"></a>
+<a id="mat1001-autopage-376"></a>
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
@@ -30065,8 +30121,8 @@ Bibliography</a>
 <!--
 ...... chapter Bibliography ......
 -->
-<h3 id="autosec-372">Bibliography</h3>
-<a id="mat1001-autopage-372"></a>
+<h3 id="autosec-377">Bibliography</h3>
+<a id="mat1001-autopage-377"></a>
 <a id="mat1001-autofile-14"></a>
 
 <ul class="list" style="list-style-type:none">

@@ -2236,10 +2236,15 @@ useful to you.
 
 <p>
 If we have time, in chapter&nbsp;<a href="Advanced-Topics.html#sec:advanced topics">8</a> we will discuss the continuous analogue of this which goes by the name of the <b>Taylor</b> or <b>Maclaurin</b> series. However, to understand these properly, we need
-to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using a discrete method known as the <b>Newton interpolating polynomial</b>, or <b>Newton’s divided difference
-method</b>.<br />
-
+to know how to calculate multiple derivative, which is just at the edge of what is included in this module. In this section we will be doing this using two discrete methods, one known as the <b>Newton interpolating polynomial</b>, or <b>Newton’s divided
+difference method</b>, and the other <b>Lagrange’s method</b>.
 </p>
+<!--
+...... subsection Newton’s method ......
+-->
+<h5 id="autosec-240">Newton’s method</h5>
+<a id="mat1001-autopage-240"></a>
+
 
 <p>
 The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in Lissamen and West [2004] is to consider the growth rate per year for a group of young people. The results are given in table&nbsp;<a
@@ -2251,7 +2256,7 @@ href="Numerical-Methods.html#table:heights">6.6</a> and can be plotted as five p
 <!--
 
 
-                                                                                                f (x) = 4.13984375 + 3.34791667x − 0.91315104x2 + 0.08177083x3 − 0.00232747x4 .
+                                                                                               f (x) = 4.13984375 + 3.34791667x − 0.91315104x2 + 0.08177083x3 − 0.00232747x4 .
 
 -->
 
@@ -2279,7 +2284,7 @@ By the end of this section you will know how to calculate the approximate functi
 
 
 <div class="figurecaption">
-Table&nbsp;6.6: Measurements of the average height increase per year at various ages taken from <a id="mat1001-autopage-240"></a>Lissamen and West [2004].
+Table&nbsp;6.6: Measurements of the average height increase per year at various ages taken from <a id="mat1001-autopage-241"></a>Lissamen and West [2004].
 
 </div>
 
@@ -2356,7 +2361,7 @@ this is an artefact of the plot being scaled, This will be fixed soon.
 </figure>
 
 <p>
-Following <a id="mat1001-autopage-244"></a>Lissamen and West [2004], we will use the notation in table&nbsp;<a href="Numerical-Methods.html#table:notation">6.7</a>. We start our labelling from the left most point and moving rightwards until we get to the last
+Following <a id="mat1001-autopage-245"></a>Lissamen and West [2004], we will use the notation in table&nbsp;<a href="Numerical-Methods.html#table:notation">6.7</a>. We start our labelling from the left most point and moving rightwards until we get to the last
 point. Here we are taking \(x\) values that have a constant spacing which we denote by \(h\)<sup>3</sup>.<br />
 
 </p>
@@ -2569,7 +2574,7 @@ Table&nbsp;6.8: A finite difference table with four points working up to the thi
 </figure>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-249"></a>
+<a id="mat1001-autopage-250"></a>
 
 <p>
 <sup>3</sup>&nbsp;If this seems suggestive of our notation when doing differentiation from first principles, that is on purpose. The separation between points is precisely what we want to take to zero to get the derivative.
@@ -2703,7 +2708,7 @@ Table&nbsp;6.9: A finite difference table with four points working up to the thi
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-252"></a>
+<span class="listmarker"><a id="mat1001-autopage-253"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.9</span></span>. </span> Consider the quadratic function \(f(x)=x^{2}+1\), working up to fourth order differences, this gives the finite difference table in
 table&nbsp;<a href="Numerical-Methods.html#table:    fd ex2">6.10</a>. Notice that the third and fourth differences all vanish.
 </p>
@@ -2849,7 +2854,7 @@ Table&nbsp;6.10: A finite difference table with four points working up to the fo
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-255"></a>
+<span class="listmarker"><a id="mat1001-autopage-256"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.10</span></span>. </span> Construct the finite difference table, up to third order differences, for the linear function \(f(x)=2x+1\).
 </p>
 
@@ -2865,7 +2870,7 @@ Table&nbsp;6.10: A finite difference table with four points working up to the fo
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-256"></a>
+<span class="listmarker"><a id="mat1001-autopage-257"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.11</span></span>. </span> Construct the finite difference table, up to third order differences, for a cubic function of your choice. How many differences do
 you think you need to include?
 </p>
@@ -2922,7 +2927,7 @@ When we only have two points this method is called <b>linear interpolation</b> a
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-257"></a>
+<span class="listmarker"><a id="mat1001-autopage-258"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">6.12</span></span>. </span> Consider the finite difference table in table&nbsp;<a href="Numerical-Methods.html#table:   fd ex2">6.10</a>. The
 corresponding Newton interpolating polynomial is found as follows:
 </p>
@@ -3008,7 +3013,7 @@ This is the polynomial that we started with which is a good sign.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-258"></a>
+<span class="listmarker"><a id="mat1001-autopage-259"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.13</span></span>. </span> Consider the finite difference table in table&nbsp;<a href="Numerical-Methods.html#table:   fd ex1">6.9</a>, and find the
 Newton interpolation polynomial for this data.
 </p>
@@ -3025,7 +3030,7 @@ Newton interpolation polynomial for this data.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-259"></a>
+<span class="listmarker"><a id="mat1001-autopage-260"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.14</span></span>. </span> Consider the data in table&nbsp;<a href="Numerical-Methods.html#table:   data table for exercise">6.11</a> and find the
 polynomial that fits the data.
 </p>
@@ -3089,10 +3094,10 @@ Then use your approximation to find the value of \(f(4.3)\).
 Note that if all of the differences of a given order are approximately constant then we can sometimes get away with a lower order polynomial approximation, even if the higher order terms do not actually vanish.
 </p>
 <!--
-...... subsection Lagrange’s Method ......
+...... subsection Lagrange’s method ......
 -->
-<h5 id="autosec-262">Lagrange’s Method</h5>
-<a id="mat1001-autopage-262"></a>
+<h5 id="autosec-263">Lagrange’s method</h5>
+<a id="mat1001-autopage-263"></a>
 
 
 <p>
@@ -3163,21 +3168,72 @@ where we now need that \(a,b,c\) are non equal.<br />
 <p>
 This approach can be generalised to a polynomial going through \(n\) points. This will be a polynomial of degree \(n-1\) for \(n\) points.
 </p>
-<!--
-...... section Numerical differentiation ......
--->
-<h4 id="autosec-263"><span class="sectionnumber">6.3&#x2003;</span>Numerical differentiation</h4>
-<a id="mat1001-autopage-263"></a>
+<div class="amsthmbodyplain">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><a id="mat1001-autopage-264"></a>
+<span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">6.15</span></span>. </span> Find the expression for the degree \(3\) polynomial going through four points, then use the pattern that you can see between the
+line, quadratic, and cubic, cases to find the general expression for the polynomial passing through \(n\) points.
+</p>
+
+</li>
+
+</ul>
+
+</div>
 <!--
 ...... section Numerical integration ......
 -->
-<h4 id="autosec-264"><span class="sectionnumber">6.4&#x2003;</span>Numerical integration</h4>
-<a id="mat1001-autopage-264"></a>
+<h4 id="autosec-265"><span class="sectionnumber">6.3&#x2003;</span>Numerical integration</h4>
+<a id="mat1001-autopage-265"></a>
+
+
+<p>
+We now turn to numerical methods of integration. We have already carried out some numerical integration when we discussed definite integrals and the relationship between integrals and sums. In fact the first method we will use to carry out numerical integration, the
+<b>midpoint rule</b>, is one we have already seen. We will also discuss two other related rules that estimate the area under a graph, the <b>trapezium rule</b> and <b>Simpson’s rule</b>. These are not independent methods, and Simpson’s rule is actually a
+weighted average of the mid point and trapezium rule which improves the accuracy.<br />
+
+</p>
+
+<p>
+In practice, when you ask a computer to carry out a definite integration, unless you use a symbolic computation method in <b>Maple</b>, <b>Mathematica</b>, or similar, the computer will be implementing one of these rules. This means that by understanding how
+they work and how to implement them by hand, you will be able to code up your own numerical integrator. I recommend this as a challenge to an keen students who want to make practical use of what you are learning in this module and I will put an exercise at the end of
+each section suggesting that you do this for each of the rules.
+</p>
+<!--
+...... subsection Midpoint rule ......
+-->
+<h5 id="autosec-266">Midpoint rule</h5>
+<a id="mat1001-autopage-266"></a>
+
+
+<p>
+The mid point rule is the approximation approach that we met in chapter&nbsp;<a href="Integration.html#sec:integration">4</a> when approximating the area under the curve for the function \(f(x)=x^{2}+1\).
+</p>
+<!--
+...... subsection Trapezium rule ......
+-->
+<h5 id="autosec-267">Trapezium rule</h5>
+<a id="mat1001-autopage-267"></a>
+<!--
+...... subsection Simpson’s rule ......
+-->
+<h5 id="autosec-268">Simpson’s rule</h5>
+<a id="mat1001-autopage-268"></a>
+<!--
+...... section Numerical differentiation ......
+-->
+<h4 id="autosec-269"><span class="sectionnumber">6.4&#x2003;</span>Numerical differentiation</h4>
+<a id="mat1001-autopage-269"></a>
 <!--
 ...... section Numerical approaches to differential equations ......
 -->
-<h4 id="autosec-265"><span class="sectionnumber">6.5&#x2003;</span>Numerical approaches to differential equations</h4>
-<a id="mat1001-autopage-265"></a>
+<h4 id="autosec-270"><span class="sectionnumber">6.5&#x2003;</span>Numerical approaches to differential equations</h4>
+<a id="mat1001-autopage-270"></a>
 
 
 <p>
