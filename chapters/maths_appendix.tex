@@ -381,9 +381,73 @@ If you want more examples there is a \textbf{Transposition of Formulae} workbook
 \section{More on Limits}
 \label{sec: limits}
 
-This section contains some extra material on limits to help bridge the gap between the material that we need in this module and what you may have seen before if you have not done any mathematics since GCSE.\\
+This section contains some extra material on limits to help bridge the gap between the material that we need in this module and what you may have seen before if you have not done any mathematics since GCSE. There is a nice discussion of limits in the limits section of \citep{mathsisfun} which I have adapted an example from.\\
 
-The idea of a limit is that you are not looking at the value of a function at a given point, but are looking at what happens to the values of the function as they get close to the specified point.
+The idea of a limit is that you are not looking at the value of a function at a given point, but are looking at what happens to the values of the function as they get close to the specified point. For example if we take
+\begin{equation*}
+f(x)=\frac{x^{2}-1}{x-1}
+\end{equation*}
+It looks like we cannot evaluate this at $x=1$ since that would give $0/0$ which is not defined, sometimes called \textit{indeterminate}, and usually means that either we have made a mistake in our calculation or we are trying to look at a function in a parameter region where it is not defined.  However, just because the function looks to be undefined at $x=1$ does not mean that we cannot ask what happens as we approach $x=1$. The easiest way to do that is to evaluate $f(x)$ at a range of values of $x$ getting closer and closer to $x=1$:
+\begin{align*}
+x, &\quad f(x)\\
+\frac{1}{2}, &\quad \frac{3}{2}=1.5,\\
+\frac{3}{4}, &\quad\frac{7}{4}=1.75,\\
+\frac{9}{10}, &\quad \frac{19}{10}=1.9\\
+\frac{99}{100}, &\quad \frac{199}{100}=1.99\\
+\frac{999}{1000}, &\quad \frac{1999}{1000}=1.999\\
+\frac{9999}{10000}, &\quad\frac{19999}{10000}=1.9999\\
+\frac{99999}{100000}, &\quad \frac{199999}{100000}=1.99999.
+\end{align*}
+This shows that the closer $x$ gets to 1 the closer that $f(x)$ becomes to $2$. We call this process taking the limit of $f(x)$ as $x$ goes to 1, and say that in this limit $f(x)$ goes to 2.  The notation that we use for this is 
+\begin{equation*}
+\lim_{x\to 2}f(x)=\lim_{x\to 2}\left(\frac{x^{2}-1}{x-1}\right)=2.
+\end{equation*}
 
+We have a tension here between the value we get when we try to evaluate $f(x)$ at $x=1$ and when we take the limit as $x\to 1$. If we could not resolve this then we would say that the function is not defined at $x=1$ but the limit of $f(x)$ as $x\to 1$ is defined.  \\
 
+So far we have only look at what happens to $f(x)$ as $x$ goes to $1$ from below,  i.e. starting from a value of $x$ less than $1$ and increasing it towards $1$. What happens if we start with a value of $x$ above $1$ and lower it towards $1$? 
+\begin{align*}
+x, &\quad f(x)\\
+\frac{3}{2,} &\quad \frac{5}{2}=2.5,\\
+\frac{5}{4,} &\quad\frac{9}{4}=2.25,\\
+\frac{11}{10},&\quad \frac{21}{10}=2.1\\
+\frac{101}{100},&\quad \frac{201}{100}=2.01\\
+\frac{1001}{1000},&\quad \frac{2001}{1000}=2.001\\
+\frac{10001}{10000},&\quad\frac{20001}{10000}=2.0001\\
+\frac{100001}{100000},&\quad \frac{200001}{100000}=2.00001.
+\end{align*}
+This is also approaching $1$, so the limit is the same from both sides. This is good as it means that the limit is defined. \\
+
+In this case we can actually simplify $f(x)$ to clear up whether the function can be evaluated at $x=1$ or not. Note that $x^{2}-1=(x-1)(x+1)$ so
+\begin{equation*}
+f(x)=\frac{x^{2}-1}{x-1}=\frac{(x-1)(x+1)}{x-1}=x+1,
+\end{equation*}
+which can be evaluated at $x=1$ to give $f(x)=2$. Thus, the limit as $x$ approaches $1$ of $f(x)$ agrees with just evaluating the function at $x=1$. \\
+
+\textbf{Warning!} this will not always be true. It is possible that the function is not defined at the point, but the limit still exists.\\
+
+As an example of this let us consider the function
+\begin{equation*}
+f(x)=\frac{1}{x-1}
+\end{equation*}
+and ask what happens in the limit that $x$ goes to infinity. The important point here is that infinity, denoted $\infty$, is not really a number, but we can think of approaching $\infty$ by taking $x$ larger and larger, and seeing what happens to $f(x)$. Here we get:
+\begin{align*}
+x, &\quad f(x)=\frac{1}{x-1}\\
+2,&\quad 1,\\
+3, &\quad\frac{1}{2}=0.5,\\
+5,&\quad \frac{1}{4}=0.25\\
+11,&\quad \frac{1}{10}=0.1\\
+101,&\quad \frac{1}{100}=0.01\\
+1001,&\quad\frac{1}{1000}=0.001\\
+10001,&\quad \frac{1}{10000}=0.0001.
+\end{align*}
+This shows that $f(x)$ is tending to zero as $x\to \infty$. Sometimes we will be careless with notation and write $1/\infty ``='' 0$, but this is really short hand for $\lim_{x\to \infty}1/x = 0$. Remember, we cannot evaluate the function $f(x)$ at $\infty$ but can say how the function behaves as we approach infinity.
+
+\begin{exercise}
+Consider the function 
+\begin{equation*}
+f(x)=\frac{1}{x-1}
+\end{equation*}
+again. By exploring what happens as $x$ approaches $1$ both from above and below find out if the limit of $f(x)$ as $x\to 1$ exists.
+\end{exercise}
 
