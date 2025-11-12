@@ -459,7 +459,7 @@ If we have time, in \cref{sec:advanced topics} we will discuss the continuous an
 
 \subsection*{Newton's method}
 
-The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \cite{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \cite{lissamen2004mei} is can a formula be found which fits all of these points. The formula given in \cite{lissamen2004mei} is
+The idea is that idea is that given some values of a function, we can find a polynomial which passes through them. The example given in \citep{lissamen2004mei} is to consider the growth rate per year for a group of young people. The results are given in \cref{table:heights} and can be plotted as five points on a graph. The question asked, and answered, in \citep{lissamen2004mei} is can a formula be found which fits all of these points. The formula given in \citep{lissamen2004mei} is
 \begin{equation*}
 f(x)=4.13984375+3.34791667x-0.91315104x^{2}+0.08177083x^{3}-0.00232747x^{4}.
 \end{equation*}
@@ -470,7 +470,7 @@ By the end of this section you will know how to calculate the approximate functi
 
 \begin{table}[ht]
 \centering
-\caption{Measurements of the average height increase per year at various ages taken from \cite{lissamen2004mei}.}
+\caption{Measurements of the average height increase per year at various ages taken from \citep{lissamen2004mei}.}
 
 \vspace{2mm}
 
@@ -507,7 +507,7 @@ Rate of Growth in cm per year & $7.8$ & $6.0$ & $4.8$&$7.0$&$1.1$\\
         \label{fig: heights fit}
 \end{figure}
 
-Following \cite{lissamen2004mei}, we will use the notation in \cref{table:notation}. We start our labelling from the left most point and moving rightwards until we get to the last point. Here we are taking $x$ values that have a constant spacing which we denote by $h$\footnote{If this seems suggestive of our notation when doing differentiation from first principles, that is on purpose. The separation between points is precisely what we want to take to zero to get the derivative. }.\\
+Following \citep{lissamen2004mei}, we will use the notation in \cref{table:notation}. We start our labelling from the left most point and moving rightwards until we get to the last point. Here we are taking $x$ values that have a constant spacing which we denote by $h$\footnote{If this seems suggestive of our notation when doing differentiation from first principles, that is on purpose. The separation between points is precisely what we want to take to zero to get the derivative. }.\\
 
 
 \begin{table}[ht]
@@ -720,7 +720,7 @@ Then use your approximation to find the value of $f(4.3)$.
 Note that if all of the differences of a given order are approximately constant then we can sometimes get away with a lower order polynomial approximation, even if the higher order terms do not actually vanish.
 
 \subsection*{Lagrange's method}
-There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \cite{lissamen2004mei}.\\
+There is an alternative method due to Lagrange, where we do not need to start with equally spaced points. The easiest way to understand this method is to start by considering the linear case, then the quadratic case, before giving the general expression. This is also discussed briefly in \citep{lissamen2004mei}.\\
 
 The linear case of Lagrange's equation is very similar to \cref{eq: linear interpolation formula} that we met when discussing linear interpolation as a method of root finding. \\
 
@@ -921,7 +921,7 @@ A_{T} 	&=A_{1}+A_{2}+\dots +A_{n}\\
 Thus to estimate the integral using the trapezium rule we just need to know the value of the function at the end points of the intervals, and the width of the intervals.
 
 \begin{ex}
-Consider $f(x)=\cos(x)$ over the interval $[0,\uppi/2]$. In  \cite{lissamen2004mei}, they discuss this example for $1,2,4$ and $8$ sub intervals, here we will just treat the case of $n=4$, so $\Delta x= \uppi/8$. The easiest way to keep track of the information we need is in a table of points, the boundaries of the interval, and the value of the function at these points. This table is shown in \cref{table: trapezium data}. taking these five values of $f(x)$ and substituting into \cref{eq: trapezium rule} we get
+Consider $f(x)=\cos(x)$ over the interval $[0,\uppi/2]$. In  \citep{lissamen2004mei}, they discuss this example for $1,2,4$ and $8$ sub intervals, here we will just treat the case of $n=4$, so $\Delta x= \uppi/8$. The easiest way to keep track of the information we need is in a table of points, the boundaries of the interval, and the value of the function at these points. This table is shown in \cref{table: trapezium data}. taking these five values of $f(x)$ and substituting into \cref{eq: trapezium rule} we get
 
 \begin{table}[ht]
 \centering
@@ -1333,7 +1333,7 @@ and the percentage error is
 \text{Percentage error}=\left|\frac{X-x}{x}\right|\times 100\%
 \end{equation}
 
-There is a discussion of error and the related concept of convergence of an approximation, i.e. whether the approximation is closing in on the true value and how quickly, in  \cite{lissamen2004mei}.
+There is a discussion of error and the related concept of convergence of an approximation, i.e. whether the approximation is closing in on the true value and how quickly, in  \citep{lissamen2004mei}.
 
 \begin{ex}
 Consider the examples of approximating the derivative of $x^{2}\cos(x)$ using both the backwards and forwards difference method with $h=0.0125$.  The relative and absolute errors are shown in \cref{table: percentage error 1}.
