@@ -979,11 +979,11 @@ $f(x)$ & $0$ & $0.41$ & $0.69$&$0.92$&$1.10$\\
 \end{tabular}
 \end{table}
 
-This works as follows. We have $n=4$ sub intervals defined by the five values of $x$ we are given. Thus we can use \cref{eq: trapezium rule}, and $\Delta x=(3-1)/2=1$ to find
+This works as follows. We have $n=4$ sub intervals defined by the five values of $x$ we are given. Thus we can use \cref{eq: trapezium rule}, and $\Delta x=(3-1)/4=1/2$ to find
 \begin{align*}
 A_{T} &=\frac{\Delta x}{2}\left(f_{0}+2\left(f_{1}+f_{2}+f_{3}\right)+f_{4}\right)\\
-	&=\frac{1}{2}\left(0+2\left(0.41+0.69+0.92\right)+1.10\right)\\
-	&=2.57.
+	&=\frac{1}{4}\left(0+2\left(0.41+0.69+0.92\right)+1.10\right)\\
+	&=1.29.
 \end{align*}
 
 Note that we could use Newton's divided difference method to find an approximation to this function, but we do not need to do this to calculate the integral.
@@ -1071,6 +1071,7 @@ Give your answer to 6 decimal places.
 
 
 \section{Numerical differentiation}
+
 
 
 \section{Numerical approaches to differential equations}
