@@ -743,6 +743,7 @@ Find the expression for the degree $3$ polynomial going through four points, the
 \end{exercise}
 
 \section{Numerical integration}
+\textcolor{red}{This section needs more images added. There are graphs for the mid point rule case but not for the trapezium rule case. These will be added soon.}
 
 We now turn to numerical methods of integration. We have already carried out some numerical integration when we discussed definite integrals and the relationship between integrals and sums. In fact the first method we will use to carry out numerical integration, the \textbf{midpoint rule}, is one we have already seen.  We will also discuss two other related rules that estimate the area under a graph, the \textbf{trapezium rule} and \textbf{Simpson's rule}. These are not independent methods, and Simpson's rule is actually a weighted average of the mid point and trapezium rule which improves the accuracy.\\
 
@@ -750,11 +751,324 @@ In practice, when you ask a computer to carry out a definite integration, unless
 
 \subsection*{Midpoint rule}
 
-The mid point rule is the approximation approach that we met in \cref{sec:integration}  when approximating the area under the curve for the function $f(x)=x^{2}+1$. 
+The mid point rule is the approximation approach that we met in \cref{sec:integration}  when approximating the area under the curve for the function $f(x)=x^{2}+1$. Let's recap it here.\\
+
+Consider the figure in \cref{fig: first integral approx}, as we saw earlier we will be approximating the area between the curve and the $x$-axis, using rectangles of width $\Delta x$ and height $\Delta y$.
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function x squared plus one.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+ \draw[-, color =CDred ] (0,0) -- (0,1) ;
+  \draw[-, color =CDred ] (4,0) -- (4,5);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+    \end{tikzpicture}
+    \caption{A plot of our favourite function $f(x)=x^{2}+1$.}
+        \label{fig: first integral approx}
+\end{figure}
+
+As before, w e do this by splitting up the interval, $[0,2]$ in this case, into $n$ subintervals. This will give us an approximation of the area which will improve the more sub integrals we take, in other words the larger that $n$ is. The width of a subinterval is then 
+\begin{equation*}
+\Delta x=\frac{2-0}{n}=\frac{2}{n}.
+\end{equation*}
+In general it will be $\Delta x=(b-a)/n$, when the interval is $[a,b]$. \\
+
+Before we said that we could pick the height of the intervals to be any value the function takes within the sub interval. As the numerical approach that we are following is called the midpoint rule, unsurprisingly, we take the height to be the value of the function at the midpoint of the subinterval. Recall that for an interval $[a,b]$ the midpoint is $c=(a+b)/2$. This method is shown in \cref{fig: approximate area mid point}. 
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Graph of the function x squared plus one with rectangles approximating the area under the curve.}
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+  \draw[-, color =CDgreen ] (4,0) -- (4,4.0625);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+\draw[-, color =CDgreen ] (1,0) -- (1,1.5625) ;
+\draw[-, dashed] (0.5,0) -- (0.5,1.0625);
+\draw[-, dashed](1.5,0)--(1.5,1.5625);
+\draw[-, dashed] (2.5,0) -- (2.5,2.5625);
+\draw[-, dashed](3.5,0)--(3.5,4.0625);
+\draw[-, color =CDgreen ] (2,0) -- (2,2.5625);
+\draw[-, color =CDgreen ] (3,0) -- (3,4.0625) ;
+\draw[-, color =CDgreen ] (4,0) -- (4,4.0625) ;
+ \draw[-, color =CDgreen ] (0,1.0625) -- (1,1.0625);
+\draw[-, color =CDgreen ] (1,1.5625) -- (2,1.5625);
+\draw[-, color =CDgreen ] (2,2.5625) -- (3,2.5625) ;
+\draw[-, color =CDgreen ] (3,4.0625) -- (4,4.0625);
+    \end{tikzpicture}
+    \caption{A plot of  $f(x)=x^{2}+1$ with rectangles approximating the area under the curve.}
+        \label{fig: approximate area mid point }
+\end{figure}
+
+As we are taking four subintervals they are
+\begin{equation*}
+\left[0,\frac{1}{2}\right], \quad \left[\frac{1}{2},1\right], \quad \left[1,\frac{3}{2}\right], \quad \left[\frac{3}{2},2\right],
+\end{equation*}
+which all have width $\Delta x=1/2$. The heights are
+\begin{equation*}
+f\left(\frac{1}{4}\right)=\frac{17}{16}, \quad f\left(\frac{3}{4}\right)=\frac{25}{16}, \quad f\left(\frac{5}{4}\right)=\frac{41}{16}, f\left(\frac{7}{4}\right)=\frac{65}{16}.
+\end{equation*}
+The area of each rectangle is then
+\begin{align*}
+A_{1}&=\Delta x\times f\left(\frac{1}{4}\right)=\frac{1}{2}\times\frac{17}{16}=\frac{17}{32},\\
+A_{2}&=\Delta x\times f\left(\frac{3}{4}\right)=\frac{1}{2}\times\frac{25}{16}=\frac{25}{32},\\
+A_{3}&=\Delta x\times f\left(\frac{5}{4}\right)=\frac{1}{2}\times\frac{41}{16}=\frac{41}{32},\\
+A_{4}&=\Delta x\times f\left(\frac{7}{4}\right)=\frac{1}{2}\times\frac{65}{16}=\frac{65}{32}.
+\end{align*}
+
+The total area, $A_{m}$ since we are using the midpoint rule,  is thus
+\begin{equation*}
+A_{m}=A_{1}+A_{2}+A_{3}+A_{4}=\frac{17}{32}+\frac{25}{32}+\frac{41}{32}+\frac{65}{32}=\frac{148}{32}=\frac{37}{8}\simeq 4.625.
+\end{equation*}
+
+This was a result that we quoted in \cref{sec:integration}, but did not give all the details for. We also commented on the fact that this was pretty close to the true value of $A=14/3=4.67$ found by carrying out the definite integral.\\
+
+This shows that we do not always need to use that many sub intervals to get a decent estimate of the integral using the midpoint rule.\\
+
+We have given one example here, and you have checked at least one more on the problem sheets. However, this idea is general.\\
+
+Given a function $f(x)$ and an interval $[a,b]$ you should use the following steps:
+\begin{itemize}
+\item pick a number of sub intervals, or use the number given in the question, $n$, and split your interval into $n$ sub intervals $[a_{0},a_{1}], [a_{1},a_{2}], \dots [a_{n-1},a_{n}]$, of fixed width $\Delta x =(b-a)/n$.
+\item find the mid point of each sub interval $c_{i}=(a_{i}-a_{i-1})/2$ and take the height of the rectangle to be the value of the function at this point, $\Delta y_{i}=f(c_{i})$.
+\item Calculate the area of each of the rectangles as $A_{i}=\Delta x \times \Delta y_{i}$.\\
+\item Sum up all of the areas of the rectangles and get your estimate of the total area
+\begin{equation*}
+A_{m}=A_{1}+\dots A_{n}=\sum_{i=1}^{n}A_{i}.
+\end{equation*}
+and use this as your approximation to the definite integral.
+\end{itemize}
+
+In essence we are treating the problem the opposite way round to in \cref{sec:integration}, where we used this approximate picture and discussed how this became the definite integral in the limit of an infinite number of very thin rectangles. Here we are saying that we can use a finite number of rectangles to estimate the definite integral.\\
+
+Note that in many of the cases you are asked about here you can also compute the integrals directly. This enables you to check how close your answer is to the true answer. The real power of this method is that you can approximate the value of integrals that cannot be calculated directly. or which are very hard to calculate directly.
+
+\begin{ex}
+Consider the definite integral
+\begin{equation*}
+I=\int_{0}^{1}\sqrt{x^{3}+1}\ud x,
+\end{equation*}
+we can evaluate this with the midpoint rule for $n=5$ strips as follows. Since $n=5$ the width of each strip is $\Delta x = (1-0)/5=1/5=0.2$.
+\end{ex}
+
+\begin{exercise}
+Consider the function $f(x)=x^{2}-2$ on the interval $[0,2]$. Take $n=8$ and use the midpoint rule to approximate the definite integral
+\begin{equation*}
+I=\int_{0}^{2}\left(x^{2}-2\right)\ud x.
+\end{equation*}
+\end{exercise}
+
+
+\begin{exercise}
+Consider the function $f(x)=x^{3}+x^{2}-x-1$ on the interval $[-1,1]$. Take $n=6$ and use the midpoint rule to approximate the definite integral
+\begin{equation*}
+I=\int_{-1}^{1}\left(x^{3}+x^{2}-x-1\right)\ud x.
+\end{equation*}
+How does this compare to calculating the definite integral directly? 
+\end{exercise}
+\begin{exercise}
+Consider the function $f(x)=\sin(x)$ on the interval $[0,\uppi]$. Take $n=8$ and use the midpoint rule to approximate the definite integral
+\begin{equation*}
+I=\int_{0}^{\uppi}{\sin(x)}\ud x.
+\end{equation*}
+\end{exercise}
+
 
 \subsection*{Trapezium rule}
 
+The next rule is known as the trapezium rule. It is very similar to the midpoint rule in that we are approximating the area under the curve using shapes that we know how to calculate the area of. However, here we use trapezia instead of rectangles. \\
+
+A trapezium is like a rectangle glued onto a triangle, in general it is a four sided shape where at least one pair of sides are parallel. So squares and rectangles are examples of trapezia.\\
+
+Consider a function $f(x)$ on the interval $[a,b]$. If the length of the left edge of the trapezium is $f(a)$ and the length of the right edge is $f(a+\Delta x)$, while its width is $\Delta x$, then the area is
+\begin{equation*}
+A_{\text{trap}}=\frac{\Delta x}{2}\left(f(a)+f(a+\Delta x)\right).
+\end{equation*}
+
+If we have an interval $[a,b]$ that we split into $n$ sub intervals of width $\Delta x=(b-a)/n$ as before, then we use $n$-trapezia, one for each sub intervals. The side lengths of the trapezia are:
+\begin{itemize}
+\item $f_{0}=f(a)$ for the left most trapezium,
+\item $f_{1}=f(a+\Delta x)$ for the right side of the first sub interval and the left side of the second,
+\item $f_{2}=f(a+2\Delta x)$ for the right side of the second sub interval and the left side of the third, and so on up to
+\item $f_{n}=f(a+n\Delta x)=f(b)$ for the right side of the $n$'th sub interval.
+\end{itemize}
+
+The area of the trapezia are thus
+\begin{align*}
+A_{1}&=\frac{\Delta x}{2}\left(f_{0}+f_{1}\right),\\
+A_{2}&=\frac{\Delta x}{2}\left(f_{1}+f_{2}\right),\\
+\dots &\dots\\
+A_{n}&=\frac{\Delta x}{2}\left(f_{n-1}+f_{n}\right).
+\end{align*}
+
+Summing these up gives
+\begin{equation}
+\begin{split}
+A_{T} 	&=A_{1}+A_{2}+\dots +A_{n}\\
+	&=\frac{\Delta x}{2}\left(f_{0}+f_{1}\right)+\frac{\Delta x}{2}\left(f_{1}+f_{2}\right)+\dots +\frac{\Delta x}{2}\left(f_{n-1}+f_{n}\right)\\
+	&=\frac{\Delta x}{2}\left(f_{0}+2\left(f_{1}+f_{2}+\dots +f_{n-1}\right)+f_{n}\right).
+\end{split}
+\label{eq: trapezium rule}
+\end{equation}
+Thus to estimate the integral using the trapezium rule we just need to know the value of the function at the end points of the intervals, and the width of the intervals.
+
+\begin{ex}
+Consider $f(x)=\cos(x)$ over the interval $[0,\uppi/2]$. In  \cite{lissamen2004mei}, they discuss this example for $1,2,4$ and $8$ sub intervals, here we will just treat the case of $n=4$, so $\Delta x= \uppi/8$. The easiest way to keep track of the information we need is in a table of points, the boundaries of the interval, and the value of the function at these points. This table is shown in \cref{table: trapezium data}. taking these five values of $f(x)$ and substituting into \cref{eq: trapezium rule} we get
+
+\begin{table}[ht]
+\centering
+\caption{A table of data that you need to implement the trapezium rule.}
+
+\vspace{2mm}
+
+\label{table: trapezium data}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|} 
+ \hline
+$x$& $0$ &$\frac{\uppi}{8}$ & $\frac{\uppi}{4}$& $\frac{3\uppi}{8}$&$\frac{\uppi}{2}$\\
+ \hline
+$f(x)$ & $1$ & $0.92$ & $\frac{1}{\sqrt{2}}$&$0.38$&$0$\\
+ \hline
+\end{tabular}
+\end{table}
+
+\begin{align*}
+A_{T} &=\frac{\Delta x}{2}\left(f_{0}+2\left(f_{1}+f_{2}+f_{3}\right)+f_{4}\right)\\
+	&=\frac{\uppi}{16}\left(1+2(0.92+\frac{1}{\sqrt{2}}+0.38)+0\right)\\
+	&=0.98,
+\end{align*}
+which is close to the true value of $1$.
+\end{ex}
+
+Note that both the trapezium rule and the midpoint rule can be used to find the area under a curve even if we do not know the form of the function.
+
+\begin{ex}
+
+Consider that we are  given the data in \cref{table: trapezium data 2}, using just this information we can find 
+\begin{equation*}
+\int_{1}^{3}f(x)\ud x,
+\end{equation*}
+without knowing the form of $f(x)$ using the trapezium rule. 
+
+\begin{table}[ht]
+\centering
+\caption{A table of data that you need to implement the trapezium rule.}
+
+\vspace{2mm}
+
+\label{table: trapezium data 2}
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|} 
+ \hline
+$x$& $1$ &$1.5$ & $2$& $2.5$&$3$\\
+ \hline
+$f(x)$ & $0$ & $0.41$ & $0.69$&$0.92$&$1.10$\\
+ \hline
+\end{tabular}
+\end{table}
+
+This works as follows. We have $n=4$ sub intervals defined by the five values of $x$ we are given. Thus we can use \cref{eq: trapezium rule}, and $\Delta x=(3-1)/2=1$ to find
+\begin{align*}
+A_{T} &=\frac{\Delta x}{2}\left(f_{0}+2\left(f_{1}+f_{2}+f_{3}\right)+f_{4}\right)\\
+	&=\frac{1}{2}\left(0+2\left(0.41+0.69+0.92\right)+1.10\right)\\
+	&=2.57.
+\end{align*}
+
+Note that we could use Newton's divided difference method to find an approximation to this function, but we do not need to do this to calculate the integral.
+\end{ex}
+
+\begin{exercise}
+Use the trapezium rule with 6 sub intervals to calculate
+\begin{equation*}
+I= \int_{-\frac{\uppi}{2}}^{\frac{\uppi}{2}}\sin(x)\ud x.
+\end{equation*}
+You can do this either by hand, or set up a spread sheet or computer programme to solve this for you.
+\end{exercise}
+
+\begin{exercise}
+Use the trapezium rule with 4 steps to approximate the definite integral
+\begin{equation*}
+I=\int_{0}^{2}\left(x^{2}+1\right)\ud x
+\end{equation*}
+and compare it to the answer that we got using the mid point rule in \cref{sec:integration}.
+\end{exercise}
+
+\begin{exercise}
+Write a computer programme to implement the trapezium rule and use it to check the examples and exercises in this section.
+\end{exercise}
+
+
+
+
 \subsection*{Simpson's rule}
+
+The final numerical method that we will discuss is Simpson's rule. This is a weighted average of the trapezium rule and the mid point rule.  We could actually consider any weighted average of the the two methods to get an approximation to the definite integral. However, if we were analysing the error we would see that there is one particular choice which minimises the error and gets as close as possible to the true value of the integral. This is Simpson's rule,
+
+\begin{equation}
+A_{S}=\frac{2A_{m}+A_{T}}{3}.
+\label{eq: simpsons rule}
+\end{equation}
+
+Note that here we would use the same number of intervals for both the midpoint rule and the trapezium rule.
+
+\begin{ex}
+Let's return to one of our favourite examples
+\begin{equation*}
+I=\int_{0}^{\frac{\uppi}{2}}\cos(x)\ud x
+\end{equation*}
+and calculate this for $n=4$ sub intervals using Simpson's rule.\\
+
+The data to calculate this is given in \cref{table: trapezium data}, though we need to find the value of the function at the midpoints for the midpoint rule. We already know that $A_{T}=0.98$ so we just need to find $A_{m}$. The four mid points and the value of the function at them are:
+
+\begin{itemize}
+\item $c_{0}=(\uppi/8 +0)/2=\uppi/16$ and $\cos(c_{0})=0.98$
+\item  $c_{1}=(\uppi/4 +\uppi/8)/2=3\uppi/16$ and $\cos(c_{1})=0.83$,\\
+\item $c_{2}=(3\uppi/8 +\uppi/4)/2=5\uppi/16$ and $\cos(c_{2})=0.556$ \\
+\item  $c_{3}=(\uppi/2 +3\uppi/8)/2=7\uppi/16$ and $\cos(c_{3})=0.195$
+\end{itemize}
+
+We thus have that 
+\begin{align*}
+A_{m}&=\Delta x\left(f(c_{0})+f(c_{1})+f(c_{2})+f(c_{3})\right)\\
+	&=\frac{\uppi}{8}\left(0.98+0.83+0.556+0.195\right)\\
+	&=1.0057.
+\end{align*}
+
+Simpson's rule then gives that 
+\begin{equation*}
+A_{S}=\frac{2A_{m}+A_{T}}{3}=0.997\simeq 1
+\end{equation*}
+where we have rounded to two decimal places.
+\end{ex}
+
+\begin{exercise}
+Go through the case from the example above, 
+\begin{equation*}
+I=\int_{0}^{\frac{\uppi}{2}}\cos(x)\ud x,
+\end{equation*}
+and get the answer to 9 decimal places.
+\end{exercise}
+
+\begin{exercise}
+Use Simpson's rule with $n=6$ sub intervals to calculate
+\begin{equation*}
+I=\int_{0}^{2}\sqrt{1+\sin(x)+\cos(x)}\ud x,
+\end{equation*}
+Give your answer to 6 decimal places.
+\end{exercise}
+
 
 \section{Numerical differentiation}
 
