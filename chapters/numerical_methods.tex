@@ -1075,12 +1075,14 @@ We now turn to numerical approaches to differentiation. We have seen hints of th
 
 A major reason that we need a numerical approach to differentiation is that the definition of differentiation from first principles is very hard to implement on a computer.  It is much easier for a computer to understand an approximate method. \\
 
+
+\subsection*{Forward difference method}
 The key idea is to look at the definition of differentiation from first principles in \cref{eq: derivative definition}, and drop the limit part. e.g. we calculate an approximate gradient for points a small difference apart. In other words,
 \begin{equation}
 \frac{\ud f}{\ud x}\simeq \frac{f(x+h)-f(x)}{h}=\frac{\Delta f}{h},
 \label{eq: forward difference approx}
 \end{equation}
-for $h$ a small step between neighbouring points. This is known as the \textbf{forward difference approximation}, since we are looking at the difference between the function at the point $x$ and at the point $x+h$ one step ahead of $x$. This is shown schematically in \cref{fig: forward difference approximation}.\\
+for $h$ a small step between neighbouring points. This is known as the \textbf{forward difference method}, since we are looking at the difference between the function at the point $x$ and at the point $x+h$ one step ahead of $x$. This is shown schematically in \cref{fig: forward difference approximation}.\\
 
 
 \begin{figure}[ht]
@@ -1151,15 +1153,15 @@ Consider the function $f(x)=x^{2}\cos(x)$, we can calculate the approximate deri
 \end{equation*}
 \item  $h=0.05$
 \begin{equation*}
-\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.05)-f(2)}{0.1}=\frac{-1.93766+1.66459}{0.1}=-5.46141,
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.05)-f(2)}{0.05}=\frac{-1.93766+1.66459}{0.05}=-5.46141,
 \end{equation*}
 \item  $h=0.025$
 \begin{equation*}
-\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.1)-f(2)}{0.1}=\frac{-1.79914+1.66459}{0.1}=-5.38196,
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.025)-f(2)}{0.025}=\frac{-1.79914+1.66459}{0.025}=-5.38196,
 \end{equation*}
  $h=0.0125$
 \begin{equation*}
-\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.1)-f(2)}{0.1}=\frac{-1.73136+1.66459}{0.1}=-5.34196,
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.0125)-f(2)}{0.0125}=\frac{-1.73136+1.66459}{0.0125}=-5.34196,
 \end{equation*}
 \end{itemize}
 
@@ -1171,9 +1173,197 @@ The true value found by calculating the derivative is
 so the approximating is getting closer to this as we take a smaller step size.
 \end{ex}
 
+\begin{exercise}
+Use the forward difference method with $h=0.05$ to approximate the derivative of $f(x)=4e^{2x}$ at $x=1$.
+\end{exercise}
+
+
 The forward difference method is not the only approach to approximating the gradient of the tangent line at a point. There are two other popular approaches, the \textbf{central difference method} and the \textbf{backwards difference method}. 
 
+\subsection*{Backwards difference method}
 
+The backwards difference method is the \textit{reverse} of the forward difference method. The picture to have in mind, shown in \cref{fig: backwards difference approximation}, is essentially the same as in \cref{fig: forward difference approximation}. The difference is that now we are comparing the value of the function at point with its value at the point one step earlier. As an equation this is 
+
+\begin{equation}
+\frac{\ud f}{\ud x}\simeq \frac{f(x)-f(x-h)}{h}.
+\label{eq: backwardsdifference approx}
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+\ThisAltText{Schematic of the backwards difference approximation.}
+\begin{tikzpicture}
+\begin{axis}[%title={Forward difference method},
+ticks=none,
+clip=false,
+xlabel={$x$},
+xmin=0,
+xmax=10.5,
+every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+ylabel={$y$},
+ymin=0,
+ymax=5.75,
+every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+axis x line=bottom,
+axis y line = left,
+line width=1pt,line cap=round,line join=round, smooth]
+
+%%%% Plot
+\draw[name path global=CurveLine] (0,1) .. controls (5,1) and (9,3) .. (10,5);
+
+\addplot [name path global=StraightLine] coordinates{(1,0.9) (9,3.5)};
+
+\fill [name intersections={of=StraightLine and CurveLine, name=i, total=\t}][CDred] 
+    \foreach \s in {1,...,\t}{(i-\s) circle (1.8pt)
+        node (\s) {}};
+
+%%%% Dashed lines and labels
+\begin{scope}[dashed,very thin]
+
+    \node[below=1.25cm of 1] (a) {$x-h$};
+    \node (b) at (a -| 2) {$x$};
+
+    \draw (1) -- (a);
+    \draw (2) -- (b);
+
+    \node[left=1.2cm of 1] (c) {$f(x-h)$};
+    \node (d) at (c |- 2) {$f(x)$};
+
+    \draw (1) -- (c);
+    \draw (2) -- (d);
+
+\end{scope}
+
+\draw[<->] (a) --node[midway,fill=white]{$h$} (b);
+\draw[<->] (c) --node[midway,fill=white]{$\Delta f$} (d);
+
+%\node at (4.5,4.5) {$\dfrac{\mathrm{d}u}{\mathrm{d}t}\approx\dfrac{\Delta u}{\Delta t}=\dfrac{u_{n+1}-u_n}{t_{n+1}-t_n}$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{A schematic of the backwards difference method showing how to approximate the tangent line to the curve at $x$ }
+        \label{fig: backwards difference approximation}
+\end{figure}
+
+\begin{ex}
+Similar to in the previous case, consider the function $f(x)=x^{2}\cos(x)$, we can calculate the approximate derivative at $x=2$ using the backwards difference method and taking the step size to be $h=0.1, 0.05, 0.025, 0.0125$. We do this as follows:
+\begin{itemize}
+\item $h=0.1$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2)-f(2-0.1)}{0.1}=\frac{-1.66459+1.16708}{0.1}=-4.97512,
+\end{equation*}
+\item  $h=0.05$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2)-f(2-0.05)}{0.05}=\frac{-1.66459+1.40761}{0.05}=-5.13949,
+\end{equation*}
+\item  $h=0.025$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2)-f(2-0.025)}{0.025}=\frac{-1.66459+1.53406}{0.025}=-5.22093,
+\end{equation*}
+ $h=0.0125$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2)-f(2-0.0125)}{0.0125}=\frac{-1.66459+1.59882}{0.0125}=-5.26143,
+\end{equation*}
+\end{itemize}
+
+The true value we found before is 
+\begin{align*}
+\frac{\ud f}{\ud x}(2)&=-5.30178,
+\end{align*}
+so again the approximating is getting closer to this as we take a smaller step size, though this time we are underestimating the gradient and approaching it from below.
+\end{ex}
+
+
+\subsection*{Central difference method}
+The central difference method is essentially a combination of the other two methods. In this case we approximate the gradient of the tangent line by using the straight line between the two points $f(x-h)$ and $f(x+h)$. In this case we are approximating the derivative by the gradient,
+\begin{equation}
+\frac{\ud f}{\ud x}\simeq \frac{\Delta f}{\Delta x}=\frac{f(x+h)-f(x-h)}{(x+h)-(x+h)}=\frac{f(x+h)-f(x-h)}{h}.
+\label{eq: central difference method}
+\end{equation}
+
+The central difference method is often preferred to the forward and backwards difference method, since it is a \textit{higher order method}. This means that when we discuss the error we will see that it is quadratic in the small parameter $h$ while the other methods are linear in $h$. 
+
+
+\begin{ex}
+Consider $f(x)=\tan(x)$ and use the central difference method with $h=0.1, 0.05, 0.025, 0.0125$ to approximate the derivative at $x=1$. This gives:
+\begin{itemize}
+\item $h=0.1$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.1)-f(2-0.1)}{0.2}=6.08625,
+\end{equation*}
+\item  $h=0.05$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.05)-f(2-0.05)}{0.1}=5.84915,
+\end{equation*}
+\item  $h=0.025$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.025)-f(2-0.025)}{0.05}=5.7929,
+\end{equation*}
+ $h=0.0125$
+\begin{equation*}
+\frac{\ud f}{\ud x}(2)\simeq \frac{f(2+0.0125)-f(2-0.0125)}{0.025}=5.77901,
+\end{equation*}
+\end{itemize}
+
+The true value of the derivative is $5.7744$ which our approximations are closing in on.
+\end{ex}
+
+\begin{ex}
+Use both the forward and central difference methods to approximate the derivative of $f(x)=\cos(x)$ at $x=\uppi/4$ using the step sizes $h=0.1$ and $h=0.05$. Compare these to each other and to the exact answer.
+\end{ex}
+
+\begin{ex}
+Pick your favourite programming language and write a function which implements the central difference method. Check it against the example that we computed above, then check a the cases that we explored using the forward and backwards difference method.
+\end{ex}
+
+
+\subsection*{Understanding the error}
+We briefly mentioned above that the absolute error is the difference between the true value, $x$,  and the value that our approximation returns, $X$, is given by
+\begin{equation}
+\text{Absolute error}=\vert X-x\vert.
+\end{equation}
+The $\vert \vert$ mean that this is the absolute value, and of the number within and is always positive. In other words we care about how far away our approximate value is from the true value, but not whether it is greater than or less than the true answer.\\
+
+The absolute relative error is then 
+\begin{equation}
+\text{Absolute relative error}=\left|\frac{X-x}{x}\right|,
+\end{equation}
+and the percentage error is
+\begin{equation}
+\text{Percentage error}=\left|\frac{X-x}{x}\right|\times 100\%
+\end{equation}
+
+There is a discussion of error and the related concept of convergence of an approximation, i.e. whether the approximation is closing in on the true value and how quickly, in  \cite{lissamen2004mei}.
+
+\begin{ex}
+Consider the examples of approximating the derivative of $x^{2}\cos(x)$ using both the backwards and forwards difference method with $h=0.0125$.  The relative and absolute errors are shown in \cref{table: percentage error 1}.
+
+\begin{table}[ht]
+\centering
+\caption{A comparison of our approximations to the derivative of $x^{2}\cos(x)$ at $x=2$ and the percentage error in each case.}
+
+\vspace{2mm}
+
+\label{table: percentage error 1}
+
+
+
+\begin{tabular}{|c|c|c|c|} 
+ \hline
+& Approximate derivative &Relative absolute error & Percentage error\\
+ \hline
+Forward difference& $-5.34196$ &$0.00758 $ & $0.758\% $\\
+ \hline
+Backward difference & $-5.26143$ & $0.00761$ & $0.761\%$\\
+ \hline
+\end{tabular}
+\end{table}
+
+\end{ex}
+
+\begin{exercise}
+Go back to all of the examples of using the forward, backwards, and central difference equation and calculate the relative and percentage error in each case. 
+\end{exercise}
 
 
 \section{Numerical approaches to differential equations}
