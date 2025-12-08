@@ -1277,7 +1277,7 @@ so again the approximating is getting closer to this as we take a smaller step s
 \subsection*{Central difference method}
 The central difference method is essentially a combination of the other two methods. In this case we approximate the gradient of the tangent line by using the straight line between the two points $f(x-h)$ and $f(x+h)$. In this case we are approximating the derivative by the gradient,
 \begin{equation}
-\frac{\ud f}{\ud x}\simeq \frac{\Delta f}{\Delta x}=\frac{f(x+h)-f(x-h)}{(x+h)-(x+h)}=\frac{f(x+h)-f(x-h)}{h}.
+\frac{\ud f}{\ud x}\simeq \frac{\Delta f}{\Delta x}=\frac{f(x+h)-f(x-h)}{(x+h)-(x+h)}=\frac{f(x+h)-f(x-h)}{2h}.
 \label{eq: central difference method}
 \end{equation}
 
