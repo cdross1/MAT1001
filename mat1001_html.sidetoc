@@ -30,46 +30,46 @@
 \contentsline {section}{\numberline {6.5}{\ignorespaces Numerical approaches to differential equations\relax }}{312}{}
 \contentsline {chapter}{\numberline {7}{\ignorespaces Calculus in Computer Science\relax }}{314}{}
 \contentsline {section}{\numberline {7.1}{\ignorespaces LLMs and AI\relax }}{315}{}
-\contentsline {section}{\numberline {7.2}{\ignorespaces Robotics\relax }}{317}{}
-\contentsline {chapter}{\numberline {8}{\ignorespaces Advanced Topics\relax }}{319}{}
-\contentsline {section}{\numberline {8.1}{\ignorespaces L'Ho\begingroup \LWR@fontfortags {HTMLentity}{\LWR@origpound {}x0302}\LWR@origampersand \LWR@origpound {}x0302;\endgroup pital's rule for evaluating limits\relax }}{320}{}
-\contentsline {section}{\numberline {8.2}{\ignorespaces Trigonometric Derivatives in Degrees\relax }}{324}{}
-\contentsline {section}{\numberline {8.3}{\ignorespaces Functions of two variables\relax }}{325}{}
-\contentsline {section}{\numberline {8.4}{\ignorespaces Multiple integrals\relax }}{326}{}
-\contentsline {section}{\numberline {8.5}{\ignorespaces Optimisation Problems\relax }}{327}{}
-\contentsline {section}{\numberline {8.6}{\ignorespaces Polynomial approximation\relax }}{328}{}
-\contentsline {chapter}{\numberline {9}{\ignorespaces Background Mathematics\relax }}{331}{}
-\contentsline {section}{\numberline {9.1}{\ignorespaces Background and References\relax }}{332}{}
-\contentsline {section}{\numberline {9.2}{\ignorespaces Polynomials and roots\relax }}{333}{}
-\contentsline {section}{\numberline {9.3}{\ignorespaces Trigonometry Primer\relax }}{335}{}
-\contentsline {section}{\numberline {9.4}{\ignorespaces Radians and Degrees\relax }}{339}{}
-\contentsline {section}{\numberline {9.5}{\ignorespaces Rearranging Equations\relax }}{346}{}
-\contentsline {section}{\numberline {9.6}{\ignorespaces More on Limits\relax }}{351}{}
-\contentsline {chapter}{\numberline {10}{\ignorespaces Further Reading\relax }}{354}{}
-\contentsline {section}{\numberline {10.1}{\ignorespaces Why Calculus Extra Reading\relax }}{355}{}
-\contentsline {section}{\numberline {10.2}{\ignorespaces Functions Extra Reading\relax }}{356}{}
-\contentsline {section}{\numberline {10.3}{\ignorespaces Differentiation Extra Reading\relax }}{357}{}
-\contentsline {section}{\numberline {10.4}{\ignorespaces Integration Extra Reading\relax }}{358}{}
-\contentsline {section}{\numberline {10.5}{\ignorespaces Differential Equations Extra Reading\relax }}{359}{}
-\contentsline {section}{\numberline {10.6}{\ignorespaces Numerical Methods Extra Reading\relax }}{360}{}
-\contentsline {section}{\numberline {10.7}{\ignorespaces Advanced Topics Extra Reading\relax }}{361}{}
-\contentsline {chapter}{\numberline {11}{\ignorespaces Tutorial Sheets\relax }}{363}{}
-\contentsline {section}{\numberline {11.1}{\ignorespaces Week 1\relax }}{364}{}
-\contentsline {paragraph}{Functions}{365}{}
-\contentsline {paragraph}{Challenge Problems}{376}{}
-\contentsline {section}{\numberline {11.2}{\ignorespaces Week 2\relax }}{380}{}
-\contentsline {paragraph}{Polynomials}{381}{}
-\contentsline {paragraph}{Trig functions}{384}{}
-\contentsline {paragraph}{Exponentials and Logarithms}{388}{}
-\contentsline {paragraph}{Limits and Asymptotes}{391}{}
-\contentsline {paragraph}{Challenge Problems}{397}{}
-\contentsline {paragraph}{Hyperbolic Trig functions}{401}{}
-\contentsline {section}{\numberline {11.3}{\ignorespaces Week 3\relax }}{404}{}
-\contentsline {paragraph}{Differentiation}{405}{}
-\contentsline {paragraph}{Challenge Problems}{408}{}
-\contentsline {chapter}{\numberline {12}{\ignorespaces Extra Proofs and Derivations\relax }}{410}{}
-\contentsline {chapter}{\numberline {13}{\ignorespaces Standard Derivatives and Integrals\relax }}{413}{}
-\contentsline {section}{\numberline {13.1}{\ignorespaces Derivatives\relax }}{414}{}
-\contentsline {section}{\numberline {13.2}{\ignorespaces Integrals\relax }}{417}{}
-\contentsline {chapter}{Bibliography}{421}{}
+\contentsline {section}{\numberline {7.2}{\ignorespaces Robotics\relax }}{322}{}
+\contentsline {chapter}{\numberline {8}{\ignorespaces Advanced Topics\relax }}{324}{}
+\contentsline {section}{\numberline {8.1}{\ignorespaces L'Ho\begingroup \LWR@fontfortags {HTMLentity}{\LWR@origpound {}x0302}\LWR@origampersand \LWR@origpound {}x0302;\endgroup pital's rule for evaluating limits\relax }}{325}{}
+\contentsline {section}{\numberline {8.2}{\ignorespaces Trigonometric Derivatives in Degrees\relax }}{329}{}
+\contentsline {section}{\numberline {8.3}{\ignorespaces Functions of two variables\relax }}{330}{}
+\contentsline {section}{\numberline {8.4}{\ignorespaces Multiple integrals\relax }}{331}{}
+\contentsline {section}{\numberline {8.5}{\ignorespaces Optimisation Problems\relax }}{332}{}
+\contentsline {section}{\numberline {8.6}{\ignorespaces Polynomial approximation\relax }}{335}{}
+\contentsline {chapter}{\numberline {9}{\ignorespaces Background Mathematics\relax }}{338}{}
+\contentsline {section}{\numberline {9.1}{\ignorespaces Background and References\relax }}{339}{}
+\contentsline {section}{\numberline {9.2}{\ignorespaces Polynomials and roots\relax }}{340}{}
+\contentsline {section}{\numberline {9.3}{\ignorespaces Trigonometry Primer\relax }}{342}{}
+\contentsline {section}{\numberline {9.4}{\ignorespaces Radians and Degrees\relax }}{346}{}
+\contentsline {section}{\numberline {9.5}{\ignorespaces Rearranging Equations\relax }}{353}{}
+\contentsline {section}{\numberline {9.6}{\ignorespaces More on Limits\relax }}{358}{}
+\contentsline {chapter}{\numberline {10}{\ignorespaces Further Reading\relax }}{361}{}
+\contentsline {section}{\numberline {10.1}{\ignorespaces Why Calculus Extra Reading\relax }}{362}{}
+\contentsline {section}{\numberline {10.2}{\ignorespaces Functions Extra Reading\relax }}{363}{}
+\contentsline {section}{\numberline {10.3}{\ignorespaces Differentiation Extra Reading\relax }}{364}{}
+\contentsline {section}{\numberline {10.4}{\ignorespaces Integration Extra Reading\relax }}{365}{}
+\contentsline {section}{\numberline {10.5}{\ignorespaces Differential Equations Extra Reading\relax }}{366}{}
+\contentsline {section}{\numberline {10.6}{\ignorespaces Numerical Methods Extra Reading\relax }}{367}{}
+\contentsline {section}{\numberline {10.7}{\ignorespaces Advanced Topics Extra Reading\relax }}{368}{}
+\contentsline {chapter}{\numberline {11}{\ignorespaces Tutorial Sheets\relax }}{370}{}
+\contentsline {section}{\numberline {11.1}{\ignorespaces Week 1\relax }}{371}{}
+\contentsline {paragraph}{Functions}{372}{}
+\contentsline {paragraph}{Challenge Problems}{383}{}
+\contentsline {section}{\numberline {11.2}{\ignorespaces Week 2\relax }}{387}{}
+\contentsline {paragraph}{Polynomials}{388}{}
+\contentsline {paragraph}{Trig functions}{391}{}
+\contentsline {paragraph}{Exponentials and Logarithms}{395}{}
+\contentsline {paragraph}{Limits and Asymptotes}{398}{}
+\contentsline {paragraph}{Challenge Problems}{404}{}
+\contentsline {paragraph}{Hyperbolic Trig functions}{408}{}
+\contentsline {section}{\numberline {11.3}{\ignorespaces Week 3\relax }}{411}{}
+\contentsline {paragraph}{Differentiation}{412}{}
+\contentsline {paragraph}{Challenge Problems}{415}{}
+\contentsline {chapter}{\numberline {12}{\ignorespaces Extra Proofs and Derivations\relax }}{417}{}
+\contentsline {chapter}{\numberline {13}{\ignorespaces Standard Derivatives and Integrals\relax }}{420}{}
+\contentsline {section}{\numberline {13.1}{\ignorespaces Derivatives\relax }}{421}{}
+\contentsline {section}{\numberline {13.2}{\ignorespaces Integrals\relax }}{424}{}
+\contentsline {chapter}{Bibliography}{428}{}
 
