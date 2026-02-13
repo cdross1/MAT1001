@@ -6,34 +6,75 @@
 \section{What is a function}
 The concept of a function is essential to understand not just calculus but also computer programming. We can think of a function as being a black box that takes in information, potentially changes it in some way, and then outputs information.\\
 
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \centering
+    \ThisAltText{A schematic of how a function behaves.}
     %\pdftooltip{
-    \includegraphics[width=0.3\textwidth, alt ={A schematic of how a function behaves produced by Bin Im Garten for Wikimedia Commons.}]{figures/Injection_keine_Injektion_2a.png}
-    %}{A schematic of how a function behaves produced by \href{Bin Im Garten} for Wikimedia Commons. }
-    \caption{A schematic of how a function behaves, it maps objects $1,2,3,\dots$ in the \gls{set} $X$ to objects $A,B,C,D,\dots$ in the set $Y$. This image was produced by \href{https://commons.wikimedia.org/wiki/File:Injection\_keine\_Injektion\_2a.svg}{Bin Im Garten} for Wikimedia Commons.}
+  %  \includegraphics[width=0.3\textwidth, alt ={A schematic of how a function behaves produced by Bin Im Garten for Wikimedia Commons.}]{figures/Injection_keine_Injektion_2a.png}
+     \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth, arrow/.style={thick,->,CDnavy}, set name/.style={font=\color{CDnavy}\Large\bfseries\sf}, set/.style={ultra thick,CDnavy}, every node/.style={circle}]
+    \draw[set] (0,0) circle [x radius=1cm, y radius=3cm] (\xsetpos,0) circle [x radius=1cm, y radius=3cm];
+
+\node[set name] at (0,-4) {Domain};
+\node[set name] at (\xsetpos,-4) {Codomain};  
+
+\node (a1) at (0,2)  {$1$};
+\node (a2) at (0,1)  {$2$};
+\node (a3) at (0,-1) {$3$};
+\node (a4) at (0,-2) {$4$};
+
+\node (b1) at (\xsetpos,1)  {A};
+\node (b2) at (\xsetpos,0)  {B};
+\node (b3) at (\xsetpos,-1) {C}; 
+\node (b4) at (\xsetpos,-2) {D}; 
+
+\begin{scope}[arrow]
+  \draw (a1.east) -- (b1);
+  \draw (a2.east) -- (b1);
+  \draw (a3.east) -- (b2);
+  \draw (a4.east) -- (b3); 
+\end{scope}
+
+      \end{tikzpicture}
+    \caption{A schematic of how a function behaves, it maps objects $1,2,3,\dots$ in the \gls{set} $X$ to objects $A,B,C,D,\dots$ in the set $Y$.}
 \label{fig: function schematic}
 \end{figure}
 
-Being more precise, a function is a map between two spaces, the domain, and the codomain. e.g.
+Being more precise, a function is a map between two spaces, the domain ($X$), and the codomain ($Y$). e.g.
 \begin{equation*}
 f:X\to Y
 \end{equation*}
-and it sends a point $x\in X$ to a point $f(x)=y\in Y$.  Functions have the property that they map a point $x\in X$ to a single point $y\in Y$,for example:
+and it sends a point $x\in X$ to a point $f(x)=y\in Y$. The domain is the space of all allowed inputs, sometimes called the argument of the function. While the codomain is the space that all output of the function have to be in. Many functions cannot reach the whole of the codomain, the subset of outputs that are actually reached by a function are called its image.  Functions have the property that they map a point $x\in X$ to a single point $y\in Y$,for example:
 \begin{equation*}
 y=f(x)=x^{2}+1,
 \end{equation*}
-is a function since every value of $x$ gives a single value of $y$. However, 
+is a function since every value of $x$ gives a single value of $y$.  If we consider what this looks like for a few examples we get:
+\begin{align*}
+x, &\mapsto f(x)=x^{2}+1\\
+0, &\mapsto 0+1=1,\\
+\pm1, &\mapsto 1+1=2,\\
+\pm2, &\mapsto 4+1=5\\
+\pm3, &\mapsto 9+1=10
+\end{align*}
+
+However, 
 \begin{equation*}
 y^{2}=x+1,
 \end{equation*}
 is not a function since every $x$ corresponds to two values of $y$, e.g. if $x=3$ then $y^{2}=3+1=4$ and $y$ can be both $2$ and $-2$.\\
 
-Note that when we write $f(x)$ we are not saying $f$ times $x$, but mean that $f$ is a function of $x$, e.g. $f$ takes in a value of $x$ and returns a number $y=f(x)$.\\
+\begin{mdiv}
+Note that we some times refer to a square root function $\sqrt{\phantom{x}}:x\to \sqrt{x}$, even though has more than two outputs for a given input. e.g. $\sqrt{4}=\pm2$. It is an example of a multi valued function, and they are important in mathematics, but require care.
+\end{mdiv}
+
+
+
+Note that when we write $f(x)$ we are not saying $f$ times $x$, but mean that $f$ is a function of $x$, e.g. $f$ takes in a value of $x$ and returns a number $y=f(x)$.Sometimes we refer to $x$ as the argument of the function $f(x)$.\\
 
 Throughout this module we will meet several different types of functions so you will need to get familiar with this notation and understand how to evaluate functions. There will be some questions in the tutorial sheet to help you practice this.\\
 
-A key property of a function is its \textbf{\gls{roots}} or zeros, these are the values of $x$ such that $f(x)=0$. For linear functions finding the roots is just a matter of rearranging the equation, sometimes referred to as changing the subject. In this module I am assuming that you have some familiarity with this, if not take a look at the background material in \cref{sec:background} or ask me to point you towards more resources. There will also be some revision questions on this topic in the first couple of weeks tutorials.
+A key property of a function is its \textbf{\gls{roots}} or zeros, these are the values of $x$ such that $f(x)=0$. For linear functions finding the roots is just a matter of rearranging the equation, sometimes referred to as changing the subject. In this module I am assuming that you have some familiarity with this, if not take a look at the background material in \cref{sec:background} or ask me to point you towards more resources. There will also be some revision questions on this topic in the first couple of weeks tutorials.\\
+
+A common type of function where it is, relatively, easy to find the roots is a polynomial. A polynomial is a function given by the sum of powers of a varaiable $x$, or several variables. There is more information on polynomials in one variable in the Polynomials and roots section of \cref{sec:background}.
 
 \begin{ex} Find all the roots of $f(x)=9x^{3}-18x^{2}+6x$.\\
 
@@ -79,7 +120,7 @@ Plot the graph of $f(x)=2x^{2}-1$.\\
  \draw[color=red]   plot (\x,{2*\x*\x -1}) node[right] {$f(x)=2x^{2}-1$};
     \end{tikzpicture}
 %    }{graph of a quadratic}
-    \caption{The graph of the quadratic function  $f(x)=2x^{2}-1$ is a parabola which intersects the $y$-axis at $x=0$ and the $x$-axis at $x=\pm\frac{1}{\sqrt{2}}$.}
+    \caption{The graph of the quadratic function  $f(x)=2x^{2}-1$ is a parabola which intersects the $y$-axis at $x=0$ and the $x$-axis at $x=\pm\frac{1}{\sqrt{2}}$, the roots of the polynomial.}
         \label{fig: quadratic function graph}
 \end{center}
 \end{figure}
@@ -88,12 +129,20 @@ Note that the equation $y^{2}=x+1$ also defines a parabola, see \cref{fig: non e
 
 \begin{figure}[ht]
     \centering
-    %\pdftooltip{
-    \includegraphics[width=0.4\textwidth, alt={An equation which does not give a graph.}]{figures/desmos-graph_non-function}
-    %}{An equation which does not give a graph. }
+    \ThisAltText{plot of both teh positive and negative square roots.}
+   % \pdftooltip{
+    \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, domain=0:5, smooth,variable=\x, samples =100]
+    \draw[->] (-0.2,0) -- (5.2,0) node[right] {$x$};
+
+\draw[->] (0,-3) -- (0,3) node[above] {$y$};
+
+\draw[CDnavy] plot (\x,{sqrt(\x)});
+\draw[CDnavy] plot (\x,{-sqrt(\x)});
+    \end{tikzpicture}
     \caption{A plot of $y^{2}=x+1$, you should think about why this is not the graph of a function. }
 \label{fig: non equation}
 \end{figure}
+
 
 \begin{ex}The function $f(x)=\sin(x)$ has the graph shown in \cref{fig: sine function graph}.\\
 \begin{figure}[htbp]
@@ -198,7 +247,20 @@ We can think of these as functions from $[0,2\uppi)\to [-1,1]$ which reduce to t
 \begin{figure}[ht]
     \centering
   %  \pdftooltip{
-  \includegraphics[width=0.45\textwidth, alt ={Graph of a tan(x).}]{figures/tan_graph}
+%  \includegraphics[width=0.45\textwidth, alt ={Graph of a tan(x).}]{figures/tan_graph}
+  \begin{tikzpicture}[line width=1pt,line cap=round,line join=round,domain=-6.28:6.28, smooth,variable=\x]
+    \draw[ ->] (-6,0) -- (9,0) node[right] {$x$};
+\draw[->] (0,-4.2) -- (0,4.2);
+
+\foreach \i in {-1, 0, 1, 2}{
+    \pgfmathsetmacro{\start}{\i*pi-1.3}
+    \pgfmathsetmacro{\left}  {(\i-0.5)*pi}
+    \pgfmathsetmacro{\end}  {\i*pi+1.3}
+    \draw[dashed, thick,CDred] (\left,-3) -- (\left,3); 
+    \draw[ultra thick, color=CDnavy] plot [domain=\start:\end, samples=25] (\x, {tan(\x r)} );
+}
+\node[blue, right] at (8, 2) {$y = \tan(x)$};
+    \end{tikzpicture}
   %}{A plot of the tan function. }
     \caption{A plot of the trig function $\tan(x)$, unlike $\sin$ and $\cos$ above, $\tan$ cannot be drawn without taking your pen off the page.  }
 \label{fig: tan function}

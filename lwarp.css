@@ -1,29 +1,85 @@
 /*
   CSS stylesheet for the LaTeX Lwarp package
-  Copyright 2016-2025 Brian Dunn — BD Tech Concepts LLC
+  Copyright 2016-2025 Brian Dunn
 */
 
 /* Page layout */
 
+@supports (display: grid) {
+    body {
+        overflow-y: hidden ;
+        height: 100vh ;
+    }
+}
+
+@supports (display: grid) {
+    div.homepagegrid {
+        display: grid ;
+        grid-template-areas:
+            "header"
+            "body"
+            "footer" ;
+        grid-template-columns: 1fr ;
+        grid-template-rows:
+            max-content
+            max-content
+            max-content  ;
+        max-height: 100vh ;
+        overflow-y: auto ;
+    }
+}
+
+@supports (display: grid) {
+    div.pagegrid {
+        display: grid ;
+        grid-template-areas:
+            "topnav topnav"
+            "header header"
+            "sidetoc body"
+            "footer footer"
+            "botnav botnav" ;
+        grid-template-columns: minmax(15em,1fr) 4fr ;
+        grid-template-rows:
+            max-content
+            max-content
+            1fr
+            max-content
+            max-content  ;
+        max-height: 100vh ;
+        overflow-y: none ;
+    }
+}
+
 div.sidetoccontainer {
     font-family: "DejaVu Serif", "Bitstream Vera Serif",
         "Lucida Bright", Georgia, serif;
-    float: left ;
-    width: 19%; /* room for border-right next to 80% main */
-    margin: 0pt 0em 3ex 0pt ;
+    margin: 0pt 0em 1ex 0pt ;
     border-right: 1px solid silver;
     border-bottom: 1px solid silver;
     background: #FAF7F4 ;
     font-size:.9em ;
     border-radius: 0px 0px 20px 0px ;
+    /* room for border-right next to 80% main */
+    float: left ;
+    width: 19%;
     max-height: 100vh ;
     overflow-y: auto ;
 }
 
+@supports (display: grid) {
+    div.sidetoccontainer {
+        grid-area: sidetoc ;
+        float: none ;
+        width: 100% ;
+        overflow-y: auto ;
+    }
+}
+
+nav.sidetoc {
+}
+
 div.sidetoccontents {
-    overflow-y: auto ;
     width: 100% ;
-    text-align: left ;
 }
 
 nav.sidetoc p {line-height:1.2 ; margin: 1ex .5em 1ex .5em ;
@@ -36,7 +92,27 @@ div.sidetoctitle {font-size: 1.2em; font-weight:bold; text-align:center;
 
 nav.sidetoc a:hover {text-decoration: underline ; }
 
+main.bodycontainer {
+    float: left ;
+    width: 80% ;
+}
+
+div.homepagegrid main.bodycontainer {
+    float: none ;
+    width: 100% ;
+}
+
+@supports (display: grid) {
+    main.bodycontainer {
+        grid-area: body ;
+        float: none ;
+        width: 100% ;
+        overflow-y: auto ;
+    }
+}
+
 nav.topnavigation{
+    grid-area: topnav ;
     text-align: left ;
     padding: 0.5ex 1em 0.5ex 1em ;
 /*     margin: 2ex 0em 3ex 0em ; */
@@ -47,6 +123,7 @@ nav.topnavigation{
 }
 
 nav.botnavigation{
+    grid-area: botnav ;
     text-align: left ;
     padding: 0.5ex 1em 0.5ex 1em ;
 /*     margin: 3ex 0em 2ex 0em ; */
@@ -57,20 +134,22 @@ nav.botnavigation{
 }
 
 header {
+    grid-area: header ;
     line-height: 1.2 ;
     font-size: 1em ;
     border-bottom: 1px solid silver ;
     margin: 0px ;
-    padding: 2ex 1em 2ex 1em ;
+    padding: 1ex 1em 1ex 1em ;
     text-align:left ;
 }
 
 footer {
+    grid-area: footer ;
     font-size: .85em ;
     line-height: 1.2 ;
     margin-top: 1ex ;
     border-top: 1px solid silver ;
-    padding: 2ex 1em 2ex 1em ;
+    padding: 1ex 1em 1ex 1em ;
     clear:both ;
     text-align:left ;
 }
@@ -561,16 +640,6 @@ div.marginparblock div.minipage p
 div.marginblock br ,
 div.marginparblock br
     { margin-bottom: 2ex ; }
-
-main.bodycontainer {
-    float: left ;
-    width: 80% ;
-}
-
-div.bodywithoutsidetoc main.bodycontainer {
-    float: none ;
-    width: 100% ;
-}
 
 section.textbody div.footnotes{
     margin: 1ex 2em 2ex 2em ;
@@ -1666,6 +1735,18 @@ span.sidetocthetitle { display: none }
 }
 
 @media screen and (max-width: 50em) {
+    div.pagegrid {
+        display: grid ;
+        grid-template-columns: 1fr ;
+        grid-template-areas:
+            "topnav"
+            "header"
+            "sidetoc"
+            "body"
+            "footer"
+            "botnav" ;
+        overflow-y: auto ;
+    }
     div.sidetoccontainer {
         float: none ;
         width: 100% ;
@@ -1693,6 +1774,11 @@ span.sidetocthetitle { display: none }
 }
 
 @media print {
+    div.pagegrid {
+        display: block ;
+        max-height: 100% ;
+        overflow-y: show ;
+    }
     body {
         font-family: "Linux Libertine O",
         "DejaVu Serif", "Bitstream Vera Serif",
@@ -1706,13 +1792,11 @@ span.sidetocthetitle { display: none }
 }
 
 @media handheld {
-    div.sidetoccontainer { display:none; }
-    nav.topnavigation { display:block }
-    nav.botnavigation { display:block }
-    main.bodycontainer { width: 100% }
-}
-
-@media projection {
+    div.pagegrid {
+        display: block ;
+        max-height: auto ;
+        overflow-y: auto ;
+    }
     div.sidetoccontainer { display:none; }
     nav.topnavigation { display:block }
     nav.botnavigation { display:block }
