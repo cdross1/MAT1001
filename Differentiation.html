@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
+            const resultstar = parser.GetArgument(name);
+            const resultnostar = parser.GetArgument(name);
+            const star = parser.GetStar();                 // true if there is a *
+            useArgument(parser, star ? resultstar : resultnostar);
           },
 
-          // This function implements an ifnextchar macro.
-          IfnextcharFunction(parser, name) {
-            let whichchar = parser.GetArgument(name);
-            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-              // $ syntax highlighting
-              whichchar = String.fromCodePoint(parseInt(whichchar));
-            }
-            const resultnextchar = parser.GetArgument(name);
-            const resultnotnextchar = parser.GetArgument(name);
-            const gotchar = (parser.GetNext() === whichchar);
-            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-          },
+         // This function implements an ifnextchar macro.
+         IfnextcharFunction(parser, name) {
+           let whichchar = parser.GetArgument(name);
+           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+             // $ syntax highlighting
+             whichchar = String.fromCodePoint(parseInt(whichchar));
+           }
+           const resultnextchar = parser.GetArgument(name);
+           const resultnotnextchar = parser.GetArgument(name);
+           const gotchar = (parser.GetNext() === whichchar);
+           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+         },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
+        tagformat: {
+            number: function (n) {
+                if(MathJax.config.subequations==0)
+                    return(MathJax.config.section + n);
+                else
+                    return(MathJax.config.section + String.fromCharCode(96+n));
+            },
+        },
   }
 }
 </script>
@@ -221,12 +221,12 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-90"></a>
+<a id="mat1001-autopage-100"></a>
+<div class="pagegrid">
+
+
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
-
-
-<div class="bodyandsidetoc">
 <div class="sidetoccontainer">
 
 
@@ -254,426 +254,366 @@ Home</a>
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
-<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a><p>
-
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
-<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a><p>
-
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
-<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a><p>
-
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-15" class="tocchapter" >
-<span class="sectionnumber">2</span>&#x2003;Functions</a><p>
-
+<a href="Functions.html#autosec-17" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-16" class="tocsection" >
-<span class="sectionnumber">2.1</span>&#x2003;What is a function</a><p>
-
+<a href="Functions.html#autosec-18" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-30" class="tocsection" >
-<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a><p>
-
+<a href="Functions.html#autosec-38" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-44" class="tocsection" >
-<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a><p>
-
+<a href="Functions.html#autosec-54" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-55" class="tocsection" >
-<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a><p>
-
+<a href="Functions.html#autosec-65" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-60" class="tocsection" >
-<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a><p>
-
+<a href="Functions.html#autosec-70" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-74" class="tocsection" >
-<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a><p>
-
+<a href="Functions.html#autosec-84" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-91" class="tocchapter" >
-<span class="sectionnumber">3</span>&#x2003;Differentiation</a><p>
-
+<a href="Differentiation.html#autosec-101" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-92" class="tocsection" >
-<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a><p>
-
+<a href="Differentiation.html#autosec-102" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-101" class="tocsection" >
-<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a><p>
-
+<a href="Differentiation.html#autosec-111" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-121" class="tocsection" >
-<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a><p>
-
+<a href="Differentiation.html#autosec-131" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-123" class="tocsection" >
-<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a><p>
-
+<a href="Differentiation.html#autosec-133" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-147" class="tocchapter" >
-<span class="sectionnumber">4</span>&#x2003;Integration</a><p>
-
-</p>
-
-
-<p>
-<a href="Integration.html#autosec-148" class="tocsection" >
-<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a><p>
-
+<a href="Integration.html#autosec-157" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
 </p>
 
 
 <p>
 <a href="Integration.html#autosec-158" class="tocsection" >
-<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a><p>
-
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-167" class="tocsection" >
-<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a><p>
-
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-192" class="tocsection" >
-<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a><p>
-
+<a href="Integration.html#autosec-177" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
 </p>
 
 
 <p>
-<a href="Differential-Equations.html#autosec-204" class="tocchapter" >
-<span class="sectionnumber">5</span>&#x2003;Differential Equations</a><p>
-
+<a href="Integration.html#autosec-202" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-206" class="tocchapter" >
-<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a><p>
-
+<a href="Differential-Equations.html#autosec-214" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-207" class="tocsection" >
-<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a><p>
-
+<a href="Numerical-Methods.html#autosec-216" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-239" class="tocsection" >
-<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a><p>
-
+<a href="Numerical-Methods.html#autosec-217" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-265" class="tocsection" >
-<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a><p>
-
+<a href="Numerical-Methods.html#autosec-249" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-291" class="tocsection" >
-<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a><p>
-
+<a href="Numerical-Methods.html#autosec-275" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-312" class="tocsection" >
-<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a><p>
-
+<a href="Numerical-Methods.html#autosec-301" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-314" class="tocchapter" >
-<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a><p>
-
+<a href="Numerical-Methods.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-315" class="tocsection" >
-<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-324" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-322" class="tocsection" >
-<span class="sectionnumber">7.2</span>&#x2003;Robotics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-325" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-324" class="tocchapter" >
-<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-332" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Robotics</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-325" class="tocsection" >
-<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-329" class="tocsection" >
-<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-330" class="tocsection" >
-<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-331" class="tocsection" >
-<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-332" class="tocsection" >
-<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a><p>
-
+<a href="Advanced-Topics.html#autosec-334" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a>
 </p>
 
 
 <p>
 <a href="Advanced-Topics.html#autosec-335" class="tocsection" >
-<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a><p>
-
+<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-338" class="tocchapter" >
-<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a><p>
-
+<a href="Advanced-Topics.html#autosec-339" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-339" class="tocsection" >
-<span class="sectionnumber">9.1</span>&#x2003;Background and References</a><p>
-
+<a href="Advanced-Topics.html#autosec-340" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-340" class="tocsection" >
-<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a><p>
-
+<a href="Advanced-Topics.html#autosec-341" class="tocsection" >
+<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-342" class="tocsection" >
-<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a><p>
-
+<a href="Advanced-Topics.html#autosec-342" class="tocsection" >
+<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-346" class="tocsection" >
-<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a><p>
-
+<a href="Advanced-Topics.html#autosec-345" class="tocsection" >
+<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-353" class="tocsection" >
-<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a><p>
-
+<a href="Background-Mathematics.html#autosec-348" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-358" class="tocsection" >
-<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a><p>
-
+<a href="Background-Mathematics.html#autosec-349" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Background and References</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-361" class="tocchapter" >
-<span class="sectionnumber">10</span>&#x2003;Further Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-350" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-362" class="tocsection" >
-<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-352" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-363" class="tocsection" >
-<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-356" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-364" class="tocsection" >
-<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-363" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-365" class="tocsection" >
-<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-368" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-366" class="tocsection" >
-<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-371" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Further Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-367" class="tocsection" >
-<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-372" class="tocsection" >
+<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-368" class="tocsection" >
-<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-373" class="tocsection" >
+<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-370" class="tocchapter" >
-<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a><p>
-
+<a href="Further-Reading.html#autosec-374" class="tocsection" >
+<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-371" class="tocsection" >
-<span class="sectionnumber">11.1</span>&#x2003;Week 1</a><p>
-
+<a href="Further-Reading.html#autosec-375" class="tocsection" >
+<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-387" class="tocsection" >
-<span class="sectionnumber">11.2</span>&#x2003;Week 2</a><p>
-
+<a href="Further-Reading.html#autosec-376" class="tocsection" >
+<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-411" class="tocsection" >
-<span class="sectionnumber">11.3</span>&#x2003;Week 3</a><p>
-
+<a href="Further-Reading.html#autosec-377" class="tocsection" >
+<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Extra-Proofs-Derivations.html#autosec-417" class="tocchapter" >
-<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a><p>
-
+<a href="Further-Reading.html#autosec-378" class="tocsection" >
+<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-420" class="tocchapter" >
-<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-380" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-421" class="tocsection" >
-<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-381" class="tocsection" >
+<span class="sectionnumber">11.1</span>&#x2003;Week 1</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-424" class="tocsection" >
-<span class="sectionnumber">13.2</span>&#x2003;Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-397" class="tocsection" >
+<span class="sectionnumber">11.2</span>&#x2003;Week 2</a>
 </p>
 
 
 <p>
-<a href="Bibliography.html#autosec-428" class="tocchapter" >
+<a href="Tutorial-Sheets.html#autosec-421" class="tocsection" >
+<span class="sectionnumber">11.3</span>&#x2003;Week 3</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-427" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-430" class="tocchapter" >
+<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-431" class="tocsection" >
+<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-434" class="tocsection" >
+<span class="sectionnumber">13.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-438" class="tocchapter" >
 Bibliography</a>
 </p>
 
@@ -924,8 +864,8 @@ Bibliography</a>
 <!--
 ...... chapter Differentiation ......
 -->
-<h3 id="autosec-91">Chapter&nbsp;<span class="sectionnumber">3&#x2003;</span>Differentiation</h3>
-<a id="mat1001-autopage-91"></a>
+<h3 id="autosec-101">Chapter&nbsp;<span class="sectionnumber">3&#x2003;</span>Differentiation</h3>
+<a id="mat1001-autopage-101"></a>
 <a id="mat1001-autofile-3"></a>
 
 <a id="sec:differentiation"></a>
@@ -955,8 +895,8 @@ The corresponding change in \(y\) is what you find next.
 <!--
 ...... section Differentiation from first principles ......
 -->
-<h4 id="autosec-92"><span class="sectionnumber">3.1&#x2003;</span>Differentiation from first principles</h4>
-<a id="mat1001-autopage-92"></a>
+<h4 id="autosec-102"><span class="sectionnumber">3.1&#x2003;</span>Differentiation from first principles</h4>
+<a id="mat1001-autopage-102"></a>
 
 
 <p>
@@ -1011,9 +951,8 @@ f&apos;(x)=\lim _{h\to 0}\frac {f(x+h)-f(x)}{h}.          \label {eq:     deriva
 
 <p>
 The formula in eq.&nbsp;<span class="textup">(<a href="Differentiation.html#eq: derivative definition">3.1</a>)</span> is the definition of the <b>derivative</b> of the function \(f(x)\). Not that only functions where the derivative exists for all points are
-called <b>differentiable</b>. There is a range of notation<sup>1</sup> and terminology used to denote derivative. The notation used above, \(f&apos;(x)\) is known as the <p>
-<b>Lagrange</b> or <b>Euler</b> notation<sup>2</sup>. The other very common notation is due to <p>
-<b>Leibniz</b> where we write
+called <b>differentiable</b>. There is a range of notation<sup>1</sup> and terminology used to denote derivative. The notation used above, \(f&apos;(x)\) is known as the <b>Lagrange</b> or <b>Euler</b> notation<sup>2</sup>. The other very common notation is
+due to <b>Leibniz</b> where we write
 </p>
 
 <span class="hidden"> \(\seteqnumber{0}{3.}{1}\)</span>
@@ -1040,20 +979,18 @@ this notation is particularly useful when we learn about integration as in certa
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-93"></a>
+<a id="mat1001-autopage-103"></a>
 
 <p>
 <sup>1</sup>&nbsp;We will only use the two most common notations in this course. However, another notation that you may see in books is \(f_{x}(x)\), where the subscript shows what we are differentiating with respect to. This notation shows up a lot if we have
 functions of more than one variable where we need to make it clear which variable we are differentiating with respect to. In the assessed part of this course we will only care about functions of one variable so do not need this notation.
 </p>
 
-</p>
 <p>
 <sup>2</sup>&nbsp;In an example of Sigler’s law of eponymy, this is most commonly called Lagrange’s notation even though it was first used by Euler. It is also quite close to the original notation that Newton used when he discovered calculus and referred to it as the
 <b>method of fluxions</b>.
 </p>
 
-</p>
 
 </div>
 
@@ -1121,7 +1058,7 @@ As a warm up we will use eq.&nbsp;<span class="textup">(<a href="Differentiation
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-94"></a>
+<span class="listmarker"><a id="mat1001-autopage-104"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.1</span></span>. </span> Consider \(f(x)=mx+c\) and calculate the derivative from first principles:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -1173,7 +1110,7 @@ So derivative of a straight lime is a constant, the gradient of the line. We alr
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-95"></a>
+<span class="listmarker"><a id="mat1001-autopage-105"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.2</span></span>. </span> Consider the function \(f(x)=4x^2 -6x +2\), using eq.&nbsp;<span class="textup">(<a
 href="Differentiation.html#eq:       derivative definition">3.1</a>)</span> we calculate its derivative as follows:
 </p>
@@ -1232,7 +1169,7 @@ derivative only makes sense for functions which satisfy the condition of differe
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-96"></a>
+<span class="listmarker"><a id="mat1001-autopage-106"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.3</span></span>. </span> Consider the function
 </p>
 
@@ -1330,7 +1267,7 @@ We can also calculate the derivatives of some of the special functions from firs
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-97"></a>
+<span class="listmarker"><a id="mat1001-autopage-107"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.4</span></span>. </span> Consider \(f(x)=\sin (x)\), this is a continuous function so we can hope that the derivative exists. Note that we can use the
 addition formula for \(\sin (x)\) to expand \(\sin (x+h)\) as
 </p>
@@ -1409,7 +1346,7 @@ where we have used the trig limits from eqs.&nbsp;<span class="textup">(<a href=
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-98"></a>
+<span class="listmarker"><a id="mat1001-autopage-108"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.5</span></span>. </span> Show that the derivative of \(f(x)=\cos (x)\) is \(f&apos;(x)=-\sin (x)\) using differentiation from first principles.
 </p>
 
@@ -1425,7 +1362,7 @@ where we have used the trig limits from eqs.&nbsp;<span class="textup">(<a href=
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-99"></a>
+<span class="listmarker"><a id="mat1001-autopage-109"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.6</span></span>. </span> Consider \(f(x)=e^{x}\), its derivative is
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -1480,7 +1417,7 @@ The other standard derivative that you need to know is the derivative of the nat
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-100"></a>
+<span class="listmarker"><a id="mat1001-autopage-110"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.7</span></span>. </span> Consider \(f(x)=\ln (x)\), we calculate its derivative as
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -1561,13 +1498,13 @@ techniques and formulas. Eventually you will internalise some of the standard de
 <!--
 ...... section Differentiation techniques ......
 -->
-<h4 id="autosec-101"><span class="sectionnumber">3.2&#x2003;</span>Differentiation techniques</h4>
-<a id="mat1001-autopage-101"></a>
+<h4 id="autosec-111"><span class="sectionnumber">3.2&#x2003;</span>Differentiation techniques</h4>
+<a id="mat1001-autopage-111"></a>
 <!--
 ...... subsection Properties of the derivative ......
 -->
-<h5 id="autosec-102">Properties of the derivative</h5>
-<a id="mat1001-autopage-102"></a>
+<h5 id="autosec-112">Properties of the derivative</h5>
+<a id="mat1001-autopage-112"></a>
 
 
 <p>
@@ -1576,7 +1513,7 @@ In this section we will see the various formulae and rules in both the Lagrange 
 </p>
 
 <p>
-The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                  proofs">12</a>. These
+The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                   proofs">12</a>. These
 formulae are:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -1586,13 +1523,13 @@ formulae are:
 
 
                                                                                                                           d                   df (x)     dg(x)
-                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                   --><a id="eq:    derivative of sum"></a><!--
+                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                    --><a id="eq:    derivative of sum"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                           d                   df (x)     dg(x)
                                                                                                                             (f (x) − g(x)) =          −        ,                      (3.4)                                      --><a id="eq:     derivative of difference"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                                  d              df (x)
-                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:   derivative scalar multiplication"></a><!--
+                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:    derivative scalar multiplication"></a><!--
                                                                                                                                 dx               dx
 
 
@@ -1618,10 +1555,10 @@ In the Lagrange/Euler notation these formulae are:
 <!--
 
 
-                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                              --><a id="eq:   derivative of sum 2"></a><!--
+                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                                --><a id="eq:    derivative of sum 2"></a><!--
                                                                                                                                            ′     ′         ′
                                                                                                                             (f (x) − g(x)) = f (x) − g (x),                              (3.7)                                 --><a id="eq:     derivative of difference 2"></a><!--
-                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:   derivative scalar multiplication 2"></a><!--
+                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:     derivative scalar multiplication 2"></a><!--
 
 
 -->
@@ -1666,7 +1603,7 @@ and that the derivative of a <b>monomial</b> is
 <!--
 
                                                                                        d
-                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:   monomial derivative"></a><!--
+                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:     monomial derivative"></a><!--
                                                                                       dx
 -->
 
@@ -1699,7 +1636,7 @@ We can now use these rules to calculate some example derivatives.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-103"></a>
+<span class="listmarker"><a id="mat1001-autopage-113"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.8</span></span>. </span> Consider the function
 </p>
 
@@ -1732,12 +1669,12 @@ We calculate its derivative as follows:
 
 
 
-                                                                                                   df    d                         
+                                                                                                   df    d                        
                                                                                                       =       15x20 − 2x5 + 2x + 4
                                                                                                    dx   dx
-                                                                                                            d           d           d        d
-                                                                                                      = 15      x20 − 2      x5 + 2     (x) +    (4)
-                                                                                                           dx           dx           dx       dx
+                                                                                                            d           d          d        d
+                                                                                                      = 15      x20 − 2      x5 + 2    (x) +    (4)
+                                                                                                           dx           dx          dx       dx
                                                                                                       = 15 × 20x19 − 2 × 5x4 + 2 + 0
                                                                                                       = 300x19 − 10x4 + 2.
 
@@ -1769,7 +1706,7 @@ We calculate its derivative as follows:
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-104"></a>
+<span class="listmarker"><a id="mat1001-autopage-114"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.9</span></span>. </span> Consider the function
 </p>
 
@@ -1843,7 +1780,7 @@ x^{-3}-4\times 4 x^{3}+2\\ &amp;=-\frac {12}{x^{3}}-16x^{3}+2.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-105"></a>
+<span class="listmarker"><a id="mat1001-autopage-115"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.10</span></span>. </span> Calculate the derivative of
 </p>
 
@@ -1881,8 +1818,8 @@ y=8x^{2}+2x-\frac {1}{x}.
 <!--
 ...... subsection Product rule ......
 -->
-<h5 id="autosec-106">Product rule</h5>
-<a id="mat1001-autopage-106"></a>
+<h5 id="autosec-116">Product rule</h5>
+<a id="mat1001-autopage-116"></a>
 
 
 <p>
@@ -1917,7 +1854,7 @@ differentiate trig functions and exponentials.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-107"></a>
+<span class="listmarker"><a id="mat1001-autopage-117"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.11</span></span>. </span> For the product of two functions \(\sqrt {x^{3}}\sin (x)\) we find the derivative as follows. Let \(f(x)=\sqrt {x^{3}}\) and
 \(g(x)=\sin (x)\) and calculate the individual derivatives to be
 </p>
@@ -1927,9 +1864,9 @@ differentiate trig functions and exponentials.
 <!--
 
 
-                                                                                                           3          3 3 −1   3√
-                                                                                               f ′ (x) = (x 2 )′ =      x2   =    x,             g ′ (x) = (sin(x))′ = cos(x).
-                                                                                                                      2        2
+                                                                                                           3         3 3 −1   3√
+                                                                                               f ′ (x) = (x 2 )′ =     x2   =    x,      g ′ (x) = (sin(x))′ = cos(x).
+                                                                                                                     2        2
 
 -->
 
@@ -1952,13 +1889,13 @@ Then we use product rule to calculate
 <!--
 
 
-                                                                                                               √               ′
-                                                                                                                   x3 sin(x)        = (f (x)g(x))′
+                                                                                                               √         ′
+                                                                                                                x3 sin(x) = (f (x)g(x))′
 
-                                                                                                                                    = f ′ (x)g(x) + f (x)g ′ (x)
-                                                                                                                                      3√               √
-                                                                                                                                    =       x sin(x) + x3 cos(x).
-                                                                                                                                      2
+                                                                                                                            = f ′ (x)g(x) + f (x)g ′ (x)
+                                                                                                                              3√               √
+                                                                                                                            =       x sin(x) + x3 cos(x).
+                                                                                                                              2
 
 
 -->
@@ -1986,7 +1923,7 @@ Then we use product rule to calculate
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-108"></a>
+<span class="listmarker"><a id="mat1001-autopage-118"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.12</span></span>. </span> We can use the product rule to calculate the derivative of \(f(x)=\sin ^{2}(x)\). In this case the two functions are the same
 so we can evaluate the derivative as follows
 </p>
@@ -2029,7 +1966,7 @@ where we have used one of the trig double angle identities in the last line.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-109"></a>
+<span class="listmarker"><a id="mat1001-autopage-119"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.13</span></span>. </span> Use the product rule to calculate the derivative of
 </p>
 
@@ -2069,12 +2006,13 @@ Note that the product rule applies if we have the product of more than two funct
 <!--
 ...... subsection Quotient rule ......
 -->
-<h5 id="autosec-110">Quotient rule</h5>
-<a id="mat1001-autopage-110"></a>
+<h5 id="autosec-120">Quotient rule</h5>
+<a id="mat1001-autopage-120"></a>
 
 
 <p>
 If instead of a product of functions we have the ratio of two functions then there is a rule for that, the <b>quotient</b> rule<sup>3</sup>. In Leibniz notation the quotient rule is
+</p>
 
 <span class="hidden"> \(\seteqnumber{0}{3.}{11}\)</span>
 
@@ -2102,14 +2040,13 @@ Remember that in most circumstances you can use either the product rule or the q
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-111"></a>
+<a id="mat1001-autopage-121"></a>
 
 <p>
 <sup>3</sup>&nbsp;You may be looking at these two formula and thinking that we could just use the product rule with \(f(x)\) and \((g(x))^{-1}\). If you do this you will get an answer that looks just like the quotient rule. There are some technical differences between
 this approach and the quotient rule we give here, but as we are not mathematicians here we do not need to worry about them.
 </p>
 
-</p>
 
 </div>
 
@@ -2165,7 +2102,7 @@ href="Differentiation.html#eq:      quotient rule">3.12</a>)</span> gives
                                                                                                                                              ex cos(x) − sin(x)ex
                                                                                                                                          =
                                                                                                                                                         e2x
-                                                                                                                                              −x
+                                                                                                                                             −x
                                                                                                                                          =e        (cos(x) − sin(x)) .
 
 
@@ -2195,7 +2132,7 @@ href="Differentiation.html#eq:      quotient rule">3.12</a>)</span> gives
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-112"></a>
+<span class="listmarker"><a id="mat1001-autopage-122"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.15</span></span>. </span> Consider
 </p>
 
@@ -2291,8 +2228,8 @@ The quotient rule thus gives that
 <!--
 ...... subsection Derivatives of trig functions ......
 -->
-<h5 id="autosec-113">Derivatives of trig functions</h5>
-<a id="mat1001-autopage-113"></a>
+<h5 id="autosec-123">Derivatives of trig functions</h5>
+<a id="mat1001-autopage-123"></a>
 
 
 <p>
@@ -2308,19 +2245,19 @@ Armed with the quotient rule we can now give the derivatives of the six trig fun
                                                                                                                            sin(ax) = a cos(ax),                   (3.13)                            --><a id="eq:    sine derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:    cos derivative"></a><!--
+                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:   cos derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
                                                                                                                           tan(ax) = a sec2 (ax),                   (3.15)                            --><a id="eq:   tan derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:    cot derivative"></a><!--
+                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:   cot derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:    sec derivative"></a><!--
+                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:   sec derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:    csc derivative"></a><!--
+                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:   csc derivative"></a><!--
                                                                                                                        dx
 
 
@@ -2347,7 +2284,7 @@ We have seen how to prove two of these and can now calculate the derivative of \
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-114"></a>
+<span class="listmarker"><a id="mat1001-autopage-124"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.16</span></span>. </span> Consider \(f(x)=\tan (x)\), which can be expressed as
 </p>
 
@@ -2387,13 +2324,13 @@ Using the quotient rule we have that
                                                                                                        tan(x) =
                                                                                                     dx          dx        cos(x)
                                                                                                                     1               d                   d
-                                                                                                                                                                  
+                                                                                                                                                              
                                                                                                               =             cos(x)     sin(x) − sin(x)    cos(x)
                                                                                                                 (cos(x))2          dx                  dx
                                                                                                                    1
                                                                                                               =          (cos(x) cos(x) − sin(x)(− sin(x)))
                                                                                                                 cos2 (x)
-                                                                                                                   1                          
+                                                                                                                   1                         
                                                                                                               =           cos2 (x) + sin2 (x)
                                                                                                                 cos2 (x)
                                                                                                                    1
@@ -2428,7 +2365,7 @@ Where we have used the identity that \(\cos ^{2}(x)+\sin ^{2}(x)=1\) and the def
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-115"></a>
+<span class="listmarker"><a id="mat1001-autopage-125"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.17</span></span>. </span> Compute the derivatives of \(\cot (x), \sec (x),\csc (x)\).
 </p>
 
@@ -2440,8 +2377,8 @@ Where we have used the identity that \(\cos ^{2}(x)+\sin ^{2}(x)=1\) and the def
 <!--
 ...... subsection Chain rule ......
 -->
-<h5 id="autosec-116">Chain rule</h5>
-<a id="mat1001-autopage-116"></a>
+<h5 id="autosec-126">Chain rule</h5>
+<a id="mat1001-autopage-126"></a>
 
 
 <p>
@@ -2459,7 +2396,7 @@ Consider the function
 <!--
 
                                                                                √
-                                                                     f (x) =       4x + 2,                                                                 (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
+                                                                     f (x) =    4x + 2,                                                                    (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
 
 -->
 
@@ -2480,7 +2417,7 @@ we can write this as the <b>composition</b> of two functions if we think of \(g(
 <!--
 
                                                                                                                                                                √
-                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =       4x + 2.
+                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =    4x + 2.
 
 -->
 
@@ -2501,7 +2438,7 @@ The <b>chain rule</b> is the, fairly, simple method to differentiate such compos
 <!--
 
 
-                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                         (3.20)                                              --><a id="eq:   chain rule 1"></a><!--
+                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                      (3.20)                                                 --><a id="eq:   chain rule 1"></a><!--
 
 -->
 
@@ -2522,7 +2459,7 @@ An alternative way of writing the chain rule, that is easier to understand in Le
 <!--
 
                                                                                dy   dy du
-                                                                                  =       .                                                                                  (3.21)                                              --><a id="eq:   chain rule 2"></a><!--
+                                                                                  =       .                                                                               (3.21)                                                 --><a id="eq:   chain rule 2"></a><!--
                                                                                dx   du dx
 -->
 
@@ -2550,7 +2487,7 @@ href="Differentiation.html#eq: function of a function1">3.19</a>)</span> and cal
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-117"></a>
+<span class="listmarker"><a id="mat1001-autopage-127"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.18</span></span>. </span> Consider the function
 </p>
 
@@ -2560,7 +2497,7 @@ href="Differentiation.html#eq: function of a function1">3.19</a>)</span> and cal
 
 
                                                                                                                                           √
-                                                                                                                                f (x) =       4x + 2,
+                                                                                                                                f (x) =    4x + 2,
 
 -->
 
@@ -2584,7 +2521,7 @@ and let \(g(x)=\sqrt {x}\) and \(h(x)=4x+2\). The rules we already know about di
 
 
                                                                                                                                     1
-                                                                                                                          g ′ (x) = √ ,          h′ (x) = 4.
+                                                                                                                          g ′ (x) = √ ,        h′ (x) = 4.
                                                                                                                                    2 x
 
 -->
@@ -2654,7 +2591,7 @@ This may still sound quite complicated, and as is always the case in mathematics
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-118"></a>
+<span class="listmarker"><a id="mat1001-autopage-128"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.19</span></span>. </span> Consider the function
 </p>
 
@@ -2717,7 +2654,7 @@ g&apos;(x) &amp;=-\sin \left (x+c\right )\left (x+c\right )&apos;\\ &amp;=-\sin 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-119"></a>
+<span class="listmarker"><a id="mat1001-autopage-129"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.20</span></span>. </span> Consider the function
 </p>
 
@@ -2781,7 +2718,7 @@ f&apos;(x) &amp;=2\left (2x^{2}+\cos (x)\right )\left (2x^{2}+\cos (x)\right )&a
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-120"></a>
+<span class="listmarker"><a id="mat1001-autopage-130"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.21</span></span>. </span> Calculate the derivative of
 </p>
 
@@ -2817,8 +2754,8 @@ f(x)=\exp \left (x^{2}+x\right ).
 <!--
 ...... section Multiple derivatives ......
 -->
-<h4 id="autosec-121"><span class="sectionnumber">3.3&#x2003;</span>Multiple derivatives</h4>
-<a id="mat1001-autopage-121"></a>
+<h4 id="autosec-131"><span class="sectionnumber">3.3&#x2003;</span>Multiple derivatives</h4>
+<a id="mat1001-autopage-131"></a>
 
 
 <p>
@@ -2870,7 +2807,7 @@ f^{(n)}=\frac {\ud ^{n}f}{\ud x^{n}}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-122"></a>
+<span class="listmarker"><a id="mat1001-autopage-132"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.22</span></span>. </span> Consider the function \(f(x)=2x^{3}+4x\), its second derivative is
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{21}\)</span>
@@ -2884,7 +2821,7 @@ f^{(n)}=\frac {\ud ^{n}f}{\ud x^{n}}.
                                                                                                                                          
                                                                                                                             =
                                                                                                                        dx2    dx dx
-                                                                                                                               d         
+                                                                                                                               d        
                                                                                                                             =    6x2 + 4
                                                                                                                               dx
                                                                                                                             = 12x.
@@ -2945,8 +2882,8 @@ some exposure to them.
 <!--
 ...... section Applications of differentiation ......
 -->
-<h4 id="autosec-123"><span class="sectionnumber">3.4&#x2003;</span>Applications of differentiation</h4>
-<a id="mat1001-autopage-123"></a>
+<h4 id="autosec-133"><span class="sectionnumber">3.4&#x2003;</span>Applications of differentiation</h4>
+<a id="mat1001-autopage-133"></a>
 
 
 <a id="sec:   apps of diff"></a>
@@ -2957,21 +2894,21 @@ So, now we have met the derivative and learnt some rules for using it. Some of y
 <!--
 ...... subsection Finding critical points ......
 -->
-<h5 id="autosec-124">Finding critical points</h5>
-<a id="mat1001-autopage-124"></a>
+<h5 id="autosec-134">Finding critical points</h5>
+<a id="mat1001-autopage-134"></a>
 
 
 <p>
 A critical point of a function \(f(x)\) is a point \(a\) where the derivative, \(f&apos;(a)\), vanishes. Sometimes critical points are called <b>stationary points</b><sup>4</sup>.
+</p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-125"></a>
+<a id="mat1001-autopage-135"></a>
 
 <p>
 <sup>4</sup>&nbsp;This is because of the main examples of a first derivative is speed being the derivative of the position in mechanics. In this case a vanishing derivative means that the speed is zero so the object is stationary.
 </p>
 
-</p>
 
 </div>
 
@@ -3006,7 +2943,7 @@ and then solve the algebraic equation that we get. In other words, finding a cri
 
 <p>
 <span
-    id="lateximage-mat1001-10"
+    id="lateximage-mat1001-14"
     class="lateximagesource"
 ><!--
                             y
@@ -3026,7 +2963,7 @@ and then solve the algebraic equation that we get. In other words, finding a cri
                                 f ′ (x)
             f ′ (x) = 0−3
 --><img
-    src="mat1001-images\image-10.svg"
+    src="mat1001-images\image-14.svg"
     alt="(Graph of a quadratic with its critical point marked.)"
     style=""
     class="lateximage"
@@ -3051,7 +2988,7 @@ Figure&nbsp;3.1: A plot of the function \(f(x)=4x^{2}+3x-2\) with its critical p
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-129"></a>
+<span class="listmarker"><a id="mat1001-autopage-139"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.23</span></span>. </span> Consider the function
 </p>
 
@@ -3084,7 +3021,7 @@ We find its critical points by calculating \(f&apos;(x)\) and setting it to zero
 
 
 
-                                                                                                                            df    d              
+                                                                                                                            df    d             
                                                                                                                                =    4x2 + 3x − 2
                                                                                                                             dx   dx
                                                                                                                                 = 8x + 3.
@@ -3160,7 +3097,7 @@ functions of more than one variable they often have the shape of a saddle. See f
 
 <p>
 <span
-    id="lateximage-mat1001-11"
+    id="lateximage-mat1001-15"
     class="lateximagesource"
 ><!--
                    y
@@ -3179,7 +3116,7 @@ functions of more than one variable they often have the shape of a saddle. See f
 
              −3
 --><img
-    src="mat1001-images\image-11.svg"
+    src="mat1001-images\image-15.svg"
     alt="(Graph of a cubic with a point of inflection.)"
     style=""
     class="lateximage"
@@ -3260,7 +3197,7 @@ so the critical points are at \(x=0\) and \(x=-16/15\simeq -1.067\). By inspecti
 
 <p>
 <span
-    id="lateximage-mat1001-12"
+    id="lateximage-mat1001-16"
     class="lateximagesource"
 ><!--
                                                            f (x) = 12 x3 + 45 x2
@@ -3276,7 +3213,7 @@ so the critical points are at \(x=0\) and \(x=-16/15\simeq -1.067\). By inspecti
 
                          −0.4
 --><img
-    src="mat1001-images\image-12.svg"
+    src="mat1001-images\image-16.svg"
     alt="(Graph of a cubic with its critical points marked.)"
     style=""
     class="lateximage"
@@ -3370,7 +3307,7 @@ In this module you can follow whichever approach you want if you are asked to id
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-136"></a>
+<span class="listmarker"><a id="mat1001-autopage-146"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">3.24</span></span>. </span> Consider the function
 </p>
 
@@ -3503,7 +3440,7 @@ local minima and maxima.
 
 <p>
 <span
-    id="lateximage-mat1001-13"
+    id="lateximage-mat1001-17"
     class="lateximagesource"
 ><!--
                     y
@@ -3520,7 +3457,7 @@ local minima and maxima.
              −2
                         f ′ (x) = 0
 --><img
-    src="mat1001-images\image-13.svg"
+    src="mat1001-images\image-17.svg"
     alt="(Graph of a cubic with its critical points marked.)"
     style=""
     class="lateximage"
@@ -3545,7 +3482,7 @@ Figure&nbsp;3.4: A plot of the function \(f(x)=x^{3}-3x\) with its local minima 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-140"></a>
+<span class="listmarker"><a id="mat1001-autopage-150"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">3.25</span></span>. </span> Find and classify the critical points of
 </p>
 
@@ -3581,14 +3518,15 @@ f(x)=x^{4}-3x^{2}+2.
 <!--
 ...... subsection Linear approximations ......
 -->
-<h5 id="autosec-141">Linear approximations</h5>
-<a id="mat1001-autopage-141"></a>
+<h5 id="autosec-151">Linear approximations</h5>
+<a id="mat1001-autopage-151"></a>
 
 
 <p>
 Now we are going to look at how to approximate functions using their tangent lines. This is called the <b>linear approximation</b> to the function, and can be good near the point that the line is tangent to. However, the approximation will get worse and worse the
 further away we go from the point<sup>5</sup>. There is a nice, if brief, discussion of linear approximation in [Dawkins, 2025b] which we draw on for the discussion here.<br />
 
+</p>
 
 <p>
 For a function \(f(x)\), its tangent line at \(x=a\) is given by the line
@@ -3622,7 +3560,7 @@ function as the graphs almost lie on top of each other.<br />
 
 <p>
 <span
-    id="lateximage-mat1001-14"
+    id="lateximage-mat1001-18"
     class="lateximagesource"
 ><!--
               y
@@ -3641,7 +3579,7 @@ function as the graphs almost lie on top of each other.<br />
                                 x
 −2   −1           1        2
 --><img
-    src="mat1001-images\image-14.svg"
+    src="mat1001-images\image-18.svg"
     alt="(Graph of a quadratic with its linear approximation at x=1 marked.)"
     style=""
     class="lateximage"
@@ -3668,14 +3606,13 @@ computer. Every time the function is evaluated this takes time and it is much qu
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-145"></a>
+<a id="mat1001-autopage-155"></a>
 
 <p>
 <sup>5</sup>&nbsp;We could make the approximation better by using higher order derivative terms, but the approximation would no longer be linear and would now be via a polynomial. Considering this would lead us to the <b>Taylor</b> or <b>Maclaurin series</b>
 of a function. You may have met this in A-level maths if not we may meet this in chapter&nbsp;<a href="Advanced-Topics.html#sec:advanced topics">8</a> depending on which of the advanced topics we have time for.
 </p>
 
-</p>
 
 </div>
 
@@ -3754,8 +3691,6 @@ If we repeated the above calculation for \(\cos (x)\) we would find that \(L(x)=
 
 </main>
 
-</div>
-
 <footer>
 
 <p>
@@ -3768,5 +3703,6 @@ Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill
 <nav class="botnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
+</div><!-- grid -->
 </body>
 </html>

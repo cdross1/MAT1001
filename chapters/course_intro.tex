@@ -11,7 +11,7 @@ These lecture notes cover the same material as the lectures for \textbf{MAT1001 
 
 It is important to note that \textbf{reading these notes is not a substitute for attending the lectures and tutorials!} While I have included everything that I intend to cover in the lectures, and have often given more detail in these notes, the direction that we go in lectures will be guided by student questions and the example problems that you are given to solve. These are not reflected in the notes as I cannot anticipate all of the questions that may be asked. If you want to pass the module then the best way to do this is to attend the lectures and tutorials and to solve all of the practice problems that you are given.\\
 
-In week one there was  overview information about the module including a rough schedule, how you will be assessed, and how to contact me. That will not be duplicated here and can be found on the module's virtual learning environment (VLE) page. If you need have any questions during the module then you can send me an \href{mailto:rossc@edgehill.ac.uk}{email} or come by my office during the office hour times. The module reading list, available on the VLE, contains details of recommended and supplementary reading for the module, there will frequently be suggested reading given to complement the material from a given weeks lecture. In these notes I will occasionally cite one of these books in the lecture notes, there will also be extra information and resources given in \cref{sec:further reading}. My favourite reference for much of this material is \citep{riley_mathematical_2006}, which covers all the areas of mathematics that we need for this course.\\
+In week one there was  overview information about the module including a rough schedule, how you will be assessed, and how to contact me. That will not be duplicated here as it can be found on the module's virtual learning environment (VLE) page. If you need have any questions during the module then you can send me an \href{mailto:rossc@edgehill.ac.uk}{email} or come by my office during my office hour. The module reading list, available on the VLE, contains details of recommended and supplementary reading for the module, there will frequently be suggested reading given to complement the material from a given weeks lecture. In these notes I will occasionally cite one of these books in the lecture notes, there will also be extra information and resources given in \cref{sec:further reading}. My favourite reference for much of this material is \citep{riley_mathematical_2006}, which covers all the areas of mathematics that we need for this course. There are also extra resources given in the bibliography section.\\
 
 We will mainly be using content from chapters 1, 2, and parts of 27 from \citep{riley_mathematical_2006}.  Another good resource is the calculus page on the website \href{https://tutorial.math.lamar.edu/classes/calci/calci.aspx}{Paul's Online Notes}. There are lots of examples given there, some of which I have included in this lecture notes.\\
 
@@ -22,7 +22,7 @@ Another book that I have sometimes used is \citep{jordan2008mathematical}, it co
 \label{sec:why calculus}
 \epigraph{\textbf{So what does calculus add for me?} It provides a way for us to construct relatively simple quantitative models of change, and to deduce their consequences. }{\textit{\href{https://math.mit.edu/~djk/calculus_beginners/chapter00/section02.html}{MIT Calculus for Beginners}}}
 
-Calculus is an important topic in mathematics and at its most basic is the study of how functions change. It makes an appearance whenever we are interested in solving an optimisation problem, e.g. finding the best solution to a given problem. This could be finding out the largest area that can be enclosed by a fence of a given length, or what the fastest way to travel between two different points is. One example of this is sometimes called the \textbf{Ocado} or \textbf{vehicle routing problem} and wants to find the optimal route for a delivery van\footnote{More info on this can be found \href{https://www.cardiff.ac.uk/news/view/2585000-improving-vehicle-routing-with-ocado-group}{here}. Sometimes the Ocado problem refers to routing of the robots that pick up groceries in the warehouse which is another example of a vehicle routing problem.}. \\
+Calculus is an important topic in mathematics and at its most basic is the study of how functions change. It makes an appearance whenever we are interested in solving an optimisation problem, e.g. finding the best solution to a given problem. This could be finding out the largest area that can be enclosed by a fence of a given length, or what the fastest way to travel between two different points is. One example of this is sometimes called the \textbf{Ocado} or \textbf{vehicle routing problem} and wants to find the optimal route for a delivery van\footnote{More info on this can be found online \href{https://www.cardiff.ac.uk/news/view/2585000-improving-vehicle-routing-with-ocado-group}{here}. Sometimes the Ocado problem refers to routing of the robots that pick up groceries in the warehouse which is another example of a vehicle routing problem.}. \\
 
 \begin{figure}[ht]
     \centering
@@ -41,7 +41,7 @@ You may be thinking, ``that all sounds sensible in mathematics or physics, but a
    \item \textbf{AI and machine learning:} Most machine learning algorithms involve calculus in their optimisation and training.
    \item \textbf{Data science:} Much of data science involves statistical and mathematical modelling to analyse and understand the data. Understanding these techniques relies on understanding calculus. 
 \end{itemize}
-This all goes to show that calculus is an essential tool in many field beyond pure mathematics and is indispensable for Physicists, Engineers, and computer programmers. \\
+This all goes to show that calculus is an essential tool in many field beyond pure mathematics and is indispensable for Physicists, Engineers, and computer programmers. We will return to some of these topics later in the module once we have built up the mathematical foundations. \\
 
 \begin{figure}[ht]
     \centering
@@ -69,16 +69,33 @@ Both concepts can be extended to much more abstract settings but the intuition g
 \begin{figure}[ht]
     \centering
    % \pdftooltip{
-   \includegraphics[width=0.4\textwidth, alt ={A schematic of an integral as the area under the curve.}]{figures/Integral_approximations}
+  % \includegraphics[width=0.4\textwidth, alt ={A schematic of an integral as the area under the curve.}]{figures/Integral_approximations}
+   \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth,variable=\x]
+     \draw[->] (-0.2,0) -- (5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5)node[above]{$y$};
+ \draw[color=CDnavy, domain=0:4]   plot[samples=300] (\x ,{1+ ((0.5)^(2))*\x^(2)}) ;
+  \draw[-, color =CDgreen ] (4,0) -- (4,5);
+\filldraw[black] (0,1) circle (1pt)node[anchor=east]{$1$};
+\filldraw[black] (0,-0.2) circle (1pt) node[anchor=north]{$0$};
+\filldraw[black] (4,0) circle (1pt) node[anchor=north]{$2$};
+\draw[-, color =CDgreen ] (1,0) -- (1,2) ;
+\draw[-, color =CDgreen ] (2,0) -- (2,3.25);
+\draw[-, color =CDgreen ] (3,0) -- (3,5) ;
+ \draw[-, color =CDgreen ] (0,1.25) -- (1,1.25);
+\draw[-, color =CDgreen ] (1,2) -- (2,2);
+\draw[-, color =CDgreen ] (2,3.25) -- (3,3.25) ;
+\draw[-, color =CDgreen ] (3,5) -- (4,5);
+    \end{tikzpicture}
    %}{A schematic of an integral as the area under the curve. }
-    \caption{The integral, or area under the curve, can be approximated by rectangles. Depending on the size of the rectangles this can be an over estimate or an underestimate, but it will improve the thinner the rectangles become. This figure comes from \href{https://commons.wikimedia.org/wiki/File:Integral\_approximations\_J.svg}{Wikimedia Commons}. }
+    \caption{The integral, or area under the curve, can be approximated by rectangles. Depending on the size of the rectangles this can be an over estimate or an underestimate, but it will improve the thinner the rectangles become. 
+    %This figure comes from \href{https://commons.wikimedia.org/wiki/File:Integral\_approximations\_J.svg}{Wikimedia Commons}. 
+    }
 \label{fig: integral approximation}
 \end{figure}
-The YouTube channel 3Blue1Brown has an excellent playlist called the essence of calculus available \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr}{here} which goes through the basics of calculus and its implications in a fairly unique way. Grant's goal in the videos is to give you an intuition for why Calculus works the way it does, rather than just giving you a list of facts and equations to memorise. Hopefully you will find that this module takes a similar approach, the goal is for you to understand the how and why of the mathematics and not just approach it as a set of rules to memorise. \\
+The YouTube channel 3Blue1Brown has an excellent playlist called the essence of calculus available \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr}{here} which goes through the basics of calculus and its implications in a fairly unique way. Grant's goal in the videos is to give you an intuition for why calculus works the way it does, rather than just giving you a list of facts and equations to memorise. Hopefully you will find that this module takes a similar approach, the goal is for you to understand the how and why of the mathematics and not just approach it as a set of rules to memorise. \\
 
-If you find that you enjoy any of the topics in this module, or just want to read about interesting mathematics in a popular science setting I recommend having a look at \href{https://chalkdustmagazine.com/}{\textit{\gls{Chalkdust}} magazine}. As one of the editors of \textit{Chalkdust} I may be biased, but I think that it is a nice way to find out about some interesting maths without having to go into all of the details.\\
+If you find that you enjoy any of the topics in this module, or just want to read about interesting mathematics in a popular science setting I recommend having a look at \href{https://chalkdustmagazine.com/}{\textit{\gls{Chalkdust}}}. As one of the editors of \textit{Chalkdust} I may be biased, but I think that it is a nice way to find out about some interesting maths without having to go into all of the details.\\
 
-Hopefully, this has given you a feel for why you are doing this module. Now we can get started with the mathematics. As calculus is the study of how functions change we first need to remind ourselves of some of the properties of functions and introduce some notation.
 
 \section*{How to use these notes }
 As stated above, these notes are here to complement the in person lectures rather than to replace them.  For some topics there will be more detail given here, while at other points there may be explanations that I give in the lectures, or examples that I use which do not appear in these notes.  Also, I will frequently draw pictures in the lectures, as the module goes on I will try to add these figures to the lecture notes. However, that will not always be possible. These notes also contain exercises, some of which will appear in the tutorial sheets, that you should solve to help reinforce the concepts from the module.\\
@@ -88,6 +105,7 @@ To complement the theory presented in these notes you will find a range to examp
 There are also \textbf{Real World Application} examples at certain points in these notes. These are there to highlight how the mathematics that you are learning in this module plays a role in what you will see later in your degree, as well as showing you how it is relevant to your everyday life. Initially there are not many of these sections in the notes but more will be added as the notes are expanded.\\
 
 \begin{warpprint} % For print only output ...
-These lecture notes will continue to develop as the module goes on so make sure to check back frequently to see what has been added. There is also an online html version of these notes that you can check out as well. The html version should be accessible with alttext on the figures. If you have any difficulty viewing either these notes or the html version let me know.
+These lecture notes will continue to develop as the module goes on so make sure to check back frequently to see what has been added. There is also an online html version of these notes that you can check out as well. The html version should be accessible with alttext on the figures. If you have any difficulty viewing either these notes or the html version let me know.\\
 \end{warpprint}
 
+Hopefully, this has given you a feel for why you are doing this module. Now we can get started with the mathematics. As calculus is the study of how functions change we first need to remind ourselves of some of the properties of functions and introduce some notation.

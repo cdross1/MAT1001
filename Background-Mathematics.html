@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,10 +67,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
+            const resultstar = parser.GetArgument(name);
+            const resultnostar = parser.GetArgument(name);
+            const star = parser.GetStar();                 // true if there is a *
+            useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
+        tagformat: {
+            number: function (n) {
+                if(MathJax.config.subequations==0)
+                    return(MathJax.config.section + n);
+                else
+                    return(MathJax.config.section + String.fromCharCode(96+n));
+            },
+        },
   }
 }
 </script>
@@ -221,12 +221,12 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-337"></a>
+<a id="mat1001-autopage-347"></a>
+<div class="pagegrid">
+
+
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
-
-
-<div class="bodyandsidetoc">
 <div class="sidetoccontainer">
 
 
@@ -254,426 +254,366 @@ Home</a>
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
-<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a><p>
-
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
-<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a><p>
-
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
-<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a><p>
-
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-15" class="tocchapter" >
-<span class="sectionnumber">2</span>&#x2003;Functions</a><p>
-
+<a href="Functions.html#autosec-17" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-16" class="tocsection" >
-<span class="sectionnumber">2.1</span>&#x2003;What is a function</a><p>
-
+<a href="Functions.html#autosec-18" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-30" class="tocsection" >
-<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a><p>
-
+<a href="Functions.html#autosec-38" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-44" class="tocsection" >
-<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a><p>
-
+<a href="Functions.html#autosec-54" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-55" class="tocsection" >
-<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a><p>
-
+<a href="Functions.html#autosec-65" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-60" class="tocsection" >
-<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a><p>
-
+<a href="Functions.html#autosec-70" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-74" class="tocsection" >
-<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a><p>
-
+<a href="Functions.html#autosec-84" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-91" class="tocchapter" >
-<span class="sectionnumber">3</span>&#x2003;Differentiation</a><p>
-
+<a href="Differentiation.html#autosec-101" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-92" class="tocsection" >
-<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a><p>
-
+<a href="Differentiation.html#autosec-102" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-101" class="tocsection" >
-<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a><p>
-
+<a href="Differentiation.html#autosec-111" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-121" class="tocsection" >
-<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a><p>
-
+<a href="Differentiation.html#autosec-131" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-123" class="tocsection" >
-<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a><p>
-
+<a href="Differentiation.html#autosec-133" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-147" class="tocchapter" >
-<span class="sectionnumber">4</span>&#x2003;Integration</a><p>
-
-</p>
-
-
-<p>
-<a href="Integration.html#autosec-148" class="tocsection" >
-<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a><p>
-
+<a href="Integration.html#autosec-157" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
 </p>
 
 
 <p>
 <a href="Integration.html#autosec-158" class="tocsection" >
-<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a><p>
-
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-167" class="tocsection" >
-<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a><p>
-
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-192" class="tocsection" >
-<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a><p>
-
+<a href="Integration.html#autosec-177" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
 </p>
 
 
 <p>
-<a href="Differential-Equations.html#autosec-204" class="tocchapter" >
-<span class="sectionnumber">5</span>&#x2003;Differential Equations</a><p>
-
+<a href="Integration.html#autosec-202" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-206" class="tocchapter" >
-<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a><p>
-
+<a href="Differential-Equations.html#autosec-214" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-207" class="tocsection" >
-<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a><p>
-
+<a href="Numerical-Methods.html#autosec-216" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-239" class="tocsection" >
-<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a><p>
-
+<a href="Numerical-Methods.html#autosec-217" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-265" class="tocsection" >
-<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a><p>
-
+<a href="Numerical-Methods.html#autosec-249" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-291" class="tocsection" >
-<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a><p>
-
+<a href="Numerical-Methods.html#autosec-275" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-312" class="tocsection" >
-<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a><p>
-
+<a href="Numerical-Methods.html#autosec-301" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-314" class="tocchapter" >
-<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a><p>
-
+<a href="Numerical-Methods.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-315" class="tocsection" >
-<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-324" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-322" class="tocsection" >
-<span class="sectionnumber">7.2</span>&#x2003;Robotics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-325" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-324" class="tocchapter" >
-<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-332" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Robotics</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-325" class="tocsection" >
-<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-329" class="tocsection" >
-<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-330" class="tocsection" >
-<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-331" class="tocsection" >
-<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-332" class="tocsection" >
-<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a><p>
-
+<a href="Advanced-Topics.html#autosec-334" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a>
 </p>
 
 
 <p>
 <a href="Advanced-Topics.html#autosec-335" class="tocsection" >
-<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a><p>
-
+<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-338" class="tocchapter" >
-<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a><p>
-
+<a href="Advanced-Topics.html#autosec-339" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-339" class="tocsection" >
-<span class="sectionnumber">9.1</span>&#x2003;Background and References</a><p>
-
+<a href="Advanced-Topics.html#autosec-340" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-340" class="tocsection" >
-<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a><p>
-
+<a href="Advanced-Topics.html#autosec-341" class="tocsection" >
+<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-342" class="tocsection" >
-<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a><p>
-
+<a href="Advanced-Topics.html#autosec-342" class="tocsection" >
+<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-346" class="tocsection" >
-<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a><p>
-
+<a href="Advanced-Topics.html#autosec-345" class="tocsection" >
+<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-353" class="tocsection" >
-<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a><p>
-
+<a href="Background-Mathematics.html#autosec-348" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-358" class="tocsection" >
-<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a><p>
-
+<a href="Background-Mathematics.html#autosec-349" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Background and References</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-361" class="tocchapter" >
-<span class="sectionnumber">10</span>&#x2003;Further Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-350" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-362" class="tocsection" >
-<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-352" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-363" class="tocsection" >
-<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-356" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-364" class="tocsection" >
-<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-363" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-365" class="tocsection" >
-<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-368" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-366" class="tocsection" >
-<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-371" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Further Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-367" class="tocsection" >
-<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-372" class="tocsection" >
+<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-368" class="tocsection" >
-<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-373" class="tocsection" >
+<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-370" class="tocchapter" >
-<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a><p>
-
+<a href="Further-Reading.html#autosec-374" class="tocsection" >
+<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-371" class="tocsection" >
-<span class="sectionnumber">11.1</span>&#x2003;Week 1</a><p>
-
+<a href="Further-Reading.html#autosec-375" class="tocsection" >
+<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-387" class="tocsection" >
-<span class="sectionnumber">11.2</span>&#x2003;Week 2</a><p>
-
+<a href="Further-Reading.html#autosec-376" class="tocsection" >
+<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-411" class="tocsection" >
-<span class="sectionnumber">11.3</span>&#x2003;Week 3</a><p>
-
+<a href="Further-Reading.html#autosec-377" class="tocsection" >
+<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Extra-Proofs-Derivations.html#autosec-417" class="tocchapter" >
-<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a><p>
-
+<a href="Further-Reading.html#autosec-378" class="tocsection" >
+<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-420" class="tocchapter" >
-<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-380" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-421" class="tocsection" >
-<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-381" class="tocsection" >
+<span class="sectionnumber">11.1</span>&#x2003;Week 1</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-424" class="tocsection" >
-<span class="sectionnumber">13.2</span>&#x2003;Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-397" class="tocsection" >
+<span class="sectionnumber">11.2</span>&#x2003;Week 2</a>
 </p>
 
 
 <p>
-<a href="Bibliography.html#autosec-428" class="tocchapter" >
+<a href="Tutorial-Sheets.html#autosec-421" class="tocsection" >
+<span class="sectionnumber">11.3</span>&#x2003;Week 3</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-427" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-430" class="tocchapter" >
+<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-431" class="tocsection" >
+<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-434" class="tocsection" >
+<span class="sectionnumber">13.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-438" class="tocchapter" >
 Bibliography</a>
 </p>
 
@@ -924,8 +864,8 @@ Bibliography</a>
 <!--
 ...... chapter Background Mathematics ......
 -->
-<h3 id="autosec-338">Chapter&nbsp;<span class="sectionnumber">9&#x2003;</span>Background Mathematics</h3>
-<a id="mat1001-autopage-338"></a>
+<h3 id="autosec-348">Chapter&nbsp;<span class="sectionnumber">9&#x2003;</span>Background Mathematics</h3>
+<a id="mat1001-autopage-348"></a>
 <a id="mat1001-autofile-9"></a>
 
 <a id="sec:background"></a>
@@ -952,8 +892,8 @@ Try as you may you just can’t get away from Mathematics
 <!--
 ...... section Background and References ......
 -->
-<h4 id="autosec-339"><span class="sectionnumber">9.1&#x2003;</span>Background and References</h4>
-<a id="mat1001-autopage-339"></a>
+<h4 id="autosec-349"><span class="sectionnumber">9.1&#x2003;</span>Background and References</h4>
+<a id="mat1001-autopage-349"></a>
 
 
 <p>
@@ -1009,8 +949,8 @@ As the module goes on I may add more background resources or add some examples.<
 <!--
 ...... section Polynomials and roots ......
 -->
-<h4 id="autosec-340"><span class="sectionnumber">9.2&#x2003;</span>Polynomials and roots</h4>
-<a id="mat1001-autopage-340"></a>
+<h4 id="autosec-350"><span class="sectionnumber">9.2&#x2003;</span>Polynomials and roots</h4>
+<a id="mat1001-autopage-350"></a>
 
 
 <p>
@@ -1108,7 +1048,7 @@ To apply the quadratic formula we compare this specific equation to the general 
 <!--
 
 
-                                                                                                                                        √
+                                                                                                                                     √
                                                                                                                                    4±  42 + 4 × 2 × 2
                                                                                                                               x=
                                                                                                                                           4
@@ -1171,6 +1111,7 @@ equations this is very useful.<br />
 For higher order polynomials we do not have a formula to find the solutions<sup>1</sup> In this case we use the higher order versions of the above identity that the constant term in the polynomial is related to the product of the roots. We can then use a technique like
 polynomial long division to reduce the order of the equation.<br />
 
+</p>
 
 <p>
 Consider the equation
@@ -1213,7 +1154,7 @@ are dividing, \(a\) involves lots of digits it is easier to write it as
 <!--
 
 
-                                                                                                                                            b)a.
+                                                                                                                                         b)a.
 
 -->
 
@@ -1239,14 +1180,14 @@ Consider the problem of dividing \(1260257\) by 37, this is done as follows
 <!--
 
 
-                                                                                                                                              34061
+                                                                                                                                             34061
                                                                                                                                      37)1260257
                                                                                                                                         1110000
                                                                                                                                          150257
                                                                                                                                          148000
                                                                                                                                              2257
                                                                                                                                              2220
-                                                                                                                                                   37
+                                                                                                                                                37
 
 
 -->
@@ -1292,7 +1233,7 @@ First we look at the highest order \(x\) terms and see that we need to multiply 
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x 2
+                                                                                                                                        x3 − x2
 
 
 -->
@@ -1313,7 +1254,7 @@ We can then subtracted the third line from the second line to get
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x 2
+                                                                                                                                        x3 − x2
                                                                                                                                          2x2 − x − 1
 
 
@@ -1335,7 +1276,7 @@ Now we need to multiply \(x-1\) by \(2x\) to cancel the highest order term so we
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x 2
+                                                                                                                                        x3 − x2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
 
@@ -1358,10 +1299,10 @@ Carrying out the subtraction now gives
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x 2
+                                                                                                                                        x3 − x2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                   x−1
+                                                                                                                                                x−1
 
 
 -->
@@ -1382,12 +1323,12 @@ which is exactly what we are dividing by. Thus
 
                                                                                                                                         x2 + 2x + 1
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x 2
+                                                                                                                                        x3 − x2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                   x−1
-                                                                                                                                                   x−1
-                                                                                                                                                        0.
+                                                                                                                                                x−1
+                                                                                                                                                x−1
+                                                                                                                                                     0.
 
 
 -->
@@ -1446,19 +1387,18 @@ This style of approach can be applied to any polynomial equation. There is a mor
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-341"></a>
+<a id="mat1001-autopage-351"></a>
 <p>
 <sup>1</sup>&nbsp;The exception is cubic equations. There is a cubic formula. However, it is fairly complicated and there is no point in trying to use it.
 </p>
 
-</p>
 
 </div>
 <!--
 ...... section Trigonometry Primer ......
 -->
-<h4 id="autosec-342"><span class="sectionnumber">9.3&#x2003;</span>Trigonometry Primer</h4>
-<a id="mat1001-autopage-342"></a>
+<h4 id="autosec-352"><span class="sectionnumber">9.3&#x2003;</span>Trigonometry Primer</h4>
+<a id="mat1001-autopage-352"></a>
 
 
 <p>
@@ -1476,7 +1416,7 @@ and angles in a triangle provided that you now some of them already.
 
 <p>
 <span
-    id="lateximage-mat1001-28"
+    id="lateximage-mat1001-32"
     class="lateximagesource"
 ><!--
         φ
@@ -1493,7 +1433,7 @@ and angles in a triangle provided that you now some of them already.
 θ
     b
 --><img
-    src="mat1001-images\image-28.svg"
+    src="mat1001-images\image-32.svg"
     alt="(-tikz-&nbsp;diagram)"
     style=""
     class="lateximage"
@@ -1588,8 +1528,8 @@ become more complicated. If you are unfamiliar with radians have a look at the n
 <!--
 ...... section Radians and Degrees ......
 -->
-<h4 id="autosec-346"><span class="sectionnumber">9.4&#x2003;</span>Radians and Degrees</h4>
-<a id="mat1001-autopage-346"></a>
+<h4 id="autosec-356"><span class="sectionnumber">9.4&#x2003;</span>Radians and Degrees</h4>
+<a id="mat1001-autopage-356"></a>
 
 
 <p>
@@ -1631,14 +1571,14 @@ in other words, an angle measured in radians is the ratio of the distance travel
 
 <p>
 <span
-    id="lateximage-mat1001-29"
+    id="lateximage-mat1001-33"
     class="lateximagesource"
 ><!--
     s
 r
 θ
 --><img
-    src="mat1001-images\image-29.svg"
+    src="mat1001-images\image-33.svg"
     alt="(-tikz-&nbsp;diagram)"
     style=""
     class="lateximage"
@@ -1694,7 +1634,7 @@ distance travelled along this line. In other words, working in radians is a bit 
 
 <p>
 <span
-    id="lateximage-mat1001-30"
+    id="lateximage-mat1001-34"
     class="lateximagesource"
 ><!--
     s
@@ -1706,7 +1646,7 @@ distance travelled along this line. In other words, working in radians is a bit 
 
         θ
 --><img
-    src="mat1001-images\image-30.svg"
+    src="mat1001-images\image-34.svg"
     alt="(-tikz-&nbsp;diagram)"
     style=""
     class="lateximage"
@@ -1732,8 +1672,8 @@ letters like phi, \(\upphi \) or \(\upvarphi \), and psi, \(\uppsi \), are somet
 <!--
 ...... section Rearranging Equations ......
 -->
-<h4 id="autosec-353"><span class="sectionnumber">9.5&#x2003;</span>Rearranging Equations</h4>
-<a id="mat1001-autopage-353"></a>
+<h4 id="autosec-363"><span class="sectionnumber">9.5&#x2003;</span>Rearranging Equations</h4>
+<a id="mat1001-autopage-363"></a>
 
 
 <a id="sec:   rearranging"></a>
@@ -1783,7 +1723,7 @@ These operations can include: adding or subtracting a quantity from both sides, 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-354"></a>
+<span class="listmarker"><a id="mat1001-autopage-364"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.1</span></span>. </span> Returning to the above equation \(x=5y+4x\), we can rearrange it to make \(z\) the subject. Again, this means that we will
 perform mathematical operations on both sides of the equation to put it in the form \(z=\dots {}\) :
 </p>
@@ -1850,7 +1790,7 @@ with \(z\) now the subject of the equation.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-355"></a>
+<span class="listmarker"><a id="mat1001-autopage-365"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.2</span></span>. </span> As another example consider an equation from physics \(v=u+at\), which says that the if an object starts off with a velocity \(v\)
 and accelerates at a rate \(a\) then after time \(t\) its velocity will be \(v\). Here we go through this step by step what we do when solving for \(a\):
 </p>
@@ -1918,7 +1858,7 @@ a=\frac {v-u}{t}.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-356"></a>
+<span class="listmarker"><a id="mat1001-autopage-366"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.3</span></span>. </span> Another example is rearranging a different equation from physics,
 </p>
 
@@ -1959,20 +1899,20 @@ To make \(a\) the subject we proceed as follows:
 
 
 
-                                                                                                                          1 2
-                                                                                                                 s = ut +   at , subtract \(ut\) from both sides,
-                                                                                                                          2
-                                                                                                                          1             1
+                                                                                                                           1 2
+                                                                                                                 s = ut +    at , subtract \(ut\) from both sides,
+                                                                                                                           2
+                                                                                                                           1            1
                                                                                                            s − ut = ut + at2 − ut = at2 , multiply both sides by \(2\),
-                                                                                                                          2             2
-                                                                                                                        1 2
-                                                                                                                            
-                                                                                                       2 (s − ut) = 2     at    = at2 , divide both sides by \(t^{2}\),
-                                                                                                                        2
-                                                                                                       2 (s − ut)   at2
-                                                                                                            2
+                                                                                                                           2            2
+                                                                                                                         1 2
+                                                                                                                             
+                                                                                                                                     2
+                                                                                                       2 (s − ut) = 2      at    = at , divide both sides by \(t^{2}\),
+                                                                                                                         2
+                                                                                                       2 (s − ut)   at 2
                                                                                                                   = 2 = a,
-                                                                                                           t         t
+                                                                                                           t2        t
 
 
 -->
@@ -2060,12 +2000,12 @@ There are a few special cases where we do not need to use the quadratic formula 
 
 
                                                                                                                            1 2
-                                                                                                                   0 = ut + at , factor out the common factor,
-                                                                                                                         2
-                                                                                                                            1
-                                                                                                                                
+                                                                                                                   0 = ut +  at , factor out the common factor,
+                                                                                                                           2
+                                                                                                                             1
+                                                                                                                                
                                                                                                                    0 = t u + at ,
-                                                                                                                            2
+                                                                                                                             2
 
 
 -->
@@ -2149,7 +2089,7 @@ found by direct substitution into the quadratic formula of \(s=0\) or \(u=0\) re
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-357"></a>
+<span class="listmarker"><a id="mat1001-autopage-367"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">9.4</span></span>. </span> The final example is to rearrange an equation involving a square root,
 </p>
 
@@ -2298,8 +2238,8 @@ If you want more examples there is a <b>Transposition of Formulae</b> workbook, 
 <!--
 ...... section More on Limits ......
 -->
-<h4 id="autosec-358"><span class="sectionnumber">9.6&#x2003;</span>More on Limits</h4>
-<a id="mat1001-autopage-358"></a>
+<h4 id="autosec-368"><span class="sectionnumber">9.6&#x2003;</span>More on Limits</h4>
+<a id="mat1001-autopage-368"></a>
 
 
 <a id="sec:    limits"></a>
@@ -2345,26 +2285,26 @@ closer to \(x=1\):
 
 
                                                                                                                                    x,   f (x)
-                                                                                                                                 1      3
-                                                                                                                                   ,      = 1.5,
+                                                                                                                                  1     3
+                                                                                                                                    ,     = 1.5,
                                                                                                                                  2      2
                                                                                                                                  3      7
-                                                                                                                                   ,      = 1.75,
+                                                                                                                                    ,     = 1.75,
                                                                                                                                  4      4
                                                                                                                                  9      19
-                                                                                                                                   ,       = 1.9
+                                                                                                                                    ,      = 1.9
                                                                                                                                 10      10
                                                                                                                                 99      199
-                                                                                                                                   ,        = 1.99
+                                                                                                                                    ,       = 1.99
                                                                                                                                100      100
-                                                                                                                              999       1999
-                                                                                                                                   ,         = 1.999
+                                                                                                                               999      1999
+                                                                                                                                    ,        = 1.999
                                                                                                                               1000      1000
-                                                                                                                             9999       19999
-                                                                                                                                   ,          = 1.9999
+                                                                                                                              9999      19999
+                                                                                                                                    ,         = 1.9999
                                                                                                                              10000      10000
-                                                                                                                            99999       199999
-                                                                                                                                   ,            = 1.99999.
+                                                                                                                             99999      199999
+                                                                                                                                    ,           = 1.99999.
                                                                                                                             100000      100000
 
 
@@ -2521,12 +2461,12 @@ Here we get:
                                                                                                                                                      x−1
                                                                                                                                    2,   1,
                                                                                                                                         1
-                                                                                                                                   3,     = 0.5,
+                                                                                                                                   3,      = 0.5,
                                                                                                                                         2
                                                                                                                                         1
-                                                                                                                                   5,     = 0.25
+                                                                                                                                   5,      = 0.25
                                                                                                                                         4
-                                                                                                                                        1
+                                                                                                                                         1
                                                                                                                                   11,       = 0.1
                                                                                                                                         10
                                                                                                                                          1
@@ -2535,7 +2475,7 @@ Here we get:
                                                                                                                                           1
                                                                                                                                 1001,         = 0.001
                                                                                                                                         1000
-                                                                                                                                          1
+                                                                                                                                           1
                                                                                                                                10001,          = 0.0001.
                                                                                                                                         10000
 
@@ -2559,7 +2499,7 @@ the function \(f(x)\) at \(\infty \) but can say how the function behaves as we 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-359"></a>
+<span class="listmarker"><a id="mat1001-autopage-369"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">9.5</span></span>. </span> Consider the function
 </p>
 
@@ -2598,8 +2538,6 @@ again. By exploring what happens as \(x\) approaches \(1\) both from above and b
 
 </main>
 
-</div>
-
 <footer>
 
 <p>
@@ -2612,5 +2550,6 @@ Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill
 <nav class="botnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
+</div><!-- grid -->
 </body>
 </html>

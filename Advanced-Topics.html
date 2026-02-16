@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
+            const resultstar = parser.GetArgument(name);
+            const resultnostar = parser.GetArgument(name);
+            const star = parser.GetStar();                 // true if there is a *
+            useArgument(parser, star ? resultstar : resultnostar);
           },
 
-          // This function implements an ifnextchar macro.
-          IfnextcharFunction(parser, name) {
-            let whichchar = parser.GetArgument(name);
-            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-              // $ syntax highlighting
-              whichchar = String.fromCodePoint(parseInt(whichchar));
-            }
-            const resultnextchar = parser.GetArgument(name);
-            const resultnotnextchar = parser.GetArgument(name);
-            const gotchar = (parser.GetNext() === whichchar);
-            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-          },
+         // This function implements an ifnextchar macro.
+         IfnextcharFunction(parser, name) {
+           let whichchar = parser.GetArgument(name);
+           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+             // $ syntax highlighting
+             whichchar = String.fromCodePoint(parseInt(whichchar));
+           }
+           const resultnextchar = parser.GetArgument(name);
+           const resultnotnextchar = parser.GetArgument(name);
+           const gotchar = (parser.GetNext() === whichchar);
+           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+         },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
+        tagformat: {
+            number: function (n) {
+                if(MathJax.config.subequations==0)
+                    return(MathJax.config.section + n);
+                else
+                    return(MathJax.config.section + String.fromCharCode(96+n));
+            },
+        },
   }
 }
 </script>
@@ -221,12 +221,12 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-323"></a>
+<a id="mat1001-autopage-333"></a>
+<div class="pagegrid">
+
+
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
-
-
-<div class="bodyandsidetoc">
 <div class="sidetoccontainer">
 
 
@@ -254,426 +254,366 @@ Home</a>
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
-<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a><p>
-
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
-<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a><p>
-
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
-<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a><p>
-
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-15" class="tocchapter" >
-<span class="sectionnumber">2</span>&#x2003;Functions</a><p>
-
+<a href="Functions.html#autosec-17" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-16" class="tocsection" >
-<span class="sectionnumber">2.1</span>&#x2003;What is a function</a><p>
-
+<a href="Functions.html#autosec-18" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-30" class="tocsection" >
-<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a><p>
-
+<a href="Functions.html#autosec-38" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-44" class="tocsection" >
-<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a><p>
-
+<a href="Functions.html#autosec-54" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-55" class="tocsection" >
-<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a><p>
-
+<a href="Functions.html#autosec-65" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-60" class="tocsection" >
-<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a><p>
-
+<a href="Functions.html#autosec-70" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-74" class="tocsection" >
-<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a><p>
-
+<a href="Functions.html#autosec-84" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-91" class="tocchapter" >
-<span class="sectionnumber">3</span>&#x2003;Differentiation</a><p>
-
+<a href="Differentiation.html#autosec-101" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-92" class="tocsection" >
-<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a><p>
-
+<a href="Differentiation.html#autosec-102" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-101" class="tocsection" >
-<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a><p>
-
+<a href="Differentiation.html#autosec-111" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-121" class="tocsection" >
-<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a><p>
-
+<a href="Differentiation.html#autosec-131" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-123" class="tocsection" >
-<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a><p>
-
+<a href="Differentiation.html#autosec-133" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-147" class="tocchapter" >
-<span class="sectionnumber">4</span>&#x2003;Integration</a><p>
-
-</p>
-
-
-<p>
-<a href="Integration.html#autosec-148" class="tocsection" >
-<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a><p>
-
+<a href="Integration.html#autosec-157" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
 </p>
 
 
 <p>
 <a href="Integration.html#autosec-158" class="tocsection" >
-<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a><p>
-
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-167" class="tocsection" >
-<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a><p>
-
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-192" class="tocsection" >
-<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a><p>
-
+<a href="Integration.html#autosec-177" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
 </p>
 
 
 <p>
-<a href="Differential-Equations.html#autosec-204" class="tocchapter" >
-<span class="sectionnumber">5</span>&#x2003;Differential Equations</a><p>
-
+<a href="Integration.html#autosec-202" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-206" class="tocchapter" >
-<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a><p>
-
+<a href="Differential-Equations.html#autosec-214" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-207" class="tocsection" >
-<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a><p>
-
+<a href="Numerical-Methods.html#autosec-216" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-239" class="tocsection" >
-<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a><p>
-
+<a href="Numerical-Methods.html#autosec-217" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-265" class="tocsection" >
-<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a><p>
-
+<a href="Numerical-Methods.html#autosec-249" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-291" class="tocsection" >
-<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a><p>
-
+<a href="Numerical-Methods.html#autosec-275" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-312" class="tocsection" >
-<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a><p>
-
+<a href="Numerical-Methods.html#autosec-301" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-314" class="tocchapter" >
-<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a><p>
-
+<a href="Numerical-Methods.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-315" class="tocsection" >
-<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-324" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-322" class="tocsection" >
-<span class="sectionnumber">7.2</span>&#x2003;Robotics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-325" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-324" class="tocchapter" >
-<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-332" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Robotics</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-325" class="tocsection" >
-<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-329" class="tocsection" >
-<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-330" class="tocsection" >
-<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-331" class="tocsection" >
-<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-332" class="tocsection" >
-<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a><p>
-
+<a href="Advanced-Topics.html#autosec-334" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a>
 </p>
 
 
 <p>
 <a href="Advanced-Topics.html#autosec-335" class="tocsection" >
-<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a><p>
-
+<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-338" class="tocchapter" >
-<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a><p>
-
+<a href="Advanced-Topics.html#autosec-339" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-339" class="tocsection" >
-<span class="sectionnumber">9.1</span>&#x2003;Background and References</a><p>
-
+<a href="Advanced-Topics.html#autosec-340" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-340" class="tocsection" >
-<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a><p>
-
+<a href="Advanced-Topics.html#autosec-341" class="tocsection" >
+<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-342" class="tocsection" >
-<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a><p>
-
+<a href="Advanced-Topics.html#autosec-342" class="tocsection" >
+<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-346" class="tocsection" >
-<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a><p>
-
+<a href="Advanced-Topics.html#autosec-345" class="tocsection" >
+<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-353" class="tocsection" >
-<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a><p>
-
+<a href="Background-Mathematics.html#autosec-348" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-358" class="tocsection" >
-<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a><p>
-
+<a href="Background-Mathematics.html#autosec-349" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Background and References</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-361" class="tocchapter" >
-<span class="sectionnumber">10</span>&#x2003;Further Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-350" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-362" class="tocsection" >
-<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-352" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-363" class="tocsection" >
-<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-356" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-364" class="tocsection" >
-<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-363" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-365" class="tocsection" >
-<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-368" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-366" class="tocsection" >
-<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-371" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Further Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-367" class="tocsection" >
-<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-372" class="tocsection" >
+<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-368" class="tocsection" >
-<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-373" class="tocsection" >
+<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-370" class="tocchapter" >
-<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a><p>
-
+<a href="Further-Reading.html#autosec-374" class="tocsection" >
+<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-371" class="tocsection" >
-<span class="sectionnumber">11.1</span>&#x2003;Week 1</a><p>
-
+<a href="Further-Reading.html#autosec-375" class="tocsection" >
+<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-387" class="tocsection" >
-<span class="sectionnumber">11.2</span>&#x2003;Week 2</a><p>
-
+<a href="Further-Reading.html#autosec-376" class="tocsection" >
+<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-411" class="tocsection" >
-<span class="sectionnumber">11.3</span>&#x2003;Week 3</a><p>
-
+<a href="Further-Reading.html#autosec-377" class="tocsection" >
+<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Extra-Proofs-Derivations.html#autosec-417" class="tocchapter" >
-<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a><p>
-
+<a href="Further-Reading.html#autosec-378" class="tocsection" >
+<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-420" class="tocchapter" >
-<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-380" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-421" class="tocsection" >
-<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-381" class="tocsection" >
+<span class="sectionnumber">11.1</span>&#x2003;Week 1</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-424" class="tocsection" >
-<span class="sectionnumber">13.2</span>&#x2003;Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-397" class="tocsection" >
+<span class="sectionnumber">11.2</span>&#x2003;Week 2</a>
 </p>
 
 
 <p>
-<a href="Bibliography.html#autosec-428" class="tocchapter" >
+<a href="Tutorial-Sheets.html#autosec-421" class="tocsection" >
+<span class="sectionnumber">11.3</span>&#x2003;Week 3</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-427" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-430" class="tocchapter" >
+<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-431" class="tocsection" >
+<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-434" class="tocsection" >
+<span class="sectionnumber">13.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-438" class="tocchapter" >
 Bibliography</a>
 </p>
 
@@ -924,8 +864,8 @@ Bibliography</a>
 <!--
 ...... chapter Advanced Topics ......
 -->
-<h3 id="autosec-324">Chapter&nbsp;<span class="sectionnumber">8&#x2003;</span>Advanced Topics</h3>
-<a id="mat1001-autopage-324"></a>
+<h3 id="autosec-334">Chapter&nbsp;<span class="sectionnumber">8&#x2003;</span>Advanced Topics</h3>
+<a id="mat1001-autopage-334"></a>
 <a id="mat1001-autofile-8"></a>
 
 <a id="sec:advanced topics"></a>
@@ -956,8 +896,8 @@ This section is non examinable and is included so that you have a feel for how t
 <!--
 ...... section L’Hopital’s rule for evaluating limits ......
 -->
-<h4 id="autosec-325"><span class="sectionnumber">8.1&#x2003;</span>L’Ho&#x0302;pital’s rule for evaluating limits</h4>
-<a id="mat1001-autopage-325"></a>
+<h4 id="autosec-335"><span class="sectionnumber">8.1&#x2003;</span>L’Ho&#x0302;pital’s rule for evaluating limits</h4>
+<a id="mat1001-autopage-335"></a>
 
 
 <a id="sec:l’hopital"></a>
@@ -972,9 +912,9 @@ Remember that not all limits that look indeterminate really are. For example
 <!--
 
 
-                                                                                                                                               x2 − 16
-                                                                                                                                         lim
-                                                                                                                                        x→4     x−4
+                                                                                                                                             x2 − 16
+                                                                                                                                       lim
+                                                                                                                                       x→4    x−4
 
 -->
 
@@ -1017,6 +957,7 @@ This is why we said that you should try to expand and simplify the function that
 <p>
 L’Ho&#x0302;pital<sup>1</sup>’s rule enable us to make sense of some of those limits which still look indeterminate after they have been simplified. To apply L’Ho&#x0302;pital’s rule, we have to be taking the limit of a ratio of functions \(f(x),g(x)\), where both are
 differentiable, the derivative of \(g(x)\) does not vanish, and in the limit \(f(x)\) and \(g(x)\) wither both go to zero or both go to infinity. Then we have that
+</p>
 
 <span class="hidden"> \(\seteqnumber{0}{8.}{0}\)</span>
 
@@ -1045,9 +986,9 @@ so we can replace the ratio of the functions with the ratio of their derivatives
 <!--
 
 
-                                                                                                                                       f (x)           f (n) (x)
-                                                                                                                                 lim           = lim               ,
-                                                                                                                                x→a g(x)        x→a g (n) (x)
+                                                                                                                                    f (x)       f (n) (x)
+                                                                                                                                 lim      = lim (n)       ,
+                                                                                                                                x→a g(x)    x→a g    (x)
 
 -->
 
@@ -1069,13 +1010,12 @@ Note that if the limit does not lead to an indeterminate then L’Ho&#x0302;pita
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-326"></a>
+<a id="mat1001-autopage-336"></a>
 
 <p>
 <sup>1</sup>&nbsp;Originally spelt L’Hospital, with a silent s and no circumflex
 </p>
 
-</p>
 
 </div>
 
@@ -1183,7 +1123,7 @@ As long as our original limit looks like it is indeterminate we can use L’Ho&#
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-327"></a>
+<span class="listmarker"><a id="mat1001-autopage-337"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.2</span></span>. </span> The limit of \(\sin (x)/x\) as \(x\to 0\) is evaluated as follows
 </p>
 
@@ -1229,7 +1169,7 @@ We can also evaluate other limits that may not at first look like a ratio of fun
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-328"></a>
+<span class="listmarker"><a id="mat1001-autopage-338"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">8.3</span></span>. </span> Consider the limit \(\lim _{x\to -\infty }xe^{x}\) this looks like it becomes the indeterminate \((-\infty )(0)\). If we recall
 that \(1/e^{x}=e^{-x}\) then we can rewrite the limit as
 </p>
@@ -1292,8 +1232,8 @@ since \(1/\infty \) is zero.
 <!--
 ...... section Trigonometric Derivatives in Degrees ......
 -->
-<h4 id="autosec-329"><span class="sectionnumber">8.2&#x2003;</span>Trigonometric Derivatives in Degrees</h4>
-<a id="mat1001-autopage-329"></a>
+<h4 id="autosec-339"><span class="sectionnumber">8.2&#x2003;</span>Trigonometric Derivatives in Degrees</h4>
+<a id="mat1001-autopage-339"></a>
 
 
 <p>
@@ -1398,18 +1338,18 @@ href="https://math.stackexchange.com/questions/214912/derivative-of-the-sine-fun
 <!--
 ...... section Functions of two variables ......
 -->
-<h4 id="autosec-330"><span class="sectionnumber">8.3&#x2003;</span>Functions of two variables</h4>
-<a id="mat1001-autopage-330"></a>
+<h4 id="autosec-340"><span class="sectionnumber">8.3&#x2003;</span>Functions of two variables</h4>
+<a id="mat1001-autopage-340"></a>
 <!--
 ...... section Multiple integrals ......
 -->
-<h4 id="autosec-331"><span class="sectionnumber">8.4&#x2003;</span>Multiple integrals</h4>
-<a id="mat1001-autopage-331"></a>
+<h4 id="autosec-341"><span class="sectionnumber">8.4&#x2003;</span>Multiple integrals</h4>
+<a id="mat1001-autopage-341"></a>
 <!--
 ...... section Optimisation Problems ......
 -->
-<h4 id="autosec-332"><span class="sectionnumber">8.5&#x2003;</span>Optimisation Problems</h4>
-<a id="mat1001-autopage-332"></a>
+<h4 id="autosec-342"><span class="sectionnumber">8.5&#x2003;</span>Optimisation Problems</h4>
+<a id="mat1001-autopage-342"></a>
 
 
 <p>
@@ -1433,7 +1373,7 @@ be.<br />
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-333"></a>
+<span class="listmarker"><a id="mat1001-autopage-343"></a>
 <span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">8.1</span></span>. </span> Note that the function can be constrained, e.g. if it is restricted a particular set of values that is not the full range
 of the function, then it may not achieve its global maximum or minimum. In that case you have to evaluate the function at the boundary of the region and see if the values it takes are larger or smaller than that taken at any critical points which satisfy the constraint.<br
 />
@@ -1455,6 +1395,7 @@ See section 4.8 of [Dawkins, 2025b] for more on constrained optimisation at the 
 In other words, optimisation problems are all about finding the maxima, minima, and points of inflection for functions, and interpreting the physical meaning of these points. A famous historical example is the <b>Dido problem</b><sup>2</sup> which asks you to find
 the maximum area that can be enclosed by a shape with a given fixed perimeter. The solution to the Dido problem is the circle.<br />
 
+</p>
 
 <p>
 Another similar problem is asking what curve minimises the distance between two points. In flat space we all know the answer is a straight line, but have you ever though about how this changes if the surfaces is curved? It turns out that the solution to the problem
@@ -1462,24 +1403,24 @@ changes. This is why aeroplanes fly along sections of a circle, as these give th
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-334"></a>
+<a id="mat1001-autopage-344"></a>
 <p>
 <sup>2</sup>&nbsp;named after a queen of Carthage
 </p>
 
-</p>
 
 </div>
 <!--
 ...... section Polynomial approximation ......
 -->
-<h4 id="autosec-335"><span class="sectionnumber">8.6&#x2003;</span>Polynomial approximation</h4>
-<a id="mat1001-autopage-335"></a>
+<h4 id="autosec-345"><span class="sectionnumber">8.6&#x2003;</span>Polynomial approximation</h4>
+<a id="mat1001-autopage-345"></a>
 
 
 <p>
 In chapter&nbsp;<a href="Numerical-Methods.html#sec:numerics">6</a> we met Newton’s divided difference method which enabled us to find a polynomial approximation to a function, making use of a table of values with a uniform step size<sup>3</sup>. The
 interpolating polynomial is expressed in terms of the data points, step size, and finite differences as
+</p>
 
 <span class="hidden"> \(\seteqnumber{0}{8.}{1}\)</span>
 
@@ -1535,9 +1476,8 @@ in the forward difference scheme. It turns out that we can do the same for highe
 
 
                                                                                                                                        d2 f       ∆ 2 fa
-                                                                                                                                          2
                                                                                                                                             (a) ≃        ,
-                                                                                                                                       dx          h2
+                                                                                                                                       dx2         h2
 -->
 
 <p>
@@ -1571,20 +1511,17 @@ or in general
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-336"></a>
+<a id="mat1001-autopage-346"></a>
 <p>
 <sup>3</sup>&nbsp;We saw that if the step size is not uniform we can still get a similar approximation.
 </p>
 
-</p>
 
 </div>
 
 </section>
 
 </main>
-
-</div>
 
 <footer>
 
@@ -1598,5 +1535,6 @@ Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill
 <nav class="botnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
+</div><!-- grid -->
 </body>
 </html>

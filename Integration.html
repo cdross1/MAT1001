@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
+            const resultstar = parser.GetArgument(name);
+            const resultnostar = parser.GetArgument(name);
+            const star = parser.GetStar();                 // true if there is a *
+            useArgument(parser, star ? resultstar : resultnostar);
           },
 
-          // This function implements an ifnextchar macro.
-          IfnextcharFunction(parser, name) {
-            let whichchar = parser.GetArgument(name);
-            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-              // $ syntax highlighting
-              whichchar = String.fromCodePoint(parseInt(whichchar));
-            }
-            const resultnextchar = parser.GetArgument(name);
-            const resultnotnextchar = parser.GetArgument(name);
-            const gotchar = (parser.GetNext() === whichchar);
-            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-          },
+         // This function implements an ifnextchar macro.
+         IfnextcharFunction(parser, name) {
+           let whichchar = parser.GetArgument(name);
+           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+             // $ syntax highlighting
+             whichchar = String.fromCodePoint(parseInt(whichchar));
+           }
+           const resultnextchar = parser.GetArgument(name);
+           const resultnotnextchar = parser.GetArgument(name);
+           const gotchar = (parser.GetNext() === whichchar);
+           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+         },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
+        tagformat: {
+            number: function (n) {
+                if(MathJax.config.subequations==0)
+                    return(MathJax.config.section + n);
+                else
+                    return(MathJax.config.section + String.fromCharCode(96+n));
+            },
+        },
   }
 }
 </script>
@@ -221,12 +221,12 @@ MathJax = {
 <body>
 
 
-<a id="mat1001-autopage-146"></a>
+<a id="mat1001-autopage-156"></a>
+<div class="pagegrid">
+
+
 <nav class="topnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
-
-
-<div class="bodyandsidetoc">
 <div class="sidetoccontainer">
 
 
@@ -254,426 +254,366 @@ Home</a>
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-5" class="tocchapter" >
-<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a><p>
-
+<span class="sectionnumber">1</span>&#x2003;Why Do We Need Calculus</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-6" class="tocsection" >
-<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a><p>
-
+<span class="sectionnumber">1.1</span>&#x2003;Course Overview</a>
 </p>
 
 
 <p>
 <a href="Why-Do-We-Need-Calculus.html#autosec-7" class="tocsection" >
-<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a><p>
-
+<span class="sectionnumber">1.2</span>&#x2003;Why Calculus</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-15" class="tocchapter" >
-<span class="sectionnumber">2</span>&#x2003;Functions</a><p>
-
+<a href="Functions.html#autosec-17" class="tocchapter" >
+<span class="sectionnumber">2</span>&#x2003;Functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-16" class="tocsection" >
-<span class="sectionnumber">2.1</span>&#x2003;What is a function</a><p>
-
+<a href="Functions.html#autosec-18" class="tocsection" >
+<span class="sectionnumber">2.1</span>&#x2003;What is a function</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-30" class="tocsection" >
-<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a><p>
-
+<a href="Functions.html#autosec-38" class="tocsection" >
+<span class="sectionnumber">2.2</span>&#x2003;Trigonometric functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-44" class="tocsection" >
-<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a><p>
-
+<a href="Functions.html#autosec-54" class="tocsection" >
+<span class="sectionnumber">2.3</span>&#x2003;Logarithms and Exponentials</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-55" class="tocsection" >
-<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a><p>
-
+<a href="Functions.html#autosec-65" class="tocsection" >
+<span class="sectionnumber">2.4</span>&#x2003;Hyperbolic functions</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-60" class="tocsection" >
-<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a><p>
-
+<a href="Functions.html#autosec-70" class="tocsection" >
+<span class="sectionnumber">2.5</span>&#x2003;Limits and asymptotics</a>
 </p>
 
 
 <p>
-<a href="Functions.html#autosec-74" class="tocsection" >
-<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a><p>
-
+<a href="Functions.html#autosec-84" class="tocsection" >
+<span class="sectionnumber">2.6</span>&#x2003;Continuity and differentiability</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-91" class="tocchapter" >
-<span class="sectionnumber">3</span>&#x2003;Differentiation</a><p>
-
+<a href="Differentiation.html#autosec-101" class="tocchapter" >
+<span class="sectionnumber">3</span>&#x2003;Differentiation</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-92" class="tocsection" >
-<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a><p>
-
+<a href="Differentiation.html#autosec-102" class="tocsection" >
+<span class="sectionnumber">3.1</span>&#x2003;Differentiation from first principles</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-101" class="tocsection" >
-<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a><p>
-
+<a href="Differentiation.html#autosec-111" class="tocsection" >
+<span class="sectionnumber">3.2</span>&#x2003;Differentiation techniques</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-121" class="tocsection" >
-<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a><p>
-
+<a href="Differentiation.html#autosec-131" class="tocsection" >
+<span class="sectionnumber">3.3</span>&#x2003;Multiple derivatives</a>
 </p>
 
 
 <p>
-<a href="Differentiation.html#autosec-123" class="tocsection" >
-<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a><p>
-
+<a href="Differentiation.html#autosec-133" class="tocsection" >
+<span class="sectionnumber">3.4</span>&#x2003;Applications of differentiation</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-147" class="tocchapter" >
-<span class="sectionnumber">4</span>&#x2003;Integration</a><p>
-
-</p>
-
-
-<p>
-<a href="Integration.html#autosec-148" class="tocsection" >
-<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a><p>
-
+<a href="Integration.html#autosec-157" class="tocchapter" >
+<span class="sectionnumber">4</span>&#x2003;Integration</a>
 </p>
 
 
 <p>
 <a href="Integration.html#autosec-158" class="tocsection" >
-<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a><p>
-
+<span class="sectionnumber">4.1</span>&#x2003;Integration and antiderivatives</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-167" class="tocsection" >
-<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a><p>
-
+<a href="Integration.html#autosec-168" class="tocsection" >
+<span class="sectionnumber">4.2</span>&#x2003;Techniques for integration</a>
 </p>
 
 
 <p>
-<a href="Integration.html#autosec-192" class="tocsection" >
-<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a><p>
-
+<a href="Integration.html#autosec-177" class="tocsection" >
+<span class="sectionnumber">4.3</span>&#x2003;Definite integrals</a>
 </p>
 
 
 <p>
-<a href="Differential-Equations.html#autosec-204" class="tocchapter" >
-<span class="sectionnumber">5</span>&#x2003;Differential Equations</a><p>
-
+<a href="Integration.html#autosec-202" class="tocsection" >
+<span class="sectionnumber">4.4</span>&#x2003;Applications of integrals</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-206" class="tocchapter" >
-<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a><p>
-
+<a href="Differential-Equations.html#autosec-214" class="tocchapter" >
+<span class="sectionnumber">5</span>&#x2003;Differential Equations</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-207" class="tocsection" >
-<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a><p>
-
+<a href="Numerical-Methods.html#autosec-216" class="tocchapter" >
+<span class="sectionnumber">6</span>&#x2003;Numerical Methods</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-239" class="tocsection" >
-<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a><p>
-
+<a href="Numerical-Methods.html#autosec-217" class="tocsection" >
+<span class="sectionnumber">6.1</span>&#x2003;Solving equations numerically</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-265" class="tocsection" >
-<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a><p>
-
+<a href="Numerical-Methods.html#autosec-249" class="tocsection" >
+<span class="sectionnumber">6.2</span>&#x2003;Approximating functions</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-291" class="tocsection" >
-<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a><p>
-
+<a href="Numerical-Methods.html#autosec-275" class="tocsection" >
+<span class="sectionnumber">6.3</span>&#x2003;Numerical integration</a>
 </p>
 
 
 <p>
-<a href="Numerical-Methods.html#autosec-312" class="tocsection" >
-<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a><p>
-
+<a href="Numerical-Methods.html#autosec-301" class="tocsection" >
+<span class="sectionnumber">6.4</span>&#x2003;Numerical differentiation</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-314" class="tocchapter" >
-<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a><p>
-
+<a href="Numerical-Methods.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">6.5</span>&#x2003;Numerical approaches to differential equations</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-315" class="tocsection" >
-<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-324" class="tocchapter" >
+<span class="sectionnumber">7</span>&#x2003;Calculus in Computer Science</a>
 </p>
 
 
 <p>
-<a href="Calculus-in-Computer-Science.html#autosec-322" class="tocsection" >
-<span class="sectionnumber">7.2</span>&#x2003;Robotics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-325" class="tocsection" >
+<span class="sectionnumber">7.1</span>&#x2003;LLMs and AI</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-324" class="tocchapter" >
-<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a><p>
-
+<a href="Calculus-in-Computer-Science.html#autosec-332" class="tocsection" >
+<span class="sectionnumber">7.2</span>&#x2003;Robotics</a>
 </p>
 
 
 <p>
-<a href="Advanced-Topics.html#autosec-325" class="tocsection" >
-<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-329" class="tocsection" >
-<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-330" class="tocsection" >
-<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-331" class="tocsection" >
-<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a><p>
-
-</p>
-
-
-<p>
-<a href="Advanced-Topics.html#autosec-332" class="tocsection" >
-<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a><p>
-
+<a href="Advanced-Topics.html#autosec-334" class="tocchapter" >
+<span class="sectionnumber">8</span>&#x2003;Advanced Topics</a>
 </p>
 
 
 <p>
 <a href="Advanced-Topics.html#autosec-335" class="tocsection" >
-<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a><p>
-
+<span class="sectionnumber">8.1</span>&#x2003;L’Ho&#x0302;pital’s rule for evaluating limits</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-338" class="tocchapter" >
-<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a><p>
-
+<a href="Advanced-Topics.html#autosec-339" class="tocsection" >
+<span class="sectionnumber">8.2</span>&#x2003;Trigonometric Derivatives in Degrees</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-339" class="tocsection" >
-<span class="sectionnumber">9.1</span>&#x2003;Background and References</a><p>
-
+<a href="Advanced-Topics.html#autosec-340" class="tocsection" >
+<span class="sectionnumber">8.3</span>&#x2003;Functions of two variables</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-340" class="tocsection" >
-<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a><p>
-
+<a href="Advanced-Topics.html#autosec-341" class="tocsection" >
+<span class="sectionnumber">8.4</span>&#x2003;Multiple integrals</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-342" class="tocsection" >
-<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a><p>
-
+<a href="Advanced-Topics.html#autosec-342" class="tocsection" >
+<span class="sectionnumber">8.5</span>&#x2003;Optimisation Problems</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-346" class="tocsection" >
-<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a><p>
-
+<a href="Advanced-Topics.html#autosec-345" class="tocsection" >
+<span class="sectionnumber">8.6</span>&#x2003;Polynomial approximation</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-353" class="tocsection" >
-<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a><p>
-
+<a href="Background-Mathematics.html#autosec-348" class="tocchapter" >
+<span class="sectionnumber">9</span>&#x2003;Background Mathematics</a>
 </p>
 
 
 <p>
-<a href="Background-Mathematics.html#autosec-358" class="tocsection" >
-<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a><p>
-
+<a href="Background-Mathematics.html#autosec-349" class="tocsection" >
+<span class="sectionnumber">9.1</span>&#x2003;Background and References</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-361" class="tocchapter" >
-<span class="sectionnumber">10</span>&#x2003;Further Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-350" class="tocsection" >
+<span class="sectionnumber">9.2</span>&#x2003;Polynomials and roots</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-362" class="tocsection" >
-<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-352" class="tocsection" >
+<span class="sectionnumber">9.3</span>&#x2003;Trigonometry Primer</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-363" class="tocsection" >
-<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-356" class="tocsection" >
+<span class="sectionnumber">9.4</span>&#x2003;Radians and Degrees</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-364" class="tocsection" >
-<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-363" class="tocsection" >
+<span class="sectionnumber">9.5</span>&#x2003;Rearranging Equations</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-365" class="tocsection" >
-<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a><p>
-
+<a href="Background-Mathematics.html#autosec-368" class="tocsection" >
+<span class="sectionnumber">9.6</span>&#x2003;More on Limits</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-366" class="tocsection" >
-<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-371" class="tocchapter" >
+<span class="sectionnumber">10</span>&#x2003;Further Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-367" class="tocsection" >
-<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-372" class="tocsection" >
+<span class="sectionnumber">10.1</span>&#x2003;Why Calculus Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Further-Reading.html#autosec-368" class="tocsection" >
-<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a><p>
-
+<a href="Further-Reading.html#autosec-373" class="tocsection" >
+<span class="sectionnumber">10.2</span>&#x2003;Functions Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-370" class="tocchapter" >
-<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a><p>
-
+<a href="Further-Reading.html#autosec-374" class="tocsection" >
+<span class="sectionnumber">10.3</span>&#x2003;Differentiation Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-371" class="tocsection" >
-<span class="sectionnumber">11.1</span>&#x2003;Week 1</a><p>
-
+<a href="Further-Reading.html#autosec-375" class="tocsection" >
+<span class="sectionnumber">10.4</span>&#x2003;Integration Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-387" class="tocsection" >
-<span class="sectionnumber">11.2</span>&#x2003;Week 2</a><p>
-
+<a href="Further-Reading.html#autosec-376" class="tocsection" >
+<span class="sectionnumber">10.5</span>&#x2003;Differential Equations Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Tutorial-Sheets.html#autosec-411" class="tocsection" >
-<span class="sectionnumber">11.3</span>&#x2003;Week 3</a><p>
-
+<a href="Further-Reading.html#autosec-377" class="tocsection" >
+<span class="sectionnumber">10.6</span>&#x2003;Numerical Methods Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Extra-Proofs-Derivations.html#autosec-417" class="tocchapter" >
-<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a><p>
-
+<a href="Further-Reading.html#autosec-378" class="tocsection" >
+<span class="sectionnumber">10.7</span>&#x2003;Advanced Topics Extra Reading</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-420" class="tocchapter" >
-<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-380" class="tocchapter" >
+<span class="sectionnumber">11</span>&#x2003;Tutorial Sheets</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-421" class="tocsection" >
-<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-381" class="tocsection" >
+<span class="sectionnumber">11.1</span>&#x2003;Week 1</a>
 </p>
 
 
 <p>
-<a href="Standard-Derivatives-Integrals.html#autosec-424" class="tocsection" >
-<span class="sectionnumber">13.2</span>&#x2003;Integrals</a><p>
-
+<a href="Tutorial-Sheets.html#autosec-397" class="tocsection" >
+<span class="sectionnumber">11.2</span>&#x2003;Week 2</a>
 </p>
 
 
 <p>
-<a href="Bibliography.html#autosec-428" class="tocchapter" >
+<a href="Tutorial-Sheets.html#autosec-421" class="tocsection" >
+<span class="sectionnumber">11.3</span>&#x2003;Week 3</a>
+</p>
+
+
+<p>
+<a href="Extra-Proofs-Derivations.html#autosec-427" class="tocchapter" >
+<span class="sectionnumber">12</span>&#x2003;Extra Proofs and Derivations</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-430" class="tocchapter" >
+<span class="sectionnumber">13</span>&#x2003;Standard Derivatives and Integrals</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-431" class="tocsection" >
+<span class="sectionnumber">13.1</span>&#x2003;Derivatives</a>
+</p>
+
+
+<p>
+<a href="Standard-Derivatives-Integrals.html#autosec-434" class="tocsection" >
+<span class="sectionnumber">13.2</span>&#x2003;Integrals</a>
+</p>
+
+
+<p>
+<a href="Bibliography.html#autosec-438" class="tocchapter" >
 Bibliography</a>
 </p>
 
@@ -924,8 +864,8 @@ Bibliography</a>
 <!--
 ...... chapter Integration ......
 -->
-<h3 id="autosec-147">Chapter&nbsp;<span class="sectionnumber">4&#x2003;</span>Integration</h3>
-<a id="mat1001-autopage-147"></a>
+<h3 id="autosec-157">Chapter&nbsp;<span class="sectionnumber">4&#x2003;</span>Integration</h3>
+<a id="mat1001-autopage-157"></a>
 <a id="mat1001-autofile-4"></a>
 
 <a id="sec:integration"></a>
@@ -952,8 +892,8 @@ Bibliography</a>
 <!--
 ...... section Integration and antiderivatives ......
 -->
-<h4 id="autosec-148"><span class="sectionnumber">4.1&#x2003;</span>Integration and antiderivatives</h4>
-<a id="mat1001-autopage-148"></a>
+<h4 id="autosec-158"><span class="sectionnumber">4.1&#x2003;</span>Integration and antiderivatives</h4>
+<a id="mat1001-autopage-158"></a>
 
 
 <p>
@@ -968,7 +908,7 @@ mathematics.<br />
 
 <p>
 <span
-    id="lateximage-mat1001-15"
+    id="lateximage-mat1001-19"
     class="lateximagesource"
 ><!--
    1 y
@@ -987,7 +927,7 @@ mathematics.<br />
 
  −1
 --><img
-    src="mat1001-images\image-15.svg"
+    src="mat1001-images\image-19.svg"
     alt="(Graph of sin(x).)"
     style=""
     class="lateximage"
@@ -1023,7 +963,7 @@ For now we will approach integration as the reverse of differentiation. In other
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-152"></a>
+<span class="listmarker"><a id="mat1001-autopage-162"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.1</span></span>. </span> If we have the function
 </p>
 
@@ -1231,7 +1171,7 @@ As with many things in this module, the easiest way to get to grips with the con
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-153"></a>
+<span class="listmarker"><a id="mat1001-autopage-163"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.2</span></span>. </span> The indefinite integral
 </p>
 
@@ -1418,7 +1358,7 @@ which holds for \(n\neq -1\).
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-154"></a>
+<span class="listmarker"><a id="mat1001-autopage-164"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.3</span></span>. </span> We know that the derivative of \(\tan (x)\) is \(\sec ^{2}(x)\) which means that the antiderivative of \(\sec ^{2}(x)\) is
 </p>
 
@@ -1482,7 +1422,7 @@ and the indefinite integral is thus
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-155"></a>
+<span class="listmarker"><a id="mat1001-autopage-165"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.4</span></span>. </span> Show that these trig functions have the claimed indefinite integrals:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{4.}{6}\)</span>
@@ -1531,7 +1471,7 @@ it.<br />
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-156"></a>
+<span class="listmarker"><a id="mat1001-autopage-166"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.5</span></span>. </span> The integral
 </p>
 
@@ -1596,7 +1536,7 @@ is found by inverting the derivative identity \(\left (x\right )&apos;=1\) to gi
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-157"></a>
+<span class="listmarker"><a id="mat1001-autopage-167"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.6</span></span>. </span> Using some of the standard integrals that we have given above we evaluate
 </p>
 
@@ -1604,9 +1544,9 @@ is found by inverting the derivative identity \(\left (x\right )&apos;=1\) to gi
 
 <!--
 
-                                                                                                                      Z
-                                                                                                                                                   
-                                                                                                                               x2 + x−3 + x−1 dx
+                                                                                                                     Z
+                                                                                                                                                  
+                                                                                                                              x2 + x−3 + x−1 dx
 
 
 -->
@@ -1630,19 +1570,19 @@ as follows:
 <!--
 
 
-                                                                                                 Z                                    Z            Z                   Z
-                                                                                                            −3        −1
-                                                                                                                                                          −3
+                                                                                                 Z                                   Z            Z                   Z
+                                                                                                           −3        −1
+                                                                                                                                                         −3
                                                                                                       2
-                                                                                                     x +x        +x            dx =        2
-                                                                                                                                          x dx +       x        dx +       x−1 dx
+                                                                                                     x +x       +x            dx =        2
+                                                                                                                                         x dx +       x        dx +       x−1 dx
 
-                                                                                                                                   1 3   1
-                                                                                                                                 =   x − x−2 + ln(x) + c
-                                                                                                                                   3     2
-                                                                                                                                   x3    1
-                                                                                                                                 =    −     + ln(x) + c.
-                                                                                                                                    3   2x2
+                                                                                                                                  1 3   1
+                                                                                                                                =   x − x−2 + ln(x) + c
+                                                                                                                                  3     2
+                                                                                                                                  x3    1
+                                                                                                                                =    −     + ln(x) + c.
+                                                                                                                                   3   2x2
 
 
 -->
@@ -1665,13 +1605,13 @@ Note that here we have used eq.&nbsp;<span class="textup">(<a href="Integration.
 <!--
 ...... section Techniques for integration ......
 -->
-<h4 id="autosec-158"><span class="sectionnumber">4.2&#x2003;</span>Techniques for integration</h4>
-<a id="mat1001-autopage-158"></a>
+<h4 id="autosec-168"><span class="sectionnumber">4.2&#x2003;</span>Techniques for integration</h4>
+<a id="mat1001-autopage-168"></a>
 <!--
 ...... subsection Integration by substitution ......
 -->
-<h5 id="autosec-159">Integration by substitution</h5>
-<a id="mat1001-autopage-159"></a>
+<h5 id="autosec-169">Integration by substitution</h5>
+<a id="mat1001-autopage-169"></a>
 
 
 <p>
@@ -1842,7 +1782,7 @@ Not all substitutions are as obvious as the above one, this is particularly true
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-160"></a>
+<span class="listmarker"><a id="mat1001-autopage-170"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.7</span></span>. </span> Consider the integral
 </p>
 
@@ -1975,8 +1915,8 @@ Approaches like the above example are how we can calculate integral expressions 
 <!--
 ...... subsection Integration by parts ......
 -->
-<h5 id="autosec-161">Integration by parts</h5>
-<a id="mat1001-autopage-161"></a>
+<h5 id="autosec-171">Integration by parts</h5>
+<a id="mat1001-autopage-171"></a>
 
 
 <p>
@@ -2074,7 +2014,7 @@ The formula in eq.&nbsp;<span class="textup">(<a href="Integration.html#eq:     
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-162"></a>
+<span class="listmarker"><a id="mat1001-autopage-172"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.8</span></span>. </span> Consider the integral
 </p>
 
@@ -2158,7 +2098,7 @@ The trick when applying integration by parts is to look for one function that is
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-163"></a>
+<span class="listmarker"><a id="mat1001-autopage-173"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.9</span></span>. </span> Consider the integral
 </p>
 
@@ -2233,7 +2173,7 @@ We integrate this by parts taking \(f(x)=x\) and \(g(x)=-\cos (x)\), so that
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-164"></a>
+<span class="listmarker"><a id="mat1001-autopage-174"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.10</span></span>. </span> Use integration by parts to evaluate
 </p>
 
@@ -2278,7 +2218,7 @@ In this module we will only come across problems where you need to apply integra
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-165"></a>
+<span class="listmarker"><a id="mat1001-autopage-175"></a>
 <span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">4.1</span></span>. </span> As an example of repeated integration by parts consider
 </p>
 
@@ -2374,8 +2314,8 @@ where in the last line we have redefined the constant of integration to be \(\ti
 <!--
 ...... subsection Partial fractions ......
 -->
-<h5 id="autosec-166">Partial fractions</h5>
-<a id="mat1001-autopage-166"></a>
+<h5 id="autosec-176">Partial fractions</h5>
+<a id="mat1001-autopage-176"></a>
 
 
 <p>
@@ -2522,7 +2462,7 @@ These are both expressions that we can integrate to get
 <!--
 
 
-                                                                                                                  Z                      Z                     Z        
+                                                                                                                  Z                      Z                     Z            
                                                                                                                          1          1              1                 1
                                                                                                                              dx = −                   dx −              dx
                                                                                                                       x2 − 1        2             x+1               x−1
@@ -2593,8 +2533,8 @@ As mentioned in the second step, if there are repeated roots this becomes tricki
 <!--
 ...... section Definite integrals ......
 -->
-<h4 id="autosec-167"><span class="sectionnumber">4.3&#x2003;</span>Definite integrals</h4>
-<a id="mat1001-autopage-167"></a>
+<h4 id="autosec-177"><span class="sectionnumber">4.3&#x2003;</span>Definite integrals</h4>
+<a id="mat1001-autopage-177"></a>
 
 
 <p>
@@ -2614,7 +2554,7 @@ href="Integration.html#fig: first integral">4.2</a>. Once we can integrate we wi
 
 <p>
 <span
-    id="lateximage-mat1001-16"
+    id="lateximage-mat1001-20"
     class="lateximagesource"
 ><!--
     y
@@ -2628,7 +2568,7 @@ href="Integration.html#fig: first integral">4.2</a>. Once we can integrate we wi
         2   x
     0
 --><img
-    src="mat1001-images\image-16.svg"
+    src="mat1001-images\image-20.svg"
     alt="(Graph of the function x squared plus one.)"
     style=""
     class="lateximage"
@@ -2657,9 +2597,9 @@ subinterval is then
 
 <!--
 
-                                                                                                                                              2−0  2
-                                                                                                                                  ∆x =            = .
-                                                                                                                                               n   n
+                                                                                                                                                 2−0  2
+                                                                                                                                     ∆x =            = .
+                                                                                                                                                  n   n
 -->
 
 <p>
@@ -2683,10 +2623,10 @@ We will choose the height of the intervals so that the agree with the value of \
 
 <!--
 
-                                                                                                                            1         1                  3         3
-                                                                                                                      h      i           i              i          i
-                                                                                                                       0,     ,         ,1 ,        1,     ,         ,2 .
-                                                                                                                            2         2                  2         2
+                                                                                                                               1         1                  3         3
+                                                                                                                      h         i           i              i          i
+                                                                                                                          0,     ,         ,1 ,        1,     ,         ,2 .
+                                                                                                                               2         2                  2         2
 
 -->
 
@@ -2707,16 +2647,16 @@ In the each sub interval we take the height of our rectangle to be
 <!--
 
 
-                                                                                                                                           1      5
-                                                                                                                                           
-                                                                                                                                      f         = ,
-                                                                                                                                           2      4
-                                                                                                                                          f (1) = 2,
-                                                                                                                                           3      13
-                                                                                                                                           
-                                                                                                                                      f         =    ,
-                                                                                                                                           2       4
-                                                                                                                                          f (2) = 5.
+                                                                                                                                              1      5
+                                                                                                                                              
+                                                                                                                                         f         = ,
+                                                                                                                                              2      4
+                                                                                                                                             f (1) = 2,
+                                                                                                                                              3      13
+                                                                                                                                              
+                                                                                                                                         f         =    ,
+                                                                                                                                              2       4
+                                                                                                                                             f (2) = 5.
 
 
 -->
@@ -2737,7 +2677,7 @@ height of the function on the left boundary of the integral, what changes?<br />
 
 <p>
 <span
-    id="lateximage-mat1001-17"
+    id="lateximage-mat1001-21"
     class="lateximagesource"
 ><!--
     y
@@ -2751,7 +2691,7 @@ height of the function on the left boundary of the integral, what changes?<br />
         2   x
     0
 --><img
-    src="mat1001-images\image-17.svg"
+    src="mat1001-images\image-21.svg"
     alt="(Graph of the function x squared plus one with rectangles approximating the area under the curve.)"
     style=""
     class="lateximage"
@@ -2809,13 +2749,13 @@ Adding all of these together gives
 <!--
 
 
-                                                                                                                         Ar = A 1 + A 2 + A 3 + A 4
-                                                                                                                              5       13   5
-                                                                                                                            =   +1+      +
-                                                                                                                              8       8    2
+                                                                                                                         Ar = A1 + A2 + A3 + A4
+                                                                                                                              5        13   5
+                                                                                                                            =    +1+      +
+                                                                                                                              8        8    2
                                                                                                                               23
-                                                                                                                            =    = 5.75.
-                                                                                                                              4
+                                                                                                                            =     = 5.75.
+                                                                                                                               4
 
 
 -->
@@ -2830,7 +2770,7 @@ A_{r} &amp;=A_{1}+A_{2}+A_{3}+A_{4}\\ &amp;=\frac {5}{8}+1+\frac {13}{8}+\frac {
 </p>
 
 <p>
-If we had taken the heights at the left end points we would have found \(A_{l}=3.75\), which is an underestimate of the area, again I invite you to check the details for yourself, or look at <a id="mat1001-autopage-173"></a>Dawkins [2025b] which goes through it.<br />
+If we had taken the heights at the left end points we would have found \(A_{l}=3.75\), which is an underestimate of the area, again I invite you to check the details for yourself, or look at <a id="mat1001-autopage-183"></a>Dawkins [2025b] which goes through it.<br />
 
 </p>
 
@@ -2845,7 +2785,7 @@ Finally, we could make a third choice where we take the height of the rectangle 
 
 <p>
 <span
-    id="lateximage-mat1001-18"
+    id="lateximage-mat1001-22"
     class="lateximagesource"
 ><!--
     y
@@ -2859,7 +2799,7 @@ Finally, we could make a third choice where we take the height of the rectangle 
         2   x
     0
 --><img
-    src="mat1001-images\image-18.svg"
+    src="mat1001-images\image-22.svg"
     alt="(Graph of the function x squared plus one with rectangles approximating the area under the curve.)"
     style=""
     class="lateximage"
@@ -2885,8 +2825,9 @@ give us. Once we have the machinery of integration we can calculate the actual a
 </p>
 
 <p>
-This leads us to the concept of the <b>Riemann sum</b><sup>1</sup><a id="mat1001-autopage-176"></a>. Consider a function plotted over an interval. Split the integral into \(n\) subintervals each of width \(\Delta x\) as above. Then pick a point \(x_{i}^{\star
+This leads us to the concept of the <b>Riemann sum</b><sup>1</sup><a id="mat1001-autopage-186"></a>. Consider a function plotted over an interval. Split the integral into \(n\) subintervals each of width \(\Delta x\) as above. Then pick a point \(x_{i}^{\star
 }\) in each sub interval and use the rectangle of height \(f(x_{i}^{*})\) as our approximation for the area of the function over that sub interval. The total area is then
+</p>
 
 <span class="hidden"> \(\seteqnumber{0}{4.}{8}\)</span>
 
@@ -2944,13 +2885,12 @@ the difference between the positive and negative areas, or the total area, which
 </p>
 <div role="note" class="footnotes">
 
-<a id="mat1001-autopage-177"></a>
+<a id="mat1001-autopage-187"></a>
 
 <p>
 <sup>1</sup>&nbsp;Bernhard Riemann was a German Mathematician who contributed to many different areas of mathematics and is maybe most famous for the Riemann hypothesis about the distribution of prime numbers.
 </p>
 
-</p>
 
 </div>
 
@@ -3008,7 +2948,7 @@ This is the integral of the function \(f(x)\) over the interval \([a,b]\). The t
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-178"></a>
+<span class="listmarker"><a id="mat1001-autopage-188"></a>
 <span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">4.2</span></span>. </span> If this was a module for mathematicians, we would spend a bit of time here discussing how to calculate this using
 the sum definition given on the right hand side of eq.&nbsp;<span class="textup">(<a href="Integration.html#eq:                              definite integral">4.11</a>)</span>. Doing this involves knowing some standard expressions for summations such as:
 </p>
@@ -3140,7 +3080,7 @@ href="Extra-Proofs-Derivations.html#sec: proofs">12</a> at some stage.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-179"></a>
+<span class="listmarker"><a id="mat1001-autopage-189"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.12</span></span>. </span> Consider the function \(f(x)=x^{2}+1\), we know that an antiderivative for this is
 </p>
 
@@ -3181,7 +3121,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                      0
                                                                                                                                               3      0
                                                                                                                                         1                     1
-                                                                                                                                                                          
+                                                                                                                                                                      
                                                                                                                                       =   (2)3 + 2 −            (0)3 + 0
                                                                                                                                         3                     3
                                                                                                                                         8
@@ -3189,7 +3129,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                                         3
                                                                                                                                         14
                                                                                                                                       =
-                                                                                                                                        3
+                                                                                                                                         3
 
 
 -->
@@ -3244,7 +3184,7 @@ then
                                                                                                                             i
                                                                                                                                                14       14
                                                                                                                    x +x+c =    + c − (0 + c) =    +c−c=    .
-                                                                                                                 3       0  3                  3        3
+                                                                                                                 3       0   3                 3        3
 
 -->
 
@@ -3274,7 +3214,7 @@ This is why we always take the simplest antiderivative when evaluating definite 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-180"></a>
+<span class="listmarker"><a id="mat1001-autopage-190"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.13</span></span>. </span> Consider the function \(f(x)=x^{4}+2x^{2}+2\) and calculate its integral over the interval \([0,1]\). Recall that an
 antiderivative of this function is
 </p>
@@ -3353,7 +3293,7 @@ substitution and integration by parts that we met above are very useful here. Th
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-181"></a>
+<span class="listmarker"><a id="mat1001-autopage-191"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.14</span></span>. </span> Consider the integral
 </p>
 
@@ -3482,7 +3422,7 @@ In other words we need to evaluate the total derivative at the limits of integra
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-182"></a>
+<span class="listmarker"><a id="mat1001-autopage-192"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.15</span></span>. </span> Consider the integral
 </p>
 
@@ -3582,8 +3522,8 @@ I &amp;=\int _{1}^{2}\ln (x)\ud x\\ &amp;=\int _{1}^{2}\ln (x)\frac {\ud x}{\ud 
 <!--
 ...... subsection Improper integrals ......
 -->
-<h5 id="autosec-183">Improper integrals</h5>
-<a id="mat1001-autopage-183"></a>
+<h5 id="autosec-193">Improper integrals</h5>
+<a id="mat1001-autopage-193"></a>
 
 
 <p>
@@ -3782,7 +3722,7 @@ When we can reinterpret improper integrals using limits and get a finite answer 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-184"></a>
+<span class="listmarker"><a id="mat1001-autopage-194"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.16</span></span>. </span> Consider the integral
 </p>
 
@@ -3857,7 +3797,7 @@ which does not converge as \(\cos (x)\) oscillates between \(-1\) and \(1\).
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-185"></a>
+<span class="listmarker"><a id="mat1001-autopage-195"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.17</span></span>. </span> Consider the integral
 </p>
 
@@ -3932,7 +3872,7 @@ which tends to infinity, so this is another divergent integral.
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-186"></a>
+<span class="listmarker"><a id="mat1001-autopage-196"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.18</span></span>. </span> Consider the integral
 </p>
 
@@ -4008,8 +3948,8 @@ which again tends to infinity.
 <!--
 ...... subsection Splitting the range ......
 -->
-<h5 id="autosec-187">Splitting the range</h5>
-<a id="mat1001-autopage-187"></a>
+<h5 id="autosec-197">Splitting the range</h5>
+<a id="mat1001-autopage-197"></a>
 
 
 <p>
@@ -4020,35 +3960,12 @@ Another useful technique for evaluating definite integrals is to split the range
 
 <!--
 
-                                                                                                                                              xdx +         xdx
-                                                                                                                                               −1              0
-                                                                                                                                         1  2 0    1  2 1
-                                                                                                                                      =−    x      +    x
-                                                                                                                                         2      −1   2      0
-                                                                                                                                       1    1
-                                                                                                                                      = + = 1.
-                                                                                                                                       2    2
-
-
--->
-
-
-<p>
-
-\begin{align*}
-\int _{-1}^{1}\vert x\vert \ud x &amp;=\int _{-1}^{0}\vert x\vert \ud x+\int _{0}^{1}\vert x\vert \ud x\\ &amp;=-\int _{-1}^{0}x\ud x+\int _{0}^{1}x\ud x\\ &amp;=-\frac {1}{2}\left [x^{2}\right ]_{-1}^{0}+\frac {1}{2}\left [x^{2}\right
-]_{0}^{1}\\ &amp;=\frac {1}{2}+\frac {1}{2}=1.
-\end{align*}
-
-</p>
-<div class="amsthmbodyplain">
-
-<ul class="list" style="list-style-type:none">
+                                                                                                                                           "list-style-type:none">
 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-188"></a>
+<span class="listmarker"><a id="mat1001-autopage-198"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.19</span></span>. </span> Evaluate the integral
 </p>
 
@@ -4085,8 +4002,8 @@ by splitting the range of the integral.
 <!--
 ...... subsection Symmetries of functions ......
 -->
-<h5 id="autosec-189">Symmetries of functions</h5>
-<a id="mat1001-autopage-189"></a>
+<h5 id="autosec-199">Symmetries of functions</h5>
+<a id="mat1001-autopage-199"></a>
 
 
 <p>
@@ -4145,7 +4062,7 @@ An example of an even function is \(\cos (x)\) while \(\sin (x)\) is an odd func
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-190"></a>
+<span class="listmarker"><a id="mat1001-autopage-200"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.20</span></span>. </span> Can you come up with more examples of even and odd functions?
 </p>
 
@@ -4205,7 +4122,7 @@ while if we integrate an odd function over the same region it will vanish,
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-191"></a>
+<span class="listmarker"><a id="mat1001-autopage-201"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.21</span></span>. </span> Prove that these formulae are true. Hint: You will want to use the range splitting that we learnt about previously.
 </p>
 
@@ -4217,8 +4134,8 @@ while if we integrate an odd function over the same region it will vanish,
 <!--
 ...... section Applications of integrals ......
 -->
-<h4 id="autosec-192"><span class="sectionnumber">4.4&#x2003;</span>Applications of integrals</h4>
-<a id="mat1001-autopage-192"></a>
+<h4 id="autosec-202"><span class="sectionnumber">4.4&#x2003;</span>Applications of integrals</h4>
+<a id="mat1001-autopage-202"></a>
 
 
 <p>
@@ -4228,8 +4145,8 @@ As with the derivative, there are plenty of applications of integrals. We will t
 <!--
 ...... subsection Averaging functions ......
 -->
-<h5 id="autosec-193">Averaging functions</h5>
-<a id="mat1001-autopage-193"></a>
+<h5 id="autosec-203">Averaging functions</h5>
+<a id="mat1001-autopage-203"></a>
 
 
 <p>
@@ -4285,7 +4202,7 @@ f_{\text {avg}}=\frac {1}{b-a}\int _{a}^{b}f(x)\ud x.        \label {eq:   avera
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-194"></a>
+<span class="listmarker"><a id="mat1001-autopage-204"></a>
 <span class="amsthmnameplain">Mathematical Diversion</span><span class="amsthmnumberplain"> <span class="textup">4.3</span></span>. </span> In this module you do not need to know where the identity in eq.&nbsp;<span class="textup">(<a
 href="Integration.html#eq:     average function">4.18</a>)</span> comes from, but if you are interested a proof is included in the Proof of Various Integral Properties section of Dawkins [2025b]. Going through the proof of the result shows you that this is the natural
 extension of the concept of an average to a continuous function. In a module for mathematicians, we would also be learning some interesting results on upper bounds of the value of an integral, called the <b>ML Lemma</b> in many places, where we can show that under
@@ -4328,7 +4245,7 @@ where \(L=b-a\) is the length of the interval, and \(M\) is an upper bound on th
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-195"></a>
+<span class="listmarker"><a id="mat1001-autopage-205"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.22</span></span>. </span> We can find the average of \(f(x)=\sin (x)\) on the interval \([0,\uppi ]\) as follows:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{4.}{18}\)</span>
@@ -4378,7 +4295,7 @@ f_{\text {avg}} &amp;=\frac {1}{b-a}\int _{a}^{b}f(x)\ud x\\ &amp;=\frac {\uppi 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-196"></a>
+<span class="listmarker"><a id="mat1001-autopage-206"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.23</span></span>. </span> Find the average value of \(\cos (x)\) over the interval \([0,2\uppi ]\).
 </p>
 
@@ -4394,8 +4311,8 @@ In some applications it is the average value of the function so you can use this
 <!--
 ...... subsection Areas between curves ......
 -->
-<h5 id="autosec-197">Areas between curves</h5>
-<a id="mat1001-autopage-197"></a>
+<h5 id="autosec-207">Areas between curves</h5>
+<a id="mat1001-autopage-207"></a>
 
 
 <p>
@@ -4451,7 +4368,7 @@ cross in the interval, then you should split the integral in to two regions and 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-198"></a>
+<span class="listmarker"><a id="mat1001-autopage-208"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">4.24</span></span>. </span> Consider the two functions \(f(x)=x^{2}\) and \(g(x)=x^{3}\) shown in fig.&nbsp;<a
 href="Integration.html#fig:       area between functions">4.5</a>. Over the interval \([0,1]\) \(f(x)\geq g(x)\) so the area is given by
 </p>
@@ -4498,7 +4415,7 @@ Evaluating this integral we find that
                                                                                                                              1     1
                                                                                                                            = − −0
                                                                                                                              3     4
-                                                                                                                             1
+                                                                                                                              1
                                                                                                                            =     .
                                                                                                                              12
 
@@ -4527,7 +4444,7 @@ A &amp;=\int _{0}^{1}\left (x^{2}-x^{3}\right )\ud x\\ &amp;=\left [\frac {1}{3}
 
 <p>
 <span
-    id="lateximage-mat1001-19"
+    id="lateximage-mat1001-23"
     class="lateximagesource"
 ><!--
 y
@@ -4538,7 +4455,7 @@ y
     1   x
 0
 --><img
-    src="mat1001-images\image-19.svg"
+    src="mat1001-images\image-23.svg"
     alt="(A plot of the functions x squared and x cubed over the interval from zero to one.)"
     style=""
     class="lateximage"
@@ -4563,7 +4480,7 @@ Figure&nbsp;4.5: A plot of the functions \(f(x)=x^{2}\) and \(g(x)=x^{3}\) over 
 
 <li>
 <p>
-<span class="listmarker"><a id="mat1001-autopage-202"></a>
+<span class="listmarker"><a id="mat1001-autopage-212"></a>
 <span class="amsthmnameplain">Exercise</span><span class="amsthmnumberplain"> <span class="textup">4.25</span></span>. </span> Calculate the area between the curves \(\cos (x)\) and \(\sin (x)\) over the interval \([0,\uppi /4]\).
 </p>
 
@@ -4577,8 +4494,6 @@ Figure&nbsp;4.5: A plot of the functions \(f(x)=x^{2}\) and \(g(x)=x^{3}\) over 
 
 </main>
 
-</div>
-
 <footer>
 
 <p>
@@ -4591,5 +4506,6 @@ Contact <a href="mailto:rossc@edgehill.ac.uk" target="_blank" >rossc[at]edgehill
 <nav class="botnavigation"><a href="index.html" class="linkhome" >
 Home</a></nav>
 
+</div><!-- grid -->
 </body>
 </html>

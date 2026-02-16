@@ -11,7 +11,7 @@ The concept of a function is essential to understand not just calculus but also 
     \ThisAltText{A schematic of how a function behaves.}
     %\pdftooltip{
   %  \includegraphics[width=0.3\textwidth, alt ={A schematic of how a function behaves produced by Bin Im Garten for Wikimedia Commons.}]{figures/Injection_keine_Injektion_2a.png}
-     \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth, arrow/.style={thick,->,CDnavy}, set name/.style={font=\color{CDnavy}\Large\bfseries\sf}, set/.style={ultra thick,CDnavy}, every node/.style={circle}]
+     \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, smooth, arrow/.style={thick,->,CDnavy}, set name/.style={font=\color{CDnavy}\Large\bfseries\sf}, set/.style={ultra thick,CDnavy}, every node/.style={circle}, scale=0.75]
     \draw[set] (0,0) circle [x radius=1cm, y radius=3cm] (\xsetpos,0) circle [x radius=1cm, y radius=3cm];
 
 \node[set name] at (0,-4) {Domain};
@@ -74,7 +74,7 @@ Throughout this module we will meet several different types of functions so you 
 
 A key property of a function is its \textbf{\gls{roots}} or zeros, these are the values of $x$ such that $f(x)=0$. For linear functions finding the roots is just a matter of rearranging the equation, sometimes referred to as changing the subject. In this module I am assuming that you have some familiarity with this, if not take a look at the background material in \cref{sec:background} or ask me to point you towards more resources. There will also be some revision questions on this topic in the first couple of weeks tutorials.\\
 
-A common type of function where it is, relatively, easy to find the roots is a polynomial. A polynomial is a function given by the sum of powers of a varaiable $x$, or several variables. There is more information on polynomials in one variable in the Polynomials and roots section of \cref{sec:background}.
+A common type of function where it is, relatively, easy to find the roots is a polynomial. A polynomial is a function given by the sum of powers of a varaiable $x$, or several variables. There is more information on polynomials in one variable in the polynomials and roots section of \cref{sec:background}.
 
 \begin{ex} Find all the roots of $f(x)=9x^{3}-18x^{2}+6x$.\\
 
@@ -99,6 +99,12 @@ x=0,\quad x=1+\frac{\sqrt{3}}{3},\quad x=1-\frac{\sqrt{3}}{3}.
 
 If you do not remember how to use the quadratic formula then I suggest that you look at the background material in \cref{sec:background}.\\
 
+\begin{mdiv}
+A very useful fact about polynomials, sometimes called the \textbf{Fundamental Theorem of Algebra}, says that a degree $n$ polynomial has exactly $n$ roots, counted with multiplicity.\\
+
+There are a few technicalities here, such as the roots do not have to be real, and will frequently be complex, even if the coefficients of the polynomial are real. Think about the quadratic equation $x^{2}+1$ which has two imaginary roots at $x=\pm \ui$.
+\end{mdiv}
+
 If this was a course for mathematicians this is where we would spend time talking about the domain and range of a function. How they are defined, and when we need to be careful to avoid dividing by zero. Here, we will not go through this, and I will just remind you that in your algebraic manipulations you should not divide by any quantity that is zero.\\
 
 A simple, yet useful, class of functions are the rational functions. There are functions who are the ratio of two polynomials, e.g. 
@@ -106,7 +112,7 @@ A simple, yet useful, class of functions are the rational functions. There are f
 f(x)=\frac{4x+10}{x^{2}-2x-15}.
 \end{equation*}
 
-A useful way to understand a function is draw a graph. In a graph, the domain of the function $X$ is drawn horizontally and the codomain, $Y$, is drawn vertically, using \textbf{\gls{Cartesian} axes} $(x,y)$. The graph consists of the points $(x,y)$ with $y=f(x)$. In many books $x$ is called the independent variable and $y$ the dependent variable. In the tutorials we will discuss how to produce plots using a computer, either using \textbf{MATLAB}, \textbf{Python}, or \href{https://www.wolframalpha.com/}{\textbf{WolframAlpha}}. There are also online graphing programs like \href{https://www.desmos.com/}{\textbf{desmos}} and \href{https://www.geogebra.org/}{\textbf{GeoGebra}}. In these notes most of the graphs are produced using the Tikz package for \LaTeX{}, which is a typesetting and markup language\footnote{If you want to produce professional looking documents which include mathematical formulas then it is worth your time learning how to use \LaTeX{}.}.
+A useful way to understand a function is draw a graph. In a graph, the domain of the function $X$ is drawn horizontally and the codomain, $Y$, is drawn vertically, using \textbf{\gls{Cartesian} axes} $(x,y)$. The graph consists of the points $(x,y)$ with $y=f(x)$. In many books $x$ is called the independent variable and $y$ the dependent variable. In the tutorials we will discuss how to produce plots using a computer, either using \textbf{MATLAB}, \textbf{Python}, or \href{https://www.wolframalpha.com/}{\textbf{WolframAlpha}}. There are also online graphing programs like \href{https://www.desmos.com/}{\textbf{Desmos}} and \href{https://www.geogebra.org/}{\textbf{GeoGebra}}. In these notes most of the graphs are produced using the Tikz package for \LaTeX{}, which is a typesetting and markup language\footnote{If you want to produce professional looking documents which include mathematical formulas then it is worth your time learning how to use \LaTeX{}.}.
 
 \begin{ex}
 Plot the graph of $f(x)=2x^{2}-1$.\\
@@ -129,7 +135,7 @@ Note that the equation $y^{2}=x+1$ also defines a parabola, see \cref{fig: non e
 
 \begin{figure}[ht]
     \centering
-    \ThisAltText{plot of both teh positive and negative square roots.}
+    \ThisAltText{A plot of both the positive and negative square roots.}
    % \pdftooltip{
     \begin{tikzpicture}[line width=1pt,line cap=round,line join=round, domain=0:5, smooth,variable=\x, samples =100]
     \draw[->] (-0.2,0) -- (5.2,0) node[right] {$x$};
@@ -160,6 +166,9 @@ Note that the equation $y^{2}=x+1$ also defines a parabola, see \cref{fig: non e
 \end{figure}
 \end{ex}
 
+When the output of a function is a number, as it will be in this module, we can always add and subtract outputs, as well as multiplying and dividing them. Another, potentially less familiar operation is composition of functions. This is when we take the output from one function and use this as the input of another function. For example the composition of the functions $g$ and $f$ is $g(f(x))$ and is denoted by $\left(g\circ f\right)(x)$, and means g acts on the output of $f(x)$.\\
+
+
 \begin{ex}
 Consider the two functions $f(x)=3x-2$ and $g(x)=x/3 +2/3$. These satisfy the relationship
 \begin{align*}
@@ -176,7 +185,7 @@ and
 When we have two functions whose composition leaves $x$ unchanged, we say that they are \textbf{\gls{inverse}} to each other, and $g$ is the inverse\footnote{Usually the inverse function is denoted as $f^{-1}$, though we need to be careful to understand that this does not mean $1/f$.} of $f$. As can be seen in Section 1.2 of \citep{calcI} we can understand this a meaning that if $f:x\mapsto y$ then $g:y\mapsto x$, e.g. $f(-1)=-5$ while $g(-5)=-1$.
 \end{ex}
 
-The concept of an inverse function makes intuitive sense. However, if we pretend to be mathematicians and treat this carefully we quickly encounter some problems. For example, what happens if we have a function which sends two different values of $x$ to the same value? Then we are unable to know which value we started with, so cannot build an inverse function. For example $f(x)=x^{2}$ sends both $x$ and $-x$ to $x^{2}$ so we cannot find an inverse that works everywhere, this is why when we firts meet the square root function you often see it as $\pm\sqrt{\phantom{+}}$.\\
+The concept of an inverse function makes intuitive sense. However, if we pretend to be mathematicians and treat this carefully we quickly encounter some problems. For example, what happens if we have a function which sends two different values of $x$ to the same value? Then we are unable to know which value we started with, so cannot build an inverse function. For example $f(x)=x^{2}$ sends both $x$ and $-x$ to $x^{2}$ so we cannot find an inverse that works everywhere, this is why when we first meet the square root function you often see it as $\pm\sqrt{\phantom{+}}$.\\
 
 Mathematicians fix this by introducing the notion of a \textbf{\gls{one-to-one}} function, sometimes called an \textbf{injective} function. A function is called one-to-one if no two values of $x$ produce the same value of $y$, so that
 \begin{equation*}
@@ -194,7 +203,9 @@ then $f$ and $g$ are inverses and we write $g(x)=f^{-1}(x)$.
 
 Now that we have discussed functions and how to graph them, we can focus on some specific functions which it is very common to encounter.\\ 
 
-From your previous maths experience you have probably come across \textbf{\gls{trigonometric}} (trig) functions in the context of triangles, where they are used to calculate lengths and angles. If you do not remember how this works then I suggest that you have a look at the Triganometry primer in \cref{sec:background} or check out some revision material available \href{https://corbettmaths.com/2013/03/30/trigonometry-introduction/}{here}. Another important thing to remember is that you should always work in radians rather than degrees when using trig functions. This is because radians are a more natural unit for angles and if we did not use them lots of formulas would need extra factors of $\uppi$ to be added for them to be valid. \\
+From your previous maths experience you have probably come across \textbf{\gls{trigonometric}} (trig) functions in the context of triangles, where they are used to calculate lengths and angles. If you do not remember how this works then I suggest that you have a look at the Trigonometry primer in \cref{sec:background} or check out some revision material available \href{https://corbettmaths.com/2013/03/30/trigonometry-introduction/}{here}. Another important thing to remember is that you should always work in radians rather than degrees when using trig functions. This is because radians are a more natural unit for angles and if we did not use them lots of formulas would need extra factors of $\uppi$ to be added for them to be valid. \\
+
+The relationship between degrees and radians is explained in a section of \cref{sec:background}. Have a look at this material if you are not already familiar with radians.\\
 
 \begin{figure}[ht]
     \centering
@@ -219,7 +230,7 @@ From your previous maths experience you have probably come across \textbf{\gls{t
 \end{figure}
 
 
-In the setting of triangles the angles are restricted to run between $0$ and $\uppi$ radians as for angles greater than this we would no longer have a triangle. However, the functions are valid for any real values of the argument, $x$. Typically we will be interested in angles within the range $[0,2\uppi)$, but need to remember that, as shown in \cref{fig: trig functions}, these functions are $2\uppi$ periodic. This means that
+In the setting of triangles the angles are restricted to run between $0$ and $\uppi$ radians as for angles greater than this we would no longer have a triangle\footnote{This is not quite true, we would still have a triangle, as long as we are measuring the outside angle rather than the internal angle.}. However, the functions are valid for any real values of the argument, $x$. Typically we will be interested in angles within the range $[0,2\uppi)$, but need to remember that, as shown in \cref{fig: trig functions}, these functions are $2\uppi$ periodic. This means that
 \begin{align*}
 \sin(x+2\uppi)=\sin(x),\\
 \cos(x+2\uppi)=\cos(x),\\
@@ -272,6 +283,8 @@ The trig functions are clearly not one-to-one, since they are periodic, in fact 
 \cos^{-1}(x)&=\arccos(x),\\
 \tan^{-1}(x)&=\arctan(x).
 \end{align*}
+
+It is very important to note here that $\sin^{-1}$ is the inverse function of $\sin$ and not $1/\sin$ which is given a different name.\\
 
 Your calculator will have a button for each trig function, and a way to select the inverse functions, typically calculators return answers in the following ranges:
 \begin{equation*}
