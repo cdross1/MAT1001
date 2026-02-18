@@ -8,7 +8,7 @@
 <meta name="description" content="Lecture notes for the module MAT1001 Differential Calculus." />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MAT1001 Differential Calculus: Lecture Notes — Bibliography</title>
-<link rel="stylesheet" type="text/css" href="lwarp.css" />
+<link rel="stylesheet" type="text/css" href="lwarp_sagebrush.css" />
 
 <script>
 // Lwarp MathJax emulation code
@@ -73,18 +73,18 @@ MathJax = {
             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
