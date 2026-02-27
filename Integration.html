@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,10 +67,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1592,9 +1592,9 @@ is found by inverting the derivative identity \(\left (x\right )&apos;=1\) to gi
 
 <!--
 
-                                                                                                                     Z
-                                                                                                                                                  
-                                                                                                                              x2 + x−3 + x−1 dx
+                                                                                                                      Z
+                                                                                                                                                   
+                                                                                                                               x2 + x−3 + x−1 dx
 
 
 -->
@@ -1618,19 +1618,19 @@ as follows:
 <!--
 
 
-                                                                                                 Z                                   Z            Z                   Z
-                                                                                                           −3        −1
-                                                                                                                                                         −3
+                                                                                                 Z                                    Z            Z                   Z
+                                                                                                            −3        −1
+                                                                                                                                                          −3
                                                                                                       2
-                                                                                                     x +x       +x            dx =        2
-                                                                                                                                         x dx +       x        dx +       x−1 dx
+                                                                                                     x +x        +x            dx =        2
+                                                                                                                                          x dx +       x        dx +       x−1 dx
 
-                                                                                                                                  1 3   1
-                                                                                                                                =   x − x−2 + ln(x) + c
-                                                                                                                                  3     2
-                                                                                                                                  x3    1
-                                                                                                                                =    −     + ln(x) + c.
-                                                                                                                                   3   2x2
+                                                                                                                                   1 3   1
+                                                                                                                                 =   x − x−2 + ln(x) + c
+                                                                                                                                   3     2
+                                                                                                                                   x3    1
+                                                                                                                                 =    −     + ln(x) + c.
+                                                                                                                                    3   2x2
 
 
 -->
@@ -2510,7 +2510,7 @@ These are both expressions that we can integrate to get
 <!--
 
 
-                                                                                                                  Z                      Z                     Z            
+                                                                                                                  Z                      Z                     Z        
                                                                                                                          1          1              1                 1
                                                                                                                              dx = −                   dx −              dx
                                                                                                                       x2 − 1        2             x+1               x−1
@@ -2645,9 +2645,9 @@ subinterval is then
 
 <!--
 
-                                                                                                                                                 2−0  2
-                                                                                                                                     ∆x =            = .
-                                                                                                                                                  n   n
+                                                                                                                                              2−0  2
+                                                                                                                                  ∆x =            = .
+                                                                                                                                               n   n
 -->
 
 <p>
@@ -2671,10 +2671,10 @@ We will choose the height of the intervals so that the agree with the value of \
 
 <!--
 
-                                                                                                                               1         1                  3         3
-                                                                                                                      h         i           i              i          i
-                                                                                                                          0,     ,         ,1 ,        1,     ,         ,2 .
-                                                                                                                               2         2                  2         2
+                                                                                                                            1         1                  3         3
+                                                                                                                      h      i           i              i          i
+                                                                                                                       0,     ,         ,1 ,        1,     ,         ,2 .
+                                                                                                                            2         2                  2         2
 
 -->
 
@@ -2695,16 +2695,16 @@ In the each sub interval we take the height of our rectangle to be
 <!--
 
 
-                                                                                                                                              1      5
-                                                                                                                                              
-                                                                                                                                         f         = ,
-                                                                                                                                              2      4
-                                                                                                                                             f (1) = 2,
-                                                                                                                                              3      13
-                                                                                                                                              
-                                                                                                                                         f         =    ,
-                                                                                                                                              2       4
-                                                                                                                                             f (2) = 5.
+                                                                                                                                           1      5
+                                                                                                                                           
+                                                                                                                                      f         = ,
+                                                                                                                                           2      4
+                                                                                                                                          f (1) = 2,
+                                                                                                                                           3      13
+                                                                                                                                           
+                                                                                                                                      f         =    ,
+                                                                                                                                           2       4
+                                                                                                                                          f (2) = 5.
 
 
 -->
@@ -2797,13 +2797,13 @@ Adding all of these together gives
 <!--
 
 
-                                                                                                                         Ar = A1 + A2 + A3 + A4
-                                                                                                                              5        13   5
-                                                                                                                            =    +1+      +
-                                                                                                                              8        8    2
+                                                                                                                         Ar = A 1 + A 2 + A 3 + A 4
+                                                                                                                              5       13   5
+                                                                                                                            =   +1+      +
+                                                                                                                              8       8    2
                                                                                                                               23
-                                                                                                                            =     = 5.75.
-                                                                                                                               4
+                                                                                                                            =    = 5.75.
+                                                                                                                              4
 
 
 -->
@@ -3169,7 +3169,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                      0
                                                                                                                                               3      0
                                                                                                                                         1                     1
-                                                                                                                                                                      
+                                                                                                                                                                          
                                                                                                                                       =   (2)3 + 2 −            (0)3 + 0
                                                                                                                                         3                     3
                                                                                                                                         8
@@ -3177,7 +3177,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                                         3
                                                                                                                                         14
                                                                                                                                       =
-                                                                                                                                         3
+                                                                                                                                        3
 
 
 -->
@@ -3232,7 +3232,7 @@ then
                                                                                                                             i
                                                                                                                                                14       14
                                                                                                                    x +x+c =    + c − (0 + c) =    +c−c=    .
-                                                                                                                 3       0   3                 3        3
+                                                                                                                 3       0  3                  3        3
 
 -->
 
@@ -4008,7 +4008,7 @@ Another useful technique for evaluating definite integrals is to split the range
 
 <!--
 
-                                                                                                                                            Z 1
+                                                                                                                                                                                                                                                                                      Z 0              Z 1
                                                                                                                                       =−             xdx +         xdx
                                                                                                                                                −1              0
                                                                                                                                          1  2 0    1  2 1
@@ -4487,7 +4487,7 @@ Evaluating this integral we find that
                                                                                                                              1     1
                                                                                                                            = − −0
                                                                                                                              3     4
-                                                                                                                              1
+                                                                                                                             1
                                                                                                                            =     .
                                                                                                                              12
 

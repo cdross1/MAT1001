@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,10 +67,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1326,7 +1326,7 @@ If we optimise anyway then we get
                                                                                                                           2        −2
                                                                                                                        dw   1 + w2     dw 1 + w2
                                                                                                                                  w          (1 − w2 )
-                                                                                                                                       
+                                                                                                                                        
                                                                                                                            =2       2
                                                                                                                                       −2              .
                                                                                                                                 1+w        (1 + w2 )2

@@ -55,7 +55,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -66,10 +66,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -199,14 +199,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -977,7 +977,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -988,10 +988,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -1121,14 +1121,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -2240,7 +2240,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -2251,24 +2251,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -2384,14 +2384,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -3392,9 +3392,9 @@ So the three roots of \(f(x)\) are
 <!--
 
                                                                                                                                             √                 √
-                                                                                                                                             3                 3
-                                                                                                                     x = 0,       x=1+         ,       x=1−      .
-                                                                                                                                            3                 3
+                                                                                                                                                 3             3
+                                                                                                                     x = 0,       x=1+             ,   x=1−      .
+                                                                                                                                                3             3
 
 -->
 
@@ -5214,7 +5214,7 @@ but leave deriving the identify for \(\cosh (x)\) as an exercise for the interes
 <p>
 <span class="listmarker"><a id="mat1001-autopage-68"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.9</span></span>. </span> Consider \(y=\arcsinh (x)\), we can invert this to give \(x=\sinh (y)\). Next if we make use of eqs.&nbsp;<span
-class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:             cosh exp">2.5</a>)</span> we have that
+class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:                 cosh exp">2.5</a>)</span> we have that
 </p>
 <span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
 
@@ -5223,11 +5223,11 @@ class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and
 
 
 
-                                                                                                                      ey = cosh(y) + sinh(y)
-                                                                                                                            p
-                                                                                                                        =       1 + sinh2 (y) + sinh(y)
-                                                                                                                            p
-                                                                                                                        =       1 + x2 + x.
+                                                                                                                          ey = cosh(y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + sinh2 (y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + x2 + x.
 
 
 
@@ -5247,8 +5247,8 @@ Taking \(\ln \) of both sides then gives that
 
 <!--
 
-                                                                                                      p          
-                                                                                arcsinh(x) = y = ln    1 + x2 + x .                                                                          (2.6)                 --><a id="eq:   arcsinh log"></a><!--
+                                                                                                      p            
+                                                                                arcsinh(x) = y = ln        1 + x2 + x .                                                                          (2.6)             --><a id="eq:   arcsinh log"></a><!--
 
 -->
 
@@ -5281,8 +5281,8 @@ If you do a similar calculation for \(y=\arccosh (x)\) you will find that
 
 <!--
 
-                                                                                                      p        
-                                                                                 arcCosh(x) = ln x ±       x2 − 1 .                                                                          (2.7)                 --><a id="eq:   arccosh log"></a><!--
+                                                                                                      p           
+                                                                                 arcCosh(x) = ln x ±         x2 − 1 .                                                                            (2.7)             --><a id="eq:   arccosh log"></a><!--
 
 -->
 
@@ -5295,7 +5295,7 @@ If you do a similar calculation for \(y=\arccosh (x)\) you will find that
 </p>
 
 <p>
-You should think about why there is a \(\pm \) in this formula but there was not one in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:          arcsinh log">2.6</a>)</span>.
+You should think about why there is a \(\pm \) in this formula but there was not one in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:              arcsinh log">2.6</a>)</span>.
 </p>
 <div class="amsthmbodyplain">
 
@@ -6815,7 +6815,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -6826,24 +6826,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -6959,14 +6959,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -8320,7 +8320,7 @@ In this section we will see the various formulae and rules in both the Lagrange 
 </p>
 
 <p>
-The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                   proofs">12</a>. These
+The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                  proofs">12</a>. These
 formulae are:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -8330,13 +8330,13 @@ formulae are:
 
 
                                                                                                                           d                   df (x)     dg(x)
-                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                    --><a id="eq:    derivative of sum"></a><!--
+                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                   --><a id="eq:    derivative of sum"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                           d                   df (x)     dg(x)
                                                                                                                             (f (x) − g(x)) =          −        ,                      (3.4)                                      --><a id="eq:     derivative of difference"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                                  d              df (x)
-                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:    derivative scalar multiplication"></a><!--
+                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:   derivative scalar multiplication"></a><!--
                                                                                                                                 dx               dx
 
 
@@ -8362,10 +8362,10 @@ In the Lagrange/Euler notation these formulae are:
 <!--
 
 
-                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                                --><a id="eq:    derivative of sum 2"></a><!--
+                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                              --><a id="eq:   derivative of sum 2"></a><!--
                                                                                                                                            ′     ′         ′
                                                                                                                             (f (x) − g(x)) = f (x) − g (x),                              (3.7)                                 --><a id="eq:     derivative of difference 2"></a><!--
-                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:     derivative scalar multiplication 2"></a><!--
+                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:   derivative scalar multiplication 2"></a><!--
 
 
 -->
@@ -8410,7 +8410,7 @@ and that the derivative of a <b>monomial</b> is
 <!--
 
                                                                                        d
-                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:     monomial derivative"></a><!--
+                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:   monomial derivative"></a><!--
                                                                                       dx
 -->
 
@@ -8476,12 +8476,12 @@ We calculate its derivative as follows:
 
 
 
-                                                                                                   df    d                        
+                                                                                                   df    d                         
                                                                                                       =       15x20 − 2x5 + 2x + 4
                                                                                                    dx   dx
-                                                                                                            d           d          d        d
-                                                                                                      = 15      x20 − 2      x5 + 2    (x) +    (4)
-                                                                                                           dx           dx          dx       dx
+                                                                                                            d           d           d        d
+                                                                                                      = 15      x20 − 2      x5 + 2     (x) +    (4)
+                                                                                                           dx           dx           dx       dx
                                                                                                       = 15 × 20x19 − 2 × 5x4 + 2 + 0
                                                                                                       = 300x19 − 10x4 + 2.
 
@@ -8671,9 +8671,9 @@ differentiate trig functions and exponentials.
 <!--
 
 
-                                                                                                           3         3 3 −1   3√
-                                                                                               f ′ (x) = (x 2 )′ =     x2   =    x,      g ′ (x) = (sin(x))′ = cos(x).
-                                                                                                                     2        2
+                                                                                                           3          3 3 −1   3√
+                                                                                               f ′ (x) = (x 2 )′ =      x2   =    x,             g ′ (x) = (sin(x))′ = cos(x).
+                                                                                                                      2        2
 
 -->
 
@@ -8696,13 +8696,13 @@ Then we use product rule to calculate
 <!--
 
 
-                                                                                                               √         ′
-                                                                                                                x3 sin(x) = (f (x)g(x))′
+                                                                                                               √               ′
+                                                                                                                   x3 sin(x)        = (f (x)g(x))′
 
-                                                                                                                            = f ′ (x)g(x) + f (x)g ′ (x)
-                                                                                                                              3√               √
-                                                                                                                            =       x sin(x) + x3 cos(x).
-                                                                                                                              2
+                                                                                                                                    = f ′ (x)g(x) + f (x)g ′ (x)
+                                                                                                                                      3√               √
+                                                                                                                                    =       x sin(x) + x3 cos(x).
+                                                                                                                                      2
 
 
 -->
@@ -8909,7 +8909,7 @@ href="Differentiation.html#eq:      quotient rule">3.12</a>)</span> gives
                                                                                                                                              ex cos(x) − sin(x)ex
                                                                                                                                          =
                                                                                                                                                         e2x
-                                                                                                                                             −x
+                                                                                                                                              −x
                                                                                                                                          =e        (cos(x) − sin(x)) .
 
 
@@ -9052,19 +9052,19 @@ Armed with the quotient rule we can now give the derivatives of the six trig fun
                                                                                                                            sin(ax) = a cos(ax),                   (3.13)                            --><a id="eq:    sine derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:   cos derivative"></a><!--
+                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:    cos derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
                                                                                                                           tan(ax) = a sec2 (ax),                   (3.15)                            --><a id="eq:   tan derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:   cot derivative"></a><!--
+                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:    cot derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:   sec derivative"></a><!--
+                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:    sec derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:   csc derivative"></a><!--
+                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:    csc derivative"></a><!--
                                                                                                                        dx
 
 
@@ -9131,13 +9131,13 @@ Using the quotient rule we have that
                                                                                                        tan(x) =
                                                                                                     dx          dx        cos(x)
                                                                                                                     1               d                   d
-                                                                                                                                                              
+                                                                                                                                                                  
                                                                                                               =             cos(x)     sin(x) − sin(x)    cos(x)
                                                                                                                 (cos(x))2          dx                  dx
                                                                                                                    1
                                                                                                               =          (cos(x) cos(x) − sin(x)(− sin(x)))
                                                                                                                 cos2 (x)
-                                                                                                                   1                         
+                                                                                                                   1                          
                                                                                                               =           cos2 (x) + sin2 (x)
                                                                                                                 cos2 (x)
                                                                                                                    1
@@ -9203,7 +9203,7 @@ Consider the function
 <!--
 
                                                                                √
-                                                                     f (x) =    4x + 2,                                                                    (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
+                                                                     f (x) =       4x + 2,                                                                 (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
 
 -->
 
@@ -9224,7 +9224,7 @@ we can write this as the <b>composition</b> of two functions if we think of \(g(
 <!--
 
                                                                                                                                                                √
-                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =    4x + 2.
+                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =       4x + 2.
 
 -->
 
@@ -9245,7 +9245,7 @@ The <b>chain rule</b> is the, fairly, simple method to differentiate such compos
 <!--
 
 
-                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                      (3.20)                                                 --><a id="eq:   chain rule 1"></a><!--
+                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                         (3.20)                                              --><a id="eq:   chain rule 1"></a><!--
 
 -->
 
@@ -9266,7 +9266,7 @@ An alternative way of writing the chain rule, that is easier to understand in Le
 <!--
 
                                                                                dy   dy du
-                                                                                  =       .                                                                               (3.21)                                                 --><a id="eq:   chain rule 2"></a><!--
+                                                                                  =       .                                                                                  (3.21)                                              --><a id="eq:   chain rule 2"></a><!--
                                                                                dx   du dx
 -->
 
@@ -9304,7 +9304,7 @@ href="Differentiation.html#eq: function of a function1">3.19</a>)</span> and cal
 
 
                                                                                                                                           √
-                                                                                                                                f (x) =    4x + 2,
+                                                                                                                                f (x) =       4x + 2,
 
 -->
 
@@ -9328,7 +9328,7 @@ and let \(g(x)=\sqrt {x}\) and \(h(x)=4x+2\). The rules we already know about di
 
 
                                                                                                                                     1
-                                                                                                                          g ′ (x) = √ ,        h′ (x) = 4.
+                                                                                                                          g ′ (x) = √ ,          h′ (x) = 4.
                                                                                                                                    2 x
 
 -->
@@ -9628,7 +9628,7 @@ f^{(n)}=\frac {\ud ^{n}f}{\ud x^{n}}.
                                                                                                                                          
                                                                                                                             =
                                                                                                                        dx2    dx dx
-                                                                                                                               d        
+                                                                                                                               d         
                                                                                                                             =    6x2 + 4
                                                                                                                               dx
                                                                                                                             = 12x.
@@ -9828,7 +9828,7 @@ We find its critical points by calculating \(f&apos;(x)\) and setting it to zero
 
 
 
-                                                                                                                            df    d             
+                                                                                                                            df    d              
                                                                                                                                =    4x2 + 3x − 2
                                                                                                                             dx   dx
                                                                                                                                 = 8x + 3.
@@ -10572,7 +10572,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -10583,10 +10583,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -10716,14 +10716,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -12108,9 +12108,9 @@ is found by inverting the derivative identity \(\left (x\right )&apos;=1\) to gi
 
 <!--
 
-                                                                                                                     Z
-                                                                                                                                                  
-                                                                                                                              x2 + x−3 + x−1 dx
+                                                                                                                      Z
+                                                                                                                                                   
+                                                                                                                               x2 + x−3 + x−1 dx
 
 
 -->
@@ -12134,19 +12134,19 @@ as follows:
 <!--
 
 
-                                                                                                 Z                                   Z            Z                   Z
-                                                                                                           −3        −1
-                                                                                                                                                         −3
+                                                                                                 Z                                    Z            Z                   Z
+                                                                                                            −3        −1
+                                                                                                                                                          −3
                                                                                                       2
-                                                                                                     x +x       +x            dx =        2
-                                                                                                                                         x dx +       x        dx +       x−1 dx
+                                                                                                     x +x        +x            dx =        2
+                                                                                                                                          x dx +       x        dx +       x−1 dx
 
-                                                                                                                                  1 3   1
-                                                                                                                                =   x − x−2 + ln(x) + c
-                                                                                                                                  3     2
-                                                                                                                                  x3    1
-                                                                                                                                =    −     + ln(x) + c.
-                                                                                                                                   3   2x2
+                                                                                                                                   1 3   1
+                                                                                                                                 =   x − x−2 + ln(x) + c
+                                                                                                                                   3     2
+                                                                                                                                   x3    1
+                                                                                                                                 =    −     + ln(x) + c.
+                                                                                                                                    3   2x2
 
 
 -->
@@ -13026,7 +13026,7 @@ These are both expressions that we can integrate to get
 <!--
 
 
-                                                                                                                  Z                      Z                     Z            
+                                                                                                                  Z                      Z                     Z        
                                                                                                                          1          1              1                 1
                                                                                                                              dx = −                   dx −              dx
                                                                                                                       x2 − 1        2             x+1               x−1
@@ -13161,9 +13161,9 @@ subinterval is then
 
 <!--
 
-                                                                                                                                                 2−0  2
-                                                                                                                                     ∆x =            = .
-                                                                                                                                                  n   n
+                                                                                                                                              2−0  2
+                                                                                                                                  ∆x =            = .
+                                                                                                                                               n   n
 -->
 
 <p>
@@ -13187,10 +13187,10 @@ We will choose the height of the intervals so that the agree with the value of \
 
 <!--
 
-                                                                                                                               1         1                  3         3
-                                                                                                                      h         i           i              i          i
-                                                                                                                          0,     ,         ,1 ,        1,     ,         ,2 .
-                                                                                                                               2         2                  2         2
+                                                                                                                            1         1                  3         3
+                                                                                                                      h      i           i              i          i
+                                                                                                                       0,     ,         ,1 ,        1,     ,         ,2 .
+                                                                                                                            2         2                  2         2
 
 -->
 
@@ -13211,16 +13211,16 @@ In the each sub interval we take the height of our rectangle to be
 <!--
 
 
-                                                                                                                                              1      5
-                                                                                                                                              
-                                                                                                                                         f         = ,
-                                                                                                                                              2      4
-                                                                                                                                             f (1) = 2,
-                                                                                                                                              3      13
-                                                                                                                                              
-                                                                                                                                         f         =    ,
-                                                                                                                                              2       4
-                                                                                                                                             f (2) = 5.
+                                                                                                                                           1      5
+                                                                                                                                           
+                                                                                                                                      f         = ,
+                                                                                                                                           2      4
+                                                                                                                                          f (1) = 2,
+                                                                                                                                           3      13
+                                                                                                                                           
+                                                                                                                                      f         =    ,
+                                                                                                                                           2       4
+                                                                                                                                          f (2) = 5.
 
 
 -->
@@ -13313,13 +13313,13 @@ Adding all of these together gives
 <!--
 
 
-                                                                                                                         Ar = A1 + A2 + A3 + A4
-                                                                                                                              5        13   5
-                                                                                                                            =    +1+      +
-                                                                                                                              8        8    2
+                                                                                                                         Ar = A 1 + A 2 + A 3 + A 4
+                                                                                                                              5       13   5
+                                                                                                                            =   +1+      +
+                                                                                                                              8       8    2
                                                                                                                               23
-                                                                                                                            =     = 5.75.
-                                                                                                                               4
+                                                                                                                            =    = 5.75.
+                                                                                                                              4
 
 
 -->
@@ -13685,7 +13685,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                      0
                                                                                                                                               3      0
                                                                                                                                         1                     1
-                                                                                                                                                                      
+                                                                                                                                                                          
                                                                                                                                       =   (2)3 + 2 −            (0)3 + 0
                                                                                                                                         3                     3
                                                                                                                                         8
@@ -13693,7 +13693,7 @@ where we have carried out the indefinite integral of \(f(x)\). Using eq.&nbsp;<s
                                                                                                                                         3
                                                                                                                                         14
                                                                                                                                       =
-                                                                                                                                         3
+                                                                                                                                        3
 
 
 -->
@@ -13748,7 +13748,7 @@ then
                                                                                                                             i
                                                                                                                                                14       14
                                                                                                                    x +x+c =    + c − (0 + c) =    +c−c=    .
-                                                                                                                 3       0   3                 3        3
+                                                                                                                 3       0  3                  3        3
 
 -->
 
@@ -15030,7 +15030,7 @@ Evaluating this integral we find that
                                                                                                                              1     1
                                                                                                                            = − −0
                                                                                                                              3     4
-                                                                                                                              1
+                                                                                                                             1
                                                                                                                            =     .
                                                                                                                              12
 
@@ -15183,7 +15183,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -15194,24 +15194,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -15327,14 +15327,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -16132,7 +16132,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -16143,24 +16143,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -16276,14 +16276,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -17137,8 +17137,8 @@ By rearranging this equation we have that
 
 <!--
 
-                                                                                                                                                51
-                                                                                                                             x = 3x3 − 2x + 4         .
+                                                                                                                                                 15
+                                                                                                                             x = 3x3 − 2x + 4          .
 
 -->
 
@@ -17159,8 +17159,8 @@ take \(x_{0}=1.8\) and then iterate using
 
 <!--
 
-                                                                                                                                                       51
-                                                                                                                          xn+1 = 3x3n − 2xn + 4              .
+                                                                                                                                                        15
+                                                                                                                          xn+1 = 3x3n − 2xn + 4               .
 
 -->
 
@@ -18123,8 +18123,8 @@ Intuitively it is clear that the root is \(x=0\). However, Newton’s method wil
 
                                                                                                                                 √
                                                                                                                                 3
-                                                                                                                                  x
-                                                                                                                xn+1 = xn −           = xn − 3xn = −2xn .
+                                                                                                                                    x
+                                                                                                                xn+1 = xn −             = xn − 3xn = −2xn .
                                                                                                                               1 −2
                                                                                                                               3
                                                                                                                                 x 3
@@ -18185,7 +18185,7 @@ A variant of Newton’s method is the <b>Secant</b> method, where we start with 
 
                                                                                                                                             f (x1 ) − f (x1 )
                                                                                                                             Q(x0 , x1 ) =                     ,
-                                                                                                                                                x1 − x0
+                                                                                                                                                x1 − x 0
 
 -->
 
@@ -18206,7 +18206,7 @@ so that
 <!--
 
                                                                                                                                     f (x1 )               f (x1 )
-                                                                                                                    x2 = x1 −                  = x1 − f (x )−f (x ) .
+                                                                                                                    x2 = x 1 −                 = x1 − f (x )−f (x ) .
                                                                                                                                    Q(x0 , x1 )            1       1
                                                                                                                                                            x1 −x0
 
@@ -19553,8 +19553,8 @@ The total area, \(A_{m}\) since we are using the midpoint rule, is thus
 <!--
 
                                                                                                                                          17   25   41   65   148   37
-                                                                                                  Am = A1 + A2 + A3 + A4 =                  +    +    +    =     =    ≃ 4.625.
-                                                                                                                                         32   32   32   32    32    8
+                                                                                                  Am = A 1 + A 2 + A 3 + A 4 =              +    +    +    =     =    ≃ 4.625.
+                                                                                                                                         32   32   32   32   32    8
 -->
 
 <p>
@@ -19616,7 +19616,7 @@ Given a function \(f(x)\) and an interval \([a,b]\) you should use the following
 <!--
                                                                                                                                                           n
                                                                                                                                                           X
-                                                                                                                              Am = A1 + . . . A n =                Ai .
+                                                                                                                              Am = A 1 + . . . A n =               Ai .
                                                                                                                                                              i=1
 -->
 <p>
@@ -19658,7 +19658,7 @@ calculated directly. or which are very hard to calculate directly.
 <!--
 
                                                                                                                                  Z 1p
-                                                                                                                            I=         x3 + 1dx,
+                                                                                                                            I=          x3 + 1dx,
                                                                                                                                  0
 
 -->
@@ -21444,7 +21444,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -21455,10 +21455,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -21588,14 +21588,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -22714,7 +22714,7 @@ If we optimise anyway then we get
                                                                                                                           2        −2
                                                                                                                        dw   1 + w2     dw 1 + w2
                                                                                                                                  w          (1 − w2 )
-                                                                                                                                       
+                                                                                                                                        
                                                                                                                            =2       2
                                                                                                                                       −2              .
                                                                                                                                 1+w        (1 + w2 )2
@@ -22858,7 +22858,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -22869,24 +22869,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -23002,14 +23002,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -24447,7 +24447,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -24458,10 +24458,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -24591,14 +24591,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -25487,7 +25487,7 @@ To apply the quadratic formula we compare this specific equation to the general 
 <!--
 
 
-                                                                                                                                     √
+                                                                                                                                        √
                                                                                                                                    4±  42 + 4 × 2 × 2
                                                                                                                               x=
                                                                                                                                           4
@@ -25593,7 +25593,7 @@ are dividing, \(a\) involves lots of digits it is easier to write it as
 <!--
 
 
-                                                                                                                                         b)a.
+                                                                                                                                            b)a.
 
 -->
 
@@ -25619,14 +25619,14 @@ Consider the problem of dividing \(1260257\) by 37, this is done as follows
 <!--
 
 
-                                                                                                                                             34061
+                                                                                                                                              34061
                                                                                                                                      37)1260257
                                                                                                                                         1110000
                                                                                                                                          150257
                                                                                                                                          148000
                                                                                                                                              2257
                                                                                                                                              2220
-                                                                                                                                                37
+                                                                                                                                                   37
 
 
 -->
@@ -25672,7 +25672,7 @@ First we look at the highest order \(x\) terms and see that we need to multiply 
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
 
 
 -->
@@ -25693,7 +25693,7 @@ We can then subtracted the third line from the second line to get
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
 
 
@@ -25715,7 +25715,7 @@ Now we need to multiply \(x-1\) by \(2x\) to cancel the highest order term so we
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
 
@@ -25738,10 +25738,10 @@ Carrying out the subtraction now gives
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                x−1
+                                                                                                                                                   x−1
 
 
 -->
@@ -25762,12 +25762,12 @@ which is exactly what we are dividing by. Thus
 
                                                                                                                                         x2 + 2x + 1
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                x−1
-                                                                                                                                                x−1
-                                                                                                                                                     0.
+                                                                                                                                                   x−1
+                                                                                                                                                   x−1
+                                                                                                                                                        0.
 
 
 -->
@@ -26338,20 +26338,20 @@ To make \(a\) the subject we proceed as follows:
 
 
 
-                                                                                                                           1 2
-                                                                                                                 s = ut +    at , subtract \(ut\) from both sides,
-                                                                                                                           2
-                                                                                                                           1            1
+                                                                                                                          1 2
+                                                                                                                 s = ut +   at , subtract \(ut\) from both sides,
+                                                                                                                          2
+                                                                                                                          1             1
                                                                                                            s − ut = ut + at2 − ut = at2 , multiply both sides by \(2\),
-                                                                                                                           2            2
-                                                                                                                         1 2
-                                                                                                                             
-                                                                                                                                     2
-                                                                                                       2 (s − ut) = 2      at    = at , divide both sides by \(t^{2}\),
-                                                                                                                         2
-                                                                                                       2 (s − ut)   at 2
+                                                                                                                          2             2
+                                                                                                                        1 2
+                                                                                                                            
+                                                                                                       2 (s − ut) = 2     at    = at2 , divide both sides by \(t^{2}\),
+                                                                                                                        2
+                                                                                                       2 (s − ut)   at2
+                                                                                                            2
                                                                                                                   = 2 = a,
-                                                                                                           t2        t
+                                                                                                           t         t
 
 
 -->
@@ -26439,12 +26439,12 @@ There are a few special cases where we do not need to use the quadratic formula 
 
 
                                                                                                                            1 2
-                                                                                                                   0 = ut +  at , factor out the common factor,
-                                                                                                                           2
-                                                                                                                             1
-                                                                                                                                
+                                                                                                                   0 = ut + at , factor out the common factor,
+                                                                                                                         2
+                                                                                                                            1
+                                                                                                                                
                                                                                                                    0 = t u + at ,
-                                                                                                                             2
+                                                                                                                            2
 
 
 -->
@@ -26724,26 +26724,26 @@ closer to \(x=1\):
 
 
                                                                                                                                    x,   f (x)
-                                                                                                                                  1     3
-                                                                                                                                    ,     = 1.5,
+                                                                                                                                 1      3
+                                                                                                                                   ,      = 1.5,
                                                                                                                                  2      2
                                                                                                                                  3      7
-                                                                                                                                    ,     = 1.75,
+                                                                                                                                   ,      = 1.75,
                                                                                                                                  4      4
                                                                                                                                  9      19
-                                                                                                                                    ,      = 1.9
+                                                                                                                                   ,       = 1.9
                                                                                                                                 10      10
                                                                                                                                 99      199
-                                                                                                                                    ,       = 1.99
+                                                                                                                                   ,        = 1.99
                                                                                                                                100      100
-                                                                                                                               999      1999
-                                                                                                                                    ,        = 1.999
+                                                                                                                              999       1999
+                                                                                                                                   ,         = 1.999
                                                                                                                               1000      1000
-                                                                                                                              9999      19999
-                                                                                                                                    ,         = 1.9999
+                                                                                                                             9999       19999
+                                                                                                                                   ,          = 1.9999
                                                                                                                              10000      10000
-                                                                                                                             99999      199999
-                                                                                                                                    ,           = 1.99999.
+                                                                                                                            99999       199999
+                                                                                                                                   ,            = 1.99999.
                                                                                                                             100000      100000
 
 
@@ -26900,12 +26900,12 @@ Here we get:
                                                                                                                                                      x−1
                                                                                                                                    2,   1,
                                                                                                                                         1
-                                                                                                                                   3,      = 0.5,
+                                                                                                                                   3,     = 0.5,
                                                                                                                                         2
                                                                                                                                         1
-                                                                                                                                   5,      = 0.25
+                                                                                                                                   5,     = 0.25
                                                                                                                                         4
-                                                                                                                                         1
+                                                                                                                                        1
                                                                                                                                   11,       = 0.1
                                                                                                                                         10
                                                                                                                                          1
@@ -26914,7 +26914,7 @@ Here we get:
                                                                                                                                           1
                                                                                                                                 1001,         = 0.001
                                                                                                                                         1000
-                                                                                                                                           1
+                                                                                                                                          1
                                                                                                                                10001,          = 0.0001.
                                                                                                                                         10000
 
@@ -27051,7 +27051,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -27062,24 +27062,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -27195,14 +27195,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -28038,8 +28038,8 @@ physical copies of this book in the library.<br />
 </p>
 
 <p>
-Another book that is relevant to the module is [?]. In particular Chapter 2 is focussed on differentiation and chapter 3 on integration, with both including details on how to implement the numerical methods in python. The level of mathematics in the book is slightly
-above the level of this module, but it could be a nice companion to the module if you want to see more about how these numerical methods can be used.
+Another book that is relevant to the module is [Pagonis and Kulp, 2024]. In particular Chapter 2 is focussed on differentiation and chapter 3 on integration, with both including details on how to implement the numerical methods in python. The level of mathematics in
+the book is slightly above the level of this module, but it could be a nice companion to the module if you want to see more about how these numerical methods can be used.
 </p>
 <!--
 ...... section Calculus in Computer Science ......
@@ -28138,7 +28138,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -28149,24 +28149,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -28282,14 +28282,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -29544,7 +29544,7 @@ find:
 <!--
 
 
-                                                                                                                            x+4
+                                                                                                                           x+4
                                                                                                                   h(x) =          ,
                                                                                                                            2x − 5
 
@@ -29881,7 +29881,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 
                                                                                                                     √
-                                                                                                                     2 cos x = 1.
+                                                                                                                        2 cos x = 1.
 
 -->
 
@@ -30347,7 +30347,7 @@ evaluate the limit
 <!--
 
 
-                                                                                                                        x3 + x2 − x − 1
+                                                                                                                        x3 + x 2 − x − 1
                                                                                                               g(x) =
                                                                                                                        x3 − 2x2 − 4x + 8
 
@@ -30572,8 +30572,8 @@ href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 
 <!--
 
-                                                                                                                               p     
-                                                                                                            cosh−1 x = ln x ±   x2 + 1 .
+                                                                                                                               p        
+                                                                                                            cosh−1 x = ln x ±       x2 + 1 .
 
 -->
 
@@ -30846,8 +30846,8 @@ y=\frac {x^{9}}{3}+\frac {x^{4}}{4}.
 
 <!--
 
-                                                                                                                              2
-                                                                                                                    y = x4 − 3     .
+                                                                                                                                 2
+                                                                                                                    y = x4 − 3        .
 
 -->
 
@@ -31507,7 +31507,7 @@ Hint: You may want to take the logarithm of the function.
 <!--
 
 
-                                                                                                                             x+4
+                                                                                                                            x+4
                                                                                                                    h(x) =
                                                                                                                             2x − 5
 
@@ -34058,7 +34058,7 @@ Evaluate this for \(9\) strips using:
 <!--
 
                                                                                                                     Z 1p
-                                                                                                               I=        x(2x − 1)dx
+                                                                                                               I=          x(2x − 1)dx
                                                                                                                     0
 
 -->
@@ -34203,7 +34203,7 @@ Evaluate this for \(5\) strips using:
 <!--
 
                                                                                                                   Z 2p
-                                                                                                             I=        1 + sin(x) + cos(x)dx
+                                                                                                             I=          1 + sin(x) + cos(x)dx
                                                                                                                   0
 
 -->
@@ -34808,7 +34808,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -34819,10 +34819,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -34952,14 +34952,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -35933,7 +35933,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -35944,10 +35944,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -36077,14 +36077,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -37068,7 +37068,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -37079,10 +37079,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -37212,14 +37212,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -37985,6 +37985,12 @@ Definite Integrals From Physics, Engineering, and Mathematics (Plus Numerous Cha
 
 <p>
 <span class="listmarker"></span> Z.H. Nitecki. <em>Calculus Deconstructed: A Second Course in First-Year Calculus</em>. AMS/MAA Textbooks. Mathematical Association of America, 2022. ISBN 9781470466756.
+</p>
+</li>
+<li>
+
+<p>
+<span class="listmarker"></span> V.&nbsp;Pagonis and C.W. Kulp. <em>Mathematical Methods using Python: Applications in Physics and Engineering</em>. CRC Press, 2024. ISBN 9781040023051.
 </p>
 </li>
 <li>

@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1462,7 +1462,7 @@ find:
 <!--
 
 
-                                                                                                                            x+4
+                                                                                                                           x+4
                                                                                                                   h(x) =          ,
                                                                                                                            2x − 5
 
@@ -1799,7 +1799,7 @@ Remember to work in radians for any problems related to trigonometry.
 
 
                                                                                                                     √
-                                                                                                                     2 cos x = 1.
+                                                                                                                        2 cos x = 1.
 
 -->
 
@@ -2265,7 +2265,7 @@ evaluate the limit
 <!--
 
 
-                                                                                                                        x3 + x2 − x − 1
+                                                                                                                        x3 + x 2 − x − 1
                                                                                                               g(x) =
                                                                                                                        x3 − 2x2 − 4x + 8
 
@@ -2490,8 +2490,8 @@ href="Functions.html#sec:   hyperbolic functions">2.4</a> show that
 
 <!--
 
-                                                                                                                               p     
-                                                                                                            cosh−1 x = ln x ±   x2 + 1 .
+                                                                                                                               p        
+                                                                                                            cosh−1 x = ln x ±       x2 + 1 .
 
 -->
 
@@ -2764,8 +2764,8 @@ y=\frac {x^{9}}{3}+\frac {x^{4}}{4}.
 
 <!--
 
-                                                                                                                              2
-                                                                                                                    y = x4 − 3     .
+                                                                                                                                 2
+                                                                                                                    y = x4 − 3        .
 
 -->
 
@@ -3425,7 +3425,7 @@ Hint: You may want to take the logarithm of the function.
 <!--
 
 
-                                                                                                                             x+4
+                                                                                                                            x+4
                                                                                                                    h(x) =
                                                                                                                             2x − 5
 
@@ -5976,7 +5976,7 @@ Evaluate this for \(9\) strips using:
 <!--
 
                                                                                                                     Z 1p
-                                                                                                               I=        x(2x − 1)dx
+                                                                                                               I=          x(2x − 1)dx
                                                                                                                     0
 
 -->
@@ -6121,7 +6121,7 @@ Evaluate this for \(5\) strips using:
 <!--
 
                                                                                                                   Z 2p
-                                                                                                             I=        1 + sin(x) + cos(x)dx
+                                                                                                             I=          1 + sin(x) + cos(x)dx
                                                                                                                   0
 
 -->

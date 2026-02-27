@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,10 +67,10 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
           // This function implements an ifnextchar macro.
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1096,7 +1096,7 @@ To apply the quadratic formula we compare this specific equation to the general 
 <!--
 
 
-                                                                                                                                     √
+                                                                                                                                        √
                                                                                                                                    4±  42 + 4 × 2 × 2
                                                                                                                               x=
                                                                                                                                           4
@@ -1202,7 +1202,7 @@ are dividing, \(a\) involves lots of digits it is easier to write it as
 <!--
 
 
-                                                                                                                                         b)a.
+                                                                                                                                            b)a.
 
 -->
 
@@ -1228,14 +1228,14 @@ Consider the problem of dividing \(1260257\) by 37, this is done as follows
 <!--
 
 
-                                                                                                                                             34061
+                                                                                                                                              34061
                                                                                                                                      37)1260257
                                                                                                                                         1110000
                                                                                                                                          150257
                                                                                                                                          148000
                                                                                                                                              2257
                                                                                                                                              2220
-                                                                                                                                                37
+                                                                                                                                                   37
 
 
 -->
@@ -1281,7 +1281,7 @@ First we look at the highest order \(x\) terms and see that we need to multiply 
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
 
 
 -->
@@ -1302,7 +1302,7 @@ We can then subtracted the third line from the second line to get
 
                                                                                                                                         x2
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
 
 
@@ -1324,7 +1324,7 @@ Now we need to multiply \(x-1\) by \(2x\) to cancel the highest order term so we
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
 
@@ -1347,10 +1347,10 @@ Carrying out the subtraction now gives
 
                                                                                                                                         x2 + 2x
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                x−1
+                                                                                                                                                   x−1
 
 
 -->
@@ -1371,12 +1371,12 @@ which is exactly what we are dividing by. Thus
 
                                                                                                                                         x2 + 2x + 1
                                                                                                                                 x − 1)x3 + x2 − x − 1
-                                                                                                                                        x3 − x2
+                                                                                                                                        x3 − x 2
                                                                                                                                          2x2 − x − 1
                                                                                                                                          2x2 − 2x
-                                                                                                                                                x−1
-                                                                                                                                                x−1
-                                                                                                                                                     0.
+                                                                                                                                                   x−1
+                                                                                                                                                   x−1
+                                                                                                                                                        0.
 
 
 -->
@@ -1947,20 +1947,20 @@ To make \(a\) the subject we proceed as follows:
 
 
 
-                                                                                                                           1 2
-                                                                                                                 s = ut +    at , subtract \(ut\) from both sides,
-                                                                                                                           2
-                                                                                                                           1            1
+                                                                                                                          1 2
+                                                                                                                 s = ut +   at , subtract \(ut\) from both sides,
+                                                                                                                          2
+                                                                                                                          1             1
                                                                                                            s − ut = ut + at2 − ut = at2 , multiply both sides by \(2\),
-                                                                                                                           2            2
-                                                                                                                         1 2
-                                                                                                                             
-                                                                                                                                     2
-                                                                                                       2 (s − ut) = 2      at    = at , divide both sides by \(t^{2}\),
-                                                                                                                         2
-                                                                                                       2 (s − ut)   at 2
+                                                                                                                          2             2
+                                                                                                                        1 2
+                                                                                                                            
+                                                                                                       2 (s − ut) = 2     at    = at2 , divide both sides by \(t^{2}\),
+                                                                                                                        2
+                                                                                                       2 (s − ut)   at2
+                                                                                                            2
                                                                                                                   = 2 = a,
-                                                                                                           t2        t
+                                                                                                           t         t
 
 
 -->
@@ -2048,12 +2048,12 @@ There are a few special cases where we do not need to use the quadratic formula 
 
 
                                                                                                                            1 2
-                                                                                                                   0 = ut +  at , factor out the common factor,
-                                                                                                                           2
-                                                                                                                             1
-                                                                                                                                
+                                                                                                                   0 = ut + at , factor out the common factor,
+                                                                                                                         2
+                                                                                                                            1
+                                                                                                                                
                                                                                                                    0 = t u + at ,
-                                                                                                                             2
+                                                                                                                            2
 
 
 -->
@@ -2333,26 +2333,26 @@ closer to \(x=1\):
 
 
                                                                                                                                    x,   f (x)
-                                                                                                                                  1     3
-                                                                                                                                    ,     = 1.5,
+                                                                                                                                 1      3
+                                                                                                                                   ,      = 1.5,
                                                                                                                                  2      2
                                                                                                                                  3      7
-                                                                                                                                    ,     = 1.75,
+                                                                                                                                   ,      = 1.75,
                                                                                                                                  4      4
                                                                                                                                  9      19
-                                                                                                                                    ,      = 1.9
+                                                                                                                                   ,       = 1.9
                                                                                                                                 10      10
                                                                                                                                 99      199
-                                                                                                                                    ,       = 1.99
+                                                                                                                                   ,        = 1.99
                                                                                                                                100      100
-                                                                                                                               999      1999
-                                                                                                                                    ,        = 1.999
+                                                                                                                              999       1999
+                                                                                                                                   ,         = 1.999
                                                                                                                               1000      1000
-                                                                                                                              9999      19999
-                                                                                                                                    ,         = 1.9999
+                                                                                                                             9999       19999
+                                                                                                                                   ,          = 1.9999
                                                                                                                              10000      10000
-                                                                                                                             99999      199999
-                                                                                                                                    ,           = 1.99999.
+                                                                                                                            99999       199999
+                                                                                                                                   ,            = 1.99999.
                                                                                                                             100000      100000
 
 
@@ -2509,12 +2509,12 @@ Here we get:
                                                                                                                                                      x−1
                                                                                                                                    2,   1,
                                                                                                                                         1
-                                                                                                                                   3,      = 0.5,
+                                                                                                                                   3,     = 0.5,
                                                                                                                                         2
                                                                                                                                         1
-                                                                                                                                   5,      = 0.25
+                                                                                                                                   5,     = 0.25
                                                                                                                                         4
-                                                                                                                                         1
+                                                                                                                                        1
                                                                                                                                   11,       = 0.1
                                                                                                                                         10
                                                                                                                                          1
@@ -2523,7 +2523,7 @@ Here we get:
                                                                                                                                           1
                                                                                                                                 1001,         = 0.001
                                                                                                                                         1000
-                                                                                                                                           1
+                                                                                                                                          1
                                                                                                                                10001,          = 0.0001.
                                                                                                                                         10000
 

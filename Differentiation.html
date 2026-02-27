@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1561,7 +1561,7 @@ In this section we will see the various formulae and rules in both the Lagrange 
 </p>
 
 <p>
-The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                   proofs">12</a>. These
+The first thing that we need is to know is how to differentiate the sum of two functions and the product of a function with a number. The proof of these results will be given in chapter&nbsp;<a href="Extra-Proofs-Derivations.html#sec:                  proofs">12</a>. These
 formulae are:
 </p>
 <span class="hidden"> \(\seteqnumber{0}{3.}{2}\)</span>
@@ -1571,13 +1571,13 @@ formulae are:
 
 
                                                                                                                           d                   df (x)     dg(x)
-                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                    --><a id="eq:    derivative of sum"></a><!--
+                                                                                                                            (f (x) + g(x)) =          +        ,                                 (3.3)                                   --><a id="eq:    derivative of sum"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                           d                   df (x)     dg(x)
                                                                                                                             (f (x) − g(x)) =          −        ,                      (3.4)                                      --><a id="eq:     derivative of difference"></a><!--
                                                                                                                          dx                     dx        dx
                                                                                                                                  d              df (x)
-                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:    derivative scalar multiplication"></a><!--
+                                                                                                                                   (cf (x)) = c        ,                   (3.5)                                         --><a id="eq:   derivative scalar multiplication"></a><!--
                                                                                                                                 dx               dx
 
 
@@ -1603,10 +1603,10 @@ In the Lagrange/Euler notation these formulae are:
 <!--
 
 
-                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                                --><a id="eq:    derivative of sum 2"></a><!--
+                                                                                                                            (f (x) + g(x))′ = f ′ (x) + g ′ x,                                      (3.6)                              --><a id="eq:   derivative of sum 2"></a><!--
                                                                                                                                            ′     ′         ′
                                                                                                                             (f (x) − g(x)) = f (x) − g (x),                              (3.7)                                 --><a id="eq:     derivative of difference 2"></a><!--
-                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:     derivative scalar multiplication 2"></a><!--
+                                                                                                                                   (cf (x))′ = cf ′ (x).                      (3.8)                                    --><a id="eq:   derivative scalar multiplication 2"></a><!--
 
 
 -->
@@ -1651,7 +1651,7 @@ and that the derivative of a <b>monomial</b> is
 <!--
 
                                                                                        d
-                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:     monomial derivative"></a><!--
+                                                                                         (xn ) = nxn−1 .                                                                                          (3.10)                               --><a id="eq:   monomial derivative"></a><!--
                                                                                       dx
 -->
 
@@ -1717,12 +1717,12 @@ We calculate its derivative as follows:
 
 
 
-                                                                                                   df    d                        
+                                                                                                   df    d                         
                                                                                                       =       15x20 − 2x5 + 2x + 4
                                                                                                    dx   dx
-                                                                                                            d           d          d        d
-                                                                                                      = 15      x20 − 2      x5 + 2    (x) +    (4)
-                                                                                                           dx           dx          dx       dx
+                                                                                                            d           d           d        d
+                                                                                                      = 15      x20 − 2      x5 + 2     (x) +    (4)
+                                                                                                           dx           dx           dx       dx
                                                                                                       = 15 × 20x19 − 2 × 5x4 + 2 + 0
                                                                                                       = 300x19 − 10x4 + 2.
 
@@ -1912,9 +1912,9 @@ differentiate trig functions and exponentials.
 <!--
 
 
-                                                                                                           3         3 3 −1   3√
-                                                                                               f ′ (x) = (x 2 )′ =     x2   =    x,      g ′ (x) = (sin(x))′ = cos(x).
-                                                                                                                     2        2
+                                                                                                           3          3 3 −1   3√
+                                                                                               f ′ (x) = (x 2 )′ =      x2   =    x,             g ′ (x) = (sin(x))′ = cos(x).
+                                                                                                                      2        2
 
 -->
 
@@ -1937,13 +1937,13 @@ Then we use product rule to calculate
 <!--
 
 
-                                                                                                               √         ′
-                                                                                                                x3 sin(x) = (f (x)g(x))′
+                                                                                                               √               ′
+                                                                                                                   x3 sin(x)        = (f (x)g(x))′
 
-                                                                                                                            = f ′ (x)g(x) + f (x)g ′ (x)
-                                                                                                                              3√               √
-                                                                                                                            =       x sin(x) + x3 cos(x).
-                                                                                                                              2
+                                                                                                                                    = f ′ (x)g(x) + f (x)g ′ (x)
+                                                                                                                                      3√               √
+                                                                                                                                    =       x sin(x) + x3 cos(x).
+                                                                                                                                      2
 
 
 -->
@@ -2150,7 +2150,7 @@ href="Differentiation.html#eq:      quotient rule">3.12</a>)</span> gives
                                                                                                                                              ex cos(x) − sin(x)ex
                                                                                                                                          =
                                                                                                                                                         e2x
-                                                                                                                                             −x
+                                                                                                                                              −x
                                                                                                                                          =e        (cos(x) − sin(x)) .
 
 
@@ -2293,19 +2293,19 @@ Armed with the quotient rule we can now give the derivatives of the six trig fun
                                                                                                                            sin(ax) = a cos(ax),                   (3.13)                            --><a id="eq:    sine derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:   cos derivative"></a><!--
+                                                                                                                          cos(ax) = −a sin(ax),                    (3.14)                            --><a id="eq:    cos derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
                                                                                                                           tan(ax) = a sec2 (ax),                   (3.15)                            --><a id="eq:   tan derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:   cot derivative"></a><!--
+                                                                                                                          cot(ax) = −a csc2 (ax),                  (3.16)                            --><a id="eq:    cot derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:   sec derivative"></a><!--
+                                                                                                                          sec(ax) = a sec(ax) tan(ax),             (3.17)                            --><a id="eq:    sec derivative"></a><!--
                                                                                                                        dx
                                                                                                                         d
-                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:   csc derivative"></a><!--
+                                                                                                                          csc(ax) = −a csc(ax) cot(ax).            (3.18)                            --><a id="eq:    csc derivative"></a><!--
                                                                                                                        dx
 
 
@@ -2372,13 +2372,13 @@ Using the quotient rule we have that
                                                                                                        tan(x) =
                                                                                                     dx          dx        cos(x)
                                                                                                                     1               d                   d
-                                                                                                                                                              
+                                                                                                                                                                  
                                                                                                               =             cos(x)     sin(x) − sin(x)    cos(x)
                                                                                                                 (cos(x))2          dx                  dx
                                                                                                                    1
                                                                                                               =          (cos(x) cos(x) − sin(x)(− sin(x)))
                                                                                                                 cos2 (x)
-                                                                                                                   1                         
+                                                                                                                   1                          
                                                                                                               =           cos2 (x) + sin2 (x)
                                                                                                                 cos2 (x)
                                                                                                                    1
@@ -2444,7 +2444,7 @@ Consider the function
 <!--
 
                                                                                √
-                                                                     f (x) =    4x + 2,                                                                    (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
+                                                                     f (x) =       4x + 2,                                                                 (3.19)                                                   --><a id="eq:    function of a function1"></a><!--
 
 -->
 
@@ -2465,7 +2465,7 @@ we can write this as the <b>composition</b> of two functions if we think of \(g(
 <!--
 
                                                                                                                                                                √
-                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =    4x + 2.
+                                                                                                                f (x) = (g ◦ h) (x) = g(h(x)) = g (4x + 2) =       4x + 2.
 
 -->
 
@@ -2486,7 +2486,7 @@ The <b>chain rule</b> is the, fairly, simple method to differentiate such compos
 <!--
 
 
-                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                      (3.20)                                                 --><a id="eq:   chain rule 1"></a><!--
+                                                                        f ′ (x) = g ′ (h(x))g ′ (x).                                                                         (3.20)                                              --><a id="eq:   chain rule 1"></a><!--
 
 -->
 
@@ -2507,7 +2507,7 @@ An alternative way of writing the chain rule, that is easier to understand in Le
 <!--
 
                                                                                dy   dy du
-                                                                                  =       .                                                                               (3.21)                                                 --><a id="eq:   chain rule 2"></a><!--
+                                                                                  =       .                                                                                  (3.21)                                              --><a id="eq:   chain rule 2"></a><!--
                                                                                dx   du dx
 -->
 
@@ -2545,7 +2545,7 @@ href="Differentiation.html#eq: function of a function1">3.19</a>)</span> and cal
 
 
                                                                                                                                           √
-                                                                                                                                f (x) =    4x + 2,
+                                                                                                                                f (x) =       4x + 2,
 
 -->
 
@@ -2569,7 +2569,7 @@ and let \(g(x)=\sqrt {x}\) and \(h(x)=4x+2\). The rules we already know about di
 
 
                                                                                                                                     1
-                                                                                                                          g ′ (x) = √ ,        h′ (x) = 4.
+                                                                                                                          g ′ (x) = √ ,          h′ (x) = 4.
                                                                                                                                    2 x
 
 -->
@@ -2869,7 +2869,7 @@ f^{(n)}=\frac {\ud ^{n}f}{\ud x^{n}}.
                                                                                                                                          
                                                                                                                             =
                                                                                                                        dx2    dx dx
-                                                                                                                               d        
+                                                                                                                               d         
                                                                                                                             =    6x2 + 4
                                                                                                                               dx
                                                                                                                             = 12x.
@@ -3069,7 +3069,7 @@ We find its critical points by calculating \(f&apos;(x)\) and setting it to zero
 
 
 
-                                                                                                                            df    d             
+                                                                                                                            df    d              
                                                                                                                                =    4x2 + 3x − 2
                                                                                                                             dx   dx
                                                                                                                                 = 8x + 3.

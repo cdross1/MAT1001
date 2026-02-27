@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1208,9 +1208,9 @@ So the three roots of \(f(x)\) are
 <!--
 
                                                                                                                                             √                 √
-                                                                                                                                             3                 3
-                                                                                                                     x = 0,       x=1+         ,       x=1−      .
-                                                                                                                                            3                 3
+                                                                                                                                                 3             3
+                                                                                                                     x = 0,       x=1+             ,   x=1−      .
+                                                                                                                                                3             3
 
 -->
 
@@ -3030,7 +3030,7 @@ but leave deriving the identify for \(\cosh (x)\) as an exercise for the interes
 <p>
 <span class="listmarker"><a id="mat1001-autopage-68"></a>
 <span class="amsthmnameplain">Example</span><span class="amsthmnumberplain"> <span class="textup">2.9</span></span>. </span> Consider \(y=\arcsinh (x)\), we can invert this to give \(x=\sinh (y)\). Next if we make use of eqs.&nbsp;<span
-class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:             cosh exp">2.5</a>)</span> we have that
+class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and&nbsp;<span class="textup">(<a href="Functions.html#eq:                 cosh exp">2.5</a>)</span> we have that
 </p>
 <span class="hidden"> \(\seteqnumber{0}{2.}{5}\)</span>
 
@@ -3039,11 +3039,11 @@ class="textup">(<a href="Functions.html#eq:        sinh exp">2.4</a>)</span> and
 
 
 
-                                                                                                                      ey = cosh(y) + sinh(y)
-                                                                                                                            p
-                                                                                                                        =       1 + sinh2 (y) + sinh(y)
-                                                                                                                            p
-                                                                                                                        =       1 + x2 + x.
+                                                                                                                          ey = cosh(y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + sinh2 (y) + sinh(y)
+                                                                                                                                p
+                                                                                                                            =       1 + x2 + x.
 
 
 
@@ -3063,8 +3063,8 @@ Taking \(\ln \) of both sides then gives that
 
 <!--
 
-                                                                                                      p          
-                                                                                arcsinh(x) = y = ln    1 + x2 + x .                                                                          (2.6)                 --><a id="eq:   arcsinh log"></a><!--
+                                                                                                      p            
+                                                                                arcsinh(x) = y = ln        1 + x2 + x .                                                                          (2.6)             --><a id="eq:   arcsinh log"></a><!--
 
 -->
 
@@ -3097,8 +3097,8 @@ If you do a similar calculation for \(y=\arccosh (x)\) you will find that
 
 <!--
 
-                                                                                                      p        
-                                                                                 arcCosh(x) = ln x ±       x2 − 1 .                                                                          (2.7)                 --><a id="eq:   arccosh log"></a><!--
+                                                                                                      p           
+                                                                                 arcCosh(x) = ln x ±         x2 − 1 .                                                                            (2.7)             --><a id="eq:   arccosh log"></a><!--
 
 -->
 
@@ -3111,7 +3111,7 @@ If you do a similar calculation for \(y=\arccosh (x)\) you will find that
 </p>
 
 <p>
-You should think about why there is a \(\pm \) in this formula but there was not one in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:          arcsinh log">2.6</a>)</span>.
+You should think about why there is a \(\pm \) in this formula but there was not one in eq.&nbsp;<span class="textup">(<a href="Functions.html#eq:              arcsinh log">2.6</a>)</span>.
 </p>
 <div class="amsthmbodyplain">
 

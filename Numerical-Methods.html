@@ -56,7 +56,7 @@ MathJax = {
         }
 
         // Create the command map for:
-        //    \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
         new CommandMap('Lwarp-macros', {
           ifstar: 'IfstarFunction',
           ifnextchar: 'IfnextcharFunction',
@@ -67,24 +67,24 @@ MathJax = {
         }, {
           // This function implements an ifstar macro.
           IfstarFunction(parser, name) {
-            const resultstar = parser.GetArgument(name);
-            const resultnostar = parser.GetArgument(name);
-            const star = parser.GetStar();                 // true if there is a *
-            useArgument(parser, star ? resultstar : resultnostar);
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
           },
 
-         // This function implements an ifnextchar macro.
-         IfnextcharFunction(parser, name) {
-           let whichchar = parser.GetArgument(name);
-           if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-             // $ syntax highlighting
-             whichchar = String.fromCodePoint(parseInt(whichchar));
-           }
-           const resultnextchar = parser.GetArgument(name);
-           const resultnotnextchar = parser.GetArgument(name);
-           const gotchar = (parser.GetNext() === whichchar);
-           useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-         },
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
 
           // This function implements an ifblank macro.
           IfblankFunction(parser, name) {
@@ -200,14 +200,14 @@ MathJax = {
   tex: {
     packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
     tags: "ams",
-        tagformat: {
-            number: function (n) {
-                if(MathJax.config.subequations==0)
-                    return(MathJax.config.section + n);
-                else
-                    return(MathJax.config.section + String.fromCharCode(96+n));
-            },
-        },
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
   }
 }
 </script>
@@ -1061,8 +1061,8 @@ By rearranging this equation we have that
 
 <!--
 
-                                                                                                                                                51
-                                                                                                                             x = 3x3 − 2x + 4         .
+                                                                                                                                                 15
+                                                                                                                             x = 3x3 − 2x + 4          .
 
 -->
 
@@ -1083,8 +1083,8 @@ take \(x_{0}=1.8\) and then iterate using
 
 <!--
 
-                                                                                                                                                       51
-                                                                                                                          xn+1 = 3x3n − 2xn + 4              .
+                                                                                                                                                        15
+                                                                                                                          xn+1 = 3x3n − 2xn + 4               .
 
 -->
 
@@ -2047,8 +2047,8 @@ Intuitively it is clear that the root is \(x=0\). However, Newton’s method wil
 
                                                                                                                                 √
                                                                                                                                 3
-                                                                                                                                  x
-                                                                                                                xn+1 = xn −           = xn − 3xn = −2xn .
+                                                                                                                                    x
+                                                                                                                xn+1 = xn −             = xn − 3xn = −2xn .
                                                                                                                               1 −2
                                                                                                                               3
                                                                                                                                 x 3
@@ -2109,7 +2109,7 @@ A variant of Newton’s method is the <b>Secant</b> method, where we start with 
 
                                                                                                                                             f (x1 ) − f (x1 )
                                                                                                                             Q(x0 , x1 ) =                     ,
-                                                                                                                                                x1 − x0
+                                                                                                                                                x1 − x 0
 
 -->
 
@@ -2130,7 +2130,7 @@ so that
 <!--
 
                                                                                                                                     f (x1 )               f (x1 )
-                                                                                                                    x2 = x1 −                  = x1 − f (x )−f (x ) .
+                                                                                                                    x2 = x 1 −                 = x1 − f (x )−f (x ) .
                                                                                                                                    Q(x0 , x1 )            1       1
                                                                                                                                                            x1 −x0
 
@@ -3477,8 +3477,8 @@ The total area, \(A_{m}\) since we are using the midpoint rule, is thus
 <!--
 
                                                                                                                                          17   25   41   65   148   37
-                                                                                                  Am = A1 + A2 + A3 + A4 =                  +    +    +    =     =    ≃ 4.625.
-                                                                                                                                         32   32   32   32    32    8
+                                                                                                  Am = A 1 + A 2 + A 3 + A 4 =              +    +    +    =     =    ≃ 4.625.
+                                                                                                                                         32   32   32   32   32    8
 -->
 
 <p>
@@ -3540,7 +3540,7 @@ Given a function \(f(x)\) and an interval \([a,b]\) you should use the following
 <!--
                                                                                                                                                           n
                                                                                                                                                           X
-                                                                                                                              Am = A1 + . . . A n =                Ai .
+                                                                                                                              Am = A 1 + . . . A n =               Ai .
                                                                                                                                                              i=1
 -->
 <p>
@@ -3582,7 +3582,7 @@ calculated directly. or which are very hard to calculate directly.
 <!--
 
                                                                                                                                  Z 1p
-                                                                                                                            I=         x3 + 1dx,
+                                                                                                                            I=          x3 + 1dx,
                                                                                                                                  0
 
 -->
