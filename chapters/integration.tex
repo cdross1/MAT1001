@@ -667,6 +667,36 @@ I 	&=\int_{1}^{2}\ln(x)\ud x\\
 
 \end{ex} 
 
+\begin{ex}
+Consider the integral 
+\begin{equation*}
+I=\int_{0}^{\frac{\uppi}{2}}\frac{\sqrt{\sin(x)}}{\sqrt{\sin(x)}+\sqrt{\cos(x)}}\ud x.
+\end{equation*}
+This may look like an insurmountable integral, but there is a nice substitution trick.  Let $x=\uppi/2 -y$ so that $\ud x=-\ud y$. Note that 
+\begin{align*}
+\sin\left(\frac{\uppi}{2}-y\right)&=\cos(y)\\
+\cos\left(\frac{\uppi}{2}-y\right)&=\sin(y),
+\end{align*}
+so that 
+\begin{align*}
+I&=\int_{0}^{\frac{\uppi}{2}}\frac{\sqrt{\sin(x)}}{\sqrt{\sin(x)}+\sqrt{\cos(x)}}\ud x \\
+&=\int_{\frac{\uppi}{2}}^{0}\frac{\sqrt{\sin\left(\frac{\uppi}{2}-y\right)}}{\sqrt{\sin\left(\frac{\uppi}{2}-y\right)}+\sqrt{\cos\left(\frac{\uppi}{2}-y\right)}}(-\ud y)\\
+&=\int_{0}^{\frac{\uppi}{2}}\frac{\sqrt{\cos(y)}}{\sqrt{\sin(y)}+\sqrt{\cos(y)}}\ud y\\
+&=\int_{0}^{\frac{\uppi}{2}}\frac{\sqrt{\cos(x)}}{\sqrt{\sin(x)}+\sqrt{\cos(x)}}\ud x,
+\end{align*}
+where in the last line we have relabelled $y $ as $x$ since it is the dummy integration variable. Thus
+\begin{equation*}
+2I=\int_{0}^{\frac{\uppi}{2}}\frac{\sqrt{\sin(x)}+\sqrt{\cos(x)}}{\sqrt{\sin(x)}+\sqrt{\cos(x)}}\ud x=\int_{0}^{\frac{\uppi}{2}}\ud x =\frac{\uppi}{2}.
+\end{equation*}
+\end{ex}
+
+Another problem that is amenable to a similar trick is in the following exercise.
+\begin{exercise}
+Use two  substitutions to show that 
+\begin{equation*}
+I=\int_{0}^{\uppi}\frac{x\sin(x)}{1+\cos^{2}(x)}\ud x=\frac{\uppi^{2}}{4}.
+\end{equation*}
+\end{exercise}
 
 \subsection*{Improper integrals}
 An important type of definite integrals are the \textbf{improper integrals}. These are definite integrals
@@ -814,6 +844,9 @@ while if we integrate an odd function over the same region it will vanish,
 \begin{exercise}
 Prove that these formulae are true. Hint: You will want to use the range splitting that we learnt about  previously.
 \end{exercise}
+
+
+
 
 \section{Applications of integrals}
 As with the derivative, there are plenty of applications of integrals. We will touch on some of them here, but as usual there is a wealth of further details in both \citep{calcI} and \citep{riley_mathematical_2006}.\\
